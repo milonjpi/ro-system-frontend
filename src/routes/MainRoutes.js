@@ -1,0 +1,195 @@
+import { lazy } from 'react';
+
+// project imports
+import MainLayout from 'layout/MainLayout';
+import Loadable from 'ui-component/Loadable';
+import { Navigate } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
+import AuthenticationRoutes from './AuthenticationRoutes';
+// import Expenses from 'views/pages/Expenses';
+
+// dashboard routing
+const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
+
+// pages routing
+
+// customer management
+const CustomerGroups = Loadable(
+  lazy(() => import('views/pages/CustomerManagement/CustomerGroups'))
+);
+const AllCustomers = Loadable(
+  lazy(() => import('views/pages/CustomerManagement/AllCustomers'))
+);
+
+// sales management
+const Products = Loadable(
+  lazy(() => import('views/pages/SalesManagement/Products'))
+);
+
+// store management
+const UnitOfMeasurement = Loadable(
+  lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
+);
+
+// utilities routing
+
+// setting routing
+const ManageUser = Loadable(lazy(() => import('views/setting/ManageUser')));
+const SingleUser = Loadable(
+  lazy(() => import('views/setting/ManageUser/SingleUser'))
+);
+const UserInfo = Loadable(
+  lazy(() => import('views/setting/ManageUser/SingleUser/UserInfo'))
+);
+const UserPermission = Loadable(
+  lazy(() => import('views/setting/ManageUser/SingleUser/UserPermission'))
+);
+
+// support routing
+const Support = Loadable(lazy(() => import('views/support')));
+
+// Support error routing
+const Error404 = Loadable(lazy(() => import('views/Error404')));
+
+// ==============================|| MAIN ROUTING ||============================== //
+
+const MainRoutes = {
+  path: '/',
+  element: <PrivateRoute />,
+  children: [
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Navigate to="dashboard" replace={true} />,
+        },
+        {
+          path: 'dashboard',
+          element: <Navigate to="default" replace={true} />,
+        },
+        {
+          path: 'dashboard/default',
+          element: <DashboardDefault />,
+        },
+        {
+          path: 'pages',
+          children: [
+            {
+              path: 'client-management',
+              children: [
+                {
+                  path: 'client-groups',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['client-groups']}
+                    >
+                      <CustomerGroups />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'all-clients',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['all-clients']}
+                    >
+                      <AllCustomers />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'sales-management',
+              children: [
+                {
+                  path: 'products',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['products']}
+                    >
+                      <Products />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'store-management',
+              children: [
+                {
+                  path: 'uom',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['uom']}
+                    >
+                      <UnitOfMeasurement />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'utils',
+          children: [
+            {
+              path: 'setting',
+              children: [
+                {
+                  path: 'manage-user',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['manage-user']}
+                    >
+                      <ManageUser />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'manage-user/:id',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['manage-user']}
+                    >
+                      <SingleUser />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <UserInfo />,
+                    },
+                    {
+                      path: 'permission',
+                      element: <UserPermission />,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              path: 'support',
+              element: <Support />,
+            },
+          ],
+        },
+        {
+          path: '/*',
+          element: <Error404 />,
+        },
+      ],
+    },
+  ],
+};
+
+export default MainRoutes;
