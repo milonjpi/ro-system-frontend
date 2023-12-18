@@ -57,6 +57,15 @@ const salesOrderApi = api.injectEndpoints({
       }),
       invalidatesTags: ['sales-order'],
     }),
+
+    // delete
+    cancelSalesOrder: build.mutation({
+      query: (id) => ({
+        url: `${SALES_ORDER_URL}/${id}/cancel`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['sales-order'],
+    }),
   }),
 });
 
@@ -66,4 +75,5 @@ export const {
   useCreateSalesOrderMutation,
   useUpdateSalesOrderMutation,
   useDeleteSalesOrderMutation,
+  useCancelSalesOrderMutation,
 } = salesOrderApi;

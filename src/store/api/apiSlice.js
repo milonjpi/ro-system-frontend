@@ -14,6 +14,9 @@ export const api = createApi({
     'product',
     'uom',
     'sales-order',
+    'account-type',
+    'account-head',
+    'payment-method',
   ],
   endpoints: () => ({}),
 });

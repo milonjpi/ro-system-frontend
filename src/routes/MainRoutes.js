@@ -25,6 +25,20 @@ const AllCustomers = Loadable(
 const Products = Loadable(
   lazy(() => import('views/pages/SalesManagement/Products'))
 );
+const SalesOrder = Loadable(
+  lazy(() => import('views/pages/SalesManagement/SalesOrder'))
+);
+
+// financial
+const AccountTypes = Loadable(
+  lazy(() => import('views/pages/Financial/AccountTypes'))
+);
+const AccountHeads = Loadable(
+  lazy(() => import('views/pages/Financial/AccountHeads'))
+);
+const PaymentMethods = Loadable(
+  lazy(() => import('views/pages/Financial/PaymentMethods'))
+);
 
 // store management
 const UnitOfMeasurement = Loadable(
@@ -117,6 +131,17 @@ const MainRoutes = {
                     </AuthenticationRoutes>
                   ),
                 },
+                {
+                  path: 'sales-orders',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['sales-orders']}
+                    >
+                      <SalesOrder />
+                    </AuthenticationRoutes>
+                  ),
+                },
               ],
             },
             {
@@ -130,6 +155,44 @@ const MainRoutes = {
                       allowedCodes={['uom']}
                     >
                       <UnitOfMeasurement />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'financial',
+              children: [
+                {
+                  path: 'account-types',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['account-types']}
+                    >
+                      <AccountTypes />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'account-heads',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['account-heads']}
+                    >
+                      <AccountHeads />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'payment-methods',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['payment-methods']}
+                    >
+                      <PaymentMethods />
                     </AuthenticationRoutes>
                   ),
                 },
