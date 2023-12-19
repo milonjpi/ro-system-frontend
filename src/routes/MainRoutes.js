@@ -31,6 +31,9 @@ const SalesOrder = Loadable(
 const Invoices = Loadable(
   lazy(() => import('views/pages/SalesManagement/Invoices'))
 );
+const CustomInvoices = Loadable(
+  lazy(() => import('views/pages/SalesManagement/CustomInvoices'))
+);
 
 // financial
 const AccountTypes = Loadable(
@@ -153,6 +156,17 @@ const MainRoutes = {
                       allowedCodes={['invoices']}
                     >
                       <Invoices />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'custom-invoices',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['custom-invoices']}
+                    >
+                      <CustomInvoices />
                     </AuthenticationRoutes>
                   ),
                 },

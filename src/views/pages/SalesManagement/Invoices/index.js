@@ -7,6 +7,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputBase from '@mui/material/InputBase';
 import InputAdornment from '@mui/material/InputAdornment';
 import MainCard from 'ui-component/cards/MainCard';
@@ -158,8 +161,8 @@ const Invoices = () => {
       {/* pop up items */}
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
-        <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={1} sx={{ alignItems: 'end' }}>
+          <Grid item xs={12} md={6} lg={3.5}>
             <InputBase
               fullWidth
               placeholder="Search By Invoice No..."
@@ -173,7 +176,7 @@ const Invoices = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={6} lg={2}>
             <FormControl fullWidth size="small">
               <InputLabel id="sales-order-status-id">Status</InputLabel>
               <Select
@@ -193,7 +196,7 @@ const Invoices = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} lg={2.5}>
             <Autocomplete
               value={customer}
               size="small"
@@ -206,6 +209,48 @@ const Invoices = () => {
                 <TextField {...params} label="Select Customer" />
               )}
             />
+          </Grid>
+          <Grid item xs={12} md={6} lg={2}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Invoice Date (Form)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={startDate}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={12} md={6} lg={2}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Invoice Date (To)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </Grid>
         </Grid>
       </Box>

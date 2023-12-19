@@ -71,6 +71,12 @@ const pages = {
           type: 'item',
           url: '/pages/sales-management/invoices',
         },
+        {
+          id: 'custom-invoices',
+          title: 'Custom Invoices',
+          type: 'item',
+          url: '/pages/sales-management/custom-invoices',
+        },
       ],
     },
 
