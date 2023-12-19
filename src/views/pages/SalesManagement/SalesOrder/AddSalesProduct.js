@@ -53,7 +53,7 @@ const AddSalesProduct = ({ open, handleClose, products, setProducts }) => {
         })
       );
     } else {
-      setProducts([...products, { product, quantity }]);
+      setProducts([...products, { product, quantity: parseInt(quantity) }]);
       handleClose();
       setProduct(null);
       setQuantity(1);

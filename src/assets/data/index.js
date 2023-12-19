@@ -3,3 +3,7 @@ export const roleValue = {
   admin: 'Admin',
   user: 'User',
 };
+
+
+export const allOrderStatus = ['Pending', 'Delivered', 'Canceled'];
+export const allInvoiceStatus = ['Due', 'Partial', 'Paid', 'Canceled'];

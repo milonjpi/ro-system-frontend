@@ -110,7 +110,7 @@ const AddSalesOrder = ({ open, handleClose }) => {
       if (res.success) {
         handleClose();
         setLoading(false);
-        setCustomer([]);
+        setCustomer(null);
         setProducts([]);
         setOrderDate(moment());
         setDeliveryDate(moment());
@@ -134,7 +134,6 @@ const AddSalesOrder = ({ open, handleClose }) => {
     }
   };
   let sn = 1;
-
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>

@@ -17,6 +17,7 @@ export const api = createApi({
     'account-type',
     'account-head',
     'payment-method',
+    'invoice',
   ],
   endpoints: () => ({}),
 });

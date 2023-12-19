@@ -26,6 +26,7 @@ import { useGetSalesOrdersQuery } from 'store/api/salesOrder/salesOrderApi';
 import AddSalesOrder from './AddSalesOrder';
 import SalesOrderRow from './SalesOrderRow';
 import moment from 'moment';
+import { allOrderStatus } from 'assets/data';
 
 const SalesOrder = () => {
   const [searchText, setSearchText] = useState('');
@@ -123,7 +124,7 @@ const SalesOrder = () => {
                 <MenuItem value="all">
                   <em>All</em>
                 </MenuItem>
-                {['Pending', 'Delivered', 'Canceled'].map((el) => (
+                {allOrderStatus?.map((el) => (
                   <MenuItem key={el} value={el}>
                     {el}
                   </MenuItem>
