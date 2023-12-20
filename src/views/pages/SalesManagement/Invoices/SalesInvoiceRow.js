@@ -49,7 +49,7 @@ const SalesInvoiceRow = ({ sn, data }) => {
     <StyledTableRow>
       <StyledTableCell align="center">{sn}</StyledTableCell>
       <StyledTableCell>
-        {moment(data?.invoiceDate).format('DD/MM/YYYY')}
+        {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCell>
       <StyledTableCell>{data?.invoiceNo}</StyledTableCell>
       <StyledTableCell>{data?.customer?.customerName}</StyledTableCell>
