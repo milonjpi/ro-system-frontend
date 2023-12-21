@@ -1,26 +1,52 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Table from '@mui/material/Table';
-import TablePagination from '@mui/material/TablePagination';
-import TableBody from '@mui/material/TableBody';
-import TableHead from '@mui/material/TableHead';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputBase from '@mui/material/InputBase';
 import InputAdornment from '@mui/material/InputAdornment';
-import LinearProgress from '@mui/material/LinearProgress';
-import SearchIcon from '@mui/icons-material/Search';
 import MainCard from 'ui-component/cards/MainCard';
-import CardAction from 'ui-component/cards/CardAction';
+import SearchIcon from '@mui/icons-material/Search';
+import { allInvoiceStatus } from 'assets/data';
 import { IconPlus } from '@tabler/icons-react';
-import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+import CardAction from 'ui-component/cards/CardAction';
+import { useGetCustomersQuery } from 'store/api/customer/customerApi';
+import DataTable from 'ui-component/table';
+import moment from 'moment';
 import { useDebounced } from 'hooks';
-import { useGetPaymentMethodsQuery } from 'store/api/paymentMethod/paymentMethodApi';
+import { useGetInvoicesQuery } from 'store/api/invoice/invoiceApi';
+import ReceivePaymentRow from './ReceivePaymentRow';
+import {
+  useGetVouchersQuery,
+  useReceivePaymentMutation,
+} from 'store/api/voucher/voucherApi';
+import NewPaymentReceive from './NewPaymentReceive';
 
 const ReceivePayment = () => {
   const [searchText, setSearchText] = useState('');
+  const [customer, setCustomer] = useState(null);
+  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+  const [endDate, setEndDate] = useState(moment());
 
   const [open, setOpen] = useState(false);
 
+  // library
+  const { data: customerData } = useGetCustomersQuery(
+    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allCustomers = customerData?.customers || [];
+  // end library
+
+  // table
   // pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -35,11 +61,56 @@ const ReceivePayment = () => {
   };
   // end pagination
 
+  const tableHeads = [
+    {
+      title: 'SN',
+      align: 'center',
+    },
+    {
+      title: 'Date',
+    },
+    {
+      title: 'Voucher No',
+    },
+
+    {
+      title: 'Customer',
+    },
+    {
+      title: 'Amount',
+      align: 'right',
+    },
+    {
+      title: 'Narration',
+      align: 'right',
+    },
+    {
+      title: 'Quick View',
+      align: 'center',
+    },
+    {
+      title: 'Action',
+      align: 'center',
+    },
+  ];
+  // end table
+
   // filtering and pagination
   const query = {};
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
+  query['type'] = 'Received';
+
+  if (startDate) {
+    query['startDate'] = moment(startDate).format('YYYY-MM-DD');
+  }
+  if (endDate) {
+    query['endDate'] = moment(endDate).format('YYYY-MM-DD');
+  }
+  if (customer) {
+    query['customerId'] = customer?.id;
+  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -51,32 +122,36 @@ const ReceivePayment = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetPaymentMethodsQuery(
+  const { data, isLoading } = useGetVouchersQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allPaymentMethods = data?.paymentMethods || [];
+  const allVouchers = data?.vouchers || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
   return (
     <MainCard
-      title="Payment Methods"
+      title="Receive Amount"
       secondary={
         <CardAction
-          title="Add Payment Method"
-          onClick={() => setOpen(true)}
+          title="New Receive"
           icon={<IconPlus />}
+          onClick={() => setOpen(true)}
         />
       }
     >
+      {/* pop up items */}
+      <NewPaymentReceive open={open} handleClose={() => setOpen(false)} />
+      {/* pop up items */}
+      {/* filter area */}
       <Box sx={{ mb: 2 }}>
-        <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={5}>
+        <Grid container spacing={1} sx={{ alignItems: 'end' }}>
+          <Grid item xs={12} md={6} lg={4}>
             <InputBase
               fullWidth
-              placeholder="Search..."
+              placeholder="Search By Invoice No..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               sx={{ borderBottom: '1px solid #ccc' }}
@@ -87,48 +162,80 @@ const ReceivePayment = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <Autocomplete
+              value={customer}
+              size="small"
+              fullWidth
+              options={allCustomers}
+              getOptionLabel={(option) => option.customerName}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              onChange={(e, newValue) => setCustomer(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Customer" />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (Form)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={startDate}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={12} md={6} lg={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (To)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </Grid>
         </Grid>
       </Box>
-      {/* popup items */}
-      <AddPaymentMethod open={open} handleClose={() => setOpen(false)} />
-      {/* end popup items */}
-      <Box sx={{ overflow: 'auto' }}>
-        <Table sx={{ minWidth: 450 }}>
-          <TableHead>
-            <StyledTableRow>
-              <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Payment Method</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
-            </StyledTableRow>
-          </TableHead>
-          <TableBody>
-            {allPaymentMethods?.length ? (
-              allPaymentMethods.map((item) => (
-                <PaymentMethodRow key={item.id} sn={sn++} data={item} />
-              ))
-            ) : (
-              <StyledTableRow>
-                <StyledTableCell colSpan={10} sx={{ border: 0 }} align="center">
-                  {isLoading ? (
-                    <LinearProgress sx={{ opacity: 0.5, py: 0.5 }} />
-                  ) : (
-                    'No Data'
-                  )}
-                </StyledTableCell>
-              </StyledTableRow>
-            )}
-          </TableBody>
-        </Table>
-      </Box>
-      <TablePagination
-        rowsPerPageOptions={[10, 20, 40]}
-        component="div"
-        count={meta?.total || 0}
-        rowsPerPage={rowsPerPage}
+      {/* end filter area */}
+
+      {/* data table */}
+      <DataTable
+        tableHeads={tableHeads}
+        data={allVouchers}
+        options={(el) => <ReceivePaymentRow key={el.id} sn={sn++} data={el} />}
+        loading={isLoading}
+        pagination={true}
         page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPage={rowsPerPage}
+        count={meta?.total || 0}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
       />
+      {/* end data table */}
     </MainCard>
   );
 };

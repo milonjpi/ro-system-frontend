@@ -46,6 +46,10 @@ const PaymentMethods = Loadable(
   lazy(() => import('views/pages/Financial/PaymentMethods'))
 );
 
+const ReceivePayment = Loadable(
+  lazy(() => import('views/pages/Financial/ReceivePayment'))
+);
+
 // store management
 const UnitOfMeasurement = Loadable(
   lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
@@ -221,6 +225,17 @@ const MainRoutes = {
                       allowedCodes={['payment-methods']}
                     >
                       <PaymentMethods />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'receive-payment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['receive-payment']}
+                    >
+                      <ReceivePayment />
                     </AuthenticationRoutes>
                   ),
                 },

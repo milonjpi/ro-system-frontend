@@ -162,6 +162,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
         setCustomer(null);
         setInvoiceDate(moment());
         setOrder(null);
+        reset({ products: [productValue] });
         dispatch(
           setToast({
             open: true,
