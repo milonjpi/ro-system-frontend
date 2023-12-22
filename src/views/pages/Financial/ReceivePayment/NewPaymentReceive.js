@@ -3,16 +3,12 @@ import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
-import Tooltip from '@mui/material/Tooltip';
-import CircularProgress from '@mui/material/CircularProgress';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -20,109 +16,74 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useFieldArray, useForm, useWatch } from 'react-hook-form';
-import {
-  IconFileInvoice,
-  IconSquareRoundedPlusFilled,
-} from '@tabler/icons-react';
-import { useEffect } from 'react';
+import { IconFileInvoice } from '@tabler/icons-react';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
-import { useGetInvoicesQuery } from 'store/api/invoice/invoiceApi';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import InvoicesRow from './InvoicesRow';
+import { totalSum } from 'views/utilities/NeedyFunction';
+import { useReceivePaymentMutation } from 'store/api/voucher/voucherApi';
+import { setToast } from 'store/toastSlice';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 500, md: 750 },
+  width: { xs: 350, sm: 500, md: 750 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
   p: 2,
 };
 
-const productValue = {
-  product: null,
-  quantity: 1,
-};
-
 const NewPaymentReceive = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
   const [customer, setCustomer] = useState(null);
-  const [amount, setAmount] = useState('');
-  const [invoice, setInvoice] = useState(false);
+  // const [amount, setAmount] = useState('');
 
-  const [order, setOrder] = useState(null);
   const [date, setDate] = useState(moment());
-
-  const [discount, setDiscount] = useState('');
-
-  const [invoiceLoading, setInvoiceLoading] = useState(false);
 
   // hook form
   const { register, handleSubmit, control, reset } = useForm();
-  const { fields, append, remove } = useFieldArray({
+  const { fields } = useFieldArray({
     control,
     name: 'invoices',
   });
 
-  const handleAppend = () => {
-    append(productValue);
-  };
-  const handleRemove = (index) => remove(index);
-
   // calculation
+  const totalAmount = totalSum(fields || [], 'amount');
+  const totalPaid = totalSum(fields || [], 'paidAmount');
+  const totalDue = totalAmount - totalPaid;
   const watchValue = useWatch({ control });
-  const changeMainAmount = () => {
-    const changedAmount = Object.values(watchValue)?.reduce(
-      (acc, el) => acc + el,
-      0
-    );
-    if (changedAmount > Number(amount)) {
-      setAmount(changedAmount);
-    }
-  };
 
-  console.log(Object.values(watchValue));
-
-  // const subTotal = totalSum(subTotalMapped, 'amount');
-  // const totalValue = subTotal - parseInt(discount || 0);
+  const subTotal = totalSum(watchValue?.invoices || [], 'receiveAmount');
+  const advanced = (watchValue?.amount || 0) - subTotal;
   // end calculation
 
   // library
-  const customerQuery = {};
-
-  customerQuery['limit'] = 1000;
-  customerQuery['sortBy'] = 'customerName';
-  customerQuery['sortOrder'] = 'asc';
-
-  if (customer) {
-    customerQuery['customerId'] = customer.id;
-  }
   const { data: customerData } = useGetCustomersQuery(
-    { ...customerQuery },
+    {
+      forVoucher: true,
+      isActive: true,
+      limit: 1000,
+      sortBy: 'customerName',
+      sortOrder: 'asc',
+    },
     { refetchOnMountOrArgChange: true }
   );
 
   const allCustomers = customerData?.customers || [];
-
-  const { data: invoiceData } = useGetInvoicesQuery(
-    { limit: 30, sortBy: 'invoiceNo', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allInvoices = invoiceData?.invoices || [];
   // end library
 
   // handle customer
   const handleCustomer = (value) => {
     setCustomer(value);
+    console.log(value);
     if (value) {
-      reset({ invoices: allInvoices });
+      reset({ invoices: value.invoices || [] });
     } else {
       reset({ invoices: [] });
     }
@@ -149,61 +110,67 @@ const NewPaymentReceive = ({ open, handleClose }) => {
       align: 'right',
     },
     {
-      title: 'Receive Amount',
+      title: 'Pay Now',
     },
   ];
   // end table
 
   const dispatch = useDispatch();
+  const [receivePayment] = useReceivePaymentMutation();
 
-  const onSubmit = (data) => {
-    // setLoading(true);
-    console.log(data);
-    // const productData = data?.products?.map((el) => ({
-    //   product: el.product?._id,
-    //   unitPrice: el.product?.price,
-    //   quantity: el.quantity,
-    // }));
-    // const newData = {
-    //   date,
-    //   products: productData,
-    //   customer: customer?._id,
-    //   // totalAmount: subTotal,
-    //   discount: parseInt(discount || 0),
-    //   // amount: totalValue,
-    //   refNo: order?._id || null,
-    // };
-    // axiosPrivate
-    //   .post('/invoices', newData)
-    //   .then((res) => {
-    //     handleClose();
-    //     dispatch(setRefresh());
-    //     setLoading(false);
-    //     setCustomer(null);
-    //     setInvoices([]);
-    //     setOrder(null);
-    //     setDate(moment());
-    //     setDiscount('');
-    //     reset({ products: [productValue] });
-    //     dispatch(
-    //       setToast({
-    //         open: true,
-    //         variant: 'success',
-    //         message: res.data?.message,
-    //       })
-    //     );
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-    //     dispatch(
-    //       setToast({
-    //         open: true,
-    //         variant: 'error',
-    //         message: err.response?.data?.message || 'Network Error',
-    //         errorMessages: err.response?.data?.errorMessages,
-    //       })
-    //     );
-    //   });
+  const onSubmit = async (data) => {
+    if (advanced < 0)
+      return dispatch(
+        setToast({
+          open: true,
+          variant: 'error',
+          message: 'Your Calculation miss match',
+        })
+      );
+    const newData = {
+      date: date,
+      amount: data?.amount,
+      customerId: customer.id,
+      narration: data?.narration,
+      invoices: data?.invoices?.map((el) => ({
+        id: el.id,
+        paidAmount: el.paidAmount + el.receiveAmount,
+        status:
+          el.paidAmount + el.receiveAmount === el.amount
+            ? 'Paid'
+            : el.paidAmount + el.receiveAmount > 0
+            ? 'Partial'
+            : 'Due',
+      })),
+    };
+    try {
+      setLoading(true);
+      const res = await receivePayment({ ...newData }).unwrap();
+      if (res.success) {
+        handleClose();
+        setLoading(false);
+        setDate(moment());
+        setCustomer(null);
+        reset({ invoices: [], narration: '' });
+        dispatch(
+          setToast({
+            open: true,
+            variant: 'success',
+            message: res?.message,
+          })
+        );
+      }
+    } catch (err) {
+      setLoading(false);
+      dispatch(
+        setToast({
+          open: true,
+          variant: 'error',
+          message: err?.data?.message || 'Something Went Wrong',
+          errorMessages: err?.data?.errorMessages,
+        })
+      );
+    }
   };
 
   let sn = 1;
@@ -218,7 +185,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            New Receipt
+            Receive Payment
           </Typography>
           <IconButton
             color="error"
@@ -277,14 +244,31 @@ const NewPaymentReceive = ({ open, handleClose }) => {
 
             <Grid item xs={12} md={6} lg={4}>
               <TextField
-                value={amount}
                 fullWidth
                 size="small"
                 label="Amount"
                 type="number"
-                InputProps={{ inputProps: { min: 0 } }}
-                onChange={(e) => setAmount(e.target.value)}
+                required
+                inputProps={{ min: 5 }}
+                {...register('amount', { required: true, valueAsNumber: true })}
               />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                size="small"
+                label="Narration"
+                {...register('narration')}
+              />
+            </Grid>
+            <Grid item xs={12} md={6} sx={{ alignSelf: 'center' }}>
+              <Typography sx={{ fontSize: 11 }}>
+                Total Distribute:{' '}
+                <span style={{ color: '#0066ff' }}>{subTotal}</span>, Advance:{' '}
+                <span style={{ color: advanced < 0 ? 'red' : 'green' }}>
+                  {advanced}
+                </span>
+              </Typography>
             </Grid>
             <Grid item xs={12}>
               <Box sx={{ overflow: 'auto' }}>
@@ -307,22 +291,26 @@ const NewPaymentReceive = ({ open, handleClose }) => {
                           sn={sn++}
                           register={register}
                           data={el}
-                          amount={amount}
-                          setAmount={setAmount}
                           control={control}
                         />
                       ))
                     ) : (
                       <StyledTableRow>
                         <StyledTableCell colSpan={9} align="center">
-                          {invoiceLoading ? (
-                            <CircularProgress size={20} thickness={6} />
-                          ) : (
-                            'No Invoices'
-                          )}
+                          No Invoices
                         </StyledTableCell>
                       </StyledTableRow>
                     )}
+                    {fields.length ? (
+                      <StyledTableRow>
+                        <StyledTableCell align="right" colSpan={4}>
+                          Total Due:
+                        </StyledTableCell>
+                        <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                          {totalDue}
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ) : null}
                   </TableBody>
                 </Table>
               </Box>

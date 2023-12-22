@@ -1,0 +1,4848 @@
+[{
+  "_id": {
+    "$oid": "63664c41d8faf86f0ad9e28e"
+  },
+  "clientId": 1001,
+  "clientName": "ASIK SHEIKH",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667648577671"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689393256187"
+    }
+  },
+  "clientNameBn": "আশিক শেখ",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63664c78d8faf86f0ad9e299"
+  },
+  "clientId": 1002,
+  "clientName": "GAFFER",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667648632652"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009055500"
+    }
+  },
+  "clientNameBn": "গাফফার",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63664cbcd8faf86f0ad9e2a4"
+  },
+  "clientId": 1003,
+  "clientName": "IBRAHIM SHEIKH",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667648700682"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689393270112"
+    }
+  },
+  "clientNameBn": "ইব্রাহিম শেখ",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63664ccad8faf86f0ad9e2af"
+  },
+  "clientId": 1004,
+  "clientName": "JAKIR",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667648714883"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009075046"
+    }
+  },
+  "clientNameBn": "জাকির",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63664cdad8faf86f0ad9e2ba"
+  },
+  "clientId": 1005,
+  "clientName": "RUBEL SORDER",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667648730872"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685605895723"
+    }
+  },
+  "clientNameBn": "রুবেল সর্দার",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63664cf3d8faf86f0ad9e2c5"
+  },
+  "clientId": 1006,
+  "clientName": "YUNUS SHEIKH",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667648755655"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689393288768"
+    }
+  },
+  "clientNameBn": "ইউনুস শেখ",
+  "group": "",
+  "price": 0,
+  "transport": null
+},{
+  "_id": {
+    "$oid": "6366509ad8faf86f0ad9e36f"
+  },
+  "clientId": 1007,
+  "clientName": "AYUB ALI",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667649690306"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677493373704"
+    }
+  },
+  "group": "",
+  "price": 0,
+  "clientNameBn": "আইয়ুব আলী"
+},{
+  "_id": {
+    "$oid": "63687db33c84c165eaedc9bf"
+  },
+  "clientId": 1008,
+  "clientName": "ROBI",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667792307110"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688207790"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "রবি",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63687dc53c84c165eaedc9ca"
+  },
+  "clientId": 1009,
+  "clientName": "RONY KORIA",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667792325254"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097521627"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "রনি কোরিয়া",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6369ced5cfa9709526a0ae4e"
+  },
+  "clientId": 1010,
+  "clientName": "RASHED SORDER",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667878613333"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097490888"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "রাশেদ সর্দার",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6369cef6cfa9709526a0ae59"
+  },
+  "clientId": 1011,
+  "clientName": "JOY",
+  "mobile": " ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667878646084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687710576"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "জয়",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6369cf9fcfa9709526a0ae85"
+  },
+  "clientId": 1012,
+  "clientName": "HASIB",
+  "mobile": "  ",
+  "address": "ARPARA",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667878815525"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1692260667160"
+    }
+  },
+  "group": "TAKA 0",
+  "clientNameBn": "হাসিব",
+  "price": 0,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "636b858442523adf68e7ea23"
+  },
+  "clientId": 1013,
+  "clientName": "ENAM",
+  "mobile": " ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667990916247"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687733464"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "এনাম",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "636e348bc79a7bf8a8aff74f"
+  },
+  "clientId": 1014,
+  "clientName": "MASUM",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668166795625"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009182171"
+    }
+  },
+  "clientNameBn": "মাসুম",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "636e34a2c79a7bf8a8aff75a"
+  },
+  "clientId": 1015,
+  "clientName": "MURAD",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668166818413"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009169670"
+    }
+  },
+  "clientNameBn": "মুরাদ",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "636f86401fe036aef283822e"
+  },
+  "clientId": 1016,
+  "clientName": "RUMI",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668253248878"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009159895"
+    }
+  },
+  "clientNameBn": "রুমি",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6371c56f5cc3a54cc6ca745c"
+  },
+  "clientId": 1017,
+  "clientName": "SAMMI (LABLU)",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668400495307"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009127469"
+    }
+  },
+  "clientNameBn": "সামমী",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6375a86dc92ee397e86ddf01"
+  },
+  "clientId": 1018,
+  "clientName": "MERAJUL 15",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668655213700"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685442879070"
+    }
+  },
+  "group": "TAKA 15",
+  "price": 15,
+  "clientNameBn": "মেরাজুল",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6376699ec506991399215168"
+  },
+  "clientId": 1019,
+  "clientName": "ABDULLAH (LATIF)",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668704670741"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009137717"
+    }
+  },
+  "group": "TAKA 15",
+  "clientNameBn": "লতিফ",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63786e7ac2a179fae385c326"
+  },
+  "clientId": 1020,
+  "clientName": "DELIP",
+  "mobile": " ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668836986010"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687650946"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "দীলিপ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6378d2f9aa4bffa15654d2e6"
+  },
+  "clientId": 1021,
+  "clientName": "JOGO",
+  "mobile": " ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668862713469"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687687401"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "জগো",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6378d30caa4bffa15654d2f1"
+  },
+  "clientId": 1022,
+  "clientName": "SUJON  MASUDUL",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668862732554"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1697533019791"
+    }
+  },
+  "group": "TAKA 15",
+  "price": 15,
+  "clientNameBn": "সুজন",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6379d40cea2a167691b72e0b"
+  },
+  "clientId": 1023,
+  "clientName": "ALI AKBER",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668928524512"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677494721566"
+    }
+  },
+  "group": "",
+  "price": 0,
+  "clientNameBn": "আলী আকবর"
+},{
+  "_id": {
+    "$oid": "637e4d8def1629b3f20a7ff3"
+  },
+  "clientId": 1024,
+  "clientName": "SHOHAG",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669221773804"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009210721"
+    }
+  },
+  "clientNameBn": "সোহাগ",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "638064611962a665898eae93"
+  },
+  "clientId": 1025,
+  "clientName": "KALIDAS",
+  "mobile": "  ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669358689844"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687937733"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "কালিদাস",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63806479f7a17c461f9e924d"
+  },
+  "clientId": 1026,
+  "clientName": "KUNA",
+  "mobile": "   ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669358713885"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009233869"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "কুনা",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "638064c3f7a17c461f9e9253"
+  },
+  "clientId": 1027,
+  "clientName": "KOMOLAS",
+  "mobile": "   ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669358787111"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687954023"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "কমোলাস",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63870ccd4cd71cb3ddf7b8d2"
+  },
+  "clientId": 1028,
+  "clientName": "GIAS",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669795021339"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690544132715"
+    }
+  },
+  "clientNameBn": "গিয়াস",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6388b8099400b53993129d04"
+  },
+  "clientId": 1029,
+  "clientName": "ISRAFIL",
+  "mobile": " ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669904393818"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009267463"
+    }
+  },
+  "clientNameBn": "ইসরাফিল",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "638b23c57577f0f209ff5cda"
+  },
+  "clientId": 1030,
+  "clientName": "ARSHAD",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670063045612"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694678711347"
+    }
+  },
+  "group": "TAKA 15",
+  "price": 15,
+  "clientNameBn": "এরশাদ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6390ba2fcffbfe6a4d810294"
+  },
+  "clientId": 1031,
+  "clientName": "RAJU",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670429231969"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009295715"
+    }
+  },
+  "clientNameBn": "রাজু",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6393330073884f03893a71c0"
+  },
+  "clientId": 1032,
+  "clientName": "ALAMIN (SANTOLA)",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670591232567"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1703069007901"
+    }
+  },
+  "clientNameBn": "আল আমিন সাঁনতোলা",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63960c8e7ec1e1c3f5aa0520"
+  },
+  "clientId": 1033,
+  "clientName": "KADER",
+  "mobile": "   ",
+  "address": "SORDER PARA RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670777998852"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694930943854"
+    }
+  },
+  "group": "",
+  "price": 15,
+  "clientNameBn": "কাদের",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63960ca3cb50a0c6af3ed334"
+  },
+  "clientId": 1034,
+  "clientName": "NAZIM",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670778019933"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406773115"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "নাজিম",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63960cbae10cd09f297ae69f"
+  },
+  "clientId": 1035,
+  "clientName": "NASIR SORDER",
+  "mobile": "  ",
+  "address": "SORDERPARA RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670778042513"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688049061"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "নাসির সরদার",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63960cd70f07f0865015f2c0"
+  },
+  "clientId": 1037,
+  "clientName": "SOHID SORDER",
+  "mobile": " ",
+  "address": "SORDER PARA RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670778071123"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406791333"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "সহিদ সরদার",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63989281231942f511e9fd53"
+  },
+  "clientId": 1038,
+  "clientName": "ROSHID",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670943361886"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009314908"
+    }
+  },
+  "clientNameBn": "রশিদ",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63999ec87adfe708bacf163c"
+  },
+  "clientId": 1039,
+  "clientName": "SAMIM",
+  "mobile": " ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671012040253"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677495328393"
+    }
+  },
+  "clientNameBn": "সামিম",
+  "group": "",
+  "price": null
+},{
+  "_id": {
+    "$oid": "639d56c99052fdbfa4ac6de3"
+  },
+  "clientId": 1040,
+  "clientName": "HAFIZ",
+  "mobile": " ",
+  "address": "SONAKHALI",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671255753037"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689783438378"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "হাফিজ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "639d56d6e47b27eab0ac994f"
+  },
+  "clientId": 1041,
+  "clientName": "SUKU",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671255766169"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680148009434"
+    }
+  },
+  "group": "",
+  "price": 0,
+  "clientNameBn": "সুকু",
+  "transport": null
+},{
+  "_id": {
+    "$oid": "639df8fccb15297d2052696b"
+  },
+  "clientId": 1042,
+  "clientName": "SERAJ",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671297276458"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406812781"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "সিরাজ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63a1404e902726e2c6eaaf74"
+  },
+  "clientId": 1043,
+  "clientName": "AMANULLAH HAZUR",
+  "mobile": "  ",
+  "address": "RAJPAT SORDARPARA",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671512142004"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689783830146"
+    }
+  },
+  "group": "TAKA 30",
+  "price": 15,
+  "clientNameBn": "আমানুল্লাহ হুজুর",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63a29fa8d6e7de6a7f571170"
+  },
+  "clientId": 1044,
+  "clientName": "NURALAM",
+  "mobile": "   ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671602088562"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009395447"
+    }
+  },
+  "group": "TAKA 15",
+  "price": 15,
+  "clientNameBn": "নুর আলম",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63a29fc57b900c2a3f83dd51"
+  },
+  "clientId": 1045,
+  "clientName": "AKUBBAR",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671602117138"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680407484925"
+    }
+  },
+  "clientNameBn": "আকুব্বর",
+  "group": "",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63a6abd4031a0f1820cd466c"
+  },
+  "clientId": 1046,
+  "clientName": "FOKRUL (BABU)",
+  "mobile": "  ",
+  "address": "RAJPAT",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671867348667"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009356160"
+    }
+  },
+  "clientNameBn": "ফকরুল (বাবু)",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63ac53335a3255e4f47ad2cf"
+  },
+  "clientId": 1047,
+  "clientName": "FAZOR",
+  "address": "SONAKHALI",
+  "group": "",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672237875814"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677560779292"
+    }
+  },
+  "clientNameBn": "ফজর",
+  "price": null
+},{
+  "_id": {
+    "$oid": "63ad7895e01126cfcff84b65"
+  },
+  "clientId": 1048,
+  "clientName": "MARUF SHEIKH",
+  "address": "RAJPAT",
+  "group": "TAKA 20",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672312981522"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689393222135"
+    }
+  },
+  "price": 15,
+  "clientNameBn": "মারুফ শেখ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63b0704c6c976e1ed3066c5a"
+  },
+  "clientId": 1049,
+  "clientName": "SAMOL",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672507468114"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687780503"
+    }
+  },
+  "price": 15,
+  "clientNameBn": "শ্যামল",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63b7fbabeb2c149f73737473"
+  },
+  "clientId": 1050,
+  "clientName": "SAZZAD",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673001899441"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406918676"
+    }
+  },
+  "clientNameBn": "সাজ্জাদ",
+  "price": 15,
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63ba703cf4ad33f34ded05c8"
+  },
+  "clientId": 1051,
+  "clientName": "ABDULLAH (BARAIPARA)",
+  "address": "BAROIPARA",
+  "group": "TAKA 15",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673162812369"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009377021"
+    }
+  },
+  "price": 15,
+  "clientNameBn": "আবদুল্লাহ (বাড়ইপাড়া)",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63bcffd365b9bbfe1a94945a"
+  },
+  "clientId": 1052,
+  "clientName": "YASIN",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673330643359"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406934581"
+    }
+  },
+  "price": 15,
+  "clientNameBn": "ইয়াসিন",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63c17af9abc7d2995947f0f3"
+  },
+  "clientId": 1053,
+  "clientName": "NITTO CHANDRO SIL",
+  "address": "FAKIRHAT",
+  "group": "DEALER",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673624313616"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1688188338285"
+    }
+  },
+  "price": 10,
+  "clientNameBn": "নিত্তো চন্দ্র শিল",
+  "transport": null
+},{
+  "_id": {
+    "$oid": "63c3efc9ac972f45232c8416"
+  },
+  "clientId": 1054,
+  "clientName": "NANTU SIL",
+  "address": "SONAKHALI",
+  "group": "",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673785289515"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677561119874"
+    }
+  },
+  "clientNameBn": "নান্টু শিল"
+},{
+  "_id": {
+    "$oid": "63cbf65e697d06d34b2494b0"
+  },
+  "clientId": 1055,
+  "clientName": "APU",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674311262110"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688136137"
+    }
+  },
+  "clientNameBn": "অপু",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63cbf673ceafca3f91700de5"
+  },
+  "clientId": 1056,
+  "clientName": "SAKTI",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674311283410"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687906569"
+    }
+  },
+  "clientNameBn": "শক্তি",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63cd00e4dc8d2dbb6a9bf378"
+  },
+  "clientId": 1057,
+  "clientName": "MUJAM",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674379492160"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406953391"
+    }
+  },
+  "clientNameBn": "মুজাম",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63cd01185e07d663e6d85c13"
+  },
+  "clientId": 1058,
+  "clientName": "HAMID",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674379544181"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686544060710"
+    }
+  },
+  "clientNameBn": "হামিদ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63cd73a6aa4c4bd33536d39f"
+  },
+  "clientId": 1059,
+  "clientName": "WAHID",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674408870298"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682962195624"
+    }
+  },
+  "clientNameBn": "ওয়াহিদ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63ce16558cd7ab3c5e41e4b7"
+  },
+  "clientId": 1060,
+  "clientName": "MAMUN",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674450517560"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687997915"
+    }
+  },
+  "clientNameBn": "মামুন",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63cff2b7a6d5f93ac49eda4c"
+  },
+  "clientId": 1061,
+  "clientName": "SHAPAN",
+  "address": "SONAKHALI",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674572471800"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686544150498"
+    }
+  },
+  "clientNameBn": "শপন",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63d110f8e006e9e38d2b3d11"
+  },
+  "clientId": 1062,
+  "clientName": "SOHEL MORAL",
+  "address": "ARPARA",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674645752385"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009448776"
+    }
+  },
+  "clientNameBn": "সোহেল মোড়ল",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63d61cb2ed0c41969e50145e"
+  },
+  "clientId": 1063,
+  "clientName": "ATIE SHEIKH",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674976434034"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689393242438"
+    }
+  },
+  "clientNameBn": "আতি শেখ",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63da6c51faded5dd1aa1de9b"
+  },
+  "clientId": 1064,
+  "clientName": "RAHUL",
+  "address": "FAKIRHAT",
+  "group": "TAKA 25",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675258961629"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687521649"
+    }
+  },
+  "clientNameBn": "রাহুল",
+  "transport": 10
+},{
+  "_id": {
+    "$oid": "63e272b1ee1a36a6ebca6bb0"
+  },
+  "clientId": 1065,
+  "clientName": "MARJAN",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675784881341"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678946300322"
+    }
+  },
+  "clientNameBn": "মারজান",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63e920435aa87413fc2e1bdf"
+  },
+  "clientId": 1066,
+  "clientName": "DIPU",
+  "address": "FAKIRHAT",
+  "group": "",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676222531164"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677561546999"
+    }
+  },
+  "clientNameBn": "দিপু"
+},{
+  "_id": {
+    "$oid": "63e9e48c263dcd1b02aa34a1"
+  },
+  "clientId": 1067,
+  "clientName": "AMIR HAMZA",
+  "address": "SONAKHALI",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676272780049"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009475430"
+    }
+  },
+  "clientNameBn": "আমির হামজা",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63e9e4f016fb6e6e909dabd4"
+  },
+  "clientId": 1068,
+  "clientName": "SAMIM DJ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676272880022"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688245618"
+    }
+  },
+  "clientNameBn": "শামিম ডিজে",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f22fc2d02b3bb0f0e92ee0"
+  },
+  "clientId": 1069,
+  "clientName": "GONAS",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676816322349"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687823611"
+    }
+  },
+  "clientNameBn": "গনেশ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f22fd9c51d5007e1a6fdd1"
+  },
+  "clientId": 1070,
+  "clientName": "KIRSHNO",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676816345961"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687920422"
+    }
+  },
+  "clientNameBn": "কৄষ্ণ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f230f04f7c4b130a7940ce"
+  },
+  "clientId": 1071,
+  "clientName": "MONIR",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676816624918"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688151282"
+    }
+  },
+  "clientNameBn": "মনির",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f4e04a3699662f0386abd2"
+  },
+  "clientId": 1072,
+  "clientName": "LABLU",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676992586222"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688187634"
+    }
+  },
+  "clientNameBn": "লাবলু",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f4e0660cd74c15bdf2f3df"
+  },
+  "clientId": 1073,
+  "clientName": "ABDULLAH",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676992614572"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406989428"
+    }
+  },
+  "clientNameBn": "আবদুল্লাহ",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f5d86002beecedf3f81ecd"
+  },
+  "clientId": 1074,
+  "clientName": "THE WASTERN HOTEL",
+  "address": "FAKIRHAT BUS STAND",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677056096069"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685605779177"
+    }
+  },
+  "clientNameBn": "ওয়েস্টার্ন হোটেল",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63f75c06cb9e5236067a4b8e"
+  },
+  "clientId": 1075,
+  "clientName": "TIPU",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677155334600"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680406998762"
+    }
+  },
+  "clientNameBn": "টিপু",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f883ca5ad0fab2f7b644f5"
+  },
+  "clientId": 1076,
+  "clientName": "ASRAFUL",
+  "address": "RAJPAT",
+  "group": "",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677231050235"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677495236432"
+    }
+  },
+  "clientNameBn": "আসরাফুল"
+},{
+  "_id": {
+    "$oid": "63f8d1aa9d472d5cb13eab46"
+  },
+  "clientId": 1077,
+  "clientName": "ROSUL",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677250986314"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680451879850"
+    }
+  },
+  "clientNameBn": "রসুল",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63f9b83962a941e471121f8c"
+  },
+  "clientId": 1078,
+  "clientName": "SHOPON (SANTOLA)",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677310009974"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684126966984"
+    }
+  },
+  "clientNameBn": "সপন সাঁনতোলা",
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "63f9f1a864aef368b24ff8e5"
+  },
+  "clientId": 1079,
+  "clientName": "BAPPY",
+  "address": "BISSO ROAD",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677324712834"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688331749"
+    }
+  },
+  "clientNameBn": "বাপ্পি",
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "63fc357d13968acdb35bd467"
+  },
+  "clientId": 1080,
+  "clientName": "SAGOR",
+  "clientNameBn": "সাগর",
+  "address": "RAJAPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677473149593"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688278085"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "64007d990cfc1b994dd13b1a"
+  },
+  "clientId": 1081,
+  "clientName": "NIZAM SORDAR",
+  "clientNameBn": "নিজাম সর্দার",
+  "address": "SORDAR PARA",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677753753411"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688089318"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640176912eb86d25d79729d2"
+  },
+  "clientId": 1082,
+  "clientName": "CUTA",
+  "clientNameBn": "ছুটে",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677817489464"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009501948"
+    }
+  },
+  "transport": 0
+},{
+  "_id": {
+    "$oid": "6404d387fb5acd714c3d3ca3"
+  },
+  "clientId": 1083,
+  "clientName": "BADSHA",
+  "clientNameBn": "বাদশা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678037895949"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682962277747"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6404d3a3b26d272b071f20c7"
+  },
+  "clientId": 1084,
+  "clientName": "MAIDUL",
+  "clientNameBn": "মাইদুল",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678037923954"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688263982"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6405881765703edf27f43faa"
+  },
+  "clientId": 1085,
+  "clientName": "MASUD SORDER",
+  "clientNameBn": "মাসুদ সর্দার",
+  "address": "SORDER PARA",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678084119715"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688067331"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6405885d2e819cb64cf385f6"
+  },
+  "clientId": 1086,
+  "clientName": "KAMRUL",
+  "clientNameBn": "কামরুল",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678084189527"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688118042"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "6405887f81f734f7bc24d9e0"
+  },
+  "clientId": 1087,
+  "clientName": "BADAL",
+  "clientNameBn": "বাদল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678084224004"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678687968537"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640c0edf655282ab36743078"
+  },
+  "clientId": 1088,
+  "clientName": "BIPLOB",
+  "clientNameBn": "বিপ্লব",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678511839445"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680451866606"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640c0f3d4905a9cee132b44a"
+  },
+  "clientId": 1089,
+  "clientName": "FIRDAUS",
+  "clientNameBn": "ফিরদাউস",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678511933364"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680407064394"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640de4947264bd5cb3d2627b"
+  },
+  "clientId": 1090,
+  "clientName": "IQBAL",
+  "clientNameBn": "ইকবাল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678632084131"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683008805542"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640de513f7d7fee6a9963986"
+  },
+  "clientId": 1091,
+  "clientName": "MASUD",
+  "clientNameBn": "মাসুদ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678632211329"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682744978392"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640de5362ab6445cecbbfb7f"
+  },
+  "clientId": 1092,
+  "clientName": "FARUK",
+  "clientNameBn": "ফারুক",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678632246614"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678688788678"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640de57858b8fb04d161f7ed"
+  },
+  "clientId": 1093,
+  "clientName": "LASSU",
+  "clientNameBn": "লাচ্চু",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678632312841"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678692120537"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640de5a37264bd5cb3d26284"
+  },
+  "clientId": 1094,
+  "clientName": "GONAS TAKUR",
+  "clientNameBn": "গোনাস ঠাকুর",
+  "address": "SONAKHLI",
+  "group": "TAKA 30",
+  "price": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678632355914"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690261191263"
+    }
+  },
+  "transport": 15
+},{
+  "_id": {
+    "$oid": "640efda395460d428bfebfe1"
+  },
+  "clientId": 1095,
+  "clientName": "JABBER",
+  "clientNameBn": "জব্বার",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678704035361"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681232627430"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "640f06b7de0447ccf3ac4551"
+  },
+  "clientId": 1096,
+  "clientName": "SAHANA",
+  "clientNameBn": "শাহানা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678706359045"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678706359045"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6412af59a45e7d2f80f4f294"
+  },
+  "clientId": 1097,
+  "clientName": "AZIZUL",
+  "clientNameBn": "আজিজুল",
+  "address": "SONAKHLI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678946138015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678946138015"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641450970bc6a8f85ad3f497"
+  },
+  "clientId": 1098,
+  "clientName": "ONE TIME USER",
+  "clientNameBn": "",
+  "address": "",
+  "group": "",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679052951937"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690544302070"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641bc8d7c642400cd5616b58"
+  },
+  "clientId": 1099,
+  "clientName": "BADSHA   CARPENTER",
+  "clientNameBn": "বাদশা কাঠমিস্ত্রি",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679542487646"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679542625953"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641bc99b660f0cc11eb9e16f"
+  },
+  "clientId": 1100,
+  "clientName": "JASHIM",
+  "clientNameBn": "জসিম",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679542683349"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679542683349"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641bc9f30ec35d59d77e0ba2"
+  },
+  "clientId": 1101,
+  "clientName": "RASHED\t SHAIKH",
+  "clientNameBn": "রাশেদ  শেখ",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679542771685"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683009587966"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641c0e08e0894ea3e8471e10"
+  },
+  "clientId": 1102,
+  "clientName": "SORIFUL (NATA)",
+  "clientNameBn": "শরিফুল নেতা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679560200592"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694235970474"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641c15814416083499458895"
+  },
+  "clientId": 1103,
+  "clientName": "WALID",
+  "clientNameBn": "ওয়ালিদ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679562113934"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679562113934"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641c4dbec7817dcf930d549f"
+  },
+  "clientId": 1104,
+  "clientName": "OMAR",
+  "clientNameBn": "ওমর",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679576510362"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679656737818"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "641d85b41579782dc648a07e"
+  },
+  "clientId": 1105,
+  "clientName": "RANA",
+  "clientNameBn": "রানা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679656372913"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679674430258"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6420592068ea68b9ccf1982a"
+  },
+  "clientId": 1106,
+  "clientName": "RUBEL SHEIKH",
+  "clientNameBn": "রুবেল  শেখ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679841568784"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680147321010"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642059a1ed19c899a93b9884"
+  },
+  "clientId": 1107,
+  "clientName": "REPON",
+  "clientNameBn": "রনি",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679841697566"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680628453753"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6421ac612d4b4eb3d1d68cac"
+  },
+  "clientId": 1108,
+  "clientName": "SONJOY",
+  "clientNameBn": "সঞ্জয়",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679928417008"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679928417008"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6421c591954782358e1fac7e"
+  },
+  "clientId": 1109,
+  "clientName": "BOKKER",
+  "clientNameBn": "বক্কর",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679934865631"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679934986667"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6421c645a0c05f04fbd8ce63"
+  },
+  "clientId": 1110,
+  "clientName": "AZIZUR",
+  "clientNameBn": "আজিজুর",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679935045419"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679935045419"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6425a9aefd4872ba6fa7c2f4"
+  },
+  "clientId": 1111,
+  "clientName": "ASIS",
+  "clientNameBn": "আশিস",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680189870796"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680189870796"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6427a5f64fc153a85a1a2aa8"
+  },
+  "clientId": 1112,
+  "clientName": "SORIFUL (MEJU HAZI)",
+  "clientNameBn": "শরিফুল (মিজু হাজী )",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680319990486"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689393444150"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642bd84a843f1d07d1244d7b"
+  },
+  "clientId": 1113,
+  "clientName": "SONJOY (SALON)",
+  "clientNameBn": "সঞ্জয় (সেলুন)",
+  "address": "SONKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680595018613"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682744313174"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642c5ce8eb8caad54ca9cec4"
+  },
+  "clientId": 1114,
+  "clientName": "GOPAL",
+  "clientNameBn": "গোপাল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680628968836"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097356242"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642c5cfcdbf720359ab7033d"
+  },
+  "clientId": 1115,
+  "clientName": "TAPOS",
+  "clientNameBn": "তাপস",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680628988144"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097376007"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642e67c1ea4163df624af388"
+  },
+  "clientId": 1116,
+  "clientName": "CITTO",
+  "clientNameBn": "চিত্ত",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680762817249"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097398580"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642e67dd1efa89e4b6e2996f"
+  },
+  "clientId": 1117,
+  "clientName": "ZIAD",
+  "clientNameBn": "জিয়াদ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680762845042"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097437995"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "642fa2b2d684fbbd3f8ee37c"
+  },
+  "clientId": 1118,
+  "clientName": "JAHAGIR",
+  "clientNameBn": "জাহাঙ্গীর",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680843442723"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681097417535"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6433f250492e25acc15b53b3"
+  },
+  "clientId": 1119,
+  "clientName": "TORIK",
+  "clientNameBn": "তারিক",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681125968431"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681714655502"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6433f27bac66c3ac658b1f29"
+  },
+  "clientId": 1120,
+  "clientName": "RONY (NATA)",
+  "clientNameBn": "রনি নেতা",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681126011660"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681714765705"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6433f3943ffeb59cd91d8eb0"
+  },
+  "clientId": 1121,
+  "clientName": "RUBEL (LEADER)",
+  "clientNameBn": "রুবেল (লিডার)",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681126292335"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541521661"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6436d44fb49651028e138b9f"
+  },
+  "clientId": 1122,
+  "clientName": "LIAQUAT (BDR)",
+  "clientNameBn": "লিয়াকত (বিডিআর)",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681314895547"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685069582493"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64398ac24532d3805117d332"
+  },
+  "clientId": 1123,
+  "clientName": "DABU",
+  "clientNameBn": "দেবু",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681492674985"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681961019376"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6439ff40f6df12b3308557c1"
+  },
+  "clientId": 1124,
+  "clientName": "NIKHAIL",
+  "clientNameBn": "নিখিল",
+  "address": "SONAKHALI",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681522496531"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694678569129"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "643acc7604d89ad055b71f10"
+  },
+  "clientId": 1125,
+  "clientName": "EMON",
+  "clientNameBn": "ইমন",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681575030204"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681961047092"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "643acc9732cf22b2613d3e9b"
+  },
+  "clientId": 1126,
+  "clientName": "BOKKER VAN",
+  "clientNameBn": "বক্কর ( ভ্যান)",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681575063312"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681961102500"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "643e7b01be140338749d46ce"
+  },
+  "clientId": 1127,
+  "clientName": "IRANI",
+  "clientNameBn": "ইরানী",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681816321995"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684912898604"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64402bf766c2d963cbb784bb"
+  },
+  "clientId": 1128,
+  "clientName": "NAZMUL",
+  "clientNameBn": "নাজমুল",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681927159905"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681961173461"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64402c1c66c2d963cbb784c0"
+  },
+  "clientId": 1129,
+  "clientName": "AZIZUL (RAJPAT)",
+  "clientNameBn": "আজিজুল (রাজপাট)",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681927196004"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681961192757"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "644254939da93a3a9059f37d"
+  },
+  "clientId": 1130,
+  "clientName": "GULLA",
+  "clientNameBn": "গোল্লা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682068627771"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682068627771"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6442591eb800bf10f4c4df9b"
+  },
+  "clientId": 1131,
+  "clientName": "GOLAM",
+  "clientNameBn": "গোলাম",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682069790289"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682069790289"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64425950d0633d58d5d8594a"
+  },
+  "clientId": 1132,
+  "clientName": "ANIM",
+  "clientNameBn": "অনিম",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682069840121"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682069840121"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64425e00a2e718d4430da20c"
+  },
+  "clientId": 1134,
+  "clientName": "SHAUKAT",
+  "clientNameBn": "শওকত",
+  "address": "RAJAPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682071040332"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682071197622"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64426270947f97bfa91eb83e"
+  },
+  "clientId": 1135,
+  "clientName": "YAR ALI",
+  "clientNameBn": "ইয়ার আলী",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682072176965"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682072176965"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6444f7b6feb8d7e7b8c0a496"
+  },
+  "clientId": 1136,
+  "clientName": "MASUM ENGINEER",
+  "clientNameBn": "মাসুম  ইঞ্জিনিয়ার",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682241462078"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682744098386"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6447ad5297ff95995faf0de2"
+  },
+  "clientId": 1137,
+  "clientName": "DEBASIS",
+  "clientNameBn": "দেবাশিস",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682419026279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682744132774"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "644a9c0385ce86da81e8f69d"
+  },
+  "clientId": 1138,
+  "clientName": "DINU",
+  "clientNameBn": "দিনু",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682611203707"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682744218649"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "644cbb327791e0c7cea53c8e"
+  },
+  "clientId": 1139,
+  "clientName": "SUNNY",
+  "clientNameBn": "সানি",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682750258125"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682750258125"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "644d4ee28ff9669043044289"
+  },
+  "clientId": 1140,
+  "clientName": "RONY (VAN)",
+  "clientNameBn": "রনি (ভ্যান)",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682788066555"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682825158412"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "644d4f19d643a041bf682165"
+  },
+  "clientId": 1133,
+  "clientName": "RAFIQ",
+  "clientNameBn": "রফিক",
+  "address": "SONAKHALI",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682788121821"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683279632393"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "644ff6af01c6a26d16b50df3"
+  },
+  "clientId": 1141,
+  "clientName": "MASUD (DIM)",
+  "clientNameBn": "মাসুদ (ডিম)",
+  "address": "SONAKHALI",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682962095335"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683564787031"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645126863005e22d7316b7ea"
+  },
+  "clientId": 1142,
+  "clientName": "ISRAFIL (IKRAM)",
+  "clientNameBn": "ইসরাফিল (ইকরাম)",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683039878222"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683558979481"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64578a08f93e9075c66473d2"
+  },
+  "clientId": 1143,
+  "clientName": "MERAJUL 30",
+  "clientNameBn": "মিরাজুল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683458568751"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685442885272"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645909d3aee9c2eed19c54b9"
+  },
+  "clientId": 1144,
+  "clientName": "SALAUDDIN",
+  "clientNameBn": "সালাউদ্দিন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683556819229"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683556819229"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64590a25fbaa33911cf94d2d"
+  },
+  "clientId": 1145,
+  "clientName": "ROBI (TORIK)",
+  "clientNameBn": "রবি (তারিক)",
+  "address": "RAJAPT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683556901473"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683556901473"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64591069775a9445887f8b35"
+  },
+  "clientId": 1146,
+  "clientName": "PANNA",
+  "clientNameBn": "পান্না",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683558505714"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690262352902"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645b7e674c5bbf44f9242429"
+  },
+  "clientId": 1147,
+  "clientName": "ISLAM",
+  "clientNameBn": "ইসলাম",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683717735627"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684040689143"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645b7e7a8f35265c0f1fa620"
+  },
+  "clientId": 1148,
+  "clientName": "AWAL",
+  "clientNameBn": "আউয়াল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683717754123"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684040595539"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645b7e978f35265c0f1fa625"
+  },
+  "clientId": 1149,
+  "clientName": "NIZAM HAZRA",
+  "clientNameBn": "নিজাম হাজরা",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683717783646"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684040663860"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645bd29a89db71b2b242549c"
+  },
+  "clientId": 1150,
+  "clientName": "MOIN",
+  "clientNameBn": "মঈন",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683739290225"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684040712678"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "645d07749744ca2f35f557b0"
+  },
+  "clientId": 1151,
+  "clientName": "GOLAM RASUL",
+  "clientNameBn": "গোলাম রসুল",
+  "address": "SONAKHALI",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683818356767"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684040740586"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6464ef95bc49f8d913feef69"
+  },
+  "clientId": 1152,
+  "clientName": "NEMAI",
+  "clientNameBn": "নিমাই",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684336533492"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684467065322"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6466f636907b01de4fd90969"
+  },
+  "clientId": 1153,
+  "clientName": "ALAMIN (SAID)",
+  "clientNameBn": "আলামিন(সাইদ)",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684469302069"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684559906322"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64684d0fc72b91bc02d8dfe4"
+  },
+  "clientId": 1154,
+  "clientName": "AMINUR",
+  "clientNameBn": "আমিনুর",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684557071972"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690865645541"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6468eae38e85959b93bd4c14"
+  },
+  "clientId": 1155,
+  "clientName": "HARUN",
+  "clientNameBn": "হারুন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684597475366"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684647050714"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6468eb06d50a7aa729b52ad6"
+  },
+  "clientId": 1156,
+  "clientName": "LUKMAN",
+  "clientNameBn": "লুকমান",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684597510643"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684647033231"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "646c789e87dcb923a23aaaeb"
+  },
+  "clientId": 1157,
+  "clientName": "BISSO",
+  "clientNameBn": "বিশ্ব",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684830366115"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684830366115"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "646dba7cc33f87bdcdc109d2"
+  },
+  "clientId": 1158,
+  "clientName": "NASIM",
+  "clientNameBn": "নাছিম",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684912764742"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684912764742"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "646f171d47714b40d2e9f4ac"
+  },
+  "clientId": 1159,
+  "clientName": "ROBI (SABUR)",
+  "clientNameBn": "রবি (সবুর )",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685002013881"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685068544784"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "646f4b95414160989d3dd7ea"
+  },
+  "clientId": 1160,
+  "clientName": "TAJU",
+  "clientNameBn": "তাজু",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685015445006"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685068579728"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64721eb213af9de8ee1dafe2"
+  },
+  "clientId": 1161,
+  "clientName": "ARIF",
+  "clientNameBn": "আরিফ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685200562978"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685204808662"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6475d03ee3ae32edbceba36d"
+  },
+  "clientId": 1162,
+  "clientName": "HABIBUR",
+  "clientNameBn": "হাবিবুর",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685442622146"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685468394400"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6476ed8cf7a1117ba9dec428"
+  },
+  "clientId": 1163,
+  "clientName": "SAID",
+  "clientNameBn": "সাইদ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685515660686"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541293907"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6476eda2f7a1117ba9dec42d"
+  },
+  "clientId": 1164,
+  "clientName": "ARMAN",
+  "clientNameBn": "আরমান",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685515682965"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541157040"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64771b8b371dad0a05834182"
+  },
+  "clientId": 1165,
+  "clientName": "SHOHIDUL",
+  "clientNameBn": "শহিদুল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685527435213"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541182871"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6479c8dcb75a0c64c00d290e"
+  },
+  "clientId": 1166,
+  "clientName": "SUK",
+  "clientNameBn": "সুখ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685702876527"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541368653"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6479cb622c9fd0c279d23c01"
+  },
+  "clientId": 1167,
+  "clientName": "NETAI",
+  "clientNameBn": "নিতাই",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685703522786"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541125953"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "647d9c737e73a1a7ff2c30f6"
+  },
+  "clientId": 1168,
+  "clientName": "ABUL",
+  "clientNameBn": "আবুল",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685953651730"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685953651730"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "647d9d5f78beb68385f11076"
+  },
+  "clientId": 1169,
+  "clientName": "SORNA ENTERPRISE",
+  "clientNameBn": "স্বর্ণা এন্টারপ্রাইজ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685953887124"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686036228484"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6480877ad9b1e9b8f46592aa"
+  },
+  "clientId": 1170,
+  "clientName": "BABUL",
+  "clientNameBn": "বাবুল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686144890940"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541093029"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64815e6e679a2c40f63f43a7"
+  },
+  "clientId": 1171,
+  "clientName": "SAFI",
+  "clientNameBn": "সাফি",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686199918281"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541065931"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6485ce5fcb282ec35685534b"
+  },
+  "clientId": 1172,
+  "clientName": "ANIS",
+  "clientNameBn": "আনিস",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686490719627"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541397824"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6485ce74cb282ec356855350"
+  },
+  "clientId": 1173,
+  "clientName": "YASIN (NEW)",
+  "clientNameBn": "ইয়াসিন  (নতুন)",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686490740547"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686541405232"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6486c286b0109fce663c8443"
+  },
+  "clientId": 1174,
+  "clientName": "ZINNAT",
+  "clientNameBn": "জিন্নাত",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686553222366"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686553222366"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "648af5cb9df9502e47cb8f65"
+  },
+  "clientId": 1175,
+  "clientName": "HASAN",
+  "clientNameBn": "হাসান",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686828491618"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686829659381"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "648ee2b148eafda3a74ca324"
+  },
+  "clientId": 1176,
+  "clientName": "PANNA SIKDER",
+  "clientNameBn": "পান্না শিকদার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1687085745782"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1687085745782"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6497c7d3c922f60138c1e0e8"
+  },
+  "clientId": 1177,
+  "clientName": "AKTHER",
+  "clientNameBn": "আক্তার",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1687668691061"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392563930"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "649fb34375440eb8f6d0d2f9"
+  },
+  "clientId": 1178,
+  "clientName": "DELDER",
+  "clientNameBn": "দিলদার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1688187715025"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392590514"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64a263f6e68cdb0d261351f6"
+  },
+  "clientId": 1179,
+  "clientName": "KAMRUL FAKIR",
+  "clientNameBn": "কামরুল ফকির ...",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1688364022233"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392642380"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64a52348bad8b3a923de663b"
+  },
+  "clientId": 1180,
+  "clientName": "ALAMGIR SIR",
+  "clientNameBn": "আলমগীর স্যার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1688544072456"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690261283855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64a99e95c58555c94b7d0233"
+  },
+  "clientId": 1181,
+  "clientName": "ASRAF SIKDER",
+  "clientNameBn": "আশরাফ শিকদার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1688837781545"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392693092"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64ad5bc18dfbc206dd6d9e5c"
+  },
+  "clientId": 1182,
+  "clientName": "RASEL SIKDER",
+  "clientNameBn": "রাসেল শিকদার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689082817044"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392717304"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64ad5be48102998a19fd4a7a"
+  },
+  "clientId": 1183,
+  "clientName": "RANA (MIZU HAJI)",
+  "clientNameBn": "রানা  (মিজু হাজী )",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689082852452"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392832827"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64b2153fcc92c4c7dff4ab61"
+  },
+  "clientId": 1184,
+  "clientName": "MEHEDI",
+  "clientNameBn": "মেহেদি",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689392447328"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689392447328"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64b80b4a453ed53ab559ccee"
+  },
+  "clientId": 1185,
+  "clientName": "JALAL SIR",
+  "clientNameBn": "জালাল  স্যার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689783114753"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690261291877"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64b80b617b9cbce77e808ecb"
+  },
+  "clientId": 1186,
+  "clientName": "SUDA",
+  "clientNameBn": "সুদা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689783137954"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690261440717"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64b80b866d424be4c025b47f"
+  },
+  "clientId": 1187,
+  "clientName": "SHAMAL(KALIDAS)",
+  "clientNameBn": "শ্যামল (কালিদাস )",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689783174337"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690261352446"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64c107335bc4c2ee74308ceb"
+  },
+  "clientId": 1188,
+  "clientName": "ALTAF",
+  "clientNameBn": "আলতাফ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690371891838"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690889498595"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64c502f33119b07e9a5b3850"
+  },
+  "clientId": 1189,
+  "clientName": "EMAM MAHBUB",
+  "clientNameBn": "ইমাম মাহবুব",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690632947326"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1693032250700"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64cbad186debcd5297380d73"
+  },
+  "clientId": 1190,
+  "clientName": "MOHAMMAD",
+  "clientNameBn": "মোহাম্মদ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1691069720843"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1691861413027"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64d78d836f7a73818832a37a"
+  },
+  "clientId": 1191,
+  "clientName": "KARAMOT",
+  "clientNameBn": "কেরামত",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1691848067642"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1691861362024"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64d78da26f7a73818832a38e"
+  },
+  "clientId": 1192,
+  "clientName": "ALAM",
+  "clientNameBn": "আলম",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1691848098587"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1691861386647"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64d90eafe86a7945f21adfc1"
+  },
+  "clientId": 1193,
+  "clientName": "YASIN NOSIMON",
+  "clientNameBn": "ইয়াছিন নসিমন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1691946671966"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1692167679616"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64db22f09431ff0607a03c8b"
+  },
+  "clientId": 1194,
+  "clientName": "PARVEZ",
+  "clientNameBn": "পারভেজ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1692082928019"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1692167628070"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64dc6d7467c3ee200aa38968"
+  },
+  "clientId": 1195,
+  "clientName": "MITHU",
+  "clientNameBn": "মিঠু",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1692167540610"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1692167604184"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64dfabef4262bef3c8428b40"
+  },
+  "clientId": 1196,
+  "clientName": "SHAPON DOTTO",
+  "clientNameBn": "স্বপন  দত্ত",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1692380143384"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1692426937943"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64e2e8f61423a238addb3e0f"
+  },
+  "clientId": 1197,
+  "clientName": "KAMAL",
+  "clientNameBn": "কামাল",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1692592374563"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1693032304614"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64ef23c423e8a3b39ef5e1a8"
+  },
+  "clientId": 1198,
+  "clientName": "ARIF RAJPAT",
+  "clientNameBn": "আরিফ  রাজপাট",
+  "address": "RAJPAT",
+  "group": "TAKA 15",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693393860958"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1697533213644"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64f6c2416085b4639ad00c90"
+  },
+  "clientId": 1199,
+  "clientName": "AJOY",
+  "clientNameBn": "অজয়",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693893185819"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694235946824"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64f6d98b1adce26ee97002a6"
+  },
+  "clientId": 1200,
+  "clientName": "MINTU",
+  "clientNameBn": "মিন্টু",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693899147094"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694235701447"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64fbfb6d16860496c0cc699b"
+  },
+  "clientId": 1201,
+  "clientName": "ALAMIN POCHA",
+  "clientNameBn": "আল-আমীন পচা",
+  "address": "SONKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1694235501706"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694235537421"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "64fdbe5a5d49e1a74d3a838f"
+  },
+  "clientId": 1202,
+  "clientName": "NAYAMATULLAH",
+  "clientNameBn": "নেয়ামত উল্লাহ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1694350938581"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694351139005"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6502bd5d65543c8700b4f650"
+  },
+  "clientId": 1203,
+  "clientName": "MIZAN",
+  "clientNameBn": "মিজান",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1694678365010"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1695794451045"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65080a07389d0326340d5aaa"
+  },
+  "clientId": 1204,
+  "clientName": "AMIR",
+  "clientNameBn": "আমির",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1695025671420"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1695794504929"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "650bfcf8d0b29b2a38623892"
+  },
+  "clientId": 1205,
+  "clientName": "LIAQUAT DOKAN",
+  "clientNameBn": "লিয়াকত দোকান",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1695284472239"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1695794542263"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65102c8d4ca021050fee55ad"
+  },
+  "clientId": 1206,
+  "clientName": "BABLU SORDER",
+  "clientNameBn": "বাবলু সর্দার",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1695558797720"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1695794582635"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6523816350885365df149427"
+  },
+  "clientId": 1207,
+  "clientName": "HALAL",
+  "clientNameBn": "হেলাল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1696825699069"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1696918172241"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65242e8feee1c051f6017bdb"
+  },
+  "clientId": 1208,
+  "clientName": "MELON",
+  "clientNameBn": "মিলন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1696870031922"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1696918293142"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "652d6466a73ff6fd060bc966"
+  },
+  "clientId": 1209,
+  "clientName": "SUJON",
+  "clientNameBn": "সুজন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1697473638975"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1697532993374"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "652d648268f7be8166b7bd78"
+  },
+  "clientId": 1210,
+  "clientName": "KHOKA",
+  "clientNameBn": "খোকা",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1697473666529"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1697533079257"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65364f10f8982d758bee246a"
+  },
+  "clientId": 1211,
+  "clientName": "AZIT",
+  "clientNameBn": "অজিত",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698058000320"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702549509276"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6537c41b115b4d132c223d4d"
+  },
+  "clientId": 1212,
+  "clientName": "AKRAM",
+  "clientNameBn": "আকরাম",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698153499413"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698932672881"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "653b554f0be151c6c3a0394e"
+  },
+  "clientId": 1213,
+  "clientName": "BAPPA",
+  "clientNameBn": "বাপ্পা",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698387279316"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698932692029"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "653cbf3cbf010384a9ce9780"
+  },
+  "clientId": 1214,
+  "clientName": "JALAL MEMBER",
+  "clientNameBn": "জালাল  মেম্বার",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698479932824"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698932755779"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "653fb39113d2a0d5fcbd819a"
+  },
+  "clientId": 1215,
+  "clientName": "MASUK",
+  "clientNameBn": "মাশুক",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698673553377"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698932710897"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6543a7905dde70dd95c5711a"
+  },
+  "clientId": 1216,
+  "clientName": "YASH",
+  "clientNameBn": "ইয়াস",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698932624222"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698932624222"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65450a4ab87612eab6b0d942"
+  },
+  "clientId": 1217,
+  "clientName": "JUMUR",
+  "clientNameBn": "ঝুমুর",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1699023434502"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1699090156460"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6547387f7f28c1bbee89fbf7"
+  },
+  "clientId": 1218,
+  "clientName": "SUMON",
+  "clientNameBn": "সুমন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1699166335042"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689511808"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6548d785c5ea56a05fde86ee"
+  },
+  "clientId": 1219,
+  "clientName": "HASAM",
+  "clientNameBn": "হাসান",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1699272581002"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689530317"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65559eb5a2d66ffb30d8db7a"
+  },
+  "clientId": 1220,
+  "clientName": "MAFUZ EMAM",
+  "clientNameBn": "মাহফুজ  ইমাম",
+  "address": "SONKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1700110005080"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689652550"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "656591c8d6dd238056b9b63f"
+  },
+  "clientId": 1221,
+  "clientName": "YAMIN",
+  "clientNameBn": "ইয়ামিন",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701155272174"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689700194"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65671083826a0b070dc1f781"
+  },
+  "clientId": 1222,
+  "clientName": "MILON CHON",
+  "clientNameBn": "মিলন  চুন",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701253251673"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689785393"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6567111da28d19f310defde5"
+  },
+  "clientId": 1223,
+  "clientName": "SALIM FAKIR",
+  "clientNameBn": "সালিম ফকির",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701253405905"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689881933"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "656c922d278899e4da54b13f"
+  },
+  "clientId": 1224,
+  "clientName": "SAIDUL",
+  "clientNameBn": "সাইদুল",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701614125551"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689905518"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "656c9241278899e4da54b144"
+  },
+  "clientId": 1225,
+  "clientName": "SEMUL",
+  "clientNameBn": "শিমুল",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701614145552"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701689939063"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "657144c4faaa1d479b78e02f"
+  },
+  "clientId": 1226,
+  "clientName": "FARAD",
+  "clientNameBn": "ফরাদ",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701921988209"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702116911960"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "657144de8a5e1245fe4d75c2"
+  },
+  "clientId": 1227,
+  "clientName": "SOHEL DOKAN",
+  "clientNameBn": "সোহেল দোকন",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701922014699"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702116952400"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "65714532bc9f2c24f694e712"
+  },
+  "clientId": 1228,
+  "clientName": "OVIJIT",
+  "clientNameBn": "অভিজিৎ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701922098701"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702117016568"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "657ad5018f1e87aa3bee2f17"
+  },
+  "clientId": 1229,
+  "clientName": "SUKUR",
+  "clientNameBn": "",
+  "address": "RAJPAT",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702548737281"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702548737281"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "657ee9111fa5e489b59d0881"
+  },
+  "clientId": 1230,
+  "clientName": "RUBEL SORIF",
+  "clientNameBn": "রুবেল শরীফ",
+  "address": "SONAKHALI",
+  "group": "TAKA 30",
+  "price": 15,
+  "transport": 15,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702816017394"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1703069233816"
+    }
+  }
+}]

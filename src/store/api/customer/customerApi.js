@@ -17,7 +17,7 @@ const customerApi = api.injectEndpoints({
           meta: response?.meta,
         };
       },
-      providesTags: ['customer'],
+      providesTags: ['customer', 'voucher'],
     }),
 
     // get single
@@ -33,6 +33,15 @@ const customerApi = api.injectEndpoints({
     createCustomer: build.mutation({
       query: (data) => ({
         url: `${CUSTOMER_URL}/create`,
+        method: 'POST',
+        data: data,
+      }),
+      invalidatesTags: ['customer'],
+    }),
+    // create
+    createAllCustomer: build.mutation({
+      query: (data) => ({
+        url: `${CUSTOMER_URL}/create/all`,
         method: 'POST',
         data: data,
       }),
@@ -64,6 +73,7 @@ export const {
   useGetCustomersQuery,
   useGetSingleCustomerQuery,
   useCreateCustomerMutation,
+  useCreateAllCustomerMutation,
   useUpdateCustomerMutation,
   useDeleteCustomerMutation,
 } = customerApi;

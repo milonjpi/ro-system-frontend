@@ -42,6 +42,8 @@ const AllCustomers = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
+  query['sortBy'] = 'customerId';
+  query['sortOrder'] = 'asc';
   query['isActive'] = true;
 
   // search term

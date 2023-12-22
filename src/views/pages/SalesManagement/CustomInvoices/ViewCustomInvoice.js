@@ -191,7 +191,7 @@ const ViewCustomInvoice = ({ open, handleClose, data, startDate, endDate }) => {
                     ))
                   ) : (
                     <TableRow>
-                      <StyledTableCellWithBorder colSpan={4} align="center">
+                      <StyledTableCellWithBorder colSpan={8} align="center">
                         No Data
                       </StyledTableCellWithBorder>
                     </TableRow>
