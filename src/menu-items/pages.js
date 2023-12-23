@@ -217,6 +217,12 @@ const pages = {
           type: 'item',
           url: '/pages/report/summary',
         },
+        {
+          id: 'due-report',
+          title: 'Due Report',
+          type: 'item',
+          url: '/pages/report/due-report',
+        },
       ],
     },
   ],

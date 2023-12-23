@@ -111,7 +111,7 @@ const CustomInvoices = () => {
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} lg={2.5}>
+          <Grid item xs={12} lg={3.5}>
             <Autocomplete
               value={customer}
               size="small"
@@ -125,7 +125,7 @@ const CustomInvoices = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={2}>
+          <Grid item xs={12} md={6} lg={2.5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
                 label="Invoice Date (Form)"
@@ -146,7 +146,7 @@ const CustomInvoices = () => {
               />
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={12} md={6} lg={2}>
+          <Grid item xs={12} md={6} lg={2.5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
                 label="Invoice Date (To)"

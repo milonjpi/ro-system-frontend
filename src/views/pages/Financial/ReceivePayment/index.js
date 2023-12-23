@@ -3,10 +3,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -14,19 +10,14 @@ import InputBase from '@mui/material/InputBase';
 import InputAdornment from '@mui/material/InputAdornment';
 import MainCard from 'ui-component/cards/MainCard';
 import SearchIcon from '@mui/icons-material/Search';
-import { allInvoiceStatus } from 'assets/data';
 import { IconPlus } from '@tabler/icons-react';
 import CardAction from 'ui-component/cards/CardAction';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
 import { useDebounced } from 'hooks';
-import { useGetInvoicesQuery } from 'store/api/invoice/invoiceApi';
 import ReceivePaymentRow from './ReceivePaymentRow';
-import {
-  useGetVouchersQuery,
-  useReceivePaymentMutation,
-} from 'store/api/voucher/voucherApi';
+import { useGetVouchersQuery } from 'store/api/voucher/voucherApi';
 import NewPaymentReceive from './NewPaymentReceive';
 
 const ReceivePayment = () => {
@@ -72,24 +63,21 @@ const ReceivePayment = () => {
     {
       title: 'Voucher No',
     },
-
     {
       title: 'Customer',
+    },
+    {
+      title: 'Customer (BN)',
+    },
+    {
+      title: 'Narration',
     },
     {
       title: 'Amount',
       align: 'right',
     },
     {
-      title: 'Narration',
-      align: 'right',
-    },
-    {
       title: 'Quick View',
-      align: 'center',
-    },
-    {
-      title: 'Action',
       align: 'center',
     },
   ];
@@ -151,7 +139,7 @@ const ReceivePayment = () => {
           <Grid item xs={12} md={6} lg={4}>
             <InputBase
               fullWidth
-              placeholder="Search By Invoice No..."
+              placeholder="Search By Voucher No..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               sx={{ borderBottom: '1px solid #ccc' }}

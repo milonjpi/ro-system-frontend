@@ -142,6 +142,12 @@ const NewPaymentReceive = ({ open, handleClose }) => {
             ? 'Partial'
             : 'Due',
       })),
+      voucherDetails: data?.invoices
+        ?.filter((inv) => inv.receiveAmount > 0)
+        .map((el) => ({
+          invoiceId: el.id,
+          receiveAmount: el.receiveAmount,
+        })),
     };
     try {
       setLoading(true);
