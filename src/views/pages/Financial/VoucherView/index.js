@@ -44,8 +44,9 @@ const VoucherView = ({ open, handleClose, data }) => {
   let sn = 1;
 
   const voucherDetails = data?.voucherDetails;
-  const voucherDetailsAmount = totalSum(voucherDetails, 'receiveAmount');
+  const voucherDetailsAmount = totalSum(voucherDetails || [], 'receiveAmount');
   const advancedAmount = data?.amount - voucherDetailsAmount;
+  console.log(data);
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>
