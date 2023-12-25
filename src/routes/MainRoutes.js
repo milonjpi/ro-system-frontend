@@ -55,6 +55,9 @@ const UnitOfMeasurement = Loadable(
   lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
 );
 
+// report
+const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
+
 // utilities routing
 
 // setting routing
@@ -236,6 +239,22 @@ const MainRoutes = {
                       allowedCodes={['receive-payment']}
                     >
                       <ReceivePayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'report',
+              children: [
+                {
+                  path: 'due-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['due-report']}
+                    >
+                      <DueReport />
                     </AuthenticationRoutes>
                   ),
                 },
