@@ -28,7 +28,7 @@ import {
 } from '@tabler/icons-react';
 import { InputBase } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
+import { useCustomerDetailsQuery } from 'store/api/customer/customerApi';
 import { useGetSalesOrdersQuery } from 'store/api/salesOrder/salesOrderApi';
 import { useUpdateInvoiceMutation } from 'store/api/invoice/invoiceApi';
 import moment from 'moment';
@@ -84,19 +84,25 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
   // end handle order
 
   // calculation
+  const totalPayment = customer?.invoices?.voucherAmount || 0;
+  const paidAmount = customer?.invoices?.paidAmount || 0;
+  const presentBalance = totalPayment - paidAmount;
+
   const watchValue = useWatch({ control, name: 'products' });
   const subTotalMapped = watchValue?.map((el) => ({
     amount: (el.quantity || 0) * (el.product?.price || 0),
   }));
   const subTotal = totalSum(subTotalMapped, 'amount');
   const totalValue = subTotal - parseInt(discount || 0);
+
+  const givenFromBalance =
+    presentBalance > totalValue ? totalValue : presentBalance;
   // end calculation
 
   // library
-  const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
+  const { data: customerData } = useCustomerDetailsQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
 
   const allCustomers = customerData?.customers || [];
 
@@ -140,9 +146,15 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
         totalQty: totalSum(data?.products || [], 'quantity'),
         totalPrice: subTotal,
         discount: parseInt(discount || 0),
-        amount: totalValue,
+        amount: givenFromBalance,
         paidAmount: 0,
         orderId: order?.id,
+        status:
+          givenFromBalance === totalValue
+            ? 'Paid'
+            : givenFromBalance > 0
+            ? 'Partial'
+            : 'Due',
       },
       invoicedProducts:
         data?.products?.map((el) => ({
@@ -211,8 +223,8 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
               <Autocomplete
                 value={customer}
                 size="small"
@@ -225,6 +237,16 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
                   <TextField {...params} label="Select Customer" required />
                 )}
               />
+            </Grid>
+            <Grid item xs={4} sx={{ alignSelf: 'center' }}>
+              {customer ? (
+                <Typography sx={{ fontSize: 11 }}>
+                  Balance:{' '}
+                  <span style={{ color: 'red' }}>
+                    {presentBalance > 0 ? presentBalance : 0}
+                  </span>
+                </Typography>
+              ) : null}
             </Grid>
             <Grid item xs={12} md={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -318,8 +340,13 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
                             >
                               Discount:
                             </Typography>
-                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                            <Typography
+                              sx={{ fontSize: 12, mb: 1, fontWeight: 700 }}
+                            >
                               Total:
+                            </Typography>
+                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                              Paid Amount:
                             </Typography>
                           </StyledTableCell>
                           <StyledTableCell align="right">
@@ -338,8 +365,13 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
                               placeholder="Discount"
                               sx={styles.inputNumber}
                             />
-                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                            <Typography
+                              sx={{ fontSize: 12, mb: 1, fontWeight: 700 }}
+                            >
                               {totalValue}
+                            </Typography>
+                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                              {givenFromBalance}
                             </Typography>
                           </StyledTableCell>
                         </>

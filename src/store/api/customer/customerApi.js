@@ -66,6 +66,21 @@ const customerApi = api.injectEndpoints({
       }),
       invalidatesTags: ['customer'],
     }),
+
+    // customer details
+    customerDetails: build.query({
+      query: (params) => ({
+        url: `${CUSTOMER_URL}/customer-details`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          customers: response?.data,
+        };
+      },
+      providesTags: ['customer', 'voucher', 'invoice'],
+    }),
   }),
 });
 
@@ -76,4 +91,5 @@ export const {
   useCreateAllCustomerMutation,
   useUpdateCustomerMutation,
   useDeleteCustomerMutation,
+  useCustomerDetailsQuery,
 } = customerApi;

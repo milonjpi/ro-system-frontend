@@ -79,7 +79,7 @@ const DueReport = () => {
   // end table
 
   // filtering
-  const { data, isLoading } = useGetDueReportQuery({
+  const { data, isLoading } = useGetDueReportQuery('', {
     refetchOnMountOrArgChange: true,
   });
 

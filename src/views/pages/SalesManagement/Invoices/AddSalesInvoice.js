@@ -28,7 +28,7 @@ import {
 } from '@tabler/icons-react';
 import { InputBase } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
+import { useCustomerDetailsQuery } from 'store/api/customer/customerApi';
 import { useGetSalesOrdersQuery } from 'store/api/salesOrder/salesOrderApi';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import ProductFields from './ProductFields';
@@ -39,7 +39,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 500, md: 700 },
+  width: { xs: 350, sm: 500, md: 700 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -84,6 +84,10 @@ const AddSalesInvoice = ({ open, handleClose }) => {
   // end handle order
 
   // calculation
+  const totalPayment = customer?.invoices?.voucherAmount || 0;
+  const paidAmount = customer?.invoices?.paidAmount || 0;
+  const presentBalance = totalPayment - paidAmount;
+
   const watchValue = useWatch({ control, name: 'products' });
   const subTotalMapped = watchValue?.map((el) => ({
     amount: (el.quantity || 0) * (el.product?.price || 0),
@@ -91,13 +95,14 @@ const AddSalesInvoice = ({ open, handleClose }) => {
 
   const subTotal = totalSum(subTotalMapped || [], 'amount');
   const totalValue = subTotal - parseInt(discount || 0);
+  const givenFromBalance =
+    presentBalance > totalValue ? totalValue : presentBalance;
   // end calculation
 
   // library
-  const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
+  const { data: customerData } = useCustomerDetailsQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
 
   const allCustomers = customerData?.customers || [];
 
@@ -142,8 +147,14 @@ const AddSalesInvoice = ({ open, handleClose }) => {
         totalPrice: subTotal,
         discount: parseInt(discount || 0),
         amount: totalValue,
-        paidAmount: 0,
+        paidAmount: givenFromBalance,
         orderId: order?.id,
+        status:
+          givenFromBalance === totalValue
+            ? 'Paid'
+            : givenFromBalance > 0
+            ? 'Partial'
+            : 'Due',
       },
       invoicedProducts:
         data?.products?.map((el) => ({
@@ -213,8 +224,8 @@ const AddSalesInvoice = ({ open, handleClose }) => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
               <Autocomplete
                 value={customer}
                 size="small"
@@ -227,6 +238,16 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                   <TextField {...params} label="Select Customer" required />
                 )}
               />
+            </Grid>
+            <Grid item xs={4} sx={{ alignSelf: 'center' }}>
+              {customer ? (
+                <Typography sx={{ fontSize: 11 }}>
+                  Balance:{' '}
+                  <span style={{ color: 'red' }}>
+                    {presentBalance > 0 ? presentBalance : 0}
+                  </span>
+                </Typography>
+              ) : null}
             </Grid>
             <Grid item xs={12} md={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -316,8 +337,13 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                             >
                               Discount:
                             </Typography>
-                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                            <Typography
+                              sx={{ fontSize: 12, mb: 1, fontWeight: 700 }}
+                            >
                               Total:
+                            </Typography>
+                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                              Paid Amount:
                             </Typography>
                           </StyledTableCell>
                           <StyledTableCell align="right">
@@ -336,8 +362,13 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                               placeholder="Discount"
                               sx={styles.inputNumber}
                             />
-                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                            <Typography
+                              sx={{ fontSize: 12, mb: 1, fontWeight: 700 }}
+                            >
                               {totalValue}
+                            </Typography>
+                            <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                              {givenFromBalance}
                             </Typography>
                           </StyledTableCell>
                         </>
