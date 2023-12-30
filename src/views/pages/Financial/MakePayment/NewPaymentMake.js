@@ -20,12 +20,12 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useFieldArray, useForm, useWatch } from 'react-hook-form';
 import { IconFileInvoice } from '@tabler/icons-react';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
-import InvoicesRow from './InvoicesRow';
 import { totalSum } from 'views/utilities/NeedyFunction';
-import { useReceivePaymentMutation } from 'store/api/voucher/voucherApi';
+import { useMakePaymentMutation } from 'store/api/voucher/voucherApi';
 import { setToast } from 'store/toastSlice';
+import { useGetAllVendorsQuery } from 'store/api/vendor/vendorApi';
+import BillsRow from './BillsRow';
 
 const style = {
   position: 'absolute',
@@ -39,9 +39,9 @@ const style = {
   p: 2,
 };
 
-const NewPaymentReceive = ({ open, handleClose }) => {
+const NewPaymentMake = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [customer, setCustomer] = useState(null);
+  const [vendor, setVendor] = useState(null);
   // const [amount, setAmount] = useState('');
 
   const [date, setDate] = useState(moment());
@@ -50,7 +50,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
   const { register, handleSubmit, control, reset } = useForm();
   const { fields } = useFieldArray({
     control,
-    name: 'invoices',
+    name: 'bills',
   });
 
   // calculation
@@ -59,42 +59,42 @@ const NewPaymentReceive = ({ open, handleClose }) => {
   const totalDue = totalAmount - totalPaid;
   const watchValue = useWatch({ control });
 
-  const subTotal = totalSum(watchValue?.invoices || [], 'receiveAmount');
+  const subTotal = totalSum(watchValue?.bills || [], 'receiveAmount');
   const advanced = (watchValue?.amount || 0) - subTotal;
   // end calculation
 
   // library
-  const { data: customerData } = useGetCustomersQuery(
+  const { data: vendorData } = useGetAllVendorsQuery(
     {
       forVoucher: true,
       isActive: true,
       limit: 1000,
-      sortBy: 'customerName',
+      sortBy: 'vendorName',
       sortOrder: 'asc',
     },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = customerData?.customers || [];
+  const allVendors = vendorData?.vendors || [];
   // end library
 
-  // handle customer
-  const handleCustomer = (value) => {
-    setCustomer(value);
+  // handle vendor
+  const handleVendor = (value) => {
+    setVendor(value);
     if (value) {
-      reset({ invoices: value.invoices || [] });
+      reset({ bills: value.bills || [] });
     } else {
-      reset({ invoices: [] });
+      reset({ bills: [] });
     }
   };
 
   // table
   const tableHeads = [
     {
-      title: 'Invoice Date',
+      title: 'Bill Date',
     },
     {
-      title: 'Invoice No',
+      title: 'Bill No',
     },
     {
       title: 'Total Amount',
@@ -115,7 +115,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
   // end table
 
   const dispatch = useDispatch();
-  const [receivePayment] = useReceivePaymentMutation();
+  const [makePayment] = useMakePaymentMutation();
 
   const onSubmit = async (data) => {
     if (advanced < 0)
@@ -129,9 +129,9 @@ const NewPaymentReceive = ({ open, handleClose }) => {
     const newData = {
       date: date,
       amount: data?.amount,
-      customerId: customer.id,
+      vendorId: vendor.id,
       narration: data?.narration,
-      invoices: data?.invoices?.map((el) => ({
+      bills: data?.bills?.map((el) => ({
         id: el.id,
         paidAmount: el.paidAmount + el.receiveAmount,
         status:
@@ -141,22 +141,22 @@ const NewPaymentReceive = ({ open, handleClose }) => {
             ? 'Partial'
             : 'Due',
       })),
-      voucherDetails: data?.invoices
+      voucherDetails: data?.bills
         ?.filter((inv) => inv.receiveAmount > 0)
         .map((el) => ({
-          invoiceId: el.id,
+          billId: el.id,
           receiveAmount: el.receiveAmount,
         })),
     };
     try {
       setLoading(true);
-      const res = await receivePayment({ ...newData }).unwrap();
+      const res = await makePayment({ ...newData }).unwrap();
       if (res.success) {
         handleClose();
         setLoading(false);
         setDate(moment());
-        setCustomer(null);
-        reset({ invoices: [], narration: '' });
+        setVendor(null);
+        reset({ bills: [], narration: '' });
         dispatch(
           setToast({
             open: true,
@@ -190,7 +190,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Receive Payment
+            Make Payment
           </Typography>
           <IconButton
             color="error"
@@ -213,7 +213,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
             <Grid item xs={12} md={6} lg={4}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DatePicker
-                  label="Receipt Date"
+                  label="Paid Date"
                   views={['year', 'month', 'day']}
                   inputFormat="DD/MM/YYYY"
                   value={date}
@@ -234,15 +234,15 @@ const NewPaymentReceive = ({ open, handleClose }) => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <Autocomplete
-                value={customer}
+                value={vendor}
                 size="small"
                 fullWidth
-                options={allCustomers}
-                getOptionLabel={(option) => option.customerName}
-                onChange={(e, newValue) => handleCustomer(newValue)}
+                options={allVendors}
+                getOptionLabel={(option) => option.vendorName}
+                onChange={(e, newValue) => handleVendor(newValue)}
                 isOptionEqualToValue={(item, value) => item.id === value.id}
                 renderInput={(params) => (
-                  <TextField {...params} label="Paid By" required />
+                  <TextField {...params} label="Paid To" required />
                 )}
               />
             </Grid>
@@ -290,7 +290,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
                   <TableBody>
                     {fields.length ? (
                       fields.map((el, index) => (
-                        <InvoicesRow
+                        <BillsRow
                           key={el.id}
                           index={index}
                           sn={sn++}
@@ -302,7 +302,7 @@ const NewPaymentReceive = ({ open, handleClose }) => {
                     ) : (
                       <StyledTableRow>
                         <StyledTableCell colSpan={9} align="center">
-                          No Invoices
+                          No Bills
                         </StyledTableCell>
                       </StyledTableRow>
                     )}
@@ -341,4 +341,4 @@ const NewPaymentReceive = ({ open, handleClose }) => {
   );
 };
 
-export default NewPaymentReceive;
+export default NewPaymentMake;

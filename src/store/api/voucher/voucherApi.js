@@ -43,8 +43,8 @@ const voucherApi = api.injectEndpoints({
     makePayment: build.mutation({
       query: (data) => ({
         url: `${VOUCHER_URL}/make-payment`,
-        method: 'PATCH',
-        data: data?.body,
+        method: 'POST',
+        data: data,
       }),
       invalidatesTags: ['voucher'],
     }),

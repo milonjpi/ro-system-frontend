@@ -31,7 +31,7 @@ const style = {
   p: 2,
 };
 
-const VoucherView = ({ open, handleClose, data }) => {
+const PaidVoucherView = ({ open, handleClose, data }) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -46,7 +46,6 @@ const VoucherView = ({ open, handleClose, data }) => {
   const voucherDetails = data?.voucherDetails;
   const voucherDetailsAmount = totalSum(voucherDetails || [], 'receiveAmount');
   const advancedAmount = data?.amount - voucherDetailsAmount;
-  console.log(data);
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>
@@ -104,10 +103,10 @@ const VoucherView = ({ open, handleClose, data }) => {
             >
               <Box>
                 <Typography sx={{ fontWeight: 700, fontSize: 12 }}>
-                  {data?.customer?.customerName}
+                  {data?.vendor?.vendorName}
                 </Typography>
                 <Typography sx={{ fontSize: 12, letterSpacing: 2 }}>
-                  {data?.customer?.address}
+                  {data?.vendor?.address}
                 </Typography>
               </Box>
               <Box
@@ -174,10 +173,7 @@ const VoucherView = ({ open, handleClose, data }) => {
                           {sn++}
                         </StyledTableCellWithBorder>
                         <StyledTableCellWithBorder>
-                          {el.invoice?.invoiceNo +
-                            ' - ' +
-                            el.invoice?.totalQty +
-                            ' pcs'}
+                          {el.bill?.billNo + ' - ' + el.bill?.totalQty + ' pcs'}
                         </StyledTableCellWithBorder>
                         <StyledTableCellWithBorder align="right">
                           {el.receiveAmount}
@@ -235,4 +231,4 @@ const VoucherView = ({ open, handleClose, data }) => {
   );
 };
 
-export default VoucherView;
+export default PaidVoucherView;

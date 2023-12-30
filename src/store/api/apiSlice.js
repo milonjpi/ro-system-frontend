@@ -19,6 +19,7 @@ export const api = createApi({
     'payment-method',
     'invoice',
     'voucher',
+    'equipment',
   ],
   endpoints: () => ({}),
 });

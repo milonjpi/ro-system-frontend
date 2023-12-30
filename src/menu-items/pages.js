@@ -223,6 +223,12 @@ const pages = {
           type: 'item',
           url: '/pages/report/due-report',
         },
+        {
+          id: 'advance-report',
+          title: 'Advance Report',
+          type: 'item',
+          url: '/pages/report/advance-report',
+        },
       ],
     },
   ],

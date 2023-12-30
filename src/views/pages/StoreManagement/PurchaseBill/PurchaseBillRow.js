@@ -8,24 +8,24 @@ import ConfirmDialog from 'ui-component/ConfirmDialog';
 import { IconCategory2 } from '@tabler/icons-react';
 import { setToast } from 'store/toastSlice';
 import moment from 'moment';
-import { useDeleteInvoiceMutation } from 'store/api/invoice/invoiceApi';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import ShowStatus from 'ui-component/ShowStatus';
-import UpdateSalesInvoice from './UpdateSalesInvoice';
-import InvoiceView from './InvoiceView';
+import BillView from './BillView';
+import UpdatePurchaseBill from './UpdatePurchaseBill';
+import { useDeleteBillMutation } from 'store/api/bill/billApi';
 
-const SalesInvoiceRow = ({ sn, data }) => {
+const PurchaseBillRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
   const [view, setView] = useState(false);
 
   const dispatch = useDispatch();
-  const [deleteInvoice] = useDeleteInvoiceMutation();
+  const [deleteBill] = useDeleteBillMutation();
 
   const handleDelete = async () => {
     setDialog(false);
     try {
-      const res = await deleteInvoice(data?.id).unwrap();
+      const res = await deleteBill(data?.id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
@@ -51,16 +51,16 @@ const SalesInvoiceRow = ({ sn, data }) => {
       <StyledTableCell>
         {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCell>
-      <StyledTableCell>{data?.invoiceNo}</StyledTableCell>
-      <StyledTableCell>{data?.customer?.customerName}</StyledTableCell>
+      <StyledTableCell>{data?.billNo}</StyledTableCell>
+      <StyledTableCell>{data?.vendor?.vendorName}</StyledTableCell>
       <StyledTableCell>
-        {data?.invoicedProducts?.map((el) => (
+        {data?.billEquipments?.map((el) => (
           <Typography key={el.id} sx={{ fontSize: 12 }}>
-            {el.product?.label +
+            {el.equipment?.label +
               ' - ' +
               el.quantity +
               ' ' +
-              el.product?.uom?.toLowerCase()}
+              el.equipment?.uom?.toLowerCase()}
           </Typography>
         ))}
       </StyledTableCell>
@@ -98,18 +98,14 @@ const SalesInvoiceRow = ({ sn, data }) => {
           </IconButton>
         </ButtonGroup>
         {/* popup items */}
-        <InvoiceView
-          open={view}
-          handleClose={() => setView(false)}
-          data={data}
-        />
+        <BillView open={view} handleClose={() => setView(false)} data={data} />
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Delete Invoice"
+          content="Delete Bill"
           handleDelete={handleDelete}
         />
-        <UpdateSalesInvoice
+        <UpdatePurchaseBill
           open={open}
           preData={data}
           handleClose={() => setOpen(false)}
@@ -120,4 +116,4 @@ const SalesInvoiceRow = ({ sn, data }) => {
   );
 };
 
-export default SalesInvoiceRow;
+export default PurchaseBillRow;

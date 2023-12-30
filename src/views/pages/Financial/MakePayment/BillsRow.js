@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import moment from 'moment';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
-const InvoicesRow = ({ index, register, data }) => {
+const BillsRow = ({ index, register, data }) => {
   const dueAmount = data?.amount - data?.paidAmount;
 
   return (
@@ -10,7 +10,7 @@ const InvoicesRow = ({ index, register, data }) => {
       <StyledTableCell>
         {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCell>
-      <StyledTableCell>{data?.invoiceNo}</StyledTableCell>
+      <StyledTableCell>{data?.billNo}</StyledTableCell>
       <StyledTableCell align="right">{data?.amount}</StyledTableCell>
       <StyledTableCell align="right">{data?.paidAmount}</StyledTableCell>
       <StyledTableCell align="right">{dueAmount}</StyledTableCell>
@@ -23,7 +23,7 @@ const InvoicesRow = ({ index, register, data }) => {
           label="Amount"
           type="number"
           inputProps={{ min: 0, max: dueAmount }}
-          {...register(`invoices[${index}].receiveAmount`, {
+          {...register(`bills[${index}].receiveAmount`, {
             required: true,
             valueAsNumber: true,
           })}
@@ -33,4 +33,4 @@ const InvoicesRow = ({ index, register, data }) => {
   );
 };
 
-export default InvoicesRow;
+export default BillsRow;

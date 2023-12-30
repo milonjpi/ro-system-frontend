@@ -57,15 +57,6 @@ const invoiceApi = api.injectEndpoints({
       }),
       invalidatesTags: ['invoice'],
     }),
-
-    // delete
-    cancelInvoice: build.mutation({
-      query: (id) => ({
-        url: `${INVOICE_URL}/${id}/cancel`,
-        method: 'PATCH',
-      }),
-      invalidatesTags: ['invoice'],
-    }),
   }),
 });
 

@@ -17,7 +17,21 @@ const reportSlice = api.injectEndpoints({
       },
       providesTags: ['customer', 'voucher', 'invoice'],
     }),
+
+    // get due report
+    getAdvanceReport: build.query({
+      query: () => ({
+        url: `${REPORT_URL}/advance-report`,
+        method: 'GET',
+      }),
+      transformResponse: (response) => {
+        return {
+          report: response?.data,
+        };
+      },
+      providesTags: ['customer', 'voucher', 'invoice'],
+    }),
   }),
 });
 
-export const { useGetDueReportQuery } = reportSlice;
+export const { useGetDueReportQuery, useGetAdvanceReportQuery } = reportSlice;

@@ -50,13 +50,29 @@ const ReceivePayment = Loadable(
   lazy(() => import('views/pages/Financial/ReceivePayment'))
 );
 
+const MakePayment = Loadable(
+  lazy(() => import('views/pages/Financial/MakePayment'))
+);
+
 // store management
 const UnitOfMeasurement = Loadable(
   lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
 );
+const ItemsName = Loadable(
+  lazy(() => import('views/pages/StoreManagement/ItemsName'))
+);
+const Vendors = Loadable(
+  lazy(() => import('views/pages/StoreManagement/Vendors'))
+);
+const PurchaseBill = Loadable(
+  lazy(() => import('views/pages/StoreManagement/PurchaseBill'))
+);
 
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
+const AdvanceReport = Loadable(
+  lazy(() => import('views/pages/Report/AdvanceReport'))
+);
 
 // utilities routing
 
@@ -193,6 +209,39 @@ const MainRoutes = {
                     </AuthenticationRoutes>
                   ),
                 },
+                {
+                  path: 'items-name',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['items-name']}
+                    >
+                      <ItemsName />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'vendors',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['vendors']}
+                    >
+                      <Vendors />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'bills',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['bills']}
+                    >
+                      <PurchaseBill />
+                    </AuthenticationRoutes>
+                  ),
+                },
               ],
             },
             {
@@ -242,6 +291,17 @@ const MainRoutes = {
                     </AuthenticationRoutes>
                   ),
                 },
+                {
+                  path: 'make-payment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['make-payment']}
+                    >
+                      <MakePayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
               ],
             },
             {
@@ -255,6 +315,17 @@ const MainRoutes = {
                       allowedCodes={['due-report']}
                     >
                       <DueReport />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'advance-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['due-report']}
+                    >
+                      <AdvanceReport />
                     </AuthenticationRoutes>
                   ),
                 },

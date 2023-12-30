@@ -3,9 +3,9 @@ import { IconCategory2 } from '@tabler/icons-react';
 import moment from 'moment';
 import { useState } from 'react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
-import ReceiveVoucherView from '../VoucherView/ReceiveVoucherView';
+import PaidVoucherView from '../VoucherView/PaidVoucherView';
 
-const ReceivePaymentRow = ({ sn, data }) => {
+const MakePaymentRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,8 +15,9 @@ const ReceivePaymentRow = ({ sn, data }) => {
         {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCell>
       <StyledTableCell>{data?.voucherNo}</StyledTableCell>
-      <StyledTableCell>{data?.customer?.customerName}</StyledTableCell>
-      <StyledTableCell>{data?.customer?.customerNameBn}</StyledTableCell>
+      <StyledTableCell>{data?.vendor?.vendorName}</StyledTableCell>
+      <StyledTableCell>{data?.vendor?.vendorNameBn}</StyledTableCell>
+      <StyledTableCell>{data?.vendor?.address}</StyledTableCell>
       <StyledTableCell>
         {data?.narration ? data?.narration : 'n/a'}
       </StyledTableCell>
@@ -27,7 +28,7 @@ const ReceivePaymentRow = ({ sn, data }) => {
         </IconButton>
 
         {/* popup items */}
-        <ReceiveVoucherView
+        <PaidVoucherView
           open={open}
           handleClose={() => setOpen(false)}
           data={data}
@@ -38,4 +39,4 @@ const ReceivePaymentRow = ({ sn, data }) => {
   );
 };
 
-export default ReceivePaymentRow;
+export default MakePaymentRow;
