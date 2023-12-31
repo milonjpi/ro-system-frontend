@@ -20,6 +20,7 @@ export const api = createApi({
     'invoice',
     'voucher',
     'equipment',
+    'equipmentIn',
   ],
   endpoints: () => ({}),
 });

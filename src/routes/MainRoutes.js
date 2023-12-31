@@ -67,6 +67,9 @@ const Vendors = Loadable(
 const PurchaseBill = Loadable(
   lazy(() => import('views/pages/StoreManagement/PurchaseBill'))
 );
+const ItemsIn = Loadable(
+  lazy(() => import('views/pages/StoreManagement/ItemsIn'))
+);
 
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
@@ -239,6 +242,17 @@ const MainRoutes = {
                       allowedCodes={['bills']}
                     >
                       <PurchaseBill />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'items-in',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['items-in']}
+                    >
+                      <ItemsIn />
                     </AuthenticationRoutes>
                   ),
                 },
