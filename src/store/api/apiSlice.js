@@ -21,6 +21,8 @@ export const api = createApi({
     'voucher',
     'equipment',
     'equipmentIn',
+    'expense-head',
+    'expense',
   ],
   endpoints: () => ({}),
 });

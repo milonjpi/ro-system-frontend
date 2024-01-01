@@ -13,8 +13,12 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import moment from 'moment';
 import { useGetAdvanceReportQuery } from 'store/api/report/reportSlice';
-import { StyledTableCellWithBorder } from 'ui-component/table-component';
+import {
+  StyledTableCellWithBorder,
+  StyledTableCellWithNoBorder,
+} from 'ui-component/table-component';
 import AdvanceReportRow from './AdvanceReportRow';
+import { totalSum } from 'views/utilities/NeedyFunction';
 
 const AdvanceReport = () => {
   const [customer, setCustomer] = useState(null);
@@ -85,24 +89,26 @@ const AdvanceReport = () => {
 
   const getAllReports = data?.report || [];
 
-  const allAdvanceReports = getAllReports?.filter(
-    (el) =>
-      Object.keys(el.invoices)?.length &&
-      (el.invoices?.receiveAmount - el.invoices?.paidAmount > 0
-        ? true
-        : false) &&
-      (parseInt(lastSale) > 0
-        ? parseInt(moment(el.invoices?.lastSaleDate).format('YYYYMMDD')) <
-          parseInt(moment().subtract(lastSale, 'days').format('YYYYMMDD'))
-        : true) &&
-      (parseInt(lastPay) > 0
-        ? parseInt(moment(el.invoices?.lastPaymentDate).format('YYYYMMDD')) <
-          parseInt(moment().subtract(lastPay, 'days').format('YYYYMMDD'))
-        : true)
-  );
+  const allAdvanceReports = getAllReports
+    ?.filter(
+      (el) =>
+        (customer ? el.id === customer.id : true) &&
+        (el.differentAmount > 0 ? true : false) &&
+        (parseInt(lastSale) > 0
+          ? parseInt(moment(el.lastSaleDate).format('YYYYMMDD')) <
+            parseInt(moment().subtract(lastSale, 'days').format('YYYYMMDD'))
+          : true) &&
+        (parseInt(lastPay) > 0
+          ? parseInt(moment(el.lastPaymentDate).format('YYYYMMDD')) <
+            parseInt(moment().subtract(lastPay, 'days').format('YYYYMMDD'))
+          : true)
+    )
+    .sort((a, b) => b.differentAmount - a.differentAmount);
 
   let sn = page * rowsPerPage + 1;
 
+  // calculation
+  const totalAdvance = totalSum(allAdvanceReports, 'differentAmount');
   return (
     <MainCard title="Advance Report">
       {/* filter area */}
@@ -183,6 +189,24 @@ const AdvanceReport = () => {
                 </StyledTableCellWithBorder>
               </TableRow>
             )}
+
+            {allAdvanceReports?.length ? (
+              <TableRow>
+                <StyledTableCellWithNoBorder
+                  colSpan={8}
+                  align="right"
+                  sx={{ fontSize: '12px !important', fontWeight: 700 }}
+                >
+                  Total:
+                </StyledTableCellWithNoBorder>
+                <StyledTableCellWithNoBorder
+                  align="right"
+                  sx={{ fontSize: '12px !important', fontWeight: 700 }}
+                >
+                  {totalAdvance}
+                </StyledTableCellWithNoBorder>
+              </TableRow>
+            ) : null}
           </TableBody>
         </Table>
       </Box>

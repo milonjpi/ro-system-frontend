@@ -56,7 +56,7 @@ const DataTable = ({
       </Box>
       {pagination ? (
         <TablePagination
-          rowsPerPageOptions={[10, 20, 40]}
+          rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={count}
           rowsPerPage={rowsPerPage}

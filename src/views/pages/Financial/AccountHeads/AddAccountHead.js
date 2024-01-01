@@ -135,7 +135,7 @@ const AddAccountHead = ({ open, handleClose }) => {
               <TextField
                 fullWidth
                 required
-                label="Account Type"
+                label="Account Head"
                 size="small"
                 {...register('label', { required: true })}
               />

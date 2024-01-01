@@ -6,6 +6,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import InputBase from '@mui/material/InputBase';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import LinearProgress from '@mui/material/LinearProgress';
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,12 +16,13 @@ import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
-import CustomerRow from './CustomerRow';
-import AddCustomer from './AddCustomer';
+import { useNavigate } from 'react-router-dom';
+import { useGetExpensesQuery } from 'store/api/expense/expenseApi';
+import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
 
-const AllCustomers = () => {
+const AllExpenses = () => {
   const [searchText, setSearchText] = useState('');
+  const [expenseHead, setExpenseHead] = useState('');
 
   const [open, setOpen] = useState(false);
 
@@ -37,14 +40,24 @@ const AllCustomers = () => {
   };
   // end pagination
 
+  // library
+  const { data: expenseHeadData } = useGetExpenseHeadsQuery(
+    { limit: 500, sortBy: 'label', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenseHeads = expenseHeadData?.expenseHeads || [];
+  // end library
+
   // filtering and pagination
   const query = {};
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
-  query['sortBy'] = 'customerId';
-  query['sortOrder'] = 'asc';
-  query['isActive'] = true;
+
+  if (expenseHead) {
+    query['expenseHeadId'] = expenseHead.id;
+  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -56,21 +69,21 @@ const AllCustomers = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetCustomersQuery(
+  const { data, isLoading } = useGetExpensesQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = data?.customers || [];
+  const allExpenses = data?.expenses || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
   return (
     <MainCard
-      title="All Clients"
+      title="Expenses"
       secondary={
         <CardAction
-          title="Add Client"
+          title="Add Expense"
           onClick={() => setOpen(true)}
           icon={<IconPlus />}
         />
@@ -92,33 +105,47 @@ const AllCustomers = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} md={4}>
+            <Autocomplete
+              value={expenseHead}
+              size="small"
+              fullWidth
+              options={allExpenseHeads}
+              getOptionLabel={(option) => option.label}
+              onChange={(e, newValue) => setExpenseHead(newValue)}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Expense Head" />
+              )}
+            />
+          </Grid>
         </Grid>
       </Box>
-      {/* popup items */}
-      <AddCustomer open={open} handleClose={() => setOpen(false)} />
-      {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
-        <Table sx={{ minWidth: 450 }}>
+        <Table sx={{ minWidth: 400 }}>
           <TableHead>
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Client ID</StyledTableCell>
-              <StyledTableCell>Client Name</StyledTableCell>
-              <StyledTableCell>Client Name &#40;BN&#41;</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Address</StyledTableCell>
-              <StyledTableCell>Group By</StyledTableCell>
+              <StyledTableCell>Date</StyledTableCell>
+              <StyledTableCell>Bill No</StyledTableCell>
+              <StyledTableCell>Vehicle</StyledTableCell>
+              <StyledTableCell>Driver</StyledTableCell>
+              <StyledTableCell>Workshop Type</StyledTableCell>
+              <StyledTableCell>Maintenance Type</StyledTableCell>
+              <StyledTableCell align="right">Service Charge</StyledTableCell>
+              <StyledTableCell>Remarks</StyledTableCell>
+              <StyledTableCell align="center">Bill</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allCustomers?.length ? (
-              allCustomers.map((item) => (
-                <CustomerRow key={item.id} sn={sn++} data={item} />
+            {allMaintenances?.length ? (
+              allMaintenances.map((item) => (
+                <RepairMaintenanceRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>
-                <StyledTableCell colSpan={10} sx={{ border: 0 }} align="center">
+                <StyledTableCell colSpan={13} sx={{ border: 0 }} align="center">
                   {isLoading ? (
                     <LinearProgress sx={{ opacity: 0.5, py: 0.5 }} />
                   ) : (
@@ -131,7 +158,7 @@ const AllCustomers = () => {
         </Table>
       </Box>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10, 20, 40]}
         component="div"
         count={meta?.total || 0}
         rowsPerPage={rowsPerPage}
@@ -143,4 +170,4 @@ const AllCustomers = () => {
   );
 };
 
-export default AllCustomers;
+export default AllExpenses;

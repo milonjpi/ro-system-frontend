@@ -3,9 +3,7 @@ import moment from 'moment';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 
 const AdvanceReportRow = ({ sn, data }) => {
-  const invoicesData = data?.invoices;
-  const advancePayment =
-    (invoicesData?.receiveAmount || 0) - (invoicesData?.paidAmount || 0);
+
   return (
     <TableRow>
       <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
@@ -23,17 +21,17 @@ const AdvanceReportRow = ({ sn, data }) => {
         {data?.address ? data?.address : 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {invoicesData?.lastSaleDate
-          ? moment(invoicesData?.lastSaleDate).format('DD/MM/YYYY')
+        {data?.lastSaleDate
+          ? moment(data?.lastSaleDate).format('DD/MM/YYYY')
           : 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {invoicesData?.lastPaymentDate
-          ? moment(invoicesData?.lastPaymentDate).format('DD/MM/YYYY')
+        {data?.lastPaymentDate
+          ? moment(data?.lastPaymentDate).format('DD/MM/YYYY')
           : 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {advancePayment}
+        {data?.differentAmount}
       </StyledTableCellWithBorder>
     </TableRow>
   );

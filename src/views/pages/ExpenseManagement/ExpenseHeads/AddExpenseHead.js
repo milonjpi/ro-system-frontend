@@ -4,10 +4,6 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -17,8 +13,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import { useUpdateAccountHeadMutation } from 'store/api/accountHead/accountHeadApi';
-import { useGetAccountTypesQuery } from 'store/api/accountType/accountTypeApi';
+import { useCreateExpenseHeadMutation } from 'store/api/expenseHead/expenseHeadApi';
 
 const style = {
   position: 'absolute',
@@ -32,38 +27,25 @@ const style = {
   p: 2,
 };
 
-const UpdateAccountHead = ({ open, handleClose, preData }) => {
+const AddExpenseHead = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [type, setType] = useState(preData?.accountTypeId || '');
-  const { register, handleSubmit } = useForm({ defaultValues: preData });
-
-  // library
-
-  const { data: accountTypeData } = useGetAccountTypesQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allAccountTypes = accountTypeData?.accountTypes || [];
-  // end library
+  const { register, handleSubmit, reset } = useForm();
 
   const dispatch = useDispatch();
 
-  const [updateAccountHead] = useUpdateAccountHeadMutation();
+  const [createExpenseHead] = useCreateExpenseHeadMutation();
+
   const onSubmit = async (data) => {
     const newData = {
-      accountTypeId: type,
       label: data?.label,
     };
     try {
       setLoading(true);
-      const res = await updateAccountHead({
-        id: preData?.id,
-        body: newData,
-      }).unwrap();
+      const res = await createExpenseHead({ ...newData }).unwrap();
       if (res.success) {
         handleClose();
         setLoading(false);
+        reset();
         dispatch(
           setToast({
             open: true,
@@ -95,7 +77,7 @@ const UpdateAccountHead = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Edit Account Head
+            Add Expense Head
           </Typography>
           <IconButton
             color="error"
@@ -113,30 +95,10 @@ const UpdateAccountHead = ({ open, handleClose, preData }) => {
         >
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <FormControl fullWidth size="small" required>
-                <InputLabel id="account-type-id">Account Type</InputLabel>
-                <Select
-                  labelId="account-type-id"
-                  value={type}
-                  label="Account Type"
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {allAccountTypes?.map((el) => (
-                    <MenuItem key={el.id} value={el.id}>
-                      {el.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
               <TextField
                 fullWidth
                 required
-                label="Account Head"
+                label="Expense Head"
                 size="small"
                 {...register('label', { required: true })}
               />
@@ -153,7 +115,7 @@ const UpdateAccountHead = ({ open, handleClose, preData }) => {
                 variant="contained"
                 type="submit"
               >
-                update
+                Submit
               </LoadingButton>
             </Grid>
           </Grid>
@@ -163,4 +125,4 @@ const UpdateAccountHead = ({ open, handleClose, preData }) => {
   );
 };
 
-export default UpdateAccountHead;
+export default AddExpenseHead;

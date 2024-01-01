@@ -14,11 +14,11 @@ import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
-import CustomerRow from './CustomerRow';
-import AddCustomer from './AddCustomer';
+import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
+import AddExpenseHead from './AddExpenseHead';
+import ExpenseHeadRow from './ExpenseHeadRow';
 
-const AllCustomers = () => {
+const ExpenseHeads = () => {
   const [searchText, setSearchText] = useState('');
 
   const [open, setOpen] = useState(false);
@@ -42,9 +42,8 @@ const AllCustomers = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
-  query['sortBy'] = 'customerId';
-  query['sortOrder'] = 'asc';
-  query['isActive'] = true;
+  query['sortBy'] = 'label';
+  query['srtOrder'] = 'asc';
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -56,21 +55,21 @@ const AllCustomers = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetCustomersQuery(
+  const { data, isLoading } = useGetExpenseHeadsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = data?.customers || [];
+  const allExpenseHeads = data?.expenseHeads || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
   return (
     <MainCard
-      title="All Clients"
+      title="Expense Heads"
       secondary={
         <CardAction
-          title="Add Client"
+          title="Add Expense Head"
           onClick={() => setOpen(true)}
           icon={<IconPlus />}
         />
@@ -95,26 +94,21 @@ const AllCustomers = () => {
         </Grid>
       </Box>
       {/* popup items */}
-      <AddCustomer open={open} handleClose={() => setOpen(false)} />
+      <AddExpenseHead open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 450 }}>
           <TableHead>
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Client ID</StyledTableCell>
-              <StyledTableCell>Client Name</StyledTableCell>
-              <StyledTableCell>Client Name &#40;BN&#41;</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Address</StyledTableCell>
-              <StyledTableCell>Group By</StyledTableCell>
+              <StyledTableCell>Expense Head</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allCustomers?.length ? (
-              allCustomers.map((item) => (
-                <CustomerRow key={item.id} sn={sn++} data={item} />
+            {allExpenseHeads?.length ? (
+              allExpenseHeads.map((item) => (
+                <ExpenseHeadRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>
@@ -131,7 +125,7 @@ const AllCustomers = () => {
         </Table>
       </Box>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10, 20, 40]}
         component="div"
         count={meta?.total || 0}
         rowsPerPage={rowsPerPage}
@@ -143,4 +137,4 @@ const AllCustomers = () => {
   );
 };
 
-export default AllCustomers;
+export default ExpenseHeads;

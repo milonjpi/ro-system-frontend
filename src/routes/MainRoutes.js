@@ -71,6 +71,11 @@ const ItemsIn = Loadable(
   lazy(() => import('views/pages/StoreManagement/ItemsIn'))
 );
 
+// expense management
+const ExpenseHeads = Loadable(
+  lazy(() => import('views/pages/ExpenseManagement/ExpenseHeads'))
+);
+
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
@@ -253,6 +258,22 @@ const MainRoutes = {
                       allowedCodes={['items-in']}
                     >
                       <ItemsIn />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'expense-management',
+              children: [
+                {
+                  path: 'expense-heads',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['expense-heads']}
+                    >
+                      <ExpenseHeads />
                     </AuthenticationRoutes>
                   ),
                 },
