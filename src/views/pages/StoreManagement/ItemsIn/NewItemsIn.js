@@ -100,7 +100,7 @@ const NewItemsIn = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            New Item In
+            New Item &#40;Receive&#41;
           </Typography>
           <IconButton
             color="error"

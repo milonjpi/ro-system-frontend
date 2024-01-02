@@ -70,10 +70,17 @@ const PurchaseBill = Loadable(
 const ItemsIn = Loadable(
   lazy(() => import('views/pages/StoreManagement/ItemsIn'))
 );
+const ItemsOut = Loadable(
+  lazy(() => import('views/pages/StoreManagement/ItemsOut'))
+);
 
 // expense management
 const ExpenseHeads = Loadable(
   lazy(() => import('views/pages/ExpenseManagement/ExpenseHeads'))
+);
+
+const AllExpenses = Loadable(
+  lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
 );
 
 // report
@@ -261,6 +268,17 @@ const MainRoutes = {
                     </AuthenticationRoutes>
                   ),
                 },
+                {
+                  path: 'items-out',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['items-out']}
+                    >
+                      <ItemsOut />
+                    </AuthenticationRoutes>
+                  ),
+                },
               ],
             },
             {
@@ -274,6 +292,17 @@ const MainRoutes = {
                       allowedCodes={['expense-heads']}
                     >
                       <ExpenseHeads />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'all-expenses',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['all-expenses']}
+                    >
+                      <AllExpenses />
                     </AuthenticationRoutes>
                   ),
                 },

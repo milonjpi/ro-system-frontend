@@ -146,8 +146,8 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
         totalQty: totalSum(data?.products || [], 'quantity'),
         totalPrice: subTotal,
         discount: parseInt(discount || 0),
-        amount: givenFromBalance,
-        paidAmount: 0,
+        amount: totalValue,
+        paidAmount: givenFromBalance,
         orderId: order?.id,
         status:
           givenFromBalance === totalValue

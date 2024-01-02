@@ -21,6 +21,7 @@ export const api = createApi({
     'voucher',
     'equipment',
     'equipmentIn',
+    'equipmentOut',
     'expense-head',
     'expense',
   ],

@@ -11,7 +11,6 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
@@ -20,7 +19,7 @@ import { setToast } from 'store/toastSlice';
 import ControlledAutoComplete from 'ui-component/form-components/ControlledAutoComplete';
 import { useVendorDetailsQuery } from 'store/api/vendor/vendorApi';
 import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
-import { useCreateExpenseMutation } from 'store/api/expense/expenseApi';
+import { useUpdateExpenseMutation } from 'store/api/expense/expenseApi';
 
 const style = {
   position: 'absolute',
@@ -34,14 +33,14 @@ const style = {
   p: 2,
 };
 
-const AddExpense = ({ open, handleClose }) => {
-  const [date, setDate] = useState(moment());
-  const [expenseHead, setExpenseHead] = useState(null);
-  const [vendor, setVendor] = useState(null);
+const UpdateExpense = ({ open, handleClose, preData }) => {
+  const [date, setDate] = useState(preData?.date);
+  const [expenseHead, setExpenseHead] = useState(preData?.expenseHead || null);
+  const [vendor, setVendor] = useState(preData?.vendor || null);
 
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm({ defaultValues: preData });
 
   // library
   const { data: expenseHeadData } = useGetExpenseHeadsQuery(
@@ -61,7 +60,7 @@ const AddExpense = ({ open, handleClose }) => {
 
   const dispatch = useDispatch();
 
-  const [createExpense] = useCreateExpenseMutation();
+  const [updateExpense] = useUpdateExpenseMutation();
 
   const onSubmit = async (data) => {
     const newData = {
@@ -73,13 +72,12 @@ const AddExpense = ({ open, handleClose }) => {
     };
     try {
       setLoading(true);
-      const res = await createExpense({ ...newData }).unwrap();
+      const res = await updateExpense({
+        id: preData?.id,
+        body: newData,
+      }).unwrap();
       if (res.success) {
         setLoading(false);
-        reset();
-        setDate(moment());
-        setExpenseHead(null);
-        setVendor(null);
         handleClose();
         dispatch(
           setToast({
@@ -112,7 +110,7 @@ const AddExpense = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Add Expense
+            Edit Expense
           </Typography>
           <IconButton
             color="error"
@@ -202,7 +200,7 @@ const AddExpense = ({ open, handleClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                Update
               </LoadingButton>
             </Grid>
           </Grid>
@@ -212,4 +210,4 @@ const AddExpense = ({ open, handleClose }) => {
   );
 };
 
-export default AddExpense;
+export default UpdateExpense;

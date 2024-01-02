@@ -13,7 +13,8 @@ const invoiceApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          invoices: response?.data,
+          invoices: response?.data?.data,
+          sum: response?.data?.sum,
           meta: response?.meta,
         };
       },

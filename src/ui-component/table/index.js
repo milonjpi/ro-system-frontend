@@ -10,6 +10,7 @@ const DataTable = ({
   sx = {},
   id,
   tableHeads,
+  extra,
   data,
   options,
   loading = false,
@@ -51,6 +52,7 @@ const DataTable = ({
                 </StyledTableCell>
               </StyledTableRow>
             )}
+            {extra ? extra : null}
           </TableBody>
         </Table>
       </Box>

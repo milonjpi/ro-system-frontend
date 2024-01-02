@@ -20,6 +20,21 @@ const equipmentApi = api.injectEndpoints({
       providesTags: ['equipment'],
     }),
 
+    // get summary
+    getEquipmentSummary: build.query({
+      query: (params) => ({
+        url: `${EQUIPMENT_URL}/summary`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          equipments: response?.data,
+        };
+      },
+      providesTags: ['equipment', 'equipmentIn', 'equipmentOut'],
+    }),
+
     // get single
     getSingleEquipment: build.query({
       query: (id) => ({
@@ -63,6 +78,7 @@ const equipmentApi = api.injectEndpoints({
 export const {
   useGetEquipmentsQuery,
   useGetSingleEquipmentQuery,
+  useGetEquipmentSummaryQuery,
   useCreateEquipmentMutation,
   useUpdateEquipmentMutation,
   useDeleteEquipmentMutation,

@@ -6,6 +6,9 @@ const colors = {
   Solved: '#006644',
   Approved: '#006644',
   'In Stand': '#006644',
+  Due: '#42526E',
+  Partial: '#0747A6',
+  Paid: '#006644',
 };
 
 const backgrounds = {
@@ -14,6 +17,9 @@ const backgrounds = {
   Solved: '#E3FCEF',
   Approved: '#E3FCEF',
   'In Stand': '#E3FCEF',
+  Due: '#DFE1E6',
+  Partial: '#DEEBFF',
+  Paid: '#E3FCEF',
 };
 
 const ShowStatus = ({ status }) => {

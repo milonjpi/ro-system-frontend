@@ -1,26 +1,26 @@
 import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import { IconEdit, IconTrashXFilled } from '@tabler/icons-react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import ConfirmDialog from 'ui-component/ConfirmDialog';
-import { setToast } from 'store/toastSlice';
 import moment from 'moment';
+import { useState } from 'react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
-import { useDeleteExpenseMutation } from 'store/api/expense/expenseApi';
-import UpdateExpense from './UpdateExpense';
+import { useDispatch } from 'react-redux';
+import { setToast } from 'store/toastSlice';
+import ConfirmDialog from 'ui-component/ConfirmDialog';
+import { useDeleteEquipmentOutMutation } from 'store/api/equipmentOut/equipmentOutApi';
+import UpdateItemsOut from './UpdateItemsOut';
 
-const ExpenseRow = ({ sn, data }) => {
+const ItemsOutRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
   const dispatch = useDispatch();
-  const [deleteExpense] = useDeleteExpenseMutation();
+  const [deleteEquipmentOut] = useDeleteEquipmentOutMutation();
 
   const handleDelete = async () => {
     setDialog(false);
     try {
-      const res = await deleteExpense(data?.id).unwrap();
+      const res = await deleteEquipmentOut(data?.id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
@@ -40,18 +40,17 @@ const ExpenseRow = ({ sn, data }) => {
       );
     }
   };
+
   return (
     <StyledTableRow>
       <StyledTableCell align="center">{sn}</StyledTableCell>
       <StyledTableCell>
         {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCell>
-      <StyledTableCell>{data?.expenseHead?.label}</StyledTableCell>
-      <StyledTableCell>
-        {data?.vendor ? data?.vendor?.vendorName : 'n/a'}
-      </StyledTableCell>
-      <StyledTableCell>{data?.remarks ? data?.remarks : 'n/a'}</StyledTableCell>
-      <StyledTableCell align="right">{data?.amount}</StyledTableCell>
+      <StyledTableCell>{data?.equipment?.equipmentCode}</StyledTableCell>
+      <StyledTableCell>{data?.equipment?.label}</StyledTableCell>
+      <StyledTableCell>{data?.remarks}</StyledTableCell>
+      <StyledTableCell align="right">{data?.quantity}</StyledTableCell>
       <StyledTableCell align="center">
         <ButtonGroup>
           <IconButton
@@ -69,22 +68,21 @@ const ExpenseRow = ({ sn, data }) => {
             <IconTrashXFilled size={18} />
           </IconButton>
         </ButtonGroup>
-        {/* popup items */}
-        <ConfirmDialog
-          open={dialog}
-          setOpen={setDialog}
-          content="Delete Expense"
-          handleDelete={handleDelete}
-        />
-        <UpdateExpense
+
+        <UpdateItemsOut
           open={open}
           preData={data}
           handleClose={() => setOpen(false)}
         />
-        {/* end popup items */}
+        <ConfirmDialog
+          open={dialog}
+          setOpen={setDialog}
+          content="Delete Delivery Record"
+          handleDelete={handleDelete}
+        />
       </StyledTableCell>
     </StyledTableRow>
   );
 };
 
-export default ExpenseRow;
+export default ItemsOutRow;

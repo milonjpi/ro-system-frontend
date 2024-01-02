@@ -170,13 +170,13 @@ const pages = {
         },
         {
           id: 'items-in',
-          title: 'Items In',
+          title: 'Items (Receive)',
           type: 'item',
           url: '/pages/store-management/items-in',
         },
         {
           id: 'items-out',
-          title: 'Items Out',
+          title: 'Items (Delivery)',
           type: 'item',
           url: '/pages/store-management/items-out',
         },

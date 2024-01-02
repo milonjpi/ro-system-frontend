@@ -19,13 +19,13 @@ import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
-import { useGetEquipmentsQuery } from 'store/api/equipment/equipmentApi';
-import { useGetEquipmentInsQuery } from 'store/api/equipmentIn/equipmentInApi';
-import NewItemsIn from './NewItemsIn';
-import ItemsInRow from './ItemsInRow';
+import { useGetEquipmentSummaryQuery } from 'store/api/equipment/equipmentApi';
 import moment from 'moment';
+import { useGetEquipmentOutsQuery } from 'store/api/equipmentOut/equipmentOutApi';
+import NewItemsOut from './NewItemsOut';
+import ItemsOutRow from './ItemsOutRow';
 
-const ItemsIn = () => {
+const ItemsOut = () => {
   const [searchText, setSearchText] = useState('');
   const [equipment, setEquipment] = useState(null);
   const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
@@ -34,10 +34,9 @@ const ItemsIn = () => {
   const [open, setOpen] = useState(false);
 
   // library
-  const { data: equipmentData } = useGetEquipmentsQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
+  const { data: equipmentData } = useGetEquipmentSummaryQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
 
   const allEquipments = equipmentData?.equipments || [];
   // end library
@@ -83,21 +82,21 @@ const ItemsIn = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetEquipmentInsQuery(
+  const { data, isLoading } = useGetEquipmentOutsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allEquipmentIns = data?.equipmentIns || [];
+  const allEquipmentOuts = data?.equipmentOuts || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
   return (
     <MainCard
-      title="Items (Receive)"
+      title="Items (Delivery)"
       secondary={
         <CardAction
-          title="New Items (Receive)"
+          title="New Item (Delivery)"
           onClick={() => setOpen(true)}
           icon={<IconPlus />}
         />
@@ -183,7 +182,7 @@ const ItemsIn = () => {
         </Grid>
       </Box>
       {/* popup items */}
-      <NewItemsIn open={open} handleClose={() => setOpen(false)} />
+      <NewItemsOut open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 450 }}>
@@ -195,15 +194,13 @@ const ItemsIn = () => {
               <StyledTableCell>Item Name</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
               <StyledTableCell align="right">Quantity</StyledTableCell>
-              <StyledTableCell align="right">Unit Price</StyledTableCell>
-              <StyledTableCell align="right">Total Price</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allEquipmentIns?.length ? (
-              allEquipmentIns.map((item) => (
-                <ItemsInRow key={item.id} sn={sn++} data={item} />
+            {allEquipmentOuts?.length ? (
+              allEquipmentOuts.map((item) => (
+                <ItemsOutRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>
@@ -232,4 +229,4 @@ const ItemsIn = () => {
   );
 };
 
-export default ItemsIn;
+export default ItemsOut;

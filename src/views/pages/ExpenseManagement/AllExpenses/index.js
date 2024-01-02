@@ -16,13 +16,14 @@ import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
-import { useNavigate } from 'react-router-dom';
 import { useGetExpensesQuery } from 'store/api/expense/expenseApi';
 import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
+import ExpenseRow from './ExpenseRow';
+import AddExpense from './AddExpense';
 
 const AllExpenses = () => {
   const [searchText, setSearchText] = useState('');
-  const [expenseHead, setExpenseHead] = useState('');
+  const [expenseHead, setExpenseHead] = useState(null);
 
   const [open, setOpen] = useState(false);
 
@@ -89,6 +90,9 @@ const AllExpenses = () => {
         />
       }
     >
+      {/* popup items */}
+      <AddExpense open={open} handleClose={() => setOpen(false)} />
+      {/* end popup items */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={2} sx={{ alignItems: 'end' }}>
           <Grid item xs={12} md={5}>
@@ -127,21 +131,17 @@ const AllExpenses = () => {
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
               <StyledTableCell>Date</StyledTableCell>
-              <StyledTableCell>Bill No</StyledTableCell>
-              <StyledTableCell>Vehicle</StyledTableCell>
-              <StyledTableCell>Driver</StyledTableCell>
-              <StyledTableCell>Workshop Type</StyledTableCell>
-              <StyledTableCell>Maintenance Type</StyledTableCell>
-              <StyledTableCell align="right">Service Charge</StyledTableCell>
+              <StyledTableCell>Expense Head</StyledTableCell>
+              <StyledTableCell>Vendor</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
-              <StyledTableCell align="center">Bill</StyledTableCell>
+              <StyledTableCell align="right">Amount</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allMaintenances?.length ? (
-              allMaintenances.map((item) => (
-                <RepairMaintenanceRow key={item.id} sn={sn++} data={item} />
+            {allExpenses?.length ? (
+              allExpenses.map((item) => (
+                <ExpenseRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>

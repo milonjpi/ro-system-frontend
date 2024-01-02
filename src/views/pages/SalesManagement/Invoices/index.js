@@ -24,12 +24,13 @@ import { useDebounced } from 'hooks';
 import { useGetInvoicesQuery } from 'store/api/invoice/invoiceApi';
 import SalesInvoiceRow from './SalesInvoiceRow';
 import AddSalesInvoice from './AddSalesInvoice';
+import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
 const Invoices = () => {
   const [searchText, setSearchText] = useState('');
   const [status, setStatus] = useState('all');
   const [customer, setCustomer] = useState(null);
-  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+  const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
 
   const [open, setOpen] = useState(false);
@@ -142,6 +143,7 @@ const Invoices = () => {
   );
 
   const allInvoices = data?.invoices || [];
+  const allSumData = data?.sum?.length ? data?.sum[0] : null;
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
@@ -259,6 +261,50 @@ const Invoices = () => {
       {/* data table */}
       <DataTable
         tableHeads={tableHeads}
+        extra={
+          allInvoices?.length ? (
+            <StyledTableRow>
+              <StyledTableCell
+                align="right"
+                colSpan={4}
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                Total
+              </StyledTableCell>
+              <StyledTableCell
+                align="center"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {(allSumData?._sum?.totalQty || 0) + ' pcs'}
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {allSumData?._sum?.totalPrice || 0}
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {allSumData?._sum?.discount || 0}
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {allSumData?._sum?.amount || 0}
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {(allSumData?._sum?.amount || 0) -
+                  (allSumData?._sum?.paidAmount || 0)}
+              </StyledTableCell>
+            </StyledTableRow>
+          ) : null
+        }
         data={allInvoices}
         options={(el) => <SalesInvoiceRow key={el.id} sn={sn++} data={el} />}
         loading={isLoading}

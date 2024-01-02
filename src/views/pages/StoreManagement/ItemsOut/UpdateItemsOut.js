@@ -4,83 +4,69 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
+import Autocomplete from '@mui/material/Autocomplete';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import ControlledAutoComplete from 'ui-component/form-components/ControlledAutoComplete';
-import { useVendorDetailsQuery } from 'store/api/vendor/vendorApi';
-import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
-import { useCreateExpenseMutation } from 'store/api/expense/expenseApi';
+import { useGetEquipmentSummaryQuery } from 'store/api/equipment/equipmentApi';
+import { useUpdateEquipmentOutMutation } from 'store/api/equipmentOut/equipmentOutApi';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 600 },
+  width: { xs: 350, sm: 450, md: 600 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
   p: 2,
 };
 
-const AddExpense = ({ open, handleClose }) => {
-  const [date, setDate] = useState(moment());
-  const [expenseHead, setExpenseHead] = useState(null);
-  const [vendor, setVendor] = useState(null);
-
-  const [loading, setLoading] = useState(false);
-
-  const { register, handleSubmit, reset } = useForm();
-
+const UpdateItemsOut = ({ open, handleClose, preData }) => {
   // library
-  const { data: expenseHeadData } = useGetExpenseHeadsQuery(
-    { limit: 500, sortBy: 'label', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allExpenseHeads = expenseHeadData?.expenseHeads || [];
-
-  const { data: vendorData } = useVendorDetailsQuery('', {
+  const { data: equipmentData } = useGetEquipmentSummaryQuery('', {
     refetchOnMountOrArgChange: true,
   });
 
-  const allVendors = vendorData?.vendors || [];
-
+  const allEquipments = equipmentData?.equipments || [];
   // end library
+
+  const [loading, setLoading] = useState(false);
+  const [date, setDate] = useState(preData?.date);
+  const [equipment, setEquipment] = useState(
+    allEquipments?.find((el) => el.id === preData?.equipmentId) || null
+  );
+  const { register, handleSubmit } = useForm({ defaultValues: preData });
 
   const dispatch = useDispatch();
 
-  const [createExpense] = useCreateExpenseMutation();
-
+  const [updateEquipmentOut] = useUpdateEquipmentOutMutation();
   const onSubmit = async (data) => {
     const newData = {
-      date,
-      expenseHeadId: expenseHead?.id,
-      vendorId: vendor?.id,
-      amount: data?.amount,
-      remarks: data?.remarks,
+      equipmentId: equipment?.id,
+      date: date,
+      quantity: data?.quantity,
+      remarks: data?.remarks || '',
     };
     try {
       setLoading(true);
-      const res = await createExpense({ ...newData }).unwrap();
+      const res = await updateEquipmentOut({
+        id: preData?.id,
+        body: newData,
+      }).unwrap();
       if (res.success) {
-        setLoading(false);
-        reset();
-        setDate(moment());
-        setExpenseHead(null);
-        setVendor(null);
         handleClose();
+        setLoading(false);
         dispatch(
           setToast({
             open: true,
@@ -101,6 +87,14 @@ const AddExpense = ({ open, handleClose }) => {
     }
   };
 
+  // calculation
+  const availableQty =
+    preData?.equipmentId === equipment?.id
+      ? (equipment?.totalQty || 0) -
+        (equipment?.usedQty || 0) +
+        preData?.quantity
+      : (equipment?.totalQty || 0) - (equipment?.usedQty || 0);
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>
@@ -112,7 +106,7 @@ const AddExpense = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Add Expense
+            Edit Item &#40;Delivery&#41;
           </Typography>
           <IconButton
             color="error"
@@ -143,58 +137,69 @@ const AddExpense = ({ open, handleClose }) => {
                     <TextField
                       {...params}
                       fullWidth
-                      required
                       size="small"
+                      required
                       autoComplete="off"
                     />
                   )}
                 />
               </LocalizationProvider>
             </Grid>
-
             <Grid item xs={12} md={6}>
-              <ControlledAutoComplete
-                label="Select Expense Head"
-                required
-                value={expenseHead}
-                options={allExpenseHeads}
+              <Autocomplete
+                value={equipment}
+                size="small"
+                options={allEquipments}
+                fullWidth
                 getOptionLabel={(option) => option.label}
                 isOptionEqualToValue={(item, value) => item.id === value.id}
-                onChange={(e, newValue) => setExpenseHead(newValue)}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <ControlledAutoComplete
-                label="Select Vendor"
-                value={vendor}
-                options={allVendors}
-                getOptionLabel={(option) => option.vendorName}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                onChange={(e, newValue) => setVendor(newValue)}
+                onChange={(e, newValue) => setEquipment(newValue)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Choose a Equipment"
+                    variant="outlined"
+                    required
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
+                label="Quantity"
                 fullWidth
-                label="Amount"
                 size="small"
                 type="number"
+                inputProps={{
+                  step: '0.01',
+                  max: availableQty,
+                }}
                 required
-                {...register('amount', { required: true, valueAsNumber: true })}
+                {...register('quantity', {
+                  required: true,
+                  valueAsNumber: true,
+                })}
               />
             </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography sx={{ fontSize: 12 }}>Available Quantity</Typography>
+              <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
+                {availableQty}
+              </Typography>
+            </Grid>
+
             <Grid item xs={12}>
               <TextField
-                fullWidth
                 label="Remarks"
+                fullWidth
                 size="small"
                 {...register('remarks')}
               />
             </Grid>
             <Grid item xs={12}>
               <LoadingButton
-                size="small"
                 fullWidth
+                size="small"
                 color="primary"
                 loading={loading}
                 loadingPosition="start"
@@ -202,7 +207,7 @@ const AddExpense = ({ open, handleClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                Update
               </LoadingButton>
             </Grid>
           </Grid>
@@ -212,4 +217,4 @@ const AddExpense = ({ open, handleClose }) => {
   );
 };
 
-export default AddExpense;
+export default UpdateItemsOut;
