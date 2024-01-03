@@ -19,11 +19,12 @@ import { useDebounced } from 'hooks';
 import ReceivePaymentRow from './ReceivePaymentRow';
 import { useGetVouchersQuery } from 'store/api/voucher/voucherApi';
 import NewPaymentReceive from './NewPaymentReceive';
+import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
 const ReceivePayment = () => {
   const [searchText, setSearchText] = useState('');
   const [customer, setCustomer] = useState(null);
-  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+  const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
 
   const [open, setOpen] = useState(false);
@@ -68,6 +69,9 @@ const ReceivePayment = () => {
     },
     {
       title: 'Customer (BN)',
+    },
+    {
+      title: 'Address',
     },
     {
       title: 'Narration',
@@ -116,6 +120,7 @@ const ReceivePayment = () => {
   );
 
   const allVouchers = data?.vouchers || [];
+  const allSumData = data?.sum?.length ? data?.sum[0] : null;
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
@@ -213,6 +218,25 @@ const ReceivePayment = () => {
       {/* data table */}
       <DataTable
         tableHeads={tableHeads}
+        extra={
+          allVouchers?.length ? (
+            <StyledTableRow>
+              <StyledTableCell
+                align="right"
+                colSpan={7}
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                Total
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {allSumData?._sum?.amount || 0}
+              </StyledTableCell>
+            </StyledTableRow>
+          ) : null
+        }
         data={allVouchers}
         options={(el) => <ReceivePaymentRow key={el.id} sn={sn++} data={el} />}
         loading={isLoading}

@@ -17,6 +17,7 @@ const ReceivePaymentRow = ({ sn, data }) => {
       <StyledTableCell>{data?.voucherNo}</StyledTableCell>
       <StyledTableCell>{data?.customer?.customerName}</StyledTableCell>
       <StyledTableCell>{data?.customer?.customerNameBn}</StyledTableCell>
+      <StyledTableCell>{data?.customer?.address || 'n/a'}</StyledTableCell>
       <StyledTableCell>
         {data?.narration ? data?.narration : 'n/a'}
       </StyledTableCell>

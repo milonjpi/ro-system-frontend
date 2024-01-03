@@ -126,7 +126,7 @@ const ViewCustomInvoice = ({ open, handleClose, data, startDate, endDate }) => {
               </Box>
               <Box>
                 <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                  TBZ Enterprise
+                  TBZ RO SYSTEM
                 </Typography>
                 <Typography sx={{ fontSize: 11 }}>Rajpat, Fakirhat</Typography>
                 <Typography sx={{ fontSize: 11 }}>Bagerhat.</Typography>

@@ -180,6 +180,12 @@ const pages = {
           type: 'item',
           url: '/pages/store-management/items-out',
         },
+        {
+          id: 'stock-status',
+          title: 'Stock Status',
+          type: 'item',
+          url: '/pages/store-management/stock-status',
+        },
       ],
     },
     {

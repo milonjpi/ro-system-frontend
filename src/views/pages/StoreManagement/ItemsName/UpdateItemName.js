@@ -120,6 +120,7 @@ const UpdateItemName = ({ open, handleClose, preData }) => {
               <FormControl fullWidth size="small" required>
                 <InputLabel id="uom-select-id">Unit of Measurement</InputLabel>
                 <Select
+                  defaultValue={preData?.uom || ''}
                   labelId="uom-select-id"
                   label="Unit of Measurement"
                   {...register('uom', { required: true })}

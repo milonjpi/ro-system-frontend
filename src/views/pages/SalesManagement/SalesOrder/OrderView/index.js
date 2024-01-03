@@ -166,7 +166,7 @@ const OrderView = ({ open, handleClose, data }) => {
                 />
                 <Box sx={{ pl: 2 }}>
                   <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    TBZ Enterprise
+                    TBZ RO SYSTEM
                   </Typography>
                   <Typography sx={{ fontSize: 11 }}>
                     Rajpat, Fakirhat

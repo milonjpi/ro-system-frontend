@@ -96,6 +96,7 @@ const ReceiveVoucherView = ({ open, handleClose, data }) => {
             <Box
               sx={{
                 mt: 3,
+                mb: 2,
                 display: 'flex',
                 alignItems: 'flex-start',
                 justifyContent: 'space-between',
@@ -140,7 +141,7 @@ const ReceiveVoucherView = ({ open, handleClose, data }) => {
                 />
                 <Box sx={{ pl: 2 }}>
                   <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    TBZ Enterprise
+                    TBZ RO SYSTEM
                   </Typography>
                   <Typography sx={{ fontSize: 11 }}>
                     Rajpat, Fakirhat

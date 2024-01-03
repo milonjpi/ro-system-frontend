@@ -40,7 +40,7 @@ const UpdateItemsIn = ({ open, handleClose, preData }) => {
 
   // library
   const { data: equipmentData } = useGetEquipmentsQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
+    { limit: 100, sortBy: 'label', sortOrder: 'asc', isAsset: false },
     { refetchOnMountOrArgChange: true }
   );
 

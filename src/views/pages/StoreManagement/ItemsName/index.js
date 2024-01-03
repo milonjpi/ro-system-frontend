@@ -44,6 +44,7 @@ const ItemsName = () => {
   query['page'] = page;
   query['sortBy'] = 'label';
   query['sortOrder'] = 'asc';
+  query['isAsset'] = false;
 
   // search term
   const debouncedSearchTerm = useDebounced({

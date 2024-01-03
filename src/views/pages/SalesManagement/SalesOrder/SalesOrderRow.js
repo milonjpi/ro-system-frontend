@@ -12,7 +12,7 @@ import moment from 'moment';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import ShowStatus from 'ui-component/ShowStatus';
 import OrderView from './OrderView';
-import { useCancelSalesOrderMutation } from 'store/api/salesOrder/salesOrderApi';
+import { useDeleteSalesOrderMutation } from 'store/api/salesOrder/salesOrderApi';
 
 const SalesOrderRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -20,11 +20,12 @@ const SalesOrderRow = ({ sn, data }) => {
   const [view, setView] = useState(false);
 
   const dispatch = useDispatch();
-  const [cancelSalesOrder] = useCancelSalesOrderMutation();
-  const handleCancel = async () => {
+  const [deleteSalesOrder] = useDeleteSalesOrderMutation();
+
+  const handleDelete = async () => {
     setDialog(false);
     try {
-      const res = await cancelSalesOrder(data?.id).unwrap();
+      const res = await deleteSalesOrder(data?.id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
@@ -99,8 +100,8 @@ const SalesOrderRow = ({ sn, data }) => {
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Cancel Order"
-          handleDelete={handleCancel}
+          content="Delete Order"
+          handleDelete={handleDelete}
         />
         <UpdateSalesOrder
           open={open}

@@ -75,7 +75,7 @@ const EquipmentSelect = ({ control, index, field }) => {
   const [equipment, setEquipment] = useState(field?.equipment || null);
   // library
   const { data: equipmentData } = useGetEquipmentsQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
+    { limit: 100, sortBy: 'label', sortOrder: 'asc', isAsset: false },
     { refetchOnMountOrArgChange: true }
   );
 

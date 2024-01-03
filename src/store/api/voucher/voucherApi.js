@@ -13,7 +13,8 @@ const voucherApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          vouchers: response?.data,
+          vouchers: response?.data?.data,
+          sum: response?.data?.sum,
           meta: response?.meta,
         };
       },

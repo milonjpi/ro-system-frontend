@@ -19,11 +19,12 @@ import { useGetVouchersQuery } from 'store/api/voucher/voucherApi';
 import { useGetAllVendorsQuery } from 'store/api/vendor/vendorApi';
 import NewPaymentMake from './NewPaymentMake';
 import MakePaymentRow from './MakePaymentRow';
+import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
 const MakePayment = () => {
   const [searchText, setSearchText] = useState('');
   const [vendor, setVendor] = useState(null);
-  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+  const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
 
   const [open, setOpen] = useState(false);
@@ -124,6 +125,7 @@ const MakePayment = () => {
   );
 
   const allVouchers = data?.vouchers || [];
+  const allSumData = data?.sum?.length ? data?.sum[0] : null;
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
@@ -221,6 +223,25 @@ const MakePayment = () => {
       {/* data table */}
       <DataTable
         tableHeads={tableHeads}
+        extra={
+          allVouchers?.length ? (
+            <StyledTableRow>
+              <StyledTableCell
+                align="right"
+                colSpan={7}
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                Total
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                sx={{ fontSize: '12px !important', fontWeight: 700 }}
+              >
+                {allSumData?._sum?.amount || 0}
+              </StyledTableCell>
+            </StyledTableRow>
+          ) : null
+        }
         data={allVouchers}
         options={(el) => <MakePaymentRow key={el.id} sn={sn++} data={el} />}
         loading={isLoading}

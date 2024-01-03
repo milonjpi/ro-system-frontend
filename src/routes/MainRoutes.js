@@ -73,6 +73,9 @@ const ItemsIn = Loadable(
 const ItemsOut = Loadable(
   lazy(() => import('views/pages/StoreManagement/ItemsOut'))
 );
+const StockStatus = Loadable(
+  lazy(() => import('views/pages/StoreManagement/StockStatus'))
+);
 
 // expense management
 const ExpenseHeads = Loadable(
@@ -276,6 +279,17 @@ const MainRoutes = {
                       allowedCodes={['items-out']}
                     >
                       <ItemsOut />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'stock-status',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['stock-status']}
+                    >
+                      <StockStatus />
                     </AuthenticationRoutes>
                   ),
                 },

@@ -22,10 +22,9 @@ const equipmentApi = api.injectEndpoints({
 
     // get summary
     getEquipmentSummary: build.query({
-      query: (params) => ({
+      query: () => ({
         url: `${EQUIPMENT_URL}/summary`,
         method: 'GET',
-        params: params,
       }),
       transformResponse: (response) => {
         return {
