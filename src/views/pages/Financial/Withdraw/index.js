@@ -1,34 +1,32 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import InputBase from '@mui/material/InputBase';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import InputAdornment from '@mui/material/InputAdornment';
 import LinearProgress from '@mui/material/LinearProgress';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import SearchIcon from '@mui/icons-material/Search';
 import MainCard from 'ui-component/cards/MainCard';
 import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
-import CustomerRow from './CustomerRow';
-import AddCustomer from './AddCustomer';
-import { useRef } from 'react';
-import { useReactToPrint } from 'react-to-print';
-import { utils, writeFile } from 'xlsx';
-import PrintCustomer from './PrintCustomer';
+import moment from 'moment';
+import { useGetWithdrawsQuery } from 'store/api/withdraw/withdrawApi';
+import WithdrawRow from './WithdrawRow';
+import AddWithdraw from './AddWithdraw';
 
-const AllCustomers = () => {
+const Withdraw = () => {
   const [searchText, setSearchText] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [open, setOpen] = useState(false);
 
@@ -51,9 +49,13 @@ const AllCustomers = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
-  query['sortBy'] = 'customerId';
-  query['sortOrder'] = 'asc';
-  query['isActive'] = true;
+
+  if (startDate) {
+    query['startDate'] = moment(startDate).format('YYYY-MM-DD');
+  }
+  if (endDate) {
+    query['endDate'] = moment(endDate).format('YYYY-MM-DD');
+  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -65,88 +67,29 @@ const AllCustomers = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetCustomersQuery(
+  const { data, isLoading } = useGetWithdrawsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = data?.customers || [];
+  const allWithdraws = data?.withdraws || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
-
-  // print and export
-  const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    pageStyle: `
-        @media print {
-          .pageBreakRow {
-            page-break-inside: avoid;
-          }
-        }
-        `,
-  });
-
-  const handleExport = () => {
-    let elt = document.getElementById('printTable');
-    let wb = utils.book_new();
-    let ws = utils.table_to_sheet(elt);
-    utils.book_append_sheet(wb, ws, 'sheet 1');
-
-    ws['!cols'] = [
-      { wch: 5 },
-      { wch: 9 },
-      { wch: 18 },
-      { wch: 19 },
-      { wch: 12 },
-      { wch: 19 },
-      { wch: 8 },
-      { wch: 12 },
-      { wch: 15 },
-    ];
-    writeFile(wb, `AllClientList.xlsx`);
-  };
   return (
     <MainCard
-      title={
-        <Typography>
-          <span
-            style={{
-              display: 'inline-block',
-              color: '#121926',
-              fontSize: 20,
-              fontWeight: 500,
-              marginRight: 10,
-            }}
-          >
-            All Clients
-          </span>
-          <ButtonGroup>
-            <Tooltip title="Export to Excel" onClick={handleExport}>
-              <IconButton color="primary" size="small">
-                <IconCloudDownload size={20} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Print All">
-              <IconButton size="small" color="secondary" onClick={handlePrint}>
-                <IconPrinter size={20} />
-              </IconButton>
-            </Tooltip>
-          </ButtonGroup>
-        </Typography>
-      }
+      title="Withdraws"
       secondary={
         <CardAction
-          title="Add Client"
+          title="Add Withdraw"
           onClick={() => setOpen(true)}
           icon={<IconPlus />}
         />
       }
     >
       <Box sx={{ mb: 2 }}>
-        <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={5}>
+        <Grid container spacing={1.5} sx={{ alignItems: 'end' }}>
+          <Grid item xs={12} lg={4}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -160,33 +103,68 @@ const AllCustomers = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} md={6} lg={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (Form)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={startDate}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={12} md={6} lg={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (To)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </Grid>
         </Grid>
       </Box>
       {/* popup items */}
-      <AddCustomer open={open} handleClose={() => setOpen(false)} />
-
-      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintCustomer ref={componentRef} />
-      </Box>
+      <AddWithdraw open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 450 }}>
           <TableHead>
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Client ID</StyledTableCell>
-              <StyledTableCell>Client Name</StyledTableCell>
-              <StyledTableCell>Client Name &#40;BN&#41;</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Address</StyledTableCell>
-              <StyledTableCell>Group By</StyledTableCell>
+              <StyledTableCell>Date</StyledTableCell>
+              <StyledTableCell>Remarks</StyledTableCell>
+              <StyledTableCell align="right">Amount</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allCustomers?.length ? (
-              allCustomers.map((item) => (
-                <CustomerRow key={item.id} sn={sn++} data={item} />
+            {allWithdraws?.length ? (
+              allWithdraws.map((item) => (
+                <WithdrawRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>
@@ -203,7 +181,7 @@ const AllCustomers = () => {
         </Table>
       </Box>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10, 20, 40]}
         component="div"
         count={meta?.total || 0}
         rowsPerPage={rowsPerPage}
@@ -215,4 +193,4 @@ const AllCustomers = () => {
   );
 };
 
-export default AllCustomers;
+export default Withdraw;

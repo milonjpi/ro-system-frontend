@@ -5,7 +5,7 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 const AdvanceReportRow = ({ sn, data }) => {
 
   return (
-    <TableRow>
+    <TableRow className="pageBreakRow">
       <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder>{data?.customerId}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder>

@@ -9,6 +9,10 @@ import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import moment from 'moment';
@@ -19,6 +23,10 @@ import {
 } from 'ui-component/table-component';
 import AdvanceReportRow from './AdvanceReportRow';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import PrintAdvanceReport from './PrintAdvanceReport';
+import { utils, writeFile } from 'xlsx';
 
 const AdvanceReport = () => {
   const [customer, setCustomer] = useState(null);
@@ -109,8 +117,57 @@ const AdvanceReport = () => {
 
   // calculation
   const totalAdvance = totalSum(allAdvanceReports, 'differentAmount');
+
+  // print and export
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+    @media print {
+      .pageBreakRow {
+        page-break-inside: avoid;
+      }
+    }
+    `,
+  });
+
+  const handleExport = () => {
+    let elt = document.getElementById('printTable');
+    let wb = utils.book_new();
+    let ws = utils.table_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 9 },
+      { wch: 16 },
+      { wch: 17 },
+      { wch: 12 },
+      { wch: 19 },
+      { wch: 8 },
+      { wch: 12 },
+      { wch: 15 },
+    ];
+    writeFile(wb, `AdvanceReport.xlsx`);
+  };
   return (
-    <MainCard title="Advance Report">
+    <MainCard
+      title="Advance Report"
+      secondary={
+        <ButtonGroup>
+          <Tooltip title="Export to Excel">
+            <IconButton color="primary" size="small" onClick={handleExport}>
+              <IconCloudDownload size={22} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Print">
+            <IconButton size="small" color="secondary" onClick={handlePrint}>
+              <IconPrinter size={22} />
+            </IconButton>
+          </Tooltip>
+        </ButtonGroup>
+      }
+    >
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
@@ -151,6 +208,18 @@ const AdvanceReport = () => {
         </Grid>
       </Box>
       {/* end filter area */}
+
+      {/* popup item */}
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintAdvanceReport
+          ref={componentRef}
+          tableHeads={tableHeads}
+          data={allAdvanceReports}
+          totalAdvance={totalAdvance}
+          loading={isLoading}
+        />
+      </Box>
+      {/* end popup item */}
 
       {/* data table */}
       <Box sx={{ overflow: 'auto' }}>

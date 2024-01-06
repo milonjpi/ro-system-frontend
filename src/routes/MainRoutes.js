@@ -54,6 +54,16 @@ const MakePayment = Loadable(
   lazy(() => import('views/pages/Financial/MakePayment'))
 );
 
+const FixedAsset = Loadable(
+  lazy(() => import('views/pages/Financial/FixedAsset'))
+);
+
+const Investment = Loadable(
+  lazy(() => import('views/pages/Financial/Investment'))
+);
+
+const Withdraw = Loadable(lazy(() => import('views/pages/Financial/Withdraw')));
+
 // store management
 const UnitOfMeasurement = Loadable(
   lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
@@ -377,6 +387,39 @@ const MainRoutes = {
                       allowedCodes={['make-payment']}
                     >
                       <MakePayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'fixed-asset',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['fixed-asset']}
+                    >
+                      <FixedAsset />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'investment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['investment']}
+                    >
+                      <Investment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'withdraw',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['withdraw']}
+                    >
+                      <Withdraw />
                     </AuthenticationRoutes>
                   ),
                 },

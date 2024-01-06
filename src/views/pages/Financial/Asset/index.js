@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import InputBase from '@mui/material/InputBase';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import InputAdornment from '@mui/material/InputAdornment';
 import LinearProgress from '@mui/material/LinearProgress';
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,15 +14,11 @@ import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
-import CustomerRow from './CustomerRow';
-import AddCustomer from './AddCustomer';
-import { useRef } from 'react';
-import { useReactToPrint } from 'react-to-print';
-import { utils, writeFile } from 'xlsx';
-import PrintCustomer from './PrintCustomer';
+import { useGetAssetsQuery } from 'store/api/asset/assetApi';
+import AddAsset from './AddAsset';
+import AssetRow from './AssetRow';
 
-const AllCustomers = () => {
+const Asset = () => {
   const [searchText, setSearchText] = useState('');
 
   const [open, setOpen] = useState(false);
@@ -51,9 +42,6 @@ const AllCustomers = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
-  query['sortBy'] = 'customerId';
-  query['sortOrder'] = 'asc';
-  query['isActive'] = true;
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -65,80 +53,21 @@ const AllCustomers = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetCustomersQuery(
+  const { data, isLoading } = useGetAssetsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = data?.customers || [];
+  const allAssets = data?.assets || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
-
-  // print and export
-  const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    pageStyle: `
-        @media print {
-          .pageBreakRow {
-            page-break-inside: avoid;
-          }
-        }
-        `,
-  });
-
-  const handleExport = () => {
-    let elt = document.getElementById('printTable');
-    let wb = utils.book_new();
-    let ws = utils.table_to_sheet(elt);
-    utils.book_append_sheet(wb, ws, 'sheet 1');
-
-    ws['!cols'] = [
-      { wch: 5 },
-      { wch: 9 },
-      { wch: 18 },
-      { wch: 19 },
-      { wch: 12 },
-      { wch: 19 },
-      { wch: 8 },
-      { wch: 12 },
-      { wch: 15 },
-    ];
-    writeFile(wb, `AllClientList.xlsx`);
-  };
   return (
     <MainCard
-      title={
-        <Typography>
-          <span
-            style={{
-              display: 'inline-block',
-              color: '#121926',
-              fontSize: 20,
-              fontWeight: 500,
-              marginRight: 10,
-            }}
-          >
-            All Clients
-          </span>
-          <ButtonGroup>
-            <Tooltip title="Export to Excel" onClick={handleExport}>
-              <IconButton color="primary" size="small">
-                <IconCloudDownload size={20} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Print All">
-              <IconButton size="small" color="secondary" onClick={handlePrint}>
-                <IconPrinter size={20} />
-              </IconButton>
-            </Tooltip>
-          </ButtonGroup>
-        </Typography>
-      }
+      title="Asset Title"
       secondary={
         <CardAction
-          title="Add Client"
+          title="Add Asset Title"
           onClick={() => setOpen(true)}
           icon={<IconPlus />}
         />
@@ -163,30 +92,21 @@ const AllCustomers = () => {
         </Grid>
       </Box>
       {/* popup items */}
-      <AddCustomer open={open} handleClose={() => setOpen(false)} />
-
-      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintCustomer ref={componentRef} />
-      </Box>
+      <AddAsset open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 450 }}>
           <TableHead>
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Client ID</StyledTableCell>
-              <StyledTableCell>Client Name</StyledTableCell>
-              <StyledTableCell>Client Name &#40;BN&#41;</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Address</StyledTableCell>
-              <StyledTableCell>Group By</StyledTableCell>
+              <StyledTableCell>Asset Title</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allCustomers?.length ? (
-              allCustomers.map((item) => (
-                <CustomerRow key={item.id} sn={sn++} data={item} />
+            {allAssets?.length ? (
+              allAssets.map((item) => (
+                <AssetRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>
@@ -203,7 +123,7 @@ const AllCustomers = () => {
         </Table>
       </Box>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10, 20, 40]}
         component="div"
         count={meta?.total || 0}
         rowsPerPage={rowsPerPage}
@@ -215,4 +135,4 @@ const AllCustomers = () => {
   );
 };
 
-export default AllCustomers;
+export default Asset;

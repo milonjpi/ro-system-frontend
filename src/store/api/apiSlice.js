@@ -24,6 +24,10 @@ export const api = createApi({
     'equipmentOut',
     'expense-head',
     'expense',
+    'asset',
+    'fixed-asset',
+    'investment',
+    'withdraw',
   ],
   endpoints: () => ({}),
 });

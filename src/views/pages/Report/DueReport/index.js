@@ -9,6 +9,10 @@ import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import moment from 'moment';
@@ -19,6 +23,10 @@ import {
 } from 'ui-component/table-component';
 import DueReportRow from './DueReportRow';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import { utils, writeFile } from 'xlsx';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import PrintDueReport from './PrintDueReport';
 
 const DueReport = () => {
   const [customer, setCustomer] = useState(null);
@@ -110,8 +118,57 @@ const DueReport = () => {
   // calculation
   const totalDue = totalSum(allDueReports, 'differentAmount');
 
+  // print and export
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+      @media print {
+        .pageBreakRow {
+          page-break-inside: avoid;
+        }
+      }
+      `,
+  });
+
+  const handleExport = () => {
+    let elt = document.getElementById('printTable');
+    let wb = utils.book_new();
+    let ws = utils.table_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 9 },
+      { wch: 18 },
+      { wch: 19 },
+      { wch: 12 },
+      { wch: 19 },
+      { wch: 8 },
+      { wch: 12 },
+      { wch: 15 },
+    ];
+    writeFile(wb, `DueReport.xlsx`);
+  };
+
   return (
-    <MainCard title="Due Report">
+    <MainCard
+      title="Due Report"
+      secondary={
+        <ButtonGroup>
+          <Tooltip title="Export to Excel">
+            <IconButton color="primary" size="small" onClick={handleExport}>
+              <IconCloudDownload size={22} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Print">
+            <IconButton size="small" color="secondary" onClick={handlePrint}>
+              <IconPrinter size={22} />
+            </IconButton>
+          </Tooltip>
+        </ButtonGroup>
+      }
+    >
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
@@ -152,6 +209,18 @@ const DueReport = () => {
         </Grid>
       </Box>
       {/* end filter area */}
+
+      {/* popup item */}
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintDueReport
+          ref={componentRef}
+          tableHeads={tableHeads}
+          data={allDueReports}
+          totalDue={totalDue}
+          loading={isLoading}
+        />
+      </Box>
+      {/* end popup item */}
 
       {/* data table */}
       <Box sx={{ overflow: 'auto' }}>
