@@ -127,14 +127,6 @@ const BillView = ({ open, handleClose, data }) => {
                 <Typography sx={{ fontSize: 12, letterSpacing: 2 }}>
                   {data?.vendor?.address}
                 </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    Reference:
-                  </Typography>
-                  <Typography sx={{ fontSize: 11 }}>
-                    {data?.refNo ? data?.refNo : 'n/a'}
-                  </Typography>
-                </Box>
               </Box>
               <Box
                 sx={{
@@ -167,12 +159,11 @@ const BillView = ({ open, handleClose, data }) => {
                 />
                 <Box sx={{ pl: 2 }}>
                   <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    TBZ RO SYSTEM
+                    Reference:
                   </Typography>
                   <Typography sx={{ fontSize: 11 }}>
-                    Rajpat, Fakirhat
+                    {data?.refNo ? data?.refNo : 'n/a'}
                   </Typography>
-                  <Typography sx={{ fontSize: 11 }}>Bagerhat.</Typography>
                 </Box>
               </Box>
             </Box>

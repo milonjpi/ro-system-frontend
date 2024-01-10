@@ -13,10 +13,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import moment from 'moment';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import {
-  StyledTableCellWithBorder,
-  StyledTableCellWithNoBorder,
-} from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { totalSum } from 'views/utilities/NeedyFunction';
 
 const style = {
@@ -125,14 +122,6 @@ const ReceiveVoucherView = ({ open, handleClose, data }) => {
                       {moment(data?.date).format('DD-MM-YYYY')}
                     </Typography>
                   </Box>
-                  <Box sx={{ mb: 1 }}>
-                    <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                      Voucher No:
-                    </Typography>
-                    <Typography sx={{ fontSize: 11 }}>
-                      {data?.voucherNo}
-                    </Typography>
-                  </Box>
                 </Box>
                 <Divider
                   orientation="vertical"
@@ -141,12 +130,11 @@ const ReceiveVoucherView = ({ open, handleClose, data }) => {
                 />
                 <Box sx={{ pl: 2 }}>
                   <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    TBZ RO SYSTEM
+                    Voucher No:
                   </Typography>
                   <Typography sx={{ fontSize: 11 }}>
-                    Rajpat, Fakirhat
+                    {data?.voucherNo}
                   </Typography>
-                  <Typography sx={{ fontSize: 11 }}>Bagerhat.</Typography>
                 </Box>
               </Box>
             </Box>
@@ -193,13 +181,13 @@ const ReceiveVoucherView = ({ open, handleClose, data }) => {
                   )}
                   {advancedAmount > 0 ? (
                     <TableRow>
-                      <StyledTableCellWithNoBorder
+                      <StyledTableCellWithBorder
                         colSpan={2}
                         align="right"
                         sx={{ fontWeight: 700 }}
                       >
                         Advanced Amount
-                      </StyledTableCellWithNoBorder>
+                      </StyledTableCellWithBorder>
                       <StyledTableCellWithBorder
                         align="right"
                         sx={{ fontWeight: 700 }}
@@ -210,13 +198,13 @@ const ReceiveVoucherView = ({ open, handleClose, data }) => {
                   ) : null}
                   {voucherDetails?.length ? (
                     <TableRow>
-                      <StyledTableCellWithNoBorder
+                      <StyledTableCellWithBorder
                         colSpan={2}
                         align="right"
                         sx={{ fontWeight: 700 }}
                       >
                         Total
-                      </StyledTableCellWithNoBorder>
+                      </StyledTableCellWithBorder>
                       <StyledTableCellWithBorder
                         align="right"
                         sx={{ fontWeight: 700 }}

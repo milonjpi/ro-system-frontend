@@ -126,14 +126,6 @@ const OrderView = ({ open, handleClose, data }) => {
                 <Typography sx={{ fontSize: 12, letterSpacing: 2 }}>
                   {data?.customer?.address}
                 </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    Delivery Status:
-                  </Typography>
-                  <Typography sx={{ fontSize: 11 }}>
-                    <ShowStatus status={data?.status} />
-                  </Typography>
-                </Box>
               </Box>
               <Box
                 sx={{
@@ -166,12 +158,11 @@ const OrderView = ({ open, handleClose, data }) => {
                 />
                 <Box sx={{ pl: 2 }}>
                   <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    TBZ RO SYSTEM
+                    Delivery Status:
                   </Typography>
                   <Typography sx={{ fontSize: 11 }}>
-                    Rajpat, Fakirhat
+                    <ShowStatus status={data?.status} />
                   </Typography>
-                  <Typography sx={{ fontSize: 11 }}>Bagerhat.</Typography>
                 </Box>
               </Box>
             </Box>

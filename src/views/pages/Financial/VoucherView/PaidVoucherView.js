@@ -125,14 +125,6 @@ const PaidVoucherView = ({ open, handleClose, data }) => {
                       {moment(data?.date).format('DD-MM-YYYY')}
                     </Typography>
                   </Box>
-                  <Box sx={{ mb: 1 }}>
-                    <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                      Voucher No:
-                    </Typography>
-                    <Typography sx={{ fontSize: 11 }}>
-                      {data?.voucherNo}
-                    </Typography>
-                  </Box>
                 </Box>
                 <Divider
                   orientation="vertical"
@@ -141,12 +133,11 @@ const PaidVoucherView = ({ open, handleClose, data }) => {
                 />
                 <Box sx={{ pl: 2 }}>
                   <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                    TBZ RO SYSTEM
+                    Voucher No:
                   </Typography>
                   <Typography sx={{ fontSize: 11 }}>
-                    Rajpat, Fakirhat
+                    {data?.voucherNo}
                   </Typography>
-                  <Typography sx={{ fontSize: 11 }}>Bagerhat.</Typography>
                 </Box>
               </Box>
             </Box>
