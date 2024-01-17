@@ -84,6 +84,10 @@ const ReceivePayment = () => {
       title: 'Quick View',
       align: 'center',
     },
+    {
+      title: 'Action',
+      align: 'center',
+    },
   ];
   // end table
 

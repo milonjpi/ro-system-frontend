@@ -40,6 +40,25 @@ const voucherApi = api.injectEndpoints({
       invalidatesTags: ['voucher'],
     }),
 
+    // update receive payment
+    updateReceivePayment: build.mutation({
+      query: (data) => ({
+        url: `${VOUCHER_URL}/receive-payment/${data?.id}`,
+        method: 'PATCH',
+        data: data.body,
+      }),
+      invalidatesTags: ['voucher'],
+    }),
+
+    // delete receive payment
+    deleteReceivePayment: build.mutation({
+      query: (id) => ({
+        url: `${VOUCHER_URL}/receive-payment/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['voucher'],
+    }),
+
     // make payment
     makePayment: build.mutation({
       query: (data) => ({
@@ -56,5 +75,7 @@ export const {
   useGetVouchersQuery,
   useGetSingleVoucherQuery,
   useReceivePaymentMutation,
+  useUpdateReceivePaymentMutation,
+  useDeleteReceivePaymentMutation,
   useMakePaymentMutation,
 } = voucherApi;
