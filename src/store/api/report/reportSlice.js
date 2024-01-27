@@ -31,7 +31,26 @@ const reportSlice = api.injectEndpoints({
       },
       providesTags: ['customer', 'voucher', 'invoice'],
     }),
+
+    // summary
+    summaryReport: build.query({
+      query: (params) => ({
+        url: `${REPORT_URL}/summary`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          report: response?.data,
+        };
+      },
+      providesTags: ['customer', 'voucher', 'invoice'],
+    }),
   }),
 });
 
-export const { useGetDueReportQuery, useGetAdvanceReportQuery } = reportSlice;
+export const {
+  useGetDueReportQuery,
+  useGetAdvanceReportQuery,
+  useSummaryReportQuery,
+} = reportSlice;

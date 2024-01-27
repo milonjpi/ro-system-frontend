@@ -101,6 +101,9 @@ const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
   lazy(() => import('views/pages/Report/AdvanceReport'))
 );
+const ReportSummary = Loadable(
+  lazy(() => import('views/pages/Report/ReportSummary'))
+);
 
 // utilities routing
 
@@ -447,6 +450,17 @@ const MainRoutes = {
                       allowedCodes={['due-report']}
                     >
                       <AdvanceReport />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'summary',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['summary']}
+                    >
+                      <ReportSummary />
                     </AuthenticationRoutes>
                   ),
                 },
