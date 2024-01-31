@@ -13,8 +13,9 @@ const expenseApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          expenses: response?.data,
+          expenses: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['expense'],

@@ -8,6 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import InputBase from '@mui/material/InputBase';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputAdornment from '@mui/material/InputAdornment';
 import LinearProgress from '@mui/material/LinearProgress';
 import SearchIcon from '@mui/icons-material/Search';
@@ -20,10 +23,13 @@ import { useGetExpensesQuery } from 'store/api/expense/expenseApi';
 import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
 import ExpenseRow from './ExpenseRow';
 import AddExpense from './AddExpense';
+import moment from 'moment';
 
 const AllExpenses = () => {
   const [searchText, setSearchText] = useState('');
   const [expenseHead, setExpenseHead] = useState(null);
+  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+  const [endDate, setEndDate] = useState(moment());
 
   const [open, setOpen] = useState(false);
 
@@ -60,6 +66,13 @@ const AllExpenses = () => {
     query['expenseHeadId'] = expenseHead.id;
   }
 
+  if (startDate) {
+    query['startDate'] = moment(startDate).format('YYYY-MM-DD');
+  }
+  if (endDate) {
+    query['endDate'] = moment(endDate).format('YYYY-MM-DD');
+  }
+
   // search term
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchText,
@@ -77,6 +90,7 @@ const AllExpenses = () => {
 
   const allExpenses = data?.expenses || [];
   const meta = data?.meta;
+  const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
   return (
@@ -94,8 +108,13 @@ const AllExpenses = () => {
       <AddExpense open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
       <Box sx={{ mb: 2 }}>
-        <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={5}>
+        <Grid
+          container
+          rowSpacing={2}
+          columnSpacing={1}
+          sx={{ alignItems: 'end' }}
+        >
+          <Grid item xs={12} md={4}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -109,7 +128,7 @@ const AllExpenses = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Autocomplete
               value={expenseHead}
               size="small"
@@ -122,6 +141,48 @@ const AllExpenses = () => {
                 <TextField {...params} label="Select Expense Head" />
               )}
             />
+          </Grid>
+          <Grid item xs={12} sm={6} md={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (Form)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={startDate}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (To)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </Grid>
         </Grid>
       </Box>
@@ -154,6 +215,21 @@ const AllExpenses = () => {
                 </StyledTableCell>
               </StyledTableRow>
             )}
+            {allExpenses?.length ? (
+              <StyledTableRow>
+                <StyledTableCell
+                  colSpan={5}
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                >
+                  Total:
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalAmount}
+                </StyledTableCell>
+                <StyledTableCell></StyledTableCell>
+              </StyledTableRow>
+            ) : null}
           </TableBody>
         </Table>
       </Box>
