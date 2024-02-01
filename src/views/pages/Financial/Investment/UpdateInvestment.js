@@ -8,6 +8,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Typography from '@mui/material/Typography';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
@@ -33,6 +35,7 @@ const style = {
 const UpdateInvestment = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState(preData?.date);
+  const [cash, setCash] = useState(preData?.isCash);
   const { register, handleSubmit } = useForm({ defaultValues: preData });
 
   const dispatch = useDispatch();
@@ -42,6 +45,7 @@ const UpdateInvestment = ({ open, handleClose, preData }) => {
   const onSubmit = async (data) => {
     const newData = {
       date: date,
+      isCash: cash,
       amount: data?.amount,
       remarks: data?.remarks || '',
     };
@@ -125,17 +129,29 @@ const UpdateInvestment = ({ open, handleClose, preData }) => {
               </LocalizationProvider>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField
-                label="Amount"
-                fullWidth
-                size="small"
-                type="number"
-                required
-                {...register('amount', {
-                  required: true,
-                  valueAsNumber: true,
-                })}
-              />
+              <Box sx={{ display: 'flex' }}>
+                <TextField
+                  label="Amount"
+                  fullWidth
+                  size="small"
+                  type="number"
+                  required
+                  sx={{ mr: 2 }}
+                  {...register('amount', {
+                    required: true,
+                    valueAsNumber: true,
+                  })}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={cash}
+                      onChange={(e) => setCash(e.target.checked)}
+                    />
+                  }
+                  label="Cash"
+                />
+              </Box>
             </Grid>
             <Grid item xs={12}>
               <TextField

@@ -13,8 +13,9 @@ const fixedAssetApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          fixedAssets: response?.data,
+          fixedAssets: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['fixed-asset'],

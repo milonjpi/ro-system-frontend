@@ -13,8 +13,9 @@ const withdrawApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          withdraws: response?.data,
+          withdraws: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['withdraw'],

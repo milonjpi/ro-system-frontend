@@ -2,6 +2,10 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
@@ -27,6 +31,7 @@ const Investment = () => {
   const [searchText, setSearchText] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [type, setType] = useState('all');
 
   const [open, setOpen] = useState(false);
 
@@ -57,6 +62,10 @@ const Investment = () => {
     query['endDate'] = moment(endDate).format('YYYY-MM-DD');
   }
 
+  if (type !== 'all') {
+    query['isCash'] = type;
+  }
+
   // search term
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchText,
@@ -74,6 +83,7 @@ const Investment = () => {
 
   const allInvestments = data?.investments || [];
   const meta = data?.meta;
+  const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
   return (
@@ -89,7 +99,7 @@ const Investment = () => {
     >
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={1.5} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} lg={3.5}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -103,7 +113,7 @@ const Investment = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={2.5}>
+          <Grid item xs={12} md={6} lg={3}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
                 label="Date (Form)"
@@ -124,7 +134,7 @@ const Investment = () => {
               />
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={12} md={6} lg={2.5}>
+          <Grid item xs={12} md={6} lg={3}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
                 label="Date (To)"
@@ -145,6 +155,23 @@ const Investment = () => {
               />
             </LocalizationProvider>
           </Grid>
+          <Grid item xs={12} lg={2.5}>
+            <FormControl fullWidth size="small" required>
+              <InputLabel id="investment-type-id">Investment Type</InputLabel>
+              <Select
+                labelId="investment-type-id"
+                value={type}
+                label="Investment Type"
+                onChange={(e) => setType(e.target.value)}
+              >
+                <MenuItem value="all">
+                  <em>All</em>
+                </MenuItem>
+                <MenuItem value={true}>Cash</MenuItem>
+                <MenuItem value={false}>Non Cash</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
       </Box>
       {/* popup items */}
@@ -157,6 +184,7 @@ const Investment = () => {
               <StyledTableCell align="center">SN</StyledTableCell>
               <StyledTableCell>Date</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
+              <StyledTableCell align="center">Cash</StyledTableCell>
               <StyledTableCell align="right">Amount</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
@@ -177,6 +205,21 @@ const Investment = () => {
                 </StyledTableCell>
               </StyledTableRow>
             )}
+            {allInvestments?.length ? (
+              <StyledTableRow>
+                <StyledTableCell
+                  colSpan={4}
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                >
+                  Total:
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalAmount}
+                </StyledTableCell>
+                <StyledTableCell></StyledTableCell>
+              </StyledTableRow>
+            ) : null}
           </TableBody>
         </Table>
       </Box>

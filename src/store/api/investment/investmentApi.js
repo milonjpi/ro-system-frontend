@@ -13,8 +13,9 @@ const investmentApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          investments: response?.data,
+          investments: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['investment'],

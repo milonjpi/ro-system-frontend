@@ -46,6 +46,31 @@ const reportSlice = api.injectEndpoints({
       },
       providesTags: ['customer', 'voucher', 'invoice'],
     }),
+
+    // balance sheet
+    balanceSheet: build.query({
+      query: (params) => ({
+        url: `${REPORT_URL}/balance-sheet`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          report: response?.data,
+        };
+      },
+      providesTags: [
+        'voucher',
+        'invoice',
+        'bill',
+        'account-head',
+        'fixed-asset',
+        'investment',
+        'fixed-asset',
+        'withdraw',
+        'expense',
+      ],
+    }),
   }),
 });
 
@@ -53,4 +78,5 @@ export const {
   useGetDueReportQuery,
   useGetAdvanceReportQuery,
   useSummaryReportQuery,
+  useBalanceSheetQuery,
 } = reportSlice;

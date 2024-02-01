@@ -9,6 +9,7 @@ export const api = createApi({
   }),
   tagTypes: [
     'auth',
+    'bill',
     'customer',
     'customer-group',
     'product',

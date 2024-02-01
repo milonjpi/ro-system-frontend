@@ -48,6 +48,9 @@ const InvestmentRow = ({ sn, data }) => {
         {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCell>
       <StyledTableCell>{data?.remarks || 'n/a'}</StyledTableCell>
+      <StyledTableCell align="center">
+        {data?.isCash ? 'Yes' : 'No'}
+      </StyledTableCell>
       <StyledTableCell align="right">{data?.amount}</StyledTableCell>
       <StyledTableCell align="center">
         <ButtonGroup>

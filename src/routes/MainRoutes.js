@@ -101,6 +101,9 @@ const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
   lazy(() => import('views/pages/Report/AdvanceReport'))
 );
+const BalanceSheet = Loadable(
+  lazy(() => import('views/pages/Report/BalanceSheet'))
+);
 const ReportSummary = Loadable(
   lazy(() => import('views/pages/Report/ReportSummary'))
 );
@@ -439,6 +442,17 @@ const MainRoutes = {
                       allowedCodes={['due-report']}
                     >
                       <DueReport />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'balance-sheet',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['balance-sheet']}
+                    >
+                      <BalanceSheet />
                     </AuthenticationRoutes>
                   ),
                 },

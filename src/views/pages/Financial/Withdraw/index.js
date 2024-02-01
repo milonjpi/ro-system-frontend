@@ -74,6 +74,7 @@ const Withdraw = () => {
 
   const allWithdraws = data?.withdraws || [];
   const meta = data?.meta;
+  const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
   return (
@@ -177,6 +178,21 @@ const Withdraw = () => {
                 </StyledTableCell>
               </StyledTableRow>
             )}
+            {allWithdraws?.length ? (
+              <StyledTableRow>
+                <StyledTableCell
+                  colSpan={3}
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                >
+                  Total:
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalAmount}
+                </StyledTableCell>
+                <StyledTableCell></StyledTableCell>
+              </StyledTableRow>
+            ) : null}
           </TableBody>
         </Table>
       </Box>
