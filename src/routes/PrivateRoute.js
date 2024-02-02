@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { isLoggedIn } from 'services/auth.service';
+import { useGetProfileQuery } from 'store/api/profile/profileApi';
 import { selectRefresh } from 'store/refreshSlice';
 import LoadingPage from 'ui-component/LoadingPage';
 import Login from 'views/login';
@@ -13,12 +14,16 @@ const PrivateRoute = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const { isLoading } = useGetProfileQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
+
   useEffect(() => {
     setIsLogin(isLoggedIn());
     setLoading(false);
   }, [refresh]);
 
-  if (loading) {
+  if (loading || isLoading) {
     return <LoadingPage />;
   }
 

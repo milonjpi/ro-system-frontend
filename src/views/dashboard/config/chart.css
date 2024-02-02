@@ -1,0 +1,19 @@
+.bar-chart {
+  background: transparent
+    linear-gradient(62deg, #544275 0%, #483470 53%, #371d68 100%) 0% 0%
+    no-repeat padding-box;
+  box-shadow: 0px 4px 6px #0000001f;
+  border-radius: 8px;
+}
+
+.line-chart {
+  background: transparent
+    linear-gradient(62deg, #ede7f6 0%, #ede7f6 53%, #ede7f6 100%) 0% 0%
+    no-repeat padding-box;
+  box-shadow: 0px 4px 6px #0000001f;
+  border-radius: 8px;
+}
+
+.bar-chart line.apexcharts-xaxis-tick {
+  stroke: transparent;
+}

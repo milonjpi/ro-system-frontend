@@ -1,55 +1,95 @@
 // material-ui
 import Grid from '@mui/material/Grid';
+import {
+  IconCurrencyTaka,
+  IconMinus,
+  IconPercentage,
+} from '@tabler/icons-react';
+import './config/chart.css';
 
 // project imports
 
 import { gridSpacing } from 'store/constant';
-import Button from '@mui/material/Button';
-import data from 'assets/clients.json';
-import { useCreateAllCustomerMutation } from 'store/api/customer/customerApi';
-import { useDispatch } from 'react-redux';
-import { setToast } from 'store/toastSlice';
+import DashCard from './DashCard';
+import {
+  useBalanceSheetQuery,
+  useSummaryReportQuery,
+} from 'store/api/report/reportSlice';
+import { totalSum } from 'views/utilities/NeedyFunction';
+import SalesQuantityChart from './SalesQuantityChart';
+import ProductAnalysisChart from './ProductAnalysisChart';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
-  // const mappedClient = data?.map((el, index) => ({
-  //   customerId: (index + 1).toString().padStart(8, 'C-000000'),
-  //   customerName: el.clientName,
-  //   customerNameBn: el.clientNameBn,
-  //   mobile: el.mobile,
-  //   address: el.address,
-  // }));
-  // console.log(mappedClient.slice(200, 300));
-  // const newData = mappedClient.slice(200, 300);
-  // const dispatch = useDispatch();
-  // const [createAllCustomer] = useCreateAllCustomerMutation();
-  // const onSubmit = async (data) => {
-  //   try {
-  //     const res = await createAllCustomer({ data: newData }).unwrap();
-  //     if (res.success) {
-  //       dispatch(
-  //         setToast({
-  //           open: true,
-  //           variant: 'success',
-  //           message: res?.message,
-  //         })
-  //       );
-  //     }
-  //   } catch (err) {
-  //     dispatch(
-  //       setToast({
-  //         open: true,
-  //         variant: 'error',
-  //         message: err?.data?.message || 'Something Went Wrong',
-  //         errorMessages: err?.data?.errorMessages,
-  //       })
-  //     );
-  //   }
-  // };
+  const { data, isLoading } = useSummaryReportQuery(
+    {},
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  const { data: balanceSheetData, isLoading: balanceLoading } =
+    useBalanceSheetQuery('', {
+      refetchOnMountOrArgChange: true,
+    });
+
+  const allSummaryReports = data?.report || [];
+  const allBalanceReport = balanceSheetData?.report;
+
+  // calculation
+  const totalQuantity = totalSum(allSummaryReports, 'totalQty');
+  const totalAmount = totalSum(allSummaryReports, 'amount');
+
+  // expense calculation
+  const getExpenses = allBalanceReport?.expenses || [];
+  const lessExpenses = getExpenses?.reduce(
+    (acc, el) => acc + (el._sum?.amount || 0),
+    0
+  );
+  const totalExpenses =
+    lessExpenses + (allBalanceReport?.bills?._sum?.amount || 0);
+
+  const profit = totalAmount - totalExpenses;
   return (
     <Grid container spacing={gridSpacing}>
-      {/* <Button onClick={onSubmit}>Add</Button> */}
+      <Grid item xs={12} sm={6} md={3}>
+        <DashCard
+          title="Sales Quantity"
+          value={totalQuantity}
+          loading={isLoading || balanceLoading}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <DashCard
+          title="Sales Amount"
+          value={`৳ ${totalAmount}`}
+          loading={isLoading || balanceLoading}
+          Icon={IconCurrencyTaka}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <DashCard
+          title="Total Expenses"
+          value={`৳ ${totalExpenses}`}
+          loading={isLoading || balanceLoading}
+          Icon={IconMinus}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <DashCard
+          title="Net Profit"
+          value={`৳ ${profit}`}
+          loading={isLoading || balanceLoading}
+          Icon={IconPercentage}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <SalesQuantityChart data={allSummaryReports} />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <ProductAnalysisChart data={allSummaryReports[0]?.products || []} />
+      </Grid>
     </Grid>
   );
 };
