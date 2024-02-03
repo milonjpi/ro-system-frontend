@@ -41,7 +41,7 @@ const BalanceSheet = () => {
         label: findExpenseHead?.label,
       };
     })
-    .sort((a, b) => a.label.localeCompare(b.label));
+    .sort((a, b) => a.label?.localeCompare(b.label));
   const totalExpenses = totalSum(mappedExpenses || [], 'amount');
   const equipmentBills = allReports?.bills?._sum?.amount || 0;
   const equipmentBillsPaid = allReports?.bills?._sum?.paidAmount || 0;
