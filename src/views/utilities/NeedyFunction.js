@@ -110,7 +110,6 @@ export const calculateDuration = (start, end) => {
   );
 };
 
-
 export const uniqueArray = (array1 = [], array2 = [], key) => {
   const newArray2Objects = array2.filter(
     (obj2) => !array1.some((obj1) => obj1[key] === obj2[key])
@@ -119,4 +118,8 @@ export const uniqueArray = (array1 = [], array2 = [], key) => {
   const mergedArray = array1.concat(newArray2Objects);
 
   return mergedArray;
+};
+
+export const leapYear = (year) => {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 };

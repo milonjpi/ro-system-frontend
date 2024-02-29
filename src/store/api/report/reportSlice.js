@@ -6,9 +6,10 @@ const reportSlice = api.injectEndpoints({
   endpoints: (build) => ({
     // get due report
     getDueReport: build.query({
-      query: () => ({
+      query: (params) => ({
         url: `${REPORT_URL}/due-report`,
         method: 'GET',
+        params: params,
       }),
       transformResponse: (response) => {
         return {

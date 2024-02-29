@@ -27,11 +27,15 @@ import { utils, writeFile } from 'xlsx';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import PrintDueReport from './PrintDueReport';
+import { dueMonths, dueYears } from 'assets/data';
 
 const DueReport = () => {
   const [customer, setCustomer] = useState(null);
   const [lastPay, setLastPay] = useState('');
   const [lastSale, setLastSale] = useState('');
+
+  const [year, setYear] = useState(null);
+  const [month, setMonth] = useState(null);
 
   // library
   const { data: customerData } = useGetCustomersQuery(
@@ -91,9 +95,18 @@ const DueReport = () => {
   // end table
 
   // filtering
-  const { data, isLoading } = useGetDueReportQuery('', {
-    refetchOnMountOrArgChange: true,
-  });
+  const query = {};
+
+  if (month && year) {
+    query['startDate'] = `${year}-${month?.value}-01`;
+    query['endDate'] = `${year}-${month?.value}-${month?.max}`;
+  }
+  const { data, isLoading } = useGetDueReportQuery(
+    { ...query },
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   const getAllReports = data?.report || [];
 
@@ -186,7 +199,7 @@ const DueReport = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={2.5}>
+          <Grid item xs={6} lg={2.5}>
             <TextField
               fullWidth
               size="small"
@@ -196,7 +209,7 @@ const DueReport = () => {
               onChange={(e) => setLastSale(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={2.5}>
+          <Grid item xs={6} lg={2.5}>
             <TextField
               fullWidth
               size="small"
@@ -204,6 +217,32 @@ const DueReport = () => {
               type="number"
               value={lastPay}
               onChange={(e) => setLastPay(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={6} lg={1.8}>
+            <Autocomplete
+              value={year}
+              size="small"
+              fullWidth
+              options={dueYears}
+              onChange={(e, newValue) => setYear(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Year" />
+              )}
+            />
+          </Grid>
+          <Grid item xs={6} lg={2.2}>
+            <Autocomplete
+              value={month}
+              size="small"
+              fullWidth
+              options={dueMonths(year || new Date().getFullYear()) || []}
+              getOptionLabel={(option) => option.label}
+              isOptionEqualToValue={(item, value) => item.label === value.label}
+              onChange={(e, newValue) => setMonth(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Month" />
+              )}
             />
           </Grid>
         </Grid>

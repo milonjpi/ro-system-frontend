@@ -6,11 +6,11 @@ export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#ede7f6',
     color: '#5e35b1',
-    padding: '7px 6px',
-    fontSize: 12,
+    padding: '6px',
+    fontSize: 11,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 12,
+    fontSize: 11,
     padding: '6px',
   },
 }));
