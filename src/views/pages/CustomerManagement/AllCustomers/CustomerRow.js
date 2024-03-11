@@ -18,7 +18,7 @@ const CustomerRow = ({ sn, data }) => {
       <StyledTableCell>{data?.address}</StyledTableCell>
       <StyledTableCell>{data?.group?.label}</StyledTableCell>
       <StyledTableCell>
-        {moment(data?.createdAt).moment('DD/MM/YYYY')}
+        {moment(data?.createdAt).format('DD/MM/YYYY')}
       </StyledTableCell>
       <StyledTableCell align="center">
         <IconButton color="primary" size="small" onClick={() => setOpen(true)}>
