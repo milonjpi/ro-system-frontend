@@ -180,6 +180,7 @@ const AllCustomers = () => {
               <StyledTableCell>Mobile</StyledTableCell>
               <StyledTableCell>Address</StyledTableCell>
               <StyledTableCell>Group By</StyledTableCell>
+              <StyledTableCell>Created At</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>

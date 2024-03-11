@@ -3,6 +3,7 @@ import { IconEdit } from '@tabler/icons-react';
 import { useState } from 'react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import UpdateCustomer from './UpdateCustomer';
+import moment from 'moment';
 
 const CustomerRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,9 @@ const CustomerRow = ({ sn, data }) => {
       <StyledTableCell>{data?.mobile}</StyledTableCell>
       <StyledTableCell>{data?.address}</StyledTableCell>
       <StyledTableCell>{data?.group?.label}</StyledTableCell>
+      <StyledTableCell>
+        {moment(data?.createdAt).moment('DD/MM/YYYY')}
+      </StyledTableCell>
       <StyledTableCell align="center">
         <IconButton color="primary" size="small" onClick={() => setOpen(true)}>
           <IconEdit color="#468B97" size={18} />
