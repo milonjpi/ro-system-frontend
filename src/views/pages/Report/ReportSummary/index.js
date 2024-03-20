@@ -42,7 +42,7 @@ const ReportSummary = () => {
   const allCustomers = customerData?.customers || [];
 
   const { data: productData } = useGetProductsQuery(
-    { limit: 5, isActive: true, sortBy: 'label', sortOrder: 'asc' },
+    { limit: 10, isActive: true, sortBy: 'label', sortOrder: 'asc' },
     { refetchOnMountOrArgChange: true }
   );
 
