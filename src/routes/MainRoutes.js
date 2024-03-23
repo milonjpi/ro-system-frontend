@@ -107,6 +107,9 @@ const BalanceSheet = Loadable(
 const ReportSummary = Loadable(
   lazy(() => import('views/pages/Report/ReportSummary'))
 );
+const DonationReport = Loadable(
+  lazy(() => import('views/pages/Report/DonationReport'))
+);
 
 // utilities routing
 
@@ -475,6 +478,17 @@ const MainRoutes = {
                       allowedCodes={['summary']}
                     >
                       <ReportSummary />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'donation-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['donation-report']}
+                    >
+                      <DonationReport />
                     </AuthenticationRoutes>
                   ),
                 },

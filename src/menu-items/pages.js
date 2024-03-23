@@ -241,6 +241,12 @@ const pages = {
           type: 'item',
           url: '/pages/report/advance-report',
         },
+        {
+          id: 'donation-report',
+          title: 'Donation Report',
+          type: 'item',
+          url: '/pages/report/donation-report',
+        },
       ],
     },
   ],

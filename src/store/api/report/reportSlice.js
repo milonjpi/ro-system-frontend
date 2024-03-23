@@ -72,6 +72,31 @@ const reportSlice = api.injectEndpoints({
         'expense',
       ],
     }),
+
+    // donation report
+    donationReport: build.query({
+      query: (params) => ({
+        url: `${REPORT_URL}/donation`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          report: response?.data,
+        };
+      },
+      providesTags: [
+        'voucher',
+        'invoice',
+        'bill',
+        'account-head',
+        'fixed-asset',
+        'investment',
+        'fixed-asset',
+        'withdraw',
+        'expense',
+      ],
+    }),
   }),
 });
 
@@ -80,4 +105,5 @@ export const {
   useGetAdvanceReportQuery,
   useSummaryReportQuery,
   useBalanceSheetQuery,
+  useDonationReportQuery,
 } = reportSlice;
