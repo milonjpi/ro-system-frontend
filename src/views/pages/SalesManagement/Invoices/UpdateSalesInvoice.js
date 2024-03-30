@@ -52,8 +52,15 @@ const productValue = {
 };
 
 const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
+  const { data: customerData } = useCustomerDetailsQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const allCustomers = customerData?.customers || [];
+  const findCustomer = allCustomers.find((el) => el.id === preData?.customerId);
+
   const [loading, setLoading] = useState(false);
-  const [customer, setCustomer] = useState(preData?.customer);
+  const [customer, setCustomer] = useState(findCustomer || null);
   const [order, setOrder] = useState(preData?.refNo);
   const [invoiceDate, setInvoiceDate] = useState(preData?.date);
 
@@ -85,7 +92,8 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
 
   // calculation
   const totalPayment = customer?.invoices?.voucherAmount || 0;
-  const paidAmount = customer?.invoices?.paidAmount || 0;
+  const paidAmount =
+    (customer?.invoices?.paidAmount || 0) - preData?.paidAmount;
   const presentBalance = totalPayment - paidAmount;
 
   const watchValue = useWatch({ control, name: 'products' });
@@ -100,12 +108,6 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
   // end calculation
 
   // library
-  const { data: customerData } = useCustomerDetailsQuery('', {
-    refetchOnMountOrArgChange: true,
-  });
-
-  const allCustomers = customerData?.customers || [];
-
   const { data: orderData, isLoading: orderLoading } = useGetSalesOrdersQuery(
     { limit: 10, sortBy: 'orderNo', sortOrder: 'asc' },
     { refetchOnMountOrArgChange: true }
@@ -206,12 +208,8 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
             Edit Invoice
           </Typography>
-          <IconButton
-            color="error"
-            sx={{ width: 25, height: 25 }}
-            onClick={handleClose}
-          >
-            <CloseIcon sx={{ fontSize: 18 }} />
+          <IconButton color="error" size="small" onClick={handleClose}>
+            <CloseIcon fontSize="small" />
           </IconButton>
         </Box>
         <Divider sx={{ mb: 2 }} />
@@ -227,6 +225,7 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
             <Grid item xs={8}>
               <Autocomplete
                 value={customer}
+                disabled
                 size="small"
                 fullWidth
                 options={allCustomers}

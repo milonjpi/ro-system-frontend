@@ -29,6 +29,10 @@ export const api = createApi({
     'fixed-asset',
     'investment',
     'withdraw',
+    'income-expense-category',
+    'income-expense-head',
+    'mode-of-payment',
+    'income-expense',
   ],
   endpoints: () => ({}),
 });

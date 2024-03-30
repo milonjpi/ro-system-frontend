@@ -56,6 +56,7 @@ const UpdatePaymentReceive = ({ open, handleClose, preData }) => {
   const findCurrentCustomer = allCustomers.find(
     (el) => el.id === preCustomer?.id
   );
+
   const voucheredInvoice = voucherDetails?.map((el) => ({
     ...el.invoice,
     paidAmount: el.invoice?.paidAmount - el.receiveAmount,
@@ -63,7 +64,8 @@ const UpdatePaymentReceive = ({ open, handleClose, preData }) => {
   }));
   const combinedInvoice = uniqueArray(
     voucheredInvoice || [],
-    findCurrentCustomer?.invoices || []
+    findCurrentCustomer?.invoices || [],
+    'id'
   );
   // end library
 

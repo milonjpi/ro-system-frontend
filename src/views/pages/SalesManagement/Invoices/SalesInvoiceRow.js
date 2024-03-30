@@ -84,7 +84,11 @@ const SalesInvoiceRow = ({ sn, data }) => {
             color="primary"
             size="small"
             onClick={() => setOpen(true)}
-            disabled={data?.status === 'Due' ? false : true}
+            disabled={
+              data?.status === 'Due' || !data?.voucherDetails?.length
+                ? false
+                : true
+            }
           >
             <IconEdit size={18} />
           </IconButton>
@@ -92,7 +96,11 @@ const SalesInvoiceRow = ({ sn, data }) => {
             size="small"
             color="error"
             onClick={() => setDialog(true)}
-            disabled={data?.status === 'Due' ? false : true}
+            disabled={
+              data?.status === 'Due' || !data?.voucherDetails?.length
+                ? false
+                : true
+            }
           >
             <IconTrashXFilled size={18} />
           </IconButton>
