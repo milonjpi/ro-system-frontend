@@ -96,6 +96,32 @@ const AllExpenses = Loadable(
   lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
 );
 
+// income expense
+const InExCategory = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/InExCategory'))
+);
+
+const IncomeHead = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/IncomeHead'))
+);
+
+const ExpenseHead = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/ExpenseHead'))
+);
+
+const ModeOfPayment = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/ModeOfPayment'))
+);
+
+const PersonalIncome = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/PersonalIncome'))
+);
+
+const PersonalExpense = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/PersonalExpense'))
+);
+
+
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
@@ -268,17 +294,7 @@ const MainRoutes = {
                     </AuthenticationRoutes>
                   ),
                 },
-                {
-                  path: 'bills',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['bills']}
-                    >
-                      <PurchaseBill />
-                    </AuthenticationRoutes>
-                  ),
-                },
+
                 {
                   path: 'items-in',
                   element: (
@@ -342,6 +358,77 @@ const MainRoutes = {
               ],
             },
             {
+              path: 'income-expense',
+              children: [
+                {
+                  path: 'income-expense-category',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['income-expense-category']}
+                    >
+                      <InExCategory />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'income-head',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['income-head']}
+                    >
+                      <IncomeHead />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'expense-head',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['expense-head']}
+                    >
+                      <ExpenseHead />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'mode-of-payment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['mode-of-payment']}
+                    >
+                      <ModeOfPayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'personal-income',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['personal-income']}
+                    >
+                      <PersonalIncome />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'personal-expense',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['personal-expense']}
+                    >
+                      <PersonalExpense />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
               path: 'financial',
               children: [
                 {
@@ -396,6 +483,17 @@ const MainRoutes = {
                       allowedCodes={['make-payment']}
                     >
                       <MakePayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'bills',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['bills']}
+                    >
+                      <PurchaseBill />
                     </AuthenticationRoutes>
                   ),
                 },

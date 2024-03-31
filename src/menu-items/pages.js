@@ -6,6 +6,7 @@ import {
   IconCashOff,
   IconReport,
   IconShoppingCart,
+  IconCoins,
 } from '@tabler/icons-react';
 
 // constant
@@ -16,6 +17,7 @@ const icons = {
   IconCashOff,
   IconReport,
   IconShoppingCart,
+  IconCoins,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -118,6 +120,12 @@ const pages = {
           url: '/pages/financial/make-payment',
         },
         {
+          id: 'bills',
+          title: 'Bills',
+          type: 'item',
+          url: '/pages/financial/bills',
+        },
+        {
           id: 'fixed-asset',
           title: 'Fixed Asset',
           type: 'item',
@@ -162,12 +170,7 @@ const pages = {
           type: 'item',
           url: '/pages/store-management/vendors',
         },
-        {
-          id: 'bills',
-          title: 'Bills',
-          type: 'item',
-          url: '/pages/store-management/bills',
-        },
+
         {
           id: 'items-in',
           title: 'Items (Receive)',
@@ -209,7 +212,57 @@ const pages = {
         },
       ],
     },
-
+    {
+      id: 'income-expense',
+      title: 'Income Expense',
+      type: 'collapse',
+      color: '#2F0F5D',
+      icon: icons.IconCoins,
+      children: [
+        {
+          id: 'income-expense-category',
+          title: 'Category',
+          type: 'item',
+          url: '/pages/income-expense/income-expense-category',
+        },
+        {
+          id: 'income-head',
+          title: 'Income Head',
+          type: 'item',
+          url: '/pages/income-expense/income-head',
+        },
+        {
+          id: 'expense-head',
+          title: 'Expense Head',
+          type: 'item',
+          url: '/pages/income-expense/expense-head',
+        },
+        {
+          id: 'mode-of-payment',
+          title: 'Mode of Payment',
+          type: 'item',
+          url: '/pages/income-expense/mode-of-payment',
+        },
+        {
+          id: 'personal-income',
+          title: 'Income',
+          type: 'item',
+          url: '/pages/income-expense/personal-income',
+        },
+        {
+          id: 'personal-expense',
+          title: 'Expense',
+          type: 'item',
+          url: '/pages/income-expense/personal-expense',
+        },
+        {
+          id: 'income-expense-summary',
+          title: 'Summary',
+          type: 'item',
+          url: '/pages/income-expense/income-expense-summary',
+        },
+      ],
+    },
     {
       id: 'report',
       title: 'Report',
