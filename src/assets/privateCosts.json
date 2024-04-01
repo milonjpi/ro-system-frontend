@@ -1,0 +1,5509 @@
+[{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689ed"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260260"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689ef"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Battery",
+  "amount": 1000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260260"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689f1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4950,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238085"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260260"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1093aa3d0ae95268a13"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643716238000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812361006"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a2c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Air Freshener",
+  "amount": 500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565275"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565275"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b2253aa3d0ae95268a41"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1649418965000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812645852"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812645862"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812645862"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b2253aa3d0ae95268a42"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1649418965000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812645852"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 4700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812645862"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812645862"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b2253aa3d0ae95268a43"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1649418965000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812645852"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 5300,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812645862"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812645862"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62bfe45468084ca22aa64be9"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1656742740855"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1656742996370"
+  },
+  "costingHead": "Bonus",
+  "amount": 9000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656742996406"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657953511352"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1093aa3d0ae95268a12"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643716238000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812361006"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812361014"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812361014"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1093aa3d0ae95268a16"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643716238000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812361006"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4100,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a26"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a28"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 4600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a2b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Mobil Filter",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a2e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565275"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565275"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b25a3aa3d0ae95268a50"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1651406245000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812698648"
+  },
+  "costingHead": "Bonus",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812698654"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812698654"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b29d3aa3d0ae95268a66"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1653652735000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812765754"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4550,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812765761"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812765761"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62bc0994399db71e676c6744"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1656403968000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1656490388203"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 1335,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656490388207"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656490388207"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689eb"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 4500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260259"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689ee"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4900,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260260"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689f0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Service Charge",
+  "amount": 2500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260260"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a27"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a29"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Air Filter",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a2a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "AC Filter",
+  "amount": 500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565274"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b30f3aa3d0ae95268a73"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1654084765000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812879854"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 2700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812879861"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656306525679"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b30f3aa3d0ae95268a74"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1654084765000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812879854"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 1000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812879861"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656306525679"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62bfe35468084ca22aa64bde"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1656656304000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1656742740817"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 5000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656742740859"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656742740859"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b08e3aa3d0ae952689ec"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1641037655000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812238066"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 3115,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812238084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812260260"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1093aa3d0ae95268a14"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643716238000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812361006"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 5500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1093aa3d0ae95268a15"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643716238000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812361006"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812361015"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b1d53aa3d0ae95268a2d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1646135561000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812565265"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 2700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812565275"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812565275"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b25a3aa3d0ae95268a4f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1651406245000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812698648"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812698654"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812698654"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b27f3aa3d0ae95268a5c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1653047898000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812735064"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 5400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812735070"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812735070"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b30f3aa3d0ae95268a71"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1654084765000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812879854"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812879861"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656306525678"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b30f3aa3d0ae95268a72"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1654084765000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812879854"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812879861"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656306525679"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b1b3553aa3d0ae95268a8d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1654776079000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1655812949664"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 5000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655812949669"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655812949669"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b93b84a525bbcfb6b8dcdb"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1656093600000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1656306564831"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656306564864"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656306564864"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62bfe45468084ca22aa64be8"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1656742740855"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1656742996370"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656742996406"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657953511353"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62cce666fcfeeae8e727064b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1657422640000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1657595493275"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 4900,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657595494062"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657595494062"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d25cbf21613b3d2c6dc37a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1657953448831"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1657953471200"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657953471886"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657953471886"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d3b3552f7b61d13f17fc3a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658041149254"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658041172350"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 5000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658041173609"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658041173609"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d56b77240b9d767097a2ac"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658153780513"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658153845167"
+  },
+  "costingHead": "Mobil Filter",
+  "amount": 450,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658153847048"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658153909925"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d56b77240b9d767097a2aa"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658153780513"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658153845167"
+  },
+  "costingHead": "Tyer Change",
+  "amount": 45000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658153847048"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658153909926"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d56b77240b9d767097a2ad"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658153780513"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658153845167"
+  },
+  "costingHead": "AC Filter",
+  "amount": 350,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658153847048"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658153909926"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d56b77240b9d767097a2ab"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658153780513"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658153845167"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 3200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658153847048"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658153909926"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d56b77240b9d767097a2ae"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658153780513"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658153845167"
+  },
+  "costingHead": "Air Filter",
+  "amount": 450,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658153847048"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658153909926"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d56b77240b9d767097a2af"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658153780513"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1658153845167"
+  },
+  "costingHead": "Police Light",
+  "amount": 1400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658153847049"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658153909926"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e31e270e975de0661e6798"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658965127000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1659051558727"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 4900,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659051559432"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659051559432"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e31e4f0e975de0661e67a0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658792359000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1659051598775"
+  },
+  "costingHead": "Dent & Paint",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659051599474"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659051599474"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e50291c92f10f34373a50b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1659175530854"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1659175568102"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 4600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659175569245"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659175569245"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f1d516831745f853d12a36"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1660015867430"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1660015892463"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660015894196"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660015894196"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f9917e880d353eaf05fc88"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1660522855887"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1660522877325"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7300,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660522878569"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660522878569"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62fc7d64a5a2411ee30ccdbe"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1660714316468"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1660714340657"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 2700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660714340933"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660714340933"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63005b8500809a6e3996c62b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1660881378000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1660967813352"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 5800,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660967813745"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660967813745"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63162a47be38db8fe9485f12"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1662396959444"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1662396998384"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662396999228"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662396999228"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63162a47be38db8fe9485f13"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1662396959444"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1662396998384"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662396999228"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662396999228"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "632200189f7cd452ed67b387"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1663172609534"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1663172631457"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 2000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1663172632593"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1663172632593"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63243f1c89602d2551fb9c6e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1663319815736"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1663319835042"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6800,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1663319836455"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1663319836455"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "633993cf78c6ba1a052f213b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1664544937000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1664717775160"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 1000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1664717775196"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1664717775196"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "633993e878c6ba1a052f2144"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1664717775555"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1664717800885"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1664717800897"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1664717800897"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "633d614ef18266f131f0d424"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1664880564000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1664966989627"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 2612,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1664966990936"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1664966990936"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "633d6163f18266f131f0d42c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1664880590000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1664967009793"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1664967011092"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1664967011092"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6340e4d31fd9d0f93e47caec"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1665110831000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1665197267288"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 10200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1665197267728"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1665197267728"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6343b9bd6877e94f4047abf9"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1665296423000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1665382845209"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 3500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1665382845870"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1665382845870"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634b7f1ed3d82ad8744f7b94"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1665632885000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1665892123949"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 3535,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1665892126187"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1665892126187"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e5412b8fa82210f21dace"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1666077676106"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077712606"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 4300,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077714015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077714015"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e5412b8fa82210f21dacf"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1666077676106"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077712606"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077714016"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077714016"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e542fb8fa82210f21dad9"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1664176913000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077741946"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077743335"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077743335"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e5448b8fa82210f21dae2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1661412142000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077766928"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077768327"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077768327"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e545ab8fa82210f21daeb"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1658733767000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077785408"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077786793"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077786793"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e546eb8fa82210f21daf4"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1656141785000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077805232"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077806622"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077806622"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e5484b8fa82210f21dafd"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1653463405000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077827379"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077828776"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077828776"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e549db8fa82210f21db06"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1650871427000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077851882"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077853279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077853279"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e54b5b8fa82210f21db0f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1648193052000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077876127"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077877515"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077877515"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e54cab8fa82210f21db18"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1645773876000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077897136"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077898540"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077898540"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634e54dfb8fa82210f21db21"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643095497000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666077918466"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666077919854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666077919854"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63548a9f991d4ade440dae71"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1666225668000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1666484894249"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 7500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666484895044"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666484895044"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "635e0afefcf63a7ab902b6d1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1666934724000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1667107581537"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 7900,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667107582379"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1667107582379"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6365ecfac91ddb1d660efab7"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1667451354000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1667624185488"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1667624186330"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1667624186330"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6375aac3c92ee397e86ddf73"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1668482978000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1668655811104"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 2000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668655811428"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668655811428"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637721a8a51855938f81866b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1668751770696"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1668751784230"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668751784506"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668751784506"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "638710430f50aa60bb7a2057"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1669795885140"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1669795905303"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6300,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1669795907678"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1669795907678"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63946b72449115fc7fc34f16"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1670066399000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1670671217437"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 2000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670671218443"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670671218443"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639b6d8d3944c4a22136ba12"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1671044066000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671130508757"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671130509895"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671296870236"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639df754029a3d15e3a2095a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1671296819257"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671296851025"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 3900,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671296852789"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671296901275"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639df785812f6d15fcdabacb"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1671296819257"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671296851025"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 800,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671296901271"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671296901271"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639df799029a3d15e3a20961"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1670173651000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671296920806"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671296921541"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671296921541"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63a12d782bd00842c07f3279"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1666409623000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671507319896"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671507320530"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671507320530"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63a49f3835fceec9dcbf39c7"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1671646624000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671733044511"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671733048597"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671733048597"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63a6b4ab110157669a00a107"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1671783164000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671869611060"
+  },
+  "costingHead": "Horn",
+  "amount": 100,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671869611517"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671869611517"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63a6b4f40321e16a1c0e5161"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1671869669426"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671869683779"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671869684232"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671869684232"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63a6b50a110157669a00a10e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1669277684000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1671869705959"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671869706376"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671869706376"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ad79bdc691f51da7be950b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672313262641"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672313276306"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672313277639"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672313277639"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b06f642587036a259e8f5a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672507196483"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672507235955"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672507236504"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672507236504"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b06f642587036a259e8f59"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672507196483"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672507235955"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 5030,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672507236504"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672507236504"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b161ea66e877982bd9ef97"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672569250627"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672569321921"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672569322230"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672569322230"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b161ea66e877982bd9ef9b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672569250627"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672569321921"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b161ea66e877982bd9ef99"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672569250627"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672569321921"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 4000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b161ea66e877982bd9ef9a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672569250627"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672569321921"
+  },
+  "costingHead": "Body Maintenance",
+  "amount": 2000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b161ea66e877982bd9ef98"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672569250627"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1672569321921"
+  },
+  "costingHead": "Wash & Service",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672569322231"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b8c9faff9b0382d944a7c6"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672881875000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1673054711254"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 5200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673054714106"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673054714106"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b8ca0c48168b4f60cd8bb0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1672968312000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1673054729854"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673054732687"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673054732687"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ca4d69acd2e990b3b900a0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1674202455172"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1674202473259"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 7300,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674202473927"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674202473927"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63d501a1ac0b6098120bee39"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1674903948482"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1674903968561"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674903969301"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674903969301"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63da941c1853a2593263606a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1675269112690"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1675269147492"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675269148620"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1675269148620"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63dd2d3d7a9dc3022768b66f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1675439404603"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1675439420246"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675439421424"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1675439421424"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e7929b2c4cdc5d3251448f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1676120711155"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1676120730164"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 5000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676120731334"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676120731334"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e792b2785f9631ee3ec8d9"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1675947931000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1676120753854"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676120754960"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676120754960"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f612d095a0e085306da1dc"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1676984633000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1677071055914"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677071056942"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677071056942"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f612e6b4782fae98adb252"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1676725457000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1677071077864"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 2000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677071078770"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677071078770"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64001ca71aaf6ddb5ab6565c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1677642512000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1677728933643"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677728935905"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677728935905"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "640292bcdbe0136bdcc54702"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1677803814000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1677890235773"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677890236652"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677890236652"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "640b36e90e9168a91cfa0d3b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1678456538637"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1678456553319"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 4000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1678456553761"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1678456553761"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6416fb94c11e8d547f68c204"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1679054976000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1679227796395"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 4600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679227796915"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679227796915"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d87745dcfebed8c645bee"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1679656793180"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1679656819112"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679656820309"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679656820309"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641dca9036d34eebb1e3ff5b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1679501178000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1679673999403"
+  },
+  "costingHead": "AC Servicing, Battery , Brake Pad",
+  "amount": 26500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679674000492"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679674000492"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "642e6befab3dbe5e92ebbf5e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1680418256000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1680763885989"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680763887512"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680763887512"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "642e6befab3dbe5e92ebbf5d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1680418256000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1680763885989"
+  },
+  "costingHead": "Bonus",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680763887512"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680763887512"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643420df7687775924aeea13"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1680878663000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1681137883531"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7700,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681137887349"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681137887349"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6439ff98f9b5ff64bd0f6c47"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1681436161000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1681522584362"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1681522584334"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1681522584334"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64439630fa0d7fa0572358fd"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1681978124000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1682150959828"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682150960364"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682150960364"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "644a9a18d40440fd474c59bb"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1682610689968"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1682610711643"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 5500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682610712579"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682610712579"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6455dc57e56082a56e5c9450"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1683002948000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1683348567523"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1683348567992"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1683348567992"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6469a3c7489c632804aa1d71"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1684644742989"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1684644807404"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 2000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684644807977"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684644807977"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6469ac2243edd9b688701b25"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1683264521000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1684646946034"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 7000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1684646946481"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1684646946481"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64701a45a14dc26dd268ac2c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1684981937000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1685068353857"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6460,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685068357092"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685068357092"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6484324f0efb2ed1f4bddfe1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1685607598000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1686385230848"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686385231501"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686385231501"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6484326be0b0bb17b24dbea4"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1686298831000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1686385259103"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 8100,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1686385259595"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1686385259595"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "649090d82432ff1ada675cd7"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1687195769920"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1687195863344"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7800,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1687195864581"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1687195864581"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6496ea0c888c005cf5b1c1a0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1687352684000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1687611915845"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1687611916736"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1687611916736"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "649fae864eea6ad9daff50fd"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1688186484037"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1688186502042"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1688186502621"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1688186502621"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a0f2e685f3121b8fa6f744"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1688269508134"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1688269538614"
+  },
+  "costingHead": "Bonus",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1688269542684"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1688269542684"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64af55f7f7c6b94ba242e8c5"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1689039566000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1689212406764"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689212407394"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689212407394"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ba642a03924f2bdcaba1d5"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1689936921669"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1689936937645"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 8500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689936938190"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689936938190"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cd1ddd74acbe05e1f046d1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1691164088284"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1691164126279"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1691164125541"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1691164125541"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cd1ddd74acbe05e1f046d2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1691164088284"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1691164126279"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1691164125541"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1691164125541"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64e077483e6020e1e28421e4"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1692432177174"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1692432200888"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 7400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1692432200739"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1692432200739"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed797951d33815eeec370b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1612846261000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284728788"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 14000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284729884"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118249486"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed797951d33815eeec370a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1612846261000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284728788"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284729883"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118249487"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed79bc745c5315f3a356e7"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1627793529000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284795718"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 22400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284796814"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118383992"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed79bc745c5315f3a356e9"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1627793529000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284795718"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284796814"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118383992"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed79bc745c5315f3a356e6"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1627793529000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284795718"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284796813"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118383994"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed79bc745c5315f3a356e8"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1627793529000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284795718"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284796814"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118383995"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed79fae1d6826c3d96cb8d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1614660796000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284857850"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 16000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284858939"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118269560"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed79fae1d6826c3d96cb8e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1614660796000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693284857850"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693284858940"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118269561"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed7c883d751294616d9291"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1617857658000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693285506109"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 15000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693285512550"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118862212"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed7f91b3c267dc4439a54b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1620191112000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286287838"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286289147"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118586591"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed7f91b3c267dc4439a54a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1620191112000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286287838"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286289146"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118586591"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed7fd179449dfd2d6a242d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1622697488000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286352410"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 14000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286353627"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118325828"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed7fd179449dfd2d6a242e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1622697488000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286352410"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286353627"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118325828"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed7fd179449dfd2d6a242c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1622697488000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286352410"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286353626"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118325828"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed803527c2a40a0e600231"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1625548753000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286452679"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286453920"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118889065"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed803527c2a40a0e600230"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1625548753000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286452679"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286453919"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118889065"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed80611850e6b892f003a1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1630819253000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286496237"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286497432"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118406863"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed80611850e6b892f003a3"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1630819253000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286496237"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286497432"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118406863"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed80611850e6b892f003a2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1630819253000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286496237"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 17400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286497432"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118406863"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed80d9d6a5c84c5fc945b2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1633324896000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286615327"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286617442"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118828640"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed80d9d6a5c84c5fc945b1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1633324896000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286615327"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 16400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286617442"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118828640"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed80d9d6a5c84c5fc945b0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1633324896000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286615327"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286617442"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118828640"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed811a04513f40f3b14150"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1636435416000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286681321"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 3000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286682427"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118909626"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed811a04513f40f3b14151"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1636435416000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286681321"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286682427"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118909626"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed811a04513f40f3b1414f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1636435416000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286681321"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 12000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286682427"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118909626"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed811a04513f40f3b1414e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1636435416000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286681321"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286682427"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118909626"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed81446a7617c6bc8acb7e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1638941081000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286723216"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 11400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286724319"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702117937446"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed81446a7617c6bc8acb7d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1638941081000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286723216"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286724319"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702117937447"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64ed81446a7617c6bc8acb7f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1638941081000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286723216"
+  },
+  "costingHead": "Monthly Vehicle Tracking Fee",
+  "amount": 600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693286724319"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702117937447"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64f1d73cdaeb4cd23831ac5d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1693570840694"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693570875642"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693570876688"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694831591806"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64f1d73cdaeb4cd23831ac5e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1693570840694"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693570875642"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7800,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693570876688"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694831591807"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64f1d73cdaeb4cd23831ac5f"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1693570840694"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693570875642"
+  },
+  "costingHead": "Mobil Change",
+  "amount": 9000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1693570876688"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694831591807"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64fbf2a0732164ec5b6533be"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1694146775000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1694233246053"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1694233248016"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694233248016"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "650513c0647069225f1a2342"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1694745129000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1694831552767"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1694831552926"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1694831552926"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "650eab39b7a599c29b29eda5"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1695460128023"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1695460153274"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1695460153856"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1695460153856"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "651aa76d8020a50abb0bab4e"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1696245589579"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1696245614400"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1696245613630"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1696245613630"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "652ac7db68c5f597d2c19bee"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1697216063000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1697302491471"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 8000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1697302491993"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1697302491993"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65349ac45612911e778beb1b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1697773473000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1697946308852"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1697946308296"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1697946308296"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6543a6de335f9d168b3c8502"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1698932424209"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1698932446639"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698932446833"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698932446833"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6544a585ae9d0c39a5a9aa1b"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1698997593534"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1698997638113"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698997637916"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698997637916"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6544a585ae9d0c39a5a9aa1c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1698997593534"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1698997638113"
+  },
+  "costingHead": "Body Maintenance",
+  "amount": 78000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1698997637917"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1698997637917"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6554bc36a5176a492caf45b2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1700052006853"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1700052022386"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 4600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1700052022495"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1700052022495"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65667a3081610b9909d75238"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1701128313000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1701214768258"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 8680,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1701214768695"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1701214768695"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6572d323cfeac3170cfbef4a"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1702023956562"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1702023971310"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702023971421"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702023971421"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6572d335067f7c8f4ee659ed"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1701591972000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1702023989058"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702023989056"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702023989056"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657442bf30dfa3ef0f4cfac3"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1617857658000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693285506109"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 18000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702118080000"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118862212"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6574455db8034e43f5de50c2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1636435416000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286681321"
+  },
+  "costingHead": "Dent & Paint",
+  "amount": 6176,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702118749756"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118909626"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65744584452b2ac2666bc00c"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1625548753000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286452679"
+  },
+  "costingHead": "Horn",
+  "amount": 2480,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702118788865"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118889065"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657445ac452b2ac2666bc016"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1633324896000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693286615327"
+  },
+  "costingHead": "Service Charge",
+  "amount": 2500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702118828639"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118828639"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657445ce80da82e1efd126b8"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1617857658000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1693285506109"
+  },
+  "costingHead": "Service Charge",
+  "amount": 3520,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702118862208"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702118862208"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657d6ceba0ca0366d7a13b96"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1702545879000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1702718699323"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1702718699883"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1702718699883"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "658a7238b64ee862f58f5a7d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1703572001512"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1703572022829"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7300,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1703572024529"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1703572024529"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6596371b2c5badcf11549fb6"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1704343296509"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1704343322716"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 20000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1704343323693"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1704343323693"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65a128854e45893bfca8e4a1"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1705060466187"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1705060485925"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 7000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1705060485995"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1705060485995"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65b33cec0dce111c0f35bd83"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1706245337103"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1706245356195"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6050,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1706245356559"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1706245356559"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65b33d0b15caf5c599a548f8"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1706245357158"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1706245387084"
+  },
+  "costingHead": "Tax Token & Fitness charge Yearly",
+  "amount": 60000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1706245387296"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1706245387296"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65b48946328d698256836fc2"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1643171724000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1706330436114"
+  },
+  "costingHead": "Tax Token & Fitness charge Yearly",
+  "amount": 58000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1706330438140"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1706330438140"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65b489702a1b19981105a996"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1675053636000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1706330478627"
+  },
+  "costingHead": "BRTA  Processing Fee",
+  "amount": 57000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1706330480607"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1706330480607"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65c1b7980ae60af1ba24bbcd"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1707194039538"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1707194263547"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 21000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1707194264307"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1707194264307"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65c1b7980ae60af1ba24bbce"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1707194039538"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1707194263547"
+  },
+  "costingHead": "Body Maintenance",
+  "amount": 90000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1707194264307"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1707194264307"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65c6057b1eea91f37d15e3ee"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1707476326933"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1707476346601"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1707476347200"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1707476347200"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65d196afb0123bf7a8d6726d"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1708234396997"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1708234415156"
+  },
+  "costingHead": "Fuel Cost",
+  "amount": 6200,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1708234415710"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1708234415710"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65e3ef3c8a0fa6e2e66e0ffb"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1709350302000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1709436733313"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1709436732906"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1709436732906"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65e3ef3c8a0fa6e2e66e0ffc"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1709350302000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1709436733313"
+  },
+  "costingHead": "Driver Salary",
+  "amount": 21000,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1709436732907"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1709436732907"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65eca10e1dec64efd33c2cf6"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1710006498776"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1710006540743"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7600,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1710006542571"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1710006542571"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65fd480b82bed73d5d9804e6"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1711097849291"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1711097866696"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 6500,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1711097867542"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1711097867542"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6609e49bb337b58a9a7532e0"
+  },
+  "vehicle": "DHAKA METRO GHA-17-5967",
+  "date": {
+    "$date": {
+      "$numberLong": "1711837953000"
+    }
+  },
+  "trackingNo": {
+    "$numberLong": "1711924377692"
+  },
+  "costingHead": "Fuel Refill",
+  "amount": 7400,
+  "income": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1711924379107"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1711924379107"
+    }
+  },
+  "__v": 0
+}]

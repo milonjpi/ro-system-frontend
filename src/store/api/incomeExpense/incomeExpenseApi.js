@@ -20,6 +20,15 @@ const incomeExpenseApi = api.injectEndpoints({
       },
       providesTags: ['income-expense'],
     }),
+    // get all summary
+    getInExSummary: build.query({
+      query: (params) => ({
+        url: `${EXPENSE_URL}/summary`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['income-expense'],
+    }),
 
     // get single
     getSingleIncomeExpense: build.query({
@@ -34,6 +43,16 @@ const incomeExpenseApi = api.injectEndpoints({
     createIncomeExpense: build.mutation({
       query: (data) => ({
         url: `${EXPENSE_URL}/create`,
+        method: 'POST',
+        data: data,
+      }),
+      invalidatesTags: ['income-expense'],
+    }),
+
+    // bulk entry
+    bulkEntry: build.mutation({
+      query: (data) => ({
+        url: `${EXPENSE_URL}/bulk-entry`,
         method: 'POST',
         data: data,
       }),
@@ -63,8 +82,10 @@ const incomeExpenseApi = api.injectEndpoints({
 
 export const {
   useGetIncomeExpensesQuery,
+  useGetInExSummaryQuery,
   useGetSingleIncomeExpenseQuery,
   useCreateIncomeExpenseMutation,
+  useBulkEntryMutation,
   useUpdateIncomeExpenseMutation,
   useDeleteIncomeExpenseMutation,
 } = incomeExpenseApi;

@@ -4,6 +4,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import PaidVoucherView from '../VoucherView/PaidVoucherView';
+import { totalSum } from 'views/utilities/NeedyFunction';
 
 const MakePaymentRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,14 @@ const MakePaymentRow = ({ sn, data }) => {
       </StyledTableCell>
       <StyledTableCell align="right">{data?.amount}</StyledTableCell>
       <StyledTableCell align="center">
-        <IconButton color="primary" size="small" onClick={() => setOpen(true)}>
+        <IconButton
+          color="primary"
+          size="small"
+          onClick={() => setOpen(true)}
+          disabled={
+            data?.amount > totalSum(data?.voucherDetails, 'receiveAmount')
+          }
+        >
           <IconCategory2 size={18} />
         </IconButton>
 

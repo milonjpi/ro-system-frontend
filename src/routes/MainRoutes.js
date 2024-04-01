@@ -121,6 +121,9 @@ const PersonalExpense = Loadable(
   lazy(() => import('views/pages/IncomeExpense/PersonalExpense'))
 );
 
+const InExSummary = Loadable(
+  lazy(() => import('views/pages/IncomeExpense/InExSummary'))
+);
 
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
@@ -423,6 +426,17 @@ const MainRoutes = {
                       allowedCodes={['personal-expense']}
                     >
                       <PersonalExpense />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'income-expense-summary',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['income-expense-summary']}
+                    >
+                      <InExSummary />
                     </AuthenticationRoutes>
                   ),
                 },

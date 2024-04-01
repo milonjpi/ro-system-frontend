@@ -50,7 +50,7 @@ const PersonalExpenseRow = ({ sn, data }) => {
       <StyledTableCell>{data?.category?.label}</StyledTableCell>
       <StyledTableCell>{data?.incomeExpenseHead?.label}</StyledTableCell>
       <StyledTableCell>{data?.modeOfPayment?.label}</StyledTableCell>
-      <StyledTableCell>{data?.remarks}</StyledTableCell>
+      <StyledTableCell>{data?.remarks || 'n/a'}</StyledTableCell>
       <StyledTableCell align="right">{data?.amount}</StyledTableCell>
       <StyledTableCell align="center">
         <ButtonGroup>
