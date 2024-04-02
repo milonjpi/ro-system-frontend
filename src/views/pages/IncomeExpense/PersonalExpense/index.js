@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -16,13 +18,14 @@ import LinearProgress from '@mui/material/LinearProgress';
 import SearchIcon from '@mui/icons-material/Search';
 import MainCard from 'ui-component/cards/MainCard';
 import CardAction from 'ui-component/cards/CardAction';
-import { IconPlus } from '@tabler/icons-react';
+import { IconCloudDownload, IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
 import { useGetIncomeExpenseCategoriesQuery } from 'store/api/incomeExpenseCategory/incomeExpenseCategoryApi';
 import { useGetIncomeExpenseHeadsQuery } from 'store/api/incomeExpenseHead/incomeExpenseHeadApi';
 import { useGetIncomeExpensesQuery } from 'store/api/incomeExpense/incomeExpenseApi';
 import moment from 'moment';
+import { utils, writeFile } from 'xlsx';
 import PersonalExpenseRow from './PersonalExpenseRow';
 import AddPersonalExpense from './AddPersonalExpense';
 
@@ -115,9 +118,60 @@ const PersonalExpense = () => {
   const totalExpense = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
+
+  const { data: exportData, isLoading: exportLoading } =
+    useGetIncomeExpensesQuery(
+      { ...query, page: 0, limit: 2000 },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allExportExpenses = exportData?.incomeExpenses || [];
+
+  let snX = 1;
+  // export
+  const handleExport = () => {
+    let elt = allExportExpenses.map((el) => ({
+      SN: snX++,
+      Date: moment(el.date).format('DD/MM/YYYY'),
+      Category: el.category?.label,
+      'Expense Head': el?.incomeExpenseHead?.label,
+      'Mode of Payment': el?.modeOfPayment?.label,
+      Remarks: el?.remarks || 'n/a',
+      Amount: el?.amount,
+    }));
+    let wb = utils.book_new();
+    let ws = utils.json_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 10 },
+      { wch: 26 },
+      { wch: 29 },
+      { wch: 15 },
+      { wch: 20 },
+      { wch: 14 },
+    ];
+    writeFile(wb, `Expenses.xlsx`);
+  };
   return (
     <MainCard
-      title="Expenses"
+      title={
+        <span>
+          Expenses
+          <Tooltip title="Export">
+            <IconButton
+              color="primary"
+              size="small"
+              sx={{ ml: 0.5 }}
+              disabled={exportLoading}
+              onClick={handleExport}
+            >
+              <IconCloudDownload size={18} />
+            </IconButton>
+          </Tooltip>
+        </span>
+      }
       secondary={
         <CardAction
           title="Add Expense"
