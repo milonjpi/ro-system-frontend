@@ -95,7 +95,7 @@ const AddPersonalExpense = ({ open, handleClose }) => {
       incomeExpenseHeadId: head?.id,
       amount: data?.amount,
       modeOfPaymentId: mode?.id,
-      remarks: data?.remarks,
+      remarks: data?.remarks || '',
     };
     try {
       setLoading(true);
@@ -224,7 +224,7 @@ const AddPersonalExpense = ({ open, handleClose }) => {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label="Select Income Head"
+                      label="Select Expense Head"
                       required
                     />
                   )}

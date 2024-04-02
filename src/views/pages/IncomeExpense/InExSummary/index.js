@@ -192,6 +192,7 @@ const InExSummary = () => {
           totalAmount={totalAmount}
           startDate={startDate}
           endDate={endDate}
+          type={type}
         />
       </Box>
       {/* end popup item */}
@@ -204,7 +205,7 @@ const InExSummary = () => {
                 SN
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Category</StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Income Head</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>{type} Head</StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
                 Amount
               </StyledTableCellWithBorder>

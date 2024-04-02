@@ -94,7 +94,7 @@ const UpdatePersonalExpense = ({ open, handleClose, preData }) => {
       incomeExpenseHeadId: head?.id,
       amount: data?.amount,
       modeOfPaymentId: mode?.id,
-      remarks: data?.remarks,
+      remarks: data?.remarks || '',
     };
     try {
       setLoading(true);
@@ -222,7 +222,7 @@ const UpdatePersonalExpense = ({ open, handleClose, preData }) => {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label="Select Income Head"
+                      label="Select Expense Head"
                       required
                     />
                   )}

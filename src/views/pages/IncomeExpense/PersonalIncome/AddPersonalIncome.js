@@ -95,7 +95,7 @@ const AddPersonalIncome = ({ open, handleClose }) => {
       incomeExpenseHeadId: head?.id,
       amount: data?.amount,
       modeOfPaymentId: mode?.id,
-      remarks: data?.remarks,
+      remarks: data?.remarks || '',
     };
     try {
       setLoading(true);

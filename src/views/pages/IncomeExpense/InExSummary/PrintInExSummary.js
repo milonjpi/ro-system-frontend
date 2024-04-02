@@ -10,7 +10,7 @@ import moment from 'moment';
 import InExSummaryRow from './InExSummaryRow';
 
 const PrintInExSummary = forwardRef(
-  ({ allIncomeExpenses, totalAmount, startDate, endDate }, ref) => {
+  ({ allIncomeExpenses, totalAmount, startDate, endDate, type }, ref) => {
     let sn = 1;
     return (
       <Box component="div" ref={ref}>
@@ -19,7 +19,7 @@ const PrintInExSummary = forwardRef(
             component="h2"
             sx={{ fontSize: 22, textAlign: 'center', fontWeight: 700 }}
           >
-            Income Expense Summary
+            {type} Summary
           </Typography>
           <Typography component="p" sx={{ fontSize: 14, textAlign: 'center' }}>
             {moment(startDate).format('DD/MM/YYYY')}

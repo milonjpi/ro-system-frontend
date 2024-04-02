@@ -76,6 +76,8 @@ const PersonalIncome = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
+  query['sortBy'] = 'date';
+  query['sortOrder'] = 'desc';
   query['type'] = 'Income';
 
   if (category) {
