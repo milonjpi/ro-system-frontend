@@ -30,7 +30,7 @@ import { IconPrinter } from '@tabler/icons-react';
 import PrintInExSummary from './PrintInExSummary';
 
 const InExSummary = () => {
-  const [type, setType] = useState('Income');
+  const [type, setType] = useState('Expense');
   const [category, setCategory] = useState(null);
   const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
   const [endDate, setEndDate] = useState(moment());
