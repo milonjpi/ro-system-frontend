@@ -136,6 +136,9 @@ const BalanceSheet = Loadable(
 const ReportSummary = Loadable(
   lazy(() => import('views/pages/Report/ReportSummary'))
 );
+const DailyReport = Loadable(
+  lazy(() => import('views/pages/Report/DailyReport'))
+);
 const DonationReport = Loadable(
   lazy(() => import('views/pages/Report/DonationReport'))
 );
@@ -590,6 +593,17 @@ const MainRoutes = {
                       allowedCodes={['summary']}
                     >
                       <ReportSummary />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'daily-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['daily-support']}
+                    >
+                      <DailyReport />
                     </AuthenticationRoutes>
                   ),
                 },

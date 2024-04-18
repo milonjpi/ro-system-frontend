@@ -277,6 +277,12 @@ const pages = {
           url: '/pages/report/summary',
         },
         {
+          id: 'daily-report',
+          title: 'Daily Report',
+          type: 'item',
+          url: '/pages/report/daily-report',
+        },
+        {
           id: 'balance-sheet',
           title: 'Balance Sheet',
           type: 'item',

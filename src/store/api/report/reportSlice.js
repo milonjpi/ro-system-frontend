@@ -97,6 +97,31 @@ const reportSlice = api.injectEndpoints({
         'expense',
       ],
     }),
+
+    // daily report
+    dailyReport: build.query({
+      query: (params) => ({
+        url: `${REPORT_URL}/daily-report`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          report: response?.data,
+        };
+      },
+      providesTags: [
+        'voucher',
+        'invoice',
+        'bill',
+        'account-head',
+        'fixed-asset',
+        'investment',
+        'fixed-asset',
+        'withdraw',
+        'expense',
+      ],
+    }),
   }),
 });
 
@@ -106,4 +131,5 @@ export const {
   useSummaryReportQuery,
   useBalanceSheetQuery,
   useDonationReportQuery,
+  useDailyReportQuery,
 } = reportSlice;
