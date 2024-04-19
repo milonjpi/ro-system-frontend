@@ -1,31 +1,32 @@
 import { forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import LinearProgress from '@mui/material/LinearProgress';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import { totalSum } from 'views/utilities/NeedyFunction';
 import DailyReportRow from './DailyReportRow';
+import moment from 'moment';
 
 const PrintDailyReport = forwardRef(
   (
     {
       tableHeads,
       allProducts,
-      filterReports,
-      year,
-      totalPrice,
-      discount,
-      totalAmount,
-      paidAmount,
-      dueAmount,
-      totalQty,
+      startDate,
+      endDate,
+      expenses,
+      invoicedProducts,
+      invoices,
+      vouchers,
+      investments,
+      withdraws,
+      isLoading,
     },
     ref
   ) => {
-    let sn = 1;
     return (
       <Box component="div" ref={ref}>
         <Box sx={{ mb: 2 }}>
@@ -42,7 +43,8 @@ const PrintDailyReport = forwardRef(
             component="h6"
             sx={{ fontSize: 16, textAlign: 'center', fontWeight: 700 }}
           >
-            Summary Report {year}
+            Daily Report {moment(startDate).format('DD/MM/YYYY')} <em> to </em>{' '}
+            {moment(endDate).format('DD/MM/YYYY')}
           </Typography>
         </Box>
 
@@ -74,15 +76,21 @@ const PrintDailyReport = forwardRef(
             </TableRow>
           </TableHead>
           <TableBody>
-            {filterReports?.length ? (
-              filterReports.map((item, index) => (
-                <DailyReportRow
-                  key={index}
-                  sn={sn++}
-                  data={item}
-                  allProducts={allProducts}
-                />
-              ))
+            {expenses ||
+            invoicedProducts?.length ||
+            invoices ||
+            vouchers?.length ||
+            investments ||
+            withdraws ? (
+              <DailyReportRow
+                expenses={expenses}
+                invoicedProducts={invoicedProducts}
+                invoices={invoices}
+                vouchers={vouchers}
+                investments={investments}
+                withdraws={withdraws}
+                allProducts={allProducts}
+              />
             ) : (
               <TableRow>
                 <StyledTableCellWithBorder
@@ -90,94 +98,32 @@ const PrintDailyReport = forwardRef(
                   sx={{ border: 0 }}
                   align="center"
                 >
-                  No Data
+                  {isLoading ? (
+                    <LinearProgress sx={{ opacity: 0.5, py: 0.5 }} />
+                  ) : (
+                    'No Data'
+                  )}
                 </StyledTableCellWithBorder>
               </TableRow>
             )}
-            {filterReports?.length ? (
+            {expenses ||
+            invoicedProducts?.length ||
+            invoices ||
+            vouchers?.length ||
+            investments ||
+            withdraws ? (
               <>
                 <TableRow>
                   <StyledTableCellWithBorder
-                    colSpan={2}
-                    rowSpan={2}
-                    align="right"
-                    sx={{ fontSize: '12px !important', fontWeight: 700 }}
-                  >
-                    Total:
-                  </StyledTableCellWithBorder>
-                  {allProducts?.map((el) => {
-                    const filterProducts = filterReports[0]?.products?.filter(
-                      (it) => it.productId === el.id && it.year === year
-                    );
-                    return (
-                      <StyledTableCellWithBorder
-                        key={el.id}
-                        align="center"
-                        sx={{
-                          fontSize: '12px !important',
-                          py: '2px !important',
-                          fontWeight: 700,
-                        }}
-                      >
-                        {totalSum(filterProducts || [], 'quantity')}
-                      </StyledTableCellWithBorder>
-                    );
-                  })}
-
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
+                    colSpan={allProducts?.length || 1}
+                    align="center"
                     sx={{
                       fontSize: '12px !important',
-                      py: '0px !important',
+                      py: '2px !important',
                       fontWeight: 700,
                     }}
                   >
-                    {totalPrice}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {discount}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {totalAmount}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {paidAmount}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {dueAmount > 0 ? dueAmount : 0}
+                    Total Quantity: {invoices?._sum?.totalQty || 0}
                   </StyledTableCellWithBorder>
                 </TableRow>
                 <TableRow>
@@ -190,7 +136,7 @@ const PrintDailyReport = forwardRef(
                       fontWeight: 700,
                     }}
                   >
-                    {totalQty}
+                    Total Amount: {invoices?._sum?.amount || 0} ৳
                   </StyledTableCellWithBorder>
                 </TableRow>
               </>

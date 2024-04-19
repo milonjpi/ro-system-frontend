@@ -64,11 +64,7 @@ const BalanceSheet = () => {
 
   // cash and equivalent
   const cashAndEquivalent =
-    investmentCash +
-    findReceived -
-    withdraws -
-    totalExpenses -
-    equipmentBillsPaid;
+    investmentCash + findReceived - withdraws - totalExpenses - findPaid;
 
   // total asset
   const totalAsset =

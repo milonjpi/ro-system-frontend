@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
@@ -16,10 +15,8 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
-import { useSummaryReportQuery } from 'store/api/report/reportSlice';
+import { useDailyReportQuery } from 'store/api/report/reportSlice';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import { totalSum } from 'views/utilities/NeedyFunction';
 import { utils, writeFile } from 'xlsx';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
@@ -29,19 +26,10 @@ import PrintDailyReport from './PrintDailyReport';
 import DailyReportRow from './DailyReportRow';
 
 const DailyReport = () => {
-  const [customer, setCustomer] = useState(null);
-  const [year, setYear] = useState(moment().format('YYYY'));
   const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
 
   // library
-  const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allCustomers = customerData?.customers || [];
-
   const { data: productData } = useGetProductsQuery(
     { limit: 10, isActive: true, sortBy: 'label', sortOrder: 'asc' },
     { refetchOnMountOrArgChange: true }
@@ -53,60 +41,67 @@ const DailyReport = () => {
   // table
   const tableHeads = [
     {
-      title: 'SN',
-      align: 'center',
-      rowSpan: 2,
-    },
-    {
-      title: 'Quantity',
+      title: 'Product Sales',
       align: 'center',
       colSpan: allProducts?.length || 1,
     },
     {
-      title: 'Total Price',
+      title: 'Cash Invest',
       rowSpan: 2,
-      align: 'right',
+      align: 'center',
     },
     {
-      title: 'Discount',
+      title: 'Withdraws',
       rowSpan: 2,
-      align: 'right',
+      align: 'center',
     },
     {
-      title: 'Amount',
+      title: 'Collections',
       rowSpan: 2,
-      align: 'right',
+      align: 'center',
     },
     {
-      title: 'Paid',
+      title: 'Expenses',
       rowSpan: 2,
-      align: 'right',
+      align: 'center',
+    },
+    {
+      title: 'Advance',
+      rowSpan: 2,
+      align: 'center',
     },
     {
       title: 'Due',
       rowSpan: 2,
-      align: 'right',
+      align: 'center',
+    },
+    {
+      title: 'Balance',
+      rowSpan: 2,
+      align: 'center',
     },
   ];
   // end table
 
   // filtering
-  const query = {};
-
-  if (customer) {
-    query['customerId'] = customer.id;
-  }
-  const { data, isLoading } = useSummaryReportQuery(
-    { ...query },
+  const { data, isLoading } = useDailyReportQuery(
+    {
+      startDate: moment(startDate).format('YYYY-MM-DD'),
+      endDate: moment(endDate).format('YYYY-MM-DD'),
+    },
     {
       refetchOnMountOrArgChange: true,
     }
   );
 
-  const getAllReports = data?.report || [];
-
-  const filterReports = getAllReports?.filter((el) => el.year === year);
-
+  const expenses = data?.report?.expenses;
+  const invoicedProducts = data?.report?.invoicedProducts || [];
+  const invoices = data?.report?.invoices;
+  const vouchers = data?.report?.vouchers || [];
+  const investments = data?.report?.investments;
+  const withdraws = data?.report?.withdraws;
+  // console.log(invoices);
+  console.log(data?.report);
   // print and export
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -127,33 +122,22 @@ const DailyReport = () => {
     utils.book_append_sheet(wb, ws, 'sheet 1');
 
     ws['!cols'] = [
-      { wch: 5 },
+      { wch: 12 },
+      { wch: 10 },
+      { wch: 10 },
+      { wch: 10 },
+      { wch: 10 },
+      { wch: 10 },
+      { wch: 10 },
+      { wch: 10 },
+      { wch: 10 },
       { wch: 8 },
-      { wch: 16 },
-      { wch: 13 },
-      { wch: 13 },
-      { wch: 15 },
-      { wch: 9 },
       { wch: 8 },
       { wch: 7 },
-      { wch: 6 },
-      { wch: 6 },
+      { wch: 7 },
     ];
     writeFile(wb, `SummaryReport.xlsx`);
   };
-
-  let sn = 1;
-  // calculation
-  const totalPrice = totalSum(filterReports, 'totalPrice');
-  const discount = totalSum(filterReports, 'discount');
-  const totalAmount = totalSum(filterReports, 'amount');
-  const paidAmount = totalSum(filterReports, 'paidAmount');
-  const dueAmount = totalAmount - paidAmount;
-
-  const totalQty = totalSum(
-    filterReports[0]?.products?.filter((el) => el.year === year) || [],
-    'quantity'
-  );
 
   return (
     <MainCard
@@ -228,14 +212,15 @@ const DailyReport = () => {
           ref={componentRef}
           tableHeads={tableHeads}
           allProducts={allProducts}
-          filterReports={filterReports}
-          year={year}
-          totalPrice={totalPrice}
-          discount={discount}
-          totalAmount={totalAmount}
-          paidAmount={paidAmount}
-          dueAmount={dueAmount}
-          totalQty={totalQty}
+          startDate={startDate}
+          endDate={endDate}
+          expenses={expenses}
+          invoicedProducts={invoicedProducts}
+          invoices={invoices}
+          vouchers={vouchers}
+          investments={investments}
+          withdraws={withdraws}
+          isLoading={isLoading}
         />
       </Box>
       {/* end popup item */}
@@ -270,15 +255,21 @@ const DailyReport = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filterReports?.length ? (
-              filterReports.map((item, index) => (
-                <DailyReportRow
-                  key={index}
-                  sn={sn++}
-                  data={item}
-                  allProducts={allProducts}
-                />
-              ))
+            {expenses ||
+            invoicedProducts?.length ||
+            invoices ||
+            vouchers?.length ||
+            investments ||
+            withdraws ? (
+              <DailyReportRow
+                expenses={expenses}
+                invoicedProducts={invoicedProducts}
+                invoices={invoices}
+                vouchers={vouchers}
+                investments={investments}
+                withdraws={withdraws}
+                allProducts={allProducts}
+              />
             ) : (
               <TableRow>
                 <StyledTableCellWithBorder
@@ -294,89 +285,24 @@ const DailyReport = () => {
                 </StyledTableCellWithBorder>
               </TableRow>
             )}
-            {filterReports?.length ? (
+            {expenses ||
+            invoicedProducts?.length ||
+            invoices ||
+            vouchers?.length ||
+            investments ||
+            withdraws ? (
               <>
                 <TableRow>
                   <StyledTableCellWithBorder
-                    rowSpan={2}
-                    align="right"
-                    sx={{ fontSize: '12px !important', fontWeight: 700 }}
-                  >
-                    Total:
-                  </StyledTableCellWithBorder>
-                  {allProducts?.map((el) => {
-                    const filterProducts = filterReports[0]?.products?.filter(
-                      (it) => it.productId === el.id && it.year === year
-                    );
-                    return (
-                      <StyledTableCellWithBorder
-                        key={el.id}
-                        align="center"
-                        sx={{
-                          fontSize: '12px !important',
-                          py: '2px !important',
-                          fontWeight: 700,
-                        }}
-                      >
-                        {totalSum(filterProducts || [], 'quantity')}
-                      </StyledTableCellWithBorder>
-                    );
-                  })}
-
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
+                    colSpan={allProducts?.length || 1}
+                    align="center"
                     sx={{
                       fontSize: '12px !important',
-                      py: '0px !important',
+                      py: '2px !important',
                       fontWeight: 700,
                     }}
                   >
-                    {totalPrice}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {discount}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {totalAmount}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {paidAmount}
-                  </StyledTableCellWithBorder>
-                  <StyledTableCellWithBorder
-                    align="right"
-                    rowSpan={2}
-                    sx={{
-                      fontSize: '12px !important',
-                      py: '0px !important',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {dueAmount > 0 ? dueAmount : 0}
+                    Total Quantity: {invoices?._sum?.totalQty || 0}
                   </StyledTableCellWithBorder>
                 </TableRow>
                 <TableRow>
@@ -389,7 +315,7 @@ const DailyReport = () => {
                       fontWeight: 700,
                     }}
                   >
-                    {totalQty}
+                    Total Amount: {invoices?._sum?.amount || 0} ৳
                   </StyledTableCellWithBorder>
                 </TableRow>
               </>
