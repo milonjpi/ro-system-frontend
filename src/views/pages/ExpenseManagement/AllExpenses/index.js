@@ -246,7 +246,7 @@ const AllExpenses = () => {
           <Grid item xs={12} sm={6} md={2.5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Date (Form)"
+                label="Date (From)"
                 views={['year', 'month', 'day']}
                 inputFormat="DD/MM/YYYY"
                 value={startDate}

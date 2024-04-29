@@ -14,20 +14,20 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import moment from 'moment';
-import { useGetDueReportQuery } from 'store/api/report/reportSlice';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import DueReportRow from './DueReportRow';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { utils, writeFile } from 'xlsx';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import PrintDueReport from './PrintDueReport';
 import { dueMonths, dueYears } from 'assets/data';
+import PrintPaymentDueReport from './PrintPaymentDueReport';
+import PaymentDueReportRow from './PaymentDueReportRow';
+import { useGetAllVendorsQuery } from 'store/api/vendor/vendorApi';
+import { useGetPaymentDueReportQuery } from 'store/api/paymentReport/paymentReportApi';
 
-const DueReport = () => {
-  const [customer, setCustomer] = useState(null);
+const PaymentDueReport = () => {
+  const [vendor, setVendor] = useState(null);
   const [lastPay, setLastPay] = useState('');
   const [lastSale, setLastSale] = useState('');
 
@@ -35,12 +35,12 @@ const DueReport = () => {
   const [month, setMonth] = useState(null);
 
   // library
-  const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+  const { data: vendorData } = useGetAllVendorsQuery(
+    { limit: 1000, sortBy: 'vendorName', sortOrder: 'asc' },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = customerData?.customers || [];
+  const allVendors = vendorData?.vendors || [];
   // end library
 
   // table
@@ -64,13 +64,13 @@ const DueReport = () => {
       align: 'center',
     },
     {
-      title: 'Client ID',
+      title: 'Vendor ID',
     },
     {
-      title: 'Client Name',
+      title: 'Vendor Name',
     },
     {
-      title: 'Client Name (BN)',
+      title: 'Vendor Name (BN)',
     },
     {
       title: 'Mobile',
@@ -79,7 +79,7 @@ const DueReport = () => {
       title: 'Address',
     },
     {
-      title: 'Last Sale',
+      title: 'Last Bill',
     },
     {
       title: 'Last Payment',
@@ -103,8 +103,7 @@ const DueReport = () => {
     query['startDate'] = `${year}-01-01`;
     query['endDate'] = `${year}-12-31`;
   }
-
-  const { data, isLoading } = useGetDueReportQuery(
+  const { data, isLoading } = useGetPaymentDueReportQuery(
     { ...query },
     {
       refetchOnMountOrArgChange: true,
@@ -116,10 +115,10 @@ const DueReport = () => {
   const allDueReports = getAllReports
     ?.filter(
       (el) =>
-        (customer ? el.id === customer.id : true) &&
+        (vendor ? el.id === vendor.id : true) &&
         (el.differentAmount > 0 ? true : false) &&
         (parseInt(lastSale) > 0
-          ? parseInt(moment(el.lastSaleDate).format('YYYYMMDD')) <
+          ? parseInt(moment(el.lastBillDate).format('YYYYMMDD')) <
             parseInt(moment().subtract(lastSale, 'days').format('YYYYMMDD'))
           : true) &&
         (parseInt(lastPay) > 0
@@ -164,7 +163,7 @@ const DueReport = () => {
       { wch: 12 },
       { wch: 15 },
     ];
-    writeFile(wb, `DueReport.xlsx`);
+    writeFile(wb, `PaymentDueReport.xlsx`);
   };
 
   return (
@@ -190,15 +189,15 @@ const DueReport = () => {
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
           <Grid item xs={12} md={6} lg={3}>
             <Autocomplete
-              value={customer}
+              value={vendor}
               size="small"
               fullWidth
-              options={allCustomers}
-              getOptionLabel={(option) => option.customerName}
+              options={allVendors}
+              getOptionLabel={(option) => option.vendorName}
               isOptionEqualToValue={(item, value) => item.id === value.id}
-              onChange={(e, newValue) => setCustomer(newValue)}
+              onChange={(e, newValue) => setVendor(newValue)}
               renderInput={(params) => (
-                <TextField {...params} label="Select Customer" />
+                <TextField {...params} label="Select Vendor" />
               )}
             />
           </Grid>
@@ -206,7 +205,7 @@ const DueReport = () => {
             <TextField
               fullWidth
               size="small"
-              label="Last Sale Before"
+              label="Last Bill Before"
               type="number"
               value={lastSale}
               onChange={(e) => setLastSale(e.target.value)}
@@ -254,7 +253,7 @@ const DueReport = () => {
 
       {/* popup item */}
       <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintDueReport
+        <PrintPaymentDueReport
           ref={componentRef}
           tableHeads={tableHeads}
           data={allDueReports}
@@ -284,7 +283,7 @@ const DueReport = () => {
               allDueReports
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((item) => (
-                  <DueReportRow key={item.id} sn={sn++} data={item} />
+                  <PaymentDueReportRow key={item.id} sn={sn++} data={item} />
                 ))
             ) : (
               <TableRow>
@@ -335,4 +334,4 @@ const DueReport = () => {
   );
 };
 
-export default DueReport;
+export default PaymentDueReport;

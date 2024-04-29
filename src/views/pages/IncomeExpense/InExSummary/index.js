@@ -142,7 +142,7 @@ const InExSummary = () => {
           <Grid item xs={12} md={3}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Date (Form)"
+                label="Date (From)"
                 views={['year', 'month', 'day']}
                 inputFormat="DD/MM/YYYY"
                 value={startDate}

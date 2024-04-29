@@ -24,6 +24,7 @@ import AddPurchaseBill from './AddPurchaseBill';
 import PurchaseBillRow from './PurchaseBillRow';
 import { useGetAllVendorsQuery } from 'store/api/vendor/vendorApi';
 import { useGetBillsQuery } from 'store/api/bill/billApi';
+import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
 const PurchaseBill = () => {
   const [searchText, setSearchText] = useState('');
@@ -143,6 +144,11 @@ const PurchaseBill = () => {
 
   const allBills = data?.bills || [];
   const meta = data?.meta;
+  const totalPrice = data?.sum?._sum?.totalPrice || 0;
+  const discount = data?.sum?._sum?.discount || 0;
+  const amount = data?.sum?._sum?.amount || 0;
+  const paidAmount = data?.sum?._sum?.paidAmount || 0;
+  const due = amount - paidAmount;
 
   let sn = page * rowsPerPage + 1;
   return (
@@ -213,7 +219,7 @@ const PurchaseBill = () => {
           <Grid item xs={12} md={6} lg={2}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Bill Date (Form)"
+                label="Bill Date (From)"
                 views={['year', 'month', 'day']}
                 inputFormat="DD/MM/YYYY"
                 value={startDate}
@@ -261,6 +267,32 @@ const PurchaseBill = () => {
         tableHeads={tableHeads}
         data={allBills}
         options={(el) => <PurchaseBillRow key={el.id} sn={sn++} data={el} />}
+        extra={
+          allBills?.length ? (
+            <StyledTableRow>
+              <StyledTableCell
+                colSpan={5}
+                align="right"
+                sx={{ fontWeight: 700 }}
+              >
+                Total:
+              </StyledTableCell>
+              <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                {totalPrice}
+              </StyledTableCell>
+              <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                {discount}
+              </StyledTableCell>
+              <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                {amount}
+              </StyledTableCell>
+              <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                {due}
+              </StyledTableCell>
+              <StyledTableCell colSpan={3}></StyledTableCell>
+            </StyledTableRow>
+          ) : null
+        }
         loading={isLoading}
         pagination={true}
         page={page}

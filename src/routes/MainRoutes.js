@@ -142,6 +142,19 @@ const DailyReport = Loadable(
 const DonationReport = Loadable(
   lazy(() => import('views/pages/Report/DonationReport'))
 );
+// payment report
+const PaymentReport = Loadable(
+  lazy(() => import('views/pages/Report/PaymentReport'))
+);
+const PaymentReportSummary = Loadable(
+  lazy(() => import('views/pages/Report/PaymentReport/PaymentReportSummary'))
+);
+const PaymentDueReport = Loadable(
+  lazy(() => import('views/pages/Report/PaymentReport/PaymentDueReport'))
+);
+const PaymentAdvanceReport = Loadable(
+  lazy(() => import('views/pages/Report/PaymentReport/PaymentAdvanceReport'))
+);
 
 // utilities routing
 
@@ -617,6 +630,31 @@ const MainRoutes = {
                       <DonationReport />
                     </AuthenticationRoutes>
                   ),
+                },
+                {
+                  path: 'payment-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['payment-report']}
+                    >
+                      <PaymentReport />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <PaymentReportSummary />,
+                    },
+                    {
+                      path: 'due-payment',
+                      element: <PaymentDueReport />,
+                    },
+                    {
+                      path: 'advance-report',
+                      element: <PaymentAdvanceReport />,
+                    },
+                  ],
                 },
               ],
             },

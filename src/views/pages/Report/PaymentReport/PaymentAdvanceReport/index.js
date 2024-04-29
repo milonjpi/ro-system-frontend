@@ -14,33 +14,29 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import moment from 'moment';
-import { useGetDueReportQuery } from 'store/api/report/reportSlice';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import DueReportRow from './DueReportRow';
 import { totalSum } from 'views/utilities/NeedyFunction';
-import { utils, writeFile } from 'xlsx';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import PrintDueReport from './PrintDueReport';
-import { dueMonths, dueYears } from 'assets/data';
+import { utils, writeFile } from 'xlsx';
+import { useGetAllVendorsQuery } from 'store/api/vendor/vendorApi';
+import { useGetPaymentAdvanceReportQuery } from 'store/api/paymentReport/paymentReportApi';
+import PrintPaymentAdvanceReport from './PrintPaymentAdvanceReport';
+import PaymentAdvanceReportRow from './PaymentAdvanceReportRow';
 
-const DueReport = () => {
-  const [customer, setCustomer] = useState(null);
+const PaymentAdvanceReport = () => {
+  const [vendor, setVendor] = useState(null);
   const [lastPay, setLastPay] = useState('');
   const [lastSale, setLastSale] = useState('');
 
-  const [year, setYear] = useState(null);
-  const [month, setMonth] = useState(null);
-
   // library
-  const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+  const { data: vendorData } = useGetAllVendorsQuery(
+    { limit: 1000, sortBy: 'vendorName', sortOrder: 'asc' },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = customerData?.customers || [];
+  const allVendors = vendorData?.vendors || [];
   // end library
 
   // table
@@ -64,13 +60,13 @@ const DueReport = () => {
       align: 'center',
     },
     {
-      title: 'Client ID',
+      title: 'Vendor ID',
     },
     {
-      title: 'Client Name',
+      title: 'Vendor Name',
     },
     {
-      title: 'Client Name (BN)',
+      title: 'Vendor Name (BN)',
     },
     {
       title: 'Mobile',
@@ -79,44 +75,29 @@ const DueReport = () => {
       title: 'Address',
     },
     {
-      title: 'Last Sale',
+      title: 'Last Bill',
     },
     {
       title: 'Last Payment',
     },
     {
-      title: 'Due Amount',
+      title: 'Advance Amount',
       align: 'right',
     },
   ];
   // end table
 
   // filtering
-  const query = {};
-
-  if (month && year) {
-    query['startDate'] = `${year}-${month?.value}-01`;
-    query['endDate'] = `${year}-${month?.value}-${month?.max}`;
-  }
-
-  if (!month && year) {
-    query['startDate'] = `${year}-01-01`;
-    query['endDate'] = `${year}-12-31`;
-  }
-
-  const { data, isLoading } = useGetDueReportQuery(
-    { ...query },
-    {
-      refetchOnMountOrArgChange: true,
-    }
-  );
+  const { data, isLoading } = useGetPaymentAdvanceReportQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
 
   const getAllReports = data?.report || [];
 
-  const allDueReports = getAllReports
+  const allAdvanceReports = getAllReports
     ?.filter(
       (el) =>
-        (customer ? el.id === customer.id : true) &&
+        (vendor ? el.id === vendor.id : true) &&
         (el.differentAmount > 0 ? true : false) &&
         (parseInt(lastSale) > 0
           ? parseInt(moment(el.lastSaleDate).format('YYYYMMDD')) <
@@ -132,19 +113,19 @@ const DueReport = () => {
   let sn = page * rowsPerPage + 1;
 
   // calculation
-  const totalDue = totalSum(allDueReports, 'differentAmount');
+  const totalAdvance = totalSum(allAdvanceReports, 'differentAmount');
 
   // print and export
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     pageStyle: `
-      @media print {
-        .pageBreakRow {
-          page-break-inside: avoid;
-        }
+    @media print {
+      .pageBreakRow {
+        page-break-inside: avoid;
       }
-      `,
+    }
+    `,
   });
 
   const handleExport = () => {
@@ -156,20 +137,19 @@ const DueReport = () => {
     ws['!cols'] = [
       { wch: 5 },
       { wch: 9 },
-      { wch: 18 },
-      { wch: 19 },
+      { wch: 16 },
+      { wch: 17 },
       { wch: 12 },
       { wch: 19 },
       { wch: 8 },
       { wch: 12 },
       { wch: 15 },
     ];
-    writeFile(wb, `DueReport.xlsx`);
+    writeFile(wb, `PaymentAdvanceReport.xlsx`);
   };
-
   return (
     <MainCard
-      title="Due Report"
+      title="Advance Report"
       secondary={
         <ButtonGroup>
           <Tooltip title="Export to Excel">
@@ -190,29 +170,29 @@ const DueReport = () => {
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
           <Grid item xs={12} md={6} lg={3}>
             <Autocomplete
-              value={customer}
+              value={vendor}
               size="small"
               fullWidth
-              options={allCustomers}
-              getOptionLabel={(option) => option.customerName}
+              options={allVendors}
+              getOptionLabel={(option) => option.vendorName}
               isOptionEqualToValue={(item, value) => item.id === value.id}
-              onChange={(e, newValue) => setCustomer(newValue)}
+              onChange={(e, newValue) => setVendor(newValue)}
               renderInput={(params) => (
-                <TextField {...params} label="Select Customer" />
+                <TextField {...params} label="Select Vendor" />
               )}
             />
           </Grid>
-          <Grid item xs={6} lg={2.5}>
+          <Grid item xs={12} md={6} lg={2.5}>
             <TextField
               fullWidth
               size="small"
-              label="Last Sale Before"
+              label="Last Bill Before"
               type="number"
               value={lastSale}
               onChange={(e) => setLastSale(e.target.value)}
             />
           </Grid>
-          <Grid item xs={6} lg={2.5}>
+          <Grid item xs={12} md={6} lg={2.5}>
             <TextField
               fullWidth
               size="small"
@@ -222,43 +202,17 @@ const DueReport = () => {
               onChange={(e) => setLastPay(e.target.value)}
             />
           </Grid>
-          <Grid item xs={6} lg={1.8}>
-            <Autocomplete
-              value={year}
-              size="small"
-              fullWidth
-              options={dueYears}
-              onChange={(e, newValue) => setYear(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Year" />
-              )}
-            />
-          </Grid>
-          <Grid item xs={6} lg={2.2}>
-            <Autocomplete
-              value={month}
-              size="small"
-              fullWidth
-              options={dueMonths(year || new Date().getFullYear()) || []}
-              getOptionLabel={(option) => option.label}
-              isOptionEqualToValue={(item, value) => item.label === value.label}
-              onChange={(e, newValue) => setMonth(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Month" />
-              )}
-            />
-          </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
 
       {/* popup item */}
       <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintDueReport
+        <PrintPaymentAdvanceReport
           ref={componentRef}
           tableHeads={tableHeads}
-          data={allDueReports}
-          totalDue={totalDue}
+          data={allAdvanceReports}
+          totalAdvance={totalAdvance}
           loading={isLoading}
         />
       </Box>
@@ -280,11 +234,15 @@ const DueReport = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allDueReports?.length ? (
-              allDueReports
+            {allAdvanceReports?.length ? (
+              allAdvanceReports
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((item) => (
-                  <DueReportRow key={item.id} sn={sn++} data={item} />
+                  <PaymentAdvanceReportRow
+                    key={item.id}
+                    sn={sn++}
+                    data={item}
+                  />
                 ))
             ) : (
               <TableRow>
@@ -301,7 +259,8 @@ const DueReport = () => {
                 </StyledTableCellWithBorder>
               </TableRow>
             )}
-            {allDueReports?.length ? (
+
+            {allAdvanceReports?.length ? (
               <TableRow>
                 <StyledTableCellWithBorder
                   colSpan={8}
@@ -314,7 +273,7 @@ const DueReport = () => {
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
-                  {totalDue}
+                  {totalAdvance}
                 </StyledTableCellWithBorder>
               </TableRow>
             ) : null}
@@ -324,7 +283,7 @@ const DueReport = () => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={allDueReports?.length || 0}
+        count={allAdvanceReports?.length || 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -335,4 +294,4 @@ const DueReport = () => {
   );
 };
 
-export default DueReport;
+export default PaymentAdvanceReport;

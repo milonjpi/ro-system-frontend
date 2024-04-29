@@ -6,10 +6,7 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import LinearProgress from '@mui/material/LinearProgress';
-import {
-  StyledTableCellWithBorder,
-  StyledTableCellWithNoBorder,
-} from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import AdvanceReportRow from './AdvanceReportRow';
 
 const PrintAdvanceReport = forwardRef(
@@ -71,19 +68,19 @@ const PrintAdvanceReport = forwardRef(
 
             {data?.length ? (
               <TableRow>
-                <StyledTableCellWithNoBorder
+                <StyledTableCellWithBorder
                   colSpan={8}
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
                   Total:
-                </StyledTableCellWithNoBorder>
-                <StyledTableCellWithNoBorder
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
                   {totalAdvance}
-                </StyledTableCellWithNoBorder>
+                </StyledTableCellWithBorder>
               </TableRow>
             ) : null}
           </TableBody>

@@ -2,8 +2,6 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import MainCard from 'ui-component/cards/MainCard';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
@@ -14,33 +12,39 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { IconCloudDownload, IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import MainCard from 'ui-component/cards/MainCard';
 import moment from 'moment';
-import { useGetDueReportQuery } from 'store/api/report/reportSlice';
-import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import DueReportRow from './DueReportRow';
-import { totalSum } from 'views/utilities/NeedyFunction';
 import { utils, writeFile } from 'xlsx';
+import { useGetVouchersQuery } from 'store/api/voucher/voucherApi';
+import { useGetAllVendorsQuery } from 'store/api/vendor/vendorApi';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
+import PaymentReportSummaryRow from './PaymentReportSummaryRow';
+import groupBy from 'lodash.groupby';
+import PrintPaymentReportSummary from './PrintPaymentReportSummary';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import PrintDueReport from './PrintDueReport';
-import { dueMonths, dueYears } from 'assets/data';
 
-const DueReport = () => {
-  const [customer, setCustomer] = useState(null);
-  const [lastPay, setLastPay] = useState('');
-  const [lastSale, setLastSale] = useState('');
-
-  const [year, setYear] = useState(null);
-  const [month, setMonth] = useState(null);
+const PaymentReportSummary = () => {
+  const [vendor, setVendor] = useState(null);
+  const [startDate, setStartDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment());
 
   // library
-  const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+  const { data: vendorData } = useGetAllVendorsQuery(
+    {
+      isActive: true,
+      limit: 1000,
+      sortBy: 'vendorName',
+      sortOrder: 'asc',
+    },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allCustomers = customerData?.customers || [];
+  const allVendors = vendorData?.vendors || [];
   // end library
 
   // table
@@ -64,75 +68,56 @@ const DueReport = () => {
       align: 'center',
     },
     {
-      title: 'Client ID',
+      title: 'Vendor',
     },
     {
-      title: 'Client Name',
+      title: 'Date',
     },
     {
-      title: 'Client Name (BN)',
+      title: 'Voucher No',
     },
     {
-      title: 'Mobile',
+      title: 'Bill Details',
     },
     {
-      title: 'Address',
+      title: 'Narration',
     },
     {
-      title: 'Last Sale',
-    },
-    {
-      title: 'Last Payment',
-    },
-    {
-      title: 'Due Amount',
+      title: 'Amount',
       align: 'right',
     },
   ];
   // end table
 
-  // filtering
+  // filtering and pagination
   const query = {};
 
-  if (month && year) {
-    query['startDate'] = `${year}-${month?.value}-01`;
-    query['endDate'] = `${year}-${month?.value}-${month?.max}`;
+  query['limit'] = 5000;
+  query['page'] = 0;
+  query['type'] = 'Paid';
+  query['report'] = true;
+
+  if (startDate) {
+    query['startDate'] = moment(startDate).format('YYYY-MM-DD');
+  }
+  if (endDate) {
+    query['endDate'] = moment(endDate).format('YYYY-MM-DD');
+  }
+  if (vendor) {
+    query['vendorId'] = vendor?.id;
   }
 
-  if (!month && year) {
-    query['startDate'] = `${year}-01-01`;
-    query['endDate'] = `${year}-12-31`;
-  }
-
-  const { data, isLoading } = useGetDueReportQuery(
+  const { data, isLoading } = useGetVouchersQuery(
     { ...query },
-    {
-      refetchOnMountOrArgChange: true,
-    }
+    { refetchOnMountOrArgChange: true }
   );
 
-  const getAllReports = data?.report || [];
-
-  const allDueReports = getAllReports
-    ?.filter(
-      (el) =>
-        (customer ? el.id === customer.id : true) &&
-        (el.differentAmount > 0 ? true : false) &&
-        (parseInt(lastSale) > 0
-          ? parseInt(moment(el.lastSaleDate).format('YYYYMMDD')) <
-            parseInt(moment().subtract(lastSale, 'days').format('YYYYMMDD'))
-          : true) &&
-        (parseInt(lastPay) > 0
-          ? parseInt(moment(el.lastPaymentDate).format('YYYYMMDD')) <
-            parseInt(moment().subtract(lastPay, 'days').format('YYYYMMDD'))
-          : true)
-    )
-    .sort((a, b) => b.differentAmount - a.differentAmount);
+  const allVouchers = data?.vouchers || [];
+  const allSumData = data?.sum?.length ? data?.sum[0] : null;
 
   let sn = page * rowsPerPage + 1;
-
-  // calculation
-  const totalDue = totalSum(allDueReports, 'differentAmount');
+  // group data
+  const groupVouchers = groupBy(allVouchers, 'vendorId');
 
   // print and export
   const componentRef = useRef();
@@ -155,21 +140,18 @@ const DueReport = () => {
 
     ws['!cols'] = [
       { wch: 5 },
-      { wch: 9 },
-      { wch: 18 },
-      { wch: 19 },
+      { wch: 25 },
+      { wch: 10 },
       { wch: 12 },
+      { wch: 35 },
       { wch: 19 },
-      { wch: 8 },
-      { wch: 12 },
-      { wch: 15 },
+      { wch: 7 },
     ];
-    writeFile(wb, `DueReport.xlsx`);
+    writeFile(wb, `PaymentReportSummary.xlsx`);
   };
-
   return (
     <MainCard
-      title="Due Report"
+      title="Payment Summary"
       secondary={
         <ButtonGroup>
           <Tooltip title="Export to Excel">
@@ -190,83 +172,78 @@ const DueReport = () => {
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
           <Grid item xs={12} md={6} lg={3}>
             <Autocomplete
-              value={customer}
+              value={vendor}
               size="small"
               fullWidth
-              options={allCustomers}
-              getOptionLabel={(option) => option.customerName}
+              options={allVendors}
+              getOptionLabel={(option) => option.vendorName}
               isOptionEqualToValue={(item, value) => item.id === value.id}
-              onChange={(e, newValue) => setCustomer(newValue)}
+              onChange={(e, newValue) => setVendor(newValue)}
               renderInput={(params) => (
-                <TextField {...params} label="Select Customer" />
+                <TextField {...params} label="Select Vendor" />
               )}
             />
           </Grid>
-          <Grid item xs={6} lg={2.5}>
-            <TextField
-              fullWidth
-              size="small"
-              label="Last Sale Before"
-              type="number"
-              value={lastSale}
-              onChange={(e) => setLastSale(e.target.value)}
-            />
+          <Grid item xs={12} md={6} lg={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (From)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={startDate}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </Grid>
-          <Grid item xs={6} lg={2.5}>
-            <TextField
-              fullWidth
-              size="small"
-              label="Last Payment Before"
-              type="number"
-              value={lastPay}
-              onChange={(e) => setLastPay(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={6} lg={1.8}>
-            <Autocomplete
-              value={year}
-              size="small"
-              fullWidth
-              options={dueYears}
-              onChange={(e, newValue) => setYear(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Year" />
-              )}
-            />
-          </Grid>
-          <Grid item xs={6} lg={2.2}>
-            <Autocomplete
-              value={month}
-              size="small"
-              fullWidth
-              options={dueMonths(year || new Date().getFullYear()) || []}
-              getOptionLabel={(option) => option.label}
-              isOptionEqualToValue={(item, value) => item.label === value.label}
-              onChange={(e, newValue) => setMonth(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Month" />
-              )}
-            />
+          <Grid item xs={12} md={6} lg={2.5}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DatePicker
+                label="Date (To)"
+                views={['year', 'month', 'day']}
+                inputFormat="DD/MM/YYYY"
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    size="small"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
-
       {/* popup item */}
       <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintDueReport
+        <PrintPaymentReportSummary
           ref={componentRef}
           tableHeads={tableHeads}
-          data={allDueReports}
-          totalDue={totalDue}
+          data={groupVouchers}
+          totalAmount={allSumData?._sum?.amount || 0}
           loading={isLoading}
         />
       </Box>
       {/* end popup item */}
-
       {/* data table */}
+
       <Box sx={{ overflow: 'auto' }}>
-        <Table sx={{ minWidth: 450 }}>
+        <Table sx={{ minWidth: 750 }}>
           <TableHead>
             <TableRow>
               {tableHeads?.map((el, index) => (
@@ -280,11 +257,15 @@ const DueReport = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allDueReports?.length ? (
-              allDueReports
+            {allVouchers?.length ? (
+              Object.entries(groupVouchers)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((item) => (
-                  <DueReportRow key={item.id} sn={sn++} data={item} />
+                  <PaymentReportSummaryRow
+                    key={item[0]}
+                    sn={sn++}
+                    data={item[1]}
+                  />
                 ))
             ) : (
               <TableRow>
@@ -301,10 +282,10 @@ const DueReport = () => {
                 </StyledTableCellWithBorder>
               </TableRow>
             )}
-            {allDueReports?.length ? (
+            {allVouchers?.length ? (
               <TableRow>
                 <StyledTableCellWithBorder
-                  colSpan={8}
+                  colSpan={6}
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
@@ -314,7 +295,7 @@ const DueReport = () => {
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
-                  {totalDue}
+                  {allSumData?._sum?.amount || 0}
                 </StyledTableCellWithBorder>
               </TableRow>
             ) : null}
@@ -324,15 +305,16 @@ const DueReport = () => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={allDueReports?.length || 0}
+        count={Object.keys(groupVouchers)?.length || 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+
       {/* end data table */}
     </MainCard>
   );
 };
 
-export default DueReport;
+export default PaymentReportSummary;

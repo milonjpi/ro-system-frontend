@@ -135,7 +135,7 @@ const SalesOrder = () => {
           <Grid item xs={12} md={6} lg={2.5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Order Date (Form)"
+                label="Order Date (From)"
                 views={['year', 'month', 'day']}
                 inputFormat="DD/MM/YYYY"
                 value={startDate}

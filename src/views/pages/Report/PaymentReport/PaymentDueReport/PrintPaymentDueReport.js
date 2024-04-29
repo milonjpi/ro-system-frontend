@@ -7,9 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import LinearProgress from '@mui/material/LinearProgress';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import DueReportRow from './DueReportRow';
+import PaymentDueReportRow from './PaymentDueReportRow';
 
-const PrintDueReport = forwardRef(
+const PrintPaymentDueReport = forwardRef(
   ({ tableHeads, data, totalDue, loading }, ref) => {
     let sn = 1;
     return (
@@ -28,7 +28,7 @@ const PrintDueReport = forwardRef(
             component="h6"
             sx={{ fontSize: 16, textAlign: 'center', fontWeight: 700 }}
           >
-            Due Report
+            Payment Due Report
           </Typography>
         </Box>
 
@@ -48,7 +48,7 @@ const PrintDueReport = forwardRef(
           <TableBody>
             {data?.length ? (
               data.map((item) => (
-                <DueReportRow key={item.id} sn={sn++} data={item} />
+                <PaymentDueReportRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <TableRow>
@@ -89,4 +89,4 @@ const PrintDueReport = forwardRef(
   }
 );
 
-export default PrintDueReport;
+export default PrintPaymentDueReport;

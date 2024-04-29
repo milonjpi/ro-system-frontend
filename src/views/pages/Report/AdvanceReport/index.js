@@ -17,10 +17,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import moment from 'moment';
 import { useGetAdvanceReportQuery } from 'store/api/report/reportSlice';
-import {
-  StyledTableCellWithBorder,
-  StyledTableCellWithNoBorder,
-} from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import AdvanceReportRow from './AdvanceReportRow';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { useRef } from 'react';
@@ -261,19 +258,19 @@ const AdvanceReport = () => {
 
             {allAdvanceReports?.length ? (
               <TableRow>
-                <StyledTableCellWithNoBorder
+                <StyledTableCellWithBorder
                   colSpan={8}
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
                   Total:
-                </StyledTableCellWithNoBorder>
-                <StyledTableCellWithNoBorder
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
                   {totalAdvance}
-                </StyledTableCellWithNoBorder>
+                </StyledTableCellWithBorder>
               </TableRow>
             ) : null}
           </TableBody>

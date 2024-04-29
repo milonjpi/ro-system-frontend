@@ -142,7 +142,7 @@ const FixedAsset = () => {
           <Grid item xs={12} md={6} lg={2.5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Date (Form)"
+                label="Date (From)"
                 views={['year', 'month', 'day']}
                 inputFormat="DD/MM/YYYY"
                 value={startDate}

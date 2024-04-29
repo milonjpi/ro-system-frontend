@@ -128,7 +128,7 @@ const CustomInvoices = () => {
           <Grid item xs={12} md={6} lg={2.5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Invoice Date (Form)"
+                label="Invoice Date (From)"
                 views={['year', 'month', 'day']}
                 inputFormat="DD/MM/YYYY"
                 value={startDate}

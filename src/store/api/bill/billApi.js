@@ -13,8 +13,9 @@ const billApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          bills: response?.data,
+          bills: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['bill'],

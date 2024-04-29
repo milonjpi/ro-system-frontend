@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import LinearProgress from '@mui/material/LinearProgress';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import DueReportRow from './DueReportRow';
+import PaymentReportSummaryRow from './PaymentReportSummaryRow';
 
-const PrintDueReport = forwardRef(
-  ({ tableHeads, data, totalDue, loading }, ref) => {
+const PrintPaymentReportSummary = forwardRef(
+  ({ tableHeads, data, totalAmount, loading }, ref) => {
     let sn = 1;
     return (
       <Box component="div" ref={ref} sx={{ p: 3 }}>
@@ -28,7 +28,7 @@ const PrintDueReport = forwardRef(
             component="h6"
             sx={{ fontSize: 16, textAlign: 'center', fontWeight: 700 }}
           >
-            Due Report
+            Payment Summary Report
           </Typography>
         </Box>
 
@@ -46,9 +46,13 @@ const PrintDueReport = forwardRef(
             </TableRow>
           </TableHead>
           <TableBody>
-            {data?.length ? (
-              data.map((item) => (
-                <DueReportRow key={item.id} sn={sn++} data={item} />
+            {Object.entries(data)?.length ? (
+              Object.entries(data).map((item) => (
+                <PaymentReportSummaryRow
+                  key={item[0]}
+                  sn={sn++}
+                  data={item[1]}
+                />
               ))
             ) : (
               <TableRow>
@@ -65,10 +69,10 @@ const PrintDueReport = forwardRef(
                 </StyledTableCellWithBorder>
               </TableRow>
             )}
-            {data?.length ? (
+            {Object.entries(data)?.length ? (
               <TableRow>
                 <StyledTableCellWithBorder
-                  colSpan={8}
+                  colSpan={6}
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
@@ -78,7 +82,7 @@ const PrintDueReport = forwardRef(
                   align="right"
                   sx={{ fontSize: '12px !important', fontWeight: 700 }}
                 >
-                  {totalDue}
+                  {totalAmount}
                 </StyledTableCellWithBorder>
               </TableRow>
             ) : null}
@@ -89,4 +93,4 @@ const PrintDueReport = forwardRef(
   }
 );
 
-export default PrintDueReport;
+export default PrintPaymentReportSummary;

@@ -306,6 +306,12 @@ const pages = {
           type: 'item',
           url: '/pages/report/donation-report',
         },
+        {
+          id: 'payment-report',
+          title: 'Payment Report',
+          type: 'item',
+          url: '/pages/report/payment-report',
+        },
       ],
     },
   ],
