@@ -89,7 +89,7 @@ const ManageUser = () => {
       {/* end popups item */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <InputBase
               fullWidth
               placeholder="Search by Name, UserName etc"
@@ -118,6 +118,7 @@ const ManageUser = () => {
               <StyledTableCell>Full Name</StyledTableCell>
               <StyledTableCell>User Name</StyledTableCell>
               <StyledTableCell>Role</StyledTableCell>
+              <StyledTableCell>Distributor</StyledTableCell>
               <StyledTableCell
                 align="center"
                 sx={{ borderRadius: '0 5px 5px 0' }}

@@ -8,6 +8,7 @@ export const api = createApi({
     baseUrl: BASE_URL,
   }),
   tagTypes: [
+    'user',
     'auth',
     'bill',
     'customer',
@@ -34,6 +35,11 @@ export const api = createApi({
     'income-expense-head',
     'mode-of-payment',
     'income-expense',
+    'distClient',
+    'distVendor',
+    'distInvoice',
+    'distVoucher',
+    'distExpense',
   ],
   endpoints: () => ({}),
 });

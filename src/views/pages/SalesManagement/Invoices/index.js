@@ -319,4 +319,5 @@ const Invoices = () => {
     </MainCard>
   );
 };
+
 export default Invoices;

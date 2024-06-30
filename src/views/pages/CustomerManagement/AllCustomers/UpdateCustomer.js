@@ -52,7 +52,8 @@ const UpdateCustomer = ({ open, handleClose, preData }) => {
       customerNameBn: data?.customerNameBn,
       mobile: data?.mobile,
       address: data?.address,
-      groupId: group?.id,
+      groupId: group?.id || null,
+      isDistributor: group?.label === 'DISTRIBUTOR' ? true : false,
     };
     try {
       setLoading(true);

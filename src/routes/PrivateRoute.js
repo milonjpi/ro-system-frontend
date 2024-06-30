@@ -14,16 +14,19 @@ const PrivateRoute = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const { isLoading } = useGetProfileQuery('', {
-    refetchOnMountOrArgChange: true,
-  });
+  const { isLoading } = useGetProfileQuery(
+    { isLogin },
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   useEffect(() => {
     setIsLogin(isLoggedIn());
     setLoading(false);
   }, [refresh]);
 
-  if (loading || isLoading) {
+  if (loading || (isLogin && isLoading)) {
     return <LoadingPage />;
   }
 

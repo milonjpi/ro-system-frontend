@@ -156,6 +156,48 @@ const PaymentAdvanceReport = Loadable(
   lazy(() => import('views/pages/Report/PaymentReport/PaymentAdvanceReport'))
 );
 
+// Distribution
+const DistClientList = Loadable(
+  lazy(() => import('views/pages/Distribution/DistClientList'))
+);
+
+const PurchasedProduct = Loadable(
+  lazy(() => import('views/pages/Distribution/PurchasedProduct'))
+);
+
+const DistSalesInvoice = Loadable(
+  lazy(() => import('views/pages/Distribution/DistSalesInvoice'))
+);
+
+const DistReceivePayment = Loadable(
+  lazy(() => import('views/pages/Distribution/DistReceivePayment'))
+);
+const DistExpenses = Loadable(
+  lazy(() => import('views/pages/Distribution/DistExpenses'))
+);
+const DistDueReport = Loadable(
+  lazy(() => import('views/pages/Distribution/DistDueReport'))
+);
+const DistReceivableDue = Loadable(
+  lazy(() => import('views/pages/Distribution/DistDueReport/DistReceivableDue'))
+);
+const DistPayableDue = Loadable(
+  lazy(() => import('views/pages/Distribution/DistDueReport/DistPayableDue'))
+);
+
+const DistAdvancedReport = Loadable(
+  lazy(() => import('views/pages/Distribution/DistAdvancedReport'))
+);
+const DistAdvReceived = Loadable(
+  lazy(() => import('views/pages/Distribution/DistAdvancedReport/DistAdvReceived'))
+);
+const DistAdvPaid = Loadable(
+  lazy(() => import('views/pages/Distribution/DistAdvancedReport/DistAdvPaid'))
+);
+const DistSummaryReport = Loadable(
+  lazy(() => import('views/pages/Distribution/DistSummaryReport'))
+);
+
 // utilities routing
 
 // setting routing
@@ -453,6 +495,127 @@ const MainRoutes = {
                       allowedCodes={['income-expense-summary']}
                     >
                       <InExSummary />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'distribution',
+              children: [
+                {
+                  path: 'd-client-list',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-client-list']}
+                      isDistributor={true}
+                    >
+                      <DistClientList />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'd-purchased-product',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-purchased-product']}
+                      isDistributor={true}
+                    >
+                      <PurchasedProduct />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'd-sales-invoice',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-sales-invoice']}
+                      isDistributor={true}
+                    >
+                      <DistSalesInvoice />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'd-receive-payment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-receive-payment']}
+                      isDistributor={true}
+                    >
+                      <DistReceivePayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'd-expense',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-expense']}
+                      isDistributor={true}
+                    >
+                      <DistExpenses />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'd-due-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-due-report']}
+                      isDistributor={true}
+                    >
+                      <DistDueReport />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <DistReceivableDue />,
+                    },
+                    {
+                      path: 'payable',
+                      element: <DistPayableDue />,
+                    },
+                  ],
+                },
+                {
+                  path: 'd-advance-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-advance-report']}
+                      isDistributor={true}
+                    >
+                      <DistAdvancedReport />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <DistAdvReceived />,
+                    },
+                    {
+                      path: 'paid',
+                      element: <DistAdvPaid />,
+                    },
+                  ],
+                },
+                {
+                  path: 'd-summary',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['d-summary']}
+                      isDistributor={true}
+                    >
+                      <DistSummaryReport />
                     </AuthenticationRoutes>
                   ),
                 },

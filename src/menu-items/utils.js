@@ -10,6 +10,7 @@ const utils = {
   id: 'utils',
   title: 'Utilities',
   type: 'group',
+  access: ['super_admin', 'admin', 'user'],
   children: [
     {
       id: 'setting',
@@ -17,12 +18,14 @@ const utils = {
       type: 'collapse',
       color: '#2F0F5D',
       icon: icons.IconSettings,
+      access: ['super_admin'],
       children: [
         {
           id: 'manage-user',
           title: 'Manage Users',
           type: 'item',
           url: '/utils/setting/manage-user',
+          access: ['super_admin'],
         },
       ],
     },
@@ -33,6 +36,7 @@ const utils = {
       url: '/utils/support',
       color: '#2F0F5D',
       icon: icons.IconHelp,
+      access: ['super_admin', 'admin', 'user'],
       // external: true,
       // target: true
     },

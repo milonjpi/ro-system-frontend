@@ -10,7 +10,12 @@ const UnAuthorized = Loadable(lazy(() => import('views/UnAuthorized')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
-const AuthenticationRoutes = ({ children, allowedRoles, allowedCodes }) => {
+const AuthenticationRoutes = ({
+  children,
+  allowedRoles,
+  allowedCodes,
+  isDistributor,
+}) => {
   const { data, isLoading } = useGetProfileQuery('', {
     refetchOnMountOrArgChange: true,
   });
@@ -19,6 +24,7 @@ const AuthenticationRoutes = ({ children, allowedRoles, allowedCodes }) => {
     return <LoadingPage />;
   }
   return allowedRoles.includes(userData?.role) ||
+      (isDistributor && userData?.distributor) ||
     userData?.menus?.find((code) => allowedCodes.includes(code.label)) ||
     userData?.subMenus?.find((code) => allowedCodes.includes(code.label)) ||
     userData?.sections?.find((code) => allowedCodes.includes(code.label)) ? (

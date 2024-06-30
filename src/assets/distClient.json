@@ -1,0 +1,1730 @@
+[
+  {
+    "id": "90f2edbc-0ba8-410d-99f4-e9c04af78ff5",
+    "customerId": "C-000030",
+    "customerName": "FAZOR",
+    "customerNameBn": "ফজর",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "0d8b3c65-bdef-4260-be5d-33c86455bca1",
+    "customerId": "C-000016",
+    "customerName": "ISRAFIL",
+    "customerNameBn": "ইসরাফিল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "94ba2ba9-6bb5-42ff-bc0d-ba0cab2ce6e7",
+    "customerId": "C-000173",
+    "customerName": "PANNA",
+    "customerNameBn": "পান্না",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "afa95de6-5396-4679-9f70-f508a1126cf9",
+    "customerId": "C-000008",
+    "customerName": "HASIB",
+    "customerNameBn": "হাসিব",
+    "mobile": "",
+    "address": "ARPARA",
+    "groupId": ""
+  },
+  {
+    "id": "e2c48afb-e246-4b1b-9c1f-72bd79d9890d",
+    "customerId": "C-000006",
+    "customerName": "HASEM",
+    "customerNameBn": "হাশেম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "f8b1a7b7-5062-4c54-8f3d-2f31e18576f0",
+    "customerId": "C-000007",
+    "customerName": "ROBI",
+    "customerNameBn": "রবি",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "38f1dee8-ba4b-405d-a23e-2dd3e1169d4f",
+    "customerId": "C-000010",
+    "customerName": "DELIP",
+    "customerNameBn": "দীলিপ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "23d5a1b7-81cb-4175-b3b5-e7234d857d5c",
+    "customerId": "C-000164",
+    "customerName": "HAMIM",
+    "customerNameBn": "হামিম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "cd29f3b3-1c7c-4d34-ae96-136a0d337891",
+    "customerId": "C-000009",
+    "customerName": "SAMMI (LABLU)",
+    "customerNameBn": "সামমী",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a0b5e00b-eaff-4de7-947a-22519f16a030",
+    "customerId": "C-000002",
+    "customerName": "GAFFER SHEIKH",
+    "customerNameBn": "গাফফার শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "854c1077-640e-4a96-953e-bcf53be9923c",
+    "customerId": "C-000013",
+    "customerName": "KALIDAS",
+    "customerNameBn": "কালিদাস",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "c1b65791-2d3e-4684-b2a4-a906252af308",
+    "customerId": "C-000014",
+    "customerName": "KOMOLAS",
+    "customerNameBn": "কমোলাস",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "44b50fd8-c755-4289-b7ad-347d989a6296",
+    "customerId": "C-000011",
+    "customerName": "JOGO",
+    "customerNameBn": "জগো",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "2137bf49-8fdd-4b4a-aef7-cd2e22337dca",
+    "customerId": "C-000001",
+    "customerName": "ASIK SHEIKH",
+    "customerNameBn": "আশিক শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "35493b46-751c-461a-be0a-70a3bae9b60f",
+    "customerId": "C-000003",
+    "customerName": "IBRAHIM SHEIKH",
+    "customerNameBn": "ইব্রাহিম শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "dad5bcbc-c732-4996-96b5-babda279574d",
+    "customerId": "C-000004",
+    "customerName": "RUBEL SORDER",
+    "customerNameBn": "রুবেল সর্দার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "1a11a53d-d658-4dad-894e-8cb750839011",
+    "customerId": "C-000012",
+    "customerName": "SHOHAG (SANTOLA)",
+    "customerNameBn": "সোহাগ সাঁনতোলা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "0b1b99d0-0a8b-44b6-a05c-8fc90db10ed7",
+    "customerId": "C-000015",
+    "customerName": "GIAS",
+    "customerNameBn": "গিয়াস",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "dcdad798-4c2e-49fd-b513-0a3a90550c25",
+    "customerId": "C-000017",
+    "customerName": "ARSHAD",
+    "customerNameBn": "এরশাদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "2ed6d3d0-9102-45c2-8112-577ffe19a0f2",
+    "customerId": "C-000018",
+    "customerName": "RAJU",
+    "customerNameBn": "রাজু",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "496fa016-f104-465e-8e23-b829ee6f96ed",
+    "customerId": "C-000019",
+    "customerName": "ALAMIN (SANTOLA)",
+    "customerNameBn": "আল আমিন সাঁনতোলা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "fe9898da-b803-4ad2-87ad-432f1d97b51d",
+    "customerId": "C-000021",
+    "customerName": "NAZIM",
+    "customerNameBn": "নাজিম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "6c05acde-62d5-4e90-b7e1-b621094f5494",
+    "customerId": "C-000022",
+    "customerName": "SOHID SORDER",
+    "customerNameBn": "সহিদ সরদার",
+    "mobile": "",
+    "address": "SORDER PARA RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "b243c4a5-e434-47fd-8d7f-4f173ab9538c",
+    "customerId": "C-000023",
+    "customerName": "ROSHID",
+    "customerNameBn": "রশিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "cbcca010-4820-4b61-908c-e8cd40b11125",
+    "customerId": "C-000020",
+    "customerName": "KADER",
+    "customerNameBn": "কাদের",
+    "mobile": "",
+    "address": "SORDER PARA RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "0e1c9e73-0cde-4d9c-9b8f-b47261247cec",
+    "customerId": "C-000024",
+    "customerName": "SAMIM",
+    "customerNameBn": "সামিম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "410e6e4f-80ac-4f1c-ab6c-adf76da87e46",
+    "customerId": "C-000025",
+    "customerName": "HAFIZ",
+    "customerNameBn": "হাফিজ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "811f5595-ea1d-405b-974e-a8e25624546c",
+    "customerId": "C-000026",
+    "customerName": "SERAJ",
+    "customerNameBn": "সিরাজ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "004c0ab9-7585-411b-aaa0-1dc94e2260b0",
+    "customerId": "C-000027",
+    "customerName": "AMANULLAH HAZUR",
+    "customerNameBn": "আমানুল্লাহ হুজুর",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "52f88982-3085-43ab-a019-f2497bcf41c5",
+    "customerId": "C-000028",
+    "customerName": "NURALAM",
+    "customerNameBn": "নুর আলম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "e14de29e-d8ba-4120-b562-4fadd3f838d4",
+    "customerId": "C-000029",
+    "customerName": "FOKRUL (BABU)",
+    "customerNameBn": "ফকরুল (বাবু)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "04d9516d-3243-4819-8240-46036b92f2a3",
+    "customerId": "C-000031",
+    "customerName": "SAZZAD",
+    "customerNameBn": "সাজ্জাদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "d8d64330-3909-4b24-b6fb-0cc7f54bbdb4",
+    "customerId": "C-000032",
+    "customerName": "OVIJIT",
+    "customerNameBn": "অভিজিৎ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "10bd6ad9-3cb9-425b-aaeb-b0ffb538a159",
+    "customerId": "C-000033",
+    "customerName": "SUKUR",
+    "customerNameBn": "সুকুর",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "c6644601-1086-4aa9-bd53-c2773a60ac63",
+    "customerId": "C-000034",
+    "customerName": "RUBEL SORIF",
+    "customerNameBn": "রুবেল শরীফ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "161e0128-6781-4e1c-8729-323ea5172725",
+    "customerId": "C-000035",
+    "customerName": "SAKIL",
+    "customerNameBn": "শাকিল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "5b405945-5da1-4a59-8373-4238982435b1",
+    "customerId": "C-000036",
+    "customerName": "APU",
+    "customerNameBn": "অপু",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "88c1969d-79e2-4723-bddf-9072369db95f",
+    "customerId": "C-000062",
+    "customerName": "SORIFUL (NATA)",
+    "customerNameBn": "শরিফুল নেতা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "975964c9-7a40-4a89-a025-1f5ead73852d",
+    "customerId": "C-000063",
+    "customerName": "WALID",
+    "customerNameBn": "ওয়ালিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "95fb3e20-a819-4a35-aef2-c44960143a8d",
+    "customerId": "C-000064",
+    "customerName": "RANA",
+    "customerNameBn": "রানা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "6b5ebe66-b3c0-433f-ba37-01401b396d62",
+    "customerId": "C-000005",
+    "customerName": "KHALEK GAZI",
+    "customerNameBn": "খালেক গাজী",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "1586f3fa-6387-4c99-9d68-9c7f89ccdc67",
+    "customerId": "C-000051",
+    "customerName": "CUTA",
+    "customerNameBn": "ছুটে",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "8950d4d6-6b31-43e5-9a06-6f5c008a8811",
+    "customerId": "C-000158",
+    "customerName": "MOSJID -1",
+    "customerNameBn": "রাজপাট পশ্চিমপাড়া বায়তুল মামুর জামে মসজিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "431da841-ef96-4c4a-b641-b874eb87b634",
+    "customerId": "C-000167",
+    "customerName": "MOSJID -5",
+    "customerNameBn": "সোনাখালী মধ্যপাড়া জামে মসজিদ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "0ffc1e0b-5c13-45ec-91b6-59d1cad42b7b",
+    "customerId": "C-000165",
+    "customerName": "TOHID",
+    "customerNameBn": "তৌহিদ",
+    "mobile": "",
+    "address": "RAJPAY",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "57cfa468-8654-46bb-bdf9-36de5ccf99cb",
+    "customerId": "C-000037",
+    "customerName": "HAMID",
+    "customerNameBn": "হামিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "99a85a04-f8d8-4378-a4c3-4c5464b650d5",
+    "customerId": "C-000038",
+    "customerName": "MAMUN",
+    "customerNameBn": "মামুন",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "c6f145ed-d035-41ce-b68e-f20b23e47f83",
+    "customerId": "C-000039",
+    "customerName": "SAGOR",
+    "customerNameBn": "সাগর",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "37e609bb-bdda-4e36-9bdc-e15031395f76",
+    "customerId": "C-000040",
+    "customerName": "ATIE SHEIKH",
+    "customerNameBn": "আতি শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "2eda78b3-a1fd-4745-826c-cfdc7baf93fd",
+    "customerId": "C-000041",
+    "customerName": "MARJAN",
+    "customerNameBn": "মারজান",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "445c5596-f60b-4298-aeff-c9888f051a43",
+    "customerId": "C-000043",
+    "customerName": "SAMIM DJ",
+    "customerNameBn": "শামিম ডিজে",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "83b57561-99f2-4f66-852c-c836810ba5dc",
+    "customerId": "C-000044",
+    "customerName": "GONAS",
+    "customerNameBn": "গনেশ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "77aeb11e-3adb-4ac1-9c91-3ad7a6d4fab8",
+    "customerId": "C-000046",
+    "customerName": "MONIR",
+    "customerNameBn": "মনির",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "0daf7184-b4a8-41b2-ad9f-4709626717a4",
+    "customerId": "C-000047",
+    "customerName": "ABDULLAH",
+    "customerNameBn": "আবদুল্লাহ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "8a68431a-38f2-499a-8f97-8a8823cc516c",
+    "customerId": "C-000045",
+    "customerName": "KIRSHNO",
+    "customerNameBn": "কৄষ্ণ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "5a83ad07-1307-4e69-a862-31cbe2fb6fa2",
+    "customerId": "C-000048",
+    "customerName": "ASRAFUL",
+    "customerNameBn": "আসরাফুল",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "d8455738-a010-4a62-8bdb-624eb8a0eca3",
+    "customerId": "C-000049",
+    "customerName": "SHOPON (SANTOLA)",
+    "customerNameBn": "সপন সাঁনতোলা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "9d3cd042-ada4-4e42-80d8-0a2c4df860cb",
+    "customerId": "C-000050",
+    "customerName": "NIZAM SORDAR",
+    "customerNameBn": "নিজাম সর্দার",
+    "mobile": "",
+    "address": "RAJPAT SORDAR PARA",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "cf36aad3-3a8c-4189-bff4-92b3923a92a1",
+    "customerId": "C-000052",
+    "customerName": "BADAL",
+    "customerNameBn": "বাদল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "23eb2790-191a-4974-9710-64b6a560b2de",
+    "customerId": "C-000053",
+    "customerName": "BIPLOB",
+    "customerNameBn": "বিপ্লব",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "ce786343-96e7-459a-84dc-f495538a3c39",
+    "customerId": "C-000054",
+    "customerName": "FIRDAUS",
+    "customerNameBn": "ফিরদাউস",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a35bbb11-a1c7-4193-8084-585132dc3076",
+    "customerId": "C-000055",
+    "customerName": "IQBAL",
+    "customerNameBn": "ইকবাল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "53bac9a6-8326-4c4a-bef6-b2c023670dd3",
+    "customerId": "C-000056",
+    "customerName": "LASSU",
+    "customerNameBn": "লাচ্চু",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "8c56f0c1-7265-4938-bfb4-869ccf8770a7",
+    "customerId": "C-000057",
+    "customerName": "GONAS TAKUR",
+    "customerNameBn": "গোনাস ঠাকুর",
+    "mobile": "",
+    "address": "SONAKHLI",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "90290c26-15ee-46bc-b857-f2db14f4097a",
+    "customerId": "C-000058",
+    "customerName": "SAHANA",
+    "customerNameBn": "শাহানা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "10f76b74-32bb-443c-9bc5-25505817d8a3",
+    "customerId": "C-000060",
+    "customerName": "SAID MOLLAH",
+    "customerNameBn": "সাইদ মোল্লা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "4314a61b-dc69-40e3-9853-9d9a1d215899",
+    "customerId": "C-000061",
+    "customerName": "RASHED\t SHAIKH",
+    "customerNameBn": "রাশেদ  শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "c053a014-9277-4164-8523-0b35db5e09f7",
+    "customerId": "C-000174",
+    "customerName": "FERDAUS SARIF",
+    "customerNameBn": "ফেরদৌস শরিফ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a648f6ba-b9b6-45b3-bf6b-337fbf139ae0",
+    "customerId": "C-000160",
+    "customerName": "HAFIZ  BDR",
+    "customerNameBn": "হাফিজ বিডিআর",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "b9170ea2-75ac-4158-b4f2-a4115fbd3372",
+    "customerId": "C-000166",
+    "customerName": "MUSTAK",
+    "customerNameBn": "মুশতাক",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "61e654c5-ef17-4be6-9926-0b22fdc0e808",
+    "customerId": "C-000080",
+    "customerName": "DABU",
+    "customerNameBn": "দেবু",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "08534d77-a59a-4bca-9027-d5f2ab1424bc",
+    "customerId": "C-000081",
+    "customerName": "NIKHAIL",
+    "customerNameBn": "নিখিল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "3a889493-d643-463f-916b-3e1e0584d8bf",
+    "customerId": "C-000082",
+    "customerName": "BOKKER VAN",
+    "customerNameBn": "বক্কর ( ভ্যান)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "78f264a4-a3a6-4f2d-bc30-9e0f702c3994",
+    "customerId": "C-000083",
+    "customerName": "IRANI",
+    "customerNameBn": "ইরানী",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "553cc102-6889-449e-b7f2-fea62f9cbc33",
+    "customerId": "C-000175",
+    "customerName": "JAWEL",
+    "customerNameBn": "জুয়েল",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "0d08590c-f5db-4c94-aaad-606f24dffae4",
+    "customerId": "C-000066",
+    "customerName": "SONJOY",
+    "customerNameBn": "সঞ্জয়",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "fe1c7e1c-ff5a-47dc-a14f-03ea5ede9fd5",
+    "customerId": "C-000067",
+    "customerName": "BOKKER",
+    "customerNameBn": "বক্কর",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "f6b6ac70-6ddc-4ce2-91a9-ee30fdfd031e",
+    "customerId": "C-000068",
+    "customerName": "ASIS",
+    "customerNameBn": "আশিস",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "3e250911-2d06-4e11-a3ab-6cb9d2e715d8",
+    "customerId": "C-000069",
+    "customerName": "SORIFUL (MEJU HAZI)",
+    "customerNameBn": "শরিফুল (মিজু হাজী )",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "85a9f966-a524-46e6-b5c9-b496e980dfc3",
+    "customerId": "C-000070",
+    "customerName": "SONJOY (SALON)",
+    "customerNameBn": "সঞ্জয় (সেলুন)",
+    "mobile": "",
+    "address": "SONKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "0db3ec05-f02b-4f26-9d75-d55ea4ed4913",
+    "customerId": "C-000071",
+    "customerName": "GOPAL",
+    "customerNameBn": "গোপাল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "d0cb5f6d-f404-4605-b07e-f10b38429c39",
+    "customerId": "C-000072",
+    "customerName": "TAPOS",
+    "customerNameBn": "তাপস",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "0ca7cd16-464d-4bbe-a74f-77bc50c2dac7",
+    "customerId": "C-000159",
+    "customerName": "MOSJID -2",
+    "customerNameBn": "রাজপাট সরদার পাড়া জামে মসজিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "8a46ab32-a3e3-4a44-a800-b678abab723d",
+    "customerId": "C-000169",
+    "customerName": "MOSJID -7",
+    "customerNameBn": "সোনাখালী পুর্ব পাড়া জামে মসজিদ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "3d2c5d3a-86f6-4c58-9f75-b8eb65dda3f8",
+    "customerId": "C-000176",
+    "customerName": "MOSJID -8 (1ST)",
+    "customerNameBn": "সোনাখালী পশ্চিমপাড়া জামে মসজিদ (১ম)",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "4667df97-424e-4e02-8bde-08e39a8ee929",
+    "customerId": "C-000065",
+    "customerName": "RUBEL HAZRA",
+    "customerNameBn": "রুবেল  হাজরা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "2c31f919-4706-44de-82a9-0f6ec0f45286",
+    "customerId": "C-000059",
+    "customerName": "SARUF",
+    "customerNameBn": "সরুফ",
+    "mobile": "",
+    "address": "SONAKHLI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "c571bea8-4436-42a1-b3bd-d3808db73dfd",
+    "customerId": "C-000073",
+    "customerName": "CITTO",
+    "customerNameBn": "চিত্ত",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "494c4372-7d33-409f-bd58-328a2a81d518",
+    "customerId": "C-000074",
+    "customerName": "ZIAD",
+    "customerNameBn": "জিয়াদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "85c541d3-26ad-4053-8d80-5b41f74ab633",
+    "customerId": "C-000075",
+    "customerName": "JAHAGIR",
+    "customerNameBn": "জাহাঙ্গীর",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "b1e610e6-6e03-4629-a328-4877c7bca72d",
+    "customerId": "C-000076",
+    "customerName": "TORIK",
+    "customerNameBn": "তারিক",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "d3b2b9ef-f401-4848-b658-3a018ab4f606",
+    "customerId": "C-000077",
+    "customerName": "RONY (NATA)",
+    "customerNameBn": "রনি নেতা",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "e35c71ea-a367-4e33-a3e3-c07375768d1d",
+    "customerId": "C-000078",
+    "customerName": "RUBEL (LEADER)",
+    "customerNameBn": "রুবেল (লিডার)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "6d713c36-6268-4ae9-8d7c-466ae2f96e2d",
+    "customerId": "C-000079",
+    "customerName": "LIAQUAT (BDR)",
+    "customerNameBn": "লিয়াকত (বিডিআর)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "d51aebb3-9da3-43bf-9a90-b24280b83c1a",
+    "customerId": "C-000161",
+    "customerName": "NAZMUL",
+    "customerNameBn": "নাজমুল",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a3b962d7-c2ea-47f3-9ff4-c929321a0777",
+    "customerId": "C-000084",
+    "customerName": "AZIZUL (RAJPAT)",
+    "customerNameBn": "আজিজুল (রাজপাট)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "b5aa3c6f-c025-4bc2-bf0f-d985b14221de",
+    "customerId": "C-000086",
+    "customerName": "ANIM",
+    "customerNameBn": "অনিম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "e7fbd72b-adbe-46b2-8706-cdbfdec31580",
+    "customerId": "C-000085",
+    "customerName": "GOLAM",
+    "customerNameBn": "গোলাম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "afa01dd0-9754-42ce-956d-1efaad661e4f",
+    "customerId": "C-000087",
+    "customerName": "SHAUKAT",
+    "customerNameBn": "শওকত",
+    "mobile": "",
+    "address": "RAJAPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "2e7e7ce3-03fd-46e6-b86e-b583ebc20f5e",
+    "customerId": "C-000088",
+    "customerName": "YAR ALI",
+    "customerNameBn": "ইয়ার আলী",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "2d501dff-bf25-48f7-bc72-b3b57bf69204",
+    "customerId": "C-000090",
+    "customerName": "DEBASIS",
+    "customerNameBn": "দেবাশিস",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "9e97094f-c50d-4b8d-a8e0-5c1228e88e26",
+    "customerId": "C-000089",
+    "customerName": "MASUM ENGINEER",
+    "customerNameBn": "মাসুম  ইঞ্জিনিয়ার",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "28d34f1a-f9ee-478d-8ec8-c652901aca86",
+    "customerId": "C-000091",
+    "customerName": "SUNNY",
+    "customerNameBn": "সানি",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "e5a6d878-2246-4032-8cb3-4ac22a969e9f",
+    "customerId": "C-000092",
+    "customerName": "ISRAFIL (IKRAM)",
+    "customerNameBn": "ইসরাফিল (ইকরাম)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a0314fdb-bbc9-4579-8c5e-0859f3117a8c",
+    "customerId": "C-000093",
+    "customerName": "SALAUDDIN",
+    "customerNameBn": "সালাউদ্দিন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "9107609c-0059-43b0-a579-8620e77125e1",
+    "customerId": "C-000094",
+    "customerName": "ROBI (TORIK)",
+    "customerNameBn": "রবি (তারিক)",
+    "mobile": "",
+    "address": "RAJAPT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "60871340-e64b-46a4-8244-ef1287eb6813",
+    "customerId": "C-000096",
+    "customerName": "AWAL",
+    "customerNameBn": "আউয়াল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "e8dca846-1455-4fb0-a51f-5a9eb56d09cf",
+    "customerId": "C-000100",
+    "customerName": "HARUN",
+    "customerNameBn": "হারুন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "9849f757-4d5c-4017-872a-dc5d8b4a0582",
+    "customerId": "C-000116",
+    "customerName": "ALAMGIR SIR",
+    "customerNameBn": "আলমগীর স্যার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "6a414892-e1bc-4e68-a281-08a488ce8623",
+    "customerId": "C-000121",
+    "customerName": "SHAMAL(KALIDAS)",
+    "customerNameBn": "শ্যামল (কালিদাস )",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "d4888de8-8986-4087-924a-f13b82294d63",
+    "customerId": "C-000126",
+    "customerName": "YASIN NOSIMON",
+    "customerNameBn": "ইয়াছিন নসিমন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "5c91b82a-2ee5-41e1-9239-1c420a303f81",
+    "customerId": "C-000140",
+    "customerName": "AZIT",
+    "customerNameBn": "অজিত",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "474037c1-efc3-4e27-9c3f-487a3e79a32b",
+    "customerId": "C-000148",
+    "customerName": "MAFUZ EMAM",
+    "customerNameBn": "মাহফুজ  ইমাম",
+    "mobile": "",
+    "address": "SONKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "688ead73-f1e4-4fed-a67a-038e79dcda16",
+    "customerId": "C-000177",
+    "customerName": "IBRAHIM",
+    "customerNameBn": "ইব্রাহিম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "4a31a85f-4121-4205-81cc-59914b346e34",
+    "customerId": "C-000042",
+    "customerName": "RUBEL SIKDER",
+    "customerNameBn": "রুবেল শিকদার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "32cd56b2-db10-4e25-a546-42d42c8f7ef4",
+    "customerId": "C-000162",
+    "customerName": "TURAN",
+    "customerNameBn": "তুরান",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "eecd3fba-1186-44ea-80d8-b0e0e03ae955",
+    "customerId": "C-000095",
+    "customerName": "ISLAM",
+    "customerNameBn": "ইসলাম",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "f1e16b3f-aeb3-4832-9acd-bba611c9bce4",
+    "customerId": "C-000097",
+    "customerName": "GOLAM RASUL",
+    "customerNameBn": "গোলাম রসুল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "995d2dfa-2bd7-4c3c-b192-44b62e0b25a4",
+    "customerId": "C-000098",
+    "customerName": "NEMAI",
+    "customerNameBn": "নিমাই",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "abd2a08c-bef4-4483-a0e9-89670cfb3576",
+    "customerId": "C-000099",
+    "customerName": "ALAMIN (SAID)",
+    "customerNameBn": "আলামিন(সাইদ)",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "1cc980bd-93a6-4b6e-8aff-052152c03bbc",
+    "customerId": "C-000101",
+    "customerName": "LUKMAN",
+    "customerNameBn": "লুকমান",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "4dc5be33-10b4-47a6-9682-c33a6820f4fa",
+    "customerId": "C-000102",
+    "customerName": "BISSO",
+    "customerNameBn": "বিশ্ব",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "98be0b62-e81e-4681-8541-3b5c76025675",
+    "customerId": "C-000103",
+    "customerName": "ROBI (SABUR)",
+    "customerNameBn": "রবি (সবুর )",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "ea084038-e71b-4d7f-a144-d0ed4bc9d1be",
+    "customerId": "C-000105",
+    "customerName": "HABIBUR",
+    "customerNameBn": "হাবিবুর",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "ba0f5c06-ffc2-4a06-9d10-2ae3fb690f31",
+    "customerId": "C-000106",
+    "customerName": "NETAI",
+    "customerNameBn": "নিতাই",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "6aee6536-a03e-4777-906a-596e8aee8bd5",
+    "customerId": "C-000107",
+    "customerName": "BABUL",
+    "customerNameBn": "বাবুল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "c7d93571-72b9-4a72-b534-1dbab6f16744",
+    "customerId": "C-000109",
+    "customerName": "ANIS",
+    "customerNameBn": "আনিস",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "36cf2487-c6c6-4d8f-ab8d-6e8f4c8218f0",
+    "customerId": "C-000110",
+    "customerName": "YASIN (NEW)",
+    "customerNameBn": "ইয়াসিন  (নতুন)",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "1973998e-bc59-44f7-a8cf-12dcef1b66a1",
+    "customerId": "C-000111",
+    "customerName": "ZINNAT",
+    "customerNameBn": "জিন্নাত",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "799fe29a-8128-41b5-a725-4c0c88abf24b",
+    "customerId": "C-000113",
+    "customerName": "PANNA SIKDER",
+    "customerNameBn": "পান্না শিকদার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "1a7b30a6-1272-4c9d-adc5-9c8f4a5b2f8f",
+    "customerId": "C-000114",
+    "customerName": "AKTHER",
+    "customerNameBn": "আক্তার",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "f0e3cf65-c20a-4477-ae49-ce4a180b53e4",
+    "customerId": "C-000115",
+    "customerName": "KAMRUL FAKIR",
+    "customerNameBn": "কামরুল ফকির ...",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "31266066-090e-443c-be01-100deb0015c6",
+    "customerId": "C-000117",
+    "customerName": "ASRAF SIKDER",
+    "customerNameBn": "আশরাফ শিকদার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "01b86d71-2377-4d2a-bb86-9c5d8758c885",
+    "customerId": "C-000118",
+    "customerName": "RASEL SIKDER",
+    "customerNameBn": "রাসেল শিকদার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "fb5e327a-c5ed-4038-8665-431b4903724b",
+    "customerId": "C-000119",
+    "customerName": "RANA (MIZU HAJI)",
+    "customerNameBn": "রানা  (মিজু হাজী )",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "750013eb-47db-45e7-846e-57a4c718fd82",
+    "customerId": "C-000120",
+    "customerName": "SUDA",
+    "customerNameBn": "সুদা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "1c30b21b-6322-44cd-8cec-3df2f5d55f8c",
+    "customerId": "C-000122",
+    "customerName": "ALTAF",
+    "customerNameBn": "আলতাফ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a0d68b1c-b5f8-4d5f-90c5-efea8add8f88",
+    "customerId": "C-000123",
+    "customerName": "MOHAMMAD",
+    "customerNameBn": "মোহাম্মদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "e9346d0f-bef3-459f-a0ae-1822c190a8c8",
+    "customerId": "C-000124",
+    "customerName": "KARAMOT",
+    "customerNameBn": "কেরামত",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "57976dc5-d12d-4602-9130-50530dec58cb",
+    "customerId": "C-000125",
+    "customerName": "ALAM",
+    "customerNameBn": "আলম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "376b09a9-6585-46f8-9bba-f8a22454bb74",
+    "customerId": "C-000127",
+    "customerName": "PARVEZ",
+    "customerNameBn": "পারভেজ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "638d8561-fec1-4593-b67e-71e94a1f8423",
+    "customerId": "C-000129",
+    "customerName": "SHAPON DOTTO",
+    "customerNameBn": "স্বপন  দত্ত",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "20809ae6-65ca-4b78-ac3e-cb08c051d77b",
+    "customerId": "C-000128",
+    "customerName": "MITHU",
+    "customerNameBn": "মিঠু",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "29822dee-9bdb-467a-9b17-96ecd0ecd1d6",
+    "customerId": "C-000130",
+    "customerName": "KAMAL",
+    "customerNameBn": "কামাল",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "d00a901e-c15c-4b9a-b963-0641e54616da",
+    "customerId": "C-000132",
+    "customerName": "AJOY",
+    "customerNameBn": "অজয়",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "6f4dc0b6-8dfd-46d2-918c-1283649b1025",
+    "customerId": "C-000133",
+    "customerName": "MINTU",
+    "customerNameBn": "মিন্টু",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "56810de6-feec-4c5f-a96f-c3132d27ade9",
+    "customerId": "C-000135",
+    "customerName": "MIZAN",
+    "customerNameBn": "মিজান",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "d34462fb-c706-4cde-b9d3-1cd31e3b11fb",
+    "customerId": "C-000134",
+    "customerName": "ALAMIN POCHA",
+    "customerNameBn": "আল-আমীন পচা",
+    "mobile": "",
+    "address": "SONKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "9a902391-a53e-4e24-805a-94377edd8acb",
+    "customerId": "C-000137",
+    "customerName": "HALAL",
+    "customerNameBn": "হেলাল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "53acc8a4-bddd-419b-a2f5-92ef97db44d4",
+    "customerId": "C-000138",
+    "customerName": "MELON",
+    "customerNameBn": "মিলন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "56fc35f3-00ae-4d1b-9407-332389e61bde",
+    "customerId": "C-000139",
+    "customerName": "KHOKA",
+    "customerNameBn": "খোকা",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "8fd3a429-414c-4569-9208-67ae9f2604bd",
+    "customerId": "C-000141",
+    "customerName": "AKRAM",
+    "customerNameBn": "আকরাম",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a23dd17e-1160-4bfd-83ea-ab5ef02d93de",
+    "customerId": "C-000142",
+    "customerName": "BAPPA",
+    "customerNameBn": "বাপ্পা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "2fa3cd6a-7dc4-4664-a733-6736c8970719",
+    "customerId": "C-000144",
+    "customerName": "MASUK",
+    "customerNameBn": "মাশুক",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "7c9afc04-eb32-427d-b2c9-75dac3717b85",
+    "customerId": "C-000145",
+    "customerName": "YASH",
+    "customerNameBn": "ইয়াস",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "8ddd7a2d-647f-4621-ac93-540f8c1a3f64",
+    "customerId": "C-000146",
+    "customerName": "JUMUR",
+    "customerNameBn": "ঝুমুর",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "7fa3d4ff-826a-44a7-bdaa-93119699a9a1",
+    "customerId": "C-000147",
+    "customerName": "SUMON",
+    "customerNameBn": "সুমন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "1175df02-7360-47e1-b50b-b795e99cd27b",
+    "customerId": "C-000163",
+    "customerName": "FARUK",
+    "customerNameBn": "ফারুক",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "c473e45b-0e9c-4908-9816-1c4fdf10046d",
+    "customerId": "C-000156",
+    "customerName": "ALOK",
+    "customerNameBn": "অলোক",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a50a16c1-2e0a-4bb9-af3f-a3524679e938",
+    "customerId": "C-000151",
+    "customerName": "SALIM FAKIR",
+    "customerNameBn": "সালিম ফকির",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "31f55031-e69e-4651-abc5-9f3c8b11977d",
+    "customerId": "C-000152",
+    "customerName": "SAIDUL",
+    "customerNameBn": "সাইদুল",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "2a09fba3-dcc8-413b-a4ef-28a7df5d2890",
+    "customerId": "C-000153",
+    "customerName": "FARAD",
+    "customerNameBn": "ফরাদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "5bd8f9df-3687-49c5-aa5d-2b41f0dde578",
+    "customerId": "C-000154",
+    "customerName": "SOHEL DOKAN",
+    "customerNameBn": "সোহেল দোকন",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "69ab1856-63f5-42cb-9225-d618fab16bb0",
+    "customerId": "C-000155",
+    "customerName": "MERAJUL SARIF",
+    "customerNameBn": "মিরাজুল শরীফ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "d298263a-ea6f-4f55-a96c-2942cbabbfea",
+    "customerId": "C-000104",
+    "customerName": "ARIF SONAKAHLI",
+    "customerNameBn": "আরিফ",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "e7578858-7be7-4d3b-b61b-4219b08a7c98",
+    "customerId": "C-000108",
+    "customerName": "SAFI",
+    "customerNameBn": "সাফি",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "a3a0e25b-eb5c-457e-ac5c-4d349d58aaea",
+    "customerId": "C-000112",
+    "customerName": "HASAN",
+    "customerNameBn": "হাসান",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "a7149676-c93a-4e1c-97c0-ae6af6b4a042",
+    "customerId": "C-000131",
+    "customerName": "ARIF RAJPAT",
+    "customerNameBn": "আরিফ  রাজপাট",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "03a766ae-53e9-416c-bd13-2ac199572e69",
+    "customerId": "C-000136",
+    "customerName": "AMIR",
+    "customerNameBn": "আমির",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "608a892e-839d-4727-b4c0-79a083888282",
+    "customerId": "C-000143",
+    "customerName": "JALAL MEMBER",
+    "customerNameBn": "জালাল  মেম্বার",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "c5acf52b-bb1f-4086-a978-4733f28f2e6e",
+    "customerId": "C-000149",
+    "customerName": "YAMIN",
+    "customerNameBn": "ইয়ামিন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "9b873dfb-ab12-4cb1-8b17-6f7c16356fcc",
+    "customerId": "C-000150",
+    "customerName": "MILON CHON",
+    "customerNameBn": "মিলন  চুন",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "9dbdb44a-adc4-4e63-9988-7429f0208f4b",
+    "customerId": "C-000172",
+    "customerName": "MOSJID -4",
+    "customerNameBn": "রাজপাট মধ্য পাড়া পুরাতন  জামে মসজিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "3ed309e1-78cf-40b6-9a58-ef32de2a1f5b",
+    "customerId": "C-000179",
+    "customerName": "SAJIB",
+    "customerNameBn": "সজীব",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "c74e7c41-445b-404b-8f81-8a089b1e4c03",
+    "customerId": "C-000180",
+    "customerName": "MELON DOKAN",
+    "customerNameBn": "মিলন দোকন",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "6931dc70-c836-481d-adb0-c741738e04a5",
+    "customerId": "C-000181",
+    "customerName": "ANWAR DOFADAR",
+    "customerNameBn": "আনোয়ার দফাদার",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "aa65c069-880e-43e9-a4aa-3383b0b873b3",
+    "customerId": "C-000182",
+    "customerName": "SHOHAG (MOJID)",
+    "customerNameBn": "সোহাগ (মজিদ)",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "a8e2b02f-2dd3-42e1-a8f9-2049ff1ef864",
+    "customerId": "C-000183",
+    "customerName": "MAIDUL SHAIKH",
+    "customerNameBn": "মইদুল শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "d9fe618d-5f13-495a-9683-81f144d7a7dd",
+    "customerId": "C-000184",
+    "customerName": "MEHEDI ASIK",
+    "customerNameBn": "মেহেদি আশিক",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "b67c29e4-bc47-4c5f-8c0d-9baa5ecc4f7d",
+    "customerId": "C-000185",
+    "customerName": "HABI FAKIR",
+    "customerNameBn": "হাবি ফকির",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "ec4297e7-6d1f-45d8-ad50-9d71641e4c2f",
+    "customerId": "C-000189",
+    "customerName": "MEJU HAZI",
+    "customerNameBn": "মিজু হাজি",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "5c9dab3c-f58b-4f4e-93c1-aaeba6f92dd3",
+    "customerId": "C-000188",
+    "customerName": "ABBAS",
+    "customerNameBn": "আব্বাস",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "b240806e-0891-44b7-89b7-28e248ccc47a",
+    "customerId": "C-000187",
+    "customerName": "RAJIB",
+    "customerNameBn": "রাজীব",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "f267075a-384c-4fc7-82f0-bf3c509ad3b0",
+    "customerId": "C-000186",
+    "customerName": "MAHIDUL SHAIKH",
+    "customerNameBn": "মাইদুল শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "70f9157a-f306-4651-a273-da4ac20c36e5",
+    "customerId": "C-000178",
+    "customerName": "SHOHAG SIKDER",
+    "customerNameBn": "সোহাগ শেখ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": ""
+  },
+  {
+    "id": "28e17263-e471-4a72-aa7a-e215ddddc0d3",
+    "customerId": "C-000168",
+    "customerName": "DOLANA",
+    "customerNameBn": "দোলেনা",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "8d3c32af-d2ee-4e5a-a192-110125b79bbf",
+    "customerId": "C-000171",
+    "customerName": "MOSJID -3",
+    "customerNameBn": "রাজপাট রাজপাট দক্ষিণ পাড়া জামে মসজিদ জামে মসজিদ",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "a0a6e533-ec08-4756-964c-a495b247c183",
+    "customerId": "C-000170",
+    "customerName": "MOSJID -6",
+    "customerNameBn": "সোনাখালী ওবদা জামে মসজিদ",
+    "mobile": "",
+    "address": "SONKALI",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "733ceda0-9ad1-4512-85aa-cc05538e3364",
+    "customerId": "C-000157",
+    "customerName": "MADRASA",
+    "customerNameBn": "সোনাখালী ইসলামিয়া কাওমি ও ক্যাডেট মাদ্রাসা",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "dbb540f2-e4d2-4e45-9605-53c5cf16ed2f"
+  },
+  {
+    "id": "67a454fe-9c76-4c81-9c1e-fe4590cc8c63",
+    "customerId": "C-000190",
+    "customerName": "NASIM SONAKHALI",
+    "customerNameBn": "নাসিম সোনাখালী",
+    "mobile": "",
+    "address": "SONAKHALI",
+    "groupId": "096ff932-9d1d-4f26-aca9-71ad65a95329"
+  },
+  {
+    "id": "33c8dc22-b40b-42b1-9abe-dc0eee6ba2e3",
+    "customerId": "C-000191",
+    "customerName": "YAKUB",
+    "customerNameBn": "ইয়াকুব",
+    "mobile": "",
+    "address": "RAJPAT",
+    "groupId": "0835563a-a2d3-403d-b190-bc7982852d03"
+  },
+  {
+    "id": "2ef73061-1e0e-4be3-b6cc-fb437427d6ce",
+    "customerId": "C-000192",
+    "customerName": "LIZA ENTERPRISE",
+    "customerNameBn": "লিজা এন্টারপ্রাইজ",
+    "mobile": "",
+    "address": "Rajpat",
+    "groupId": "c40dda9f-ca5b-4890-9492-589a56646609"
+  }
+]

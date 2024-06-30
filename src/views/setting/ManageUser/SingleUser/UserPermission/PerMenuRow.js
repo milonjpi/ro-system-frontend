@@ -42,7 +42,9 @@ const PerMenuRow = ({
 }) => {
   const { title, children } = data;
 
-  const allSubMenu = children?.filter((el) => el.id !== 'setting') || [];
+  const allSubMenu =
+    children?.filter((el) => !['setting', 'distribution'].includes(el.id)) ||
+    [];
 
   const dispatch = useDispatch();
 

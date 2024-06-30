@@ -53,7 +53,9 @@ const AddCustomer = ({ open, handleClose }) => {
       mobile: data?.mobile,
       address: data?.address,
       groupId: group?.id,
+      isDistributor: group?.label === 'DISTRIBUTOR' ? true : false,
     };
+
     try {
       setLoading(true);
       const res = await createCustomer({ ...newData }).unwrap();

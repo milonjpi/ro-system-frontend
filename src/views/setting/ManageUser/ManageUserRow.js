@@ -65,8 +65,14 @@ const ManageUserRow = ({ sn, data }) => {
       </StyledTableCell>
       <StyledTableCell>{data?.userName}</StyledTableCell>
       <StyledTableCell>{roleValue[data?.role] || ''}</StyledTableCell>
+      <StyledTableCell>
+        {data?.distributor
+          ? data?.distributor?.customerName + ', ' + data?.distributor?.address
+          : 'n/a'}
+      </StyledTableCell>
       <StyledTableCell align="center">
         <Button
+          disabled={data?.distributor ? true : false}
           color="primary"
           variant="contained"
           size="small"
@@ -77,6 +83,7 @@ const ManageUserRow = ({ sn, data }) => {
         </Button>
 
         <Button
+          disabled={data?.distributor ? true : false}
           color="error"
           variant="contained"
           size="small"

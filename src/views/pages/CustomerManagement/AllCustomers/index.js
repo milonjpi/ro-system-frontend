@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
@@ -26,11 +27,23 @@ import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { utils, writeFile } from 'xlsx';
 import PrintCustomer from './PrintCustomer';
+import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
 
 const AllCustomers = () => {
   const [searchText, setSearchText] = useState('');
+  const [group, setGroup] = useState(null);
 
   const [open, setOpen] = useState(false);
+
+  // library
+  const { data: groupData, isLoading: groupLoading } =
+    useGetCustomerGroupsQuery(
+      { limit: 100, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allCustomerGroups = groupData?.customerGroups || [];
+  // end library
 
   // pagination
   const [page, setPage] = useState(0);
@@ -54,6 +67,10 @@ const AllCustomers = () => {
   query['sortBy'] = 'customerId';
   query['sortOrder'] = 'asc';
   query['isActive'] = true;
+
+  if (group) {
+    query['groupId'] = group.id;
+  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -110,7 +127,7 @@ const AllCustomers = () => {
   return (
     <MainCard
       title={
-        <Typography>
+        <span>
           <span
             style={{
               display: 'inline-block',
@@ -134,7 +151,7 @@ const AllCustomers = () => {
               </IconButton>
             </Tooltip>
           </ButtonGroup>
-        </Typography>
+        </span>
       }
       secondary={
         <CardAction
@@ -146,7 +163,7 @@ const AllCustomers = () => {
     >
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={4}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -158,6 +175,21 @@ const AllCustomers = () => {
                   <SearchIcon />
                 </InputAdornment>
               }
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Autocomplete
+              value={group}
+              loading={groupLoading}
+              size="small"
+              fullWidth
+              options={allCustomerGroups}
+              getOptionLabel={(option) => option.label}
+              onChange={(e, newValue) => setGroup(newValue)}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Group" />
+              )}
             />
           </Grid>
         </Grid>
