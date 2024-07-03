@@ -14,7 +14,7 @@ import ShowStatus from 'ui-component/ShowStatus';
 import UpdateSalesInvoice from './UpdateSalesInvoice';
 import InvoiceView from './InvoiceView';
 
-const SalesInvoiceRow = ({ sn, data }) => {
+const SalesInvoiceRow = ({ sn, data, allDetailCustomers }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
   const [view, setView] = useState(false);
@@ -121,6 +121,7 @@ const SalesInvoiceRow = ({ sn, data }) => {
           open={open}
           preData={data}
           handleClose={() => setOpen(false)}
+          allDetailCustomers={allDetailCustomers}
         />
         {/* end popup items */}
       </StyledTableCell>

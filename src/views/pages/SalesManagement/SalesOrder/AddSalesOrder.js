@@ -27,6 +27,7 @@ import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import { useCreateSalesOrderMutation } from 'store/api/salesOrder/salesOrderApi';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
 
 const style = {
   position: 'absolute',
@@ -42,6 +43,7 @@ const style = {
 
 const AddSalesOrder = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
+  const [group, setGroup] = useState(null);
   const [customer, setCustomer] = useState(null);
   const [orderDate, setOrderDate] = useState(moment());
   const [deliveryDate, setDeliveryDate] = useState(moment());
@@ -49,8 +51,25 @@ const AddSalesOrder = ({ open, handleClose }) => {
   const [openProduct, setOpenProduct] = useState(false);
 
   // library
+  const { data: groupData, isLoading: groupLoading } =
+    useGetCustomerGroupsQuery(
+      { limit: 100, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allCustomerGroups = groupData?.customerGroups || [];
+
+  const customerQuery = {};
+  customerQuery['limit'] = 1000;
+  customerQuery['sortBy'] = 'customerName';
+  customerQuery['sortOrder'] = 'asc';
+
+  if (group) {
+    customerQuery['groupId'] = group.id;
+  }
+
   const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+    { ...customerQuery },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -166,7 +185,25 @@ const AddSalesOrder = ({ open, handleClose }) => {
         {/* end popup items */}
         <Box component="form" autoComplete="off" onSubmit={onSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={4}>
+              <Autocomplete
+                value={group}
+                loading={groupLoading}
+                size="small"
+                fullWidth
+                options={allCustomerGroups}
+                getOptionLabel={(option) => option.label}
+                onChange={(e, newValue) => {
+                  setGroup(newValue);
+                  setCustomer(null);
+                }}
+                isOptionEqualToValue={(item, value) => item.id === value.id}
+                renderInput={(params) => (
+                  <TextField {...params} label="Select Group" />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} md={8}>
               <Autocomplete
                 value={customer}
                 size="small"

@@ -25,6 +25,7 @@ import AddSalesProduct from './AddSalesProduct';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useUpdateSalesOrderMutation } from 'store/api/salesOrder/salesOrderApi';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 
 const style = {
   position: 'absolute',
@@ -49,7 +50,12 @@ const UpdateSalesOrder = ({ open, handleClose, preData }) => {
   const [openProduct, setOpenProduct] = useState(false);
 
   // library
+  const { data: customerData } = useGetCustomersQuery(
+    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
 
+  const allCustomers = customerData?.customers || [];
   // end library
   // table
   const tableHeads = [
@@ -162,10 +168,11 @@ const UpdateSalesOrder = ({ open, handleClose, preData }) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Autocomplete
+                disabled
                 value={customer}
                 size="small"
                 fullWidth
-                options={[]}
+                options={allCustomers}
                 getOptionLabel={(option) => option.customerName}
                 onChange={(e, newValue) => setCustomer(newValue)}
                 isOptionEqualToValue={(item, value) => item.id === value.id}

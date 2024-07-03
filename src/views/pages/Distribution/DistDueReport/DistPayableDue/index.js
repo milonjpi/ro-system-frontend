@@ -99,9 +99,7 @@ const DistPayableDue = () => {
 
   const allDueReports = getAllReports
     ?.filter(
-      (el) =>
-        (distributor ? el.id === distributor.id : true) &&
-        (el.dueDifferent > 0 ? true : false)
+      (el) => el.id === distributor?.id && (el.dueDifferent > 0 ? true : false)
     )
     .sort((a, b) => b.dueDifferent - a.dueDifferent);
 

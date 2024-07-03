@@ -6,6 +6,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import InputBase from '@mui/material/InputBase';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import InputAdornment from '@mui/material/InputAdornment';
 import LinearProgress from '@mui/material/LinearProgress';
 import SearchIcon from '@mui/icons-material/Search';
@@ -20,6 +22,7 @@ import AddProduct from './AddProduct';
 
 const Products = () => {
   const [searchText, setSearchText] = useState('');
+  const [isDist, setIsDist] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -43,6 +46,10 @@ const Products = () => {
   query['limit'] = rowsPerPage;
   query['page'] = page;
   query['isActive'] = true;
+
+  if (isDist) {
+    query['isDist'] = true;
+  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -76,7 +83,7 @@ const Products = () => {
     >
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={4}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -88,6 +95,17 @@ const Products = () => {
                   <SearchIcon />
                 </InputAdornment>
               }
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={isDist}
+                  onChange={(e) => setIsDist(e.target.checked)}
+                />
+              }
+              label="Distributor"
             />
           </Grid>
         </Grid>
@@ -105,6 +123,7 @@ const Products = () => {
               <StyledTableCell>Description</StyledTableCell>
               <StyledTableCell>Unit of Measurement</StyledTableCell>
               <StyledTableCell>Price</StyledTableCell>
+              <StyledTableCell align="center">Distributor</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>

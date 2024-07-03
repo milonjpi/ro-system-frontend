@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
@@ -25,7 +27,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 350, sm: 500 },
+  width: { xs: 350, sm: 500, md: 600 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -34,6 +36,7 @@ const style = {
 
 const AddProduct = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
+  const [isDist, setIsDist] = useState(false);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -56,6 +59,7 @@ const AddProduct = ({ open, handleClose }) => {
       description: data?.description,
       uom: data?.uom,
       price: data?.price,
+      isDist: isDist,
     };
     try {
       setLoading(true);
@@ -97,28 +101,36 @@ const AddProduct = ({ open, handleClose }) => {
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
             Add Product
           </Typography>
-          <IconButton
-            color="error"
-            sx={{ width: 25, height: 25 }}
-            onClick={handleClose}
-          >
-            <CloseIcon sx={{ fontSize: 18 }} />
+          <IconButton color="error" size="small" onClick={handleClose}>
+            <CloseIcon fontSize="small" />
           </IconButton>
         </Box>
-        <Divider sx={{ mb: 2 }} />
+        <Divider sx={{ mb: 2, mt: 1 }} />
         <Box
           component="form"
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 required
                 label="Product Name"
                 size="small"
+                sx={{ mr: 2 }}
                 {...register('label', { required: true })}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isDist}
+                    onChange={(e) => setIsDist(e.target.checked)}
+                  />
+                }
+                label="Distributor"
               />
             </Grid>
             <Grid item xs={12}>
@@ -135,6 +147,7 @@ const AddProduct = ({ open, handleClose }) => {
                 <Select
                   labelId="uom-select-id"
                   label="Unit of Measurement"
+                  defaultValue=""
                   {...register('uom', { required: true })}
                 >
                   <MenuItem value="">

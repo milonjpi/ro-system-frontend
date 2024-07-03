@@ -17,7 +17,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { allInvoiceStatus } from 'assets/data';
 import { IconPlus } from '@tabler/icons-react';
 import CardAction from 'ui-component/cards/CardAction';
-import { useGetCustomersQuery } from 'store/api/customer/customerApi';
+import {
+  useCustomerDetailsQuery,
+  useGetCustomersQuery,
+} from 'store/api/customer/customerApi';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
 import { useDebounced } from 'hooks';
@@ -42,6 +45,12 @@ const Invoices = () => {
   );
 
   const allCustomers = customerData?.customers || [];
+
+  const { data: customerDetailsData } = useCustomerDetailsQuery('', {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const allDetailCustomers = customerDetailsData?.customers || [];
   // end library
 
   // table
@@ -306,7 +315,14 @@ const Invoices = () => {
           ) : null
         }
         data={allInvoices}
-        options={(el) => <SalesInvoiceRow key={el.id} sn={sn++} data={el} />}
+        options={(el) => (
+          <SalesInvoiceRow
+            key={el.id}
+            sn={sn++}
+            data={el}
+            allDetailCustomers={allDetailCustomers}
+          />
+        )}
         loading={isLoading}
         pagination={true}
         page={page}

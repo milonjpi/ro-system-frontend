@@ -12,15 +12,34 @@ import DataTable from 'ui-component/table';
 import moment from 'moment';
 import { useGetCustomInvoicesQuery } from 'store/api/customInvoice/customInvoiceApi';
 import CustomInvoiceRow from './CustomInvoiceRow';
+import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
 
 const CustomInvoices = () => {
+  const [group, setGroup] = useState(null);
   const [customer, setCustomer] = useState(null);
   const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
   const [endDate, setEndDate] = useState(moment());
 
   // library
+  const { data: groupData, isLoading: groupLoading } =
+    useGetCustomerGroupsQuery(
+      { limit: 100, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allCustomerGroups = groupData?.customerGroups || [];
+
+  const customerQuery = {};
+  customerQuery['limit'] = 1000;
+  customerQuery['sortBy'] = 'customerName';
+  customerQuery['sortOrder'] = 'asc';
+
+  if (group) {
+    customerQuery['groupId'] = group.id;
+  }
+
   const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+    { ...customerQuery },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -86,15 +105,21 @@ const CustomInvoices = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
+  query['sortBy'] = 'customerId';
+  query['sortOrder'] = 'asc';
+
+  if (group) {
+    query['groupId'] = group?.id;
+  }
+  if (customer) {
+    query['customerId'] = customer?.id;
+  }
 
   if (startDate) {
     query['startDate'] = moment(startDate).format('YYYY-MM-DD');
   }
   if (endDate) {
     query['endDate'] = moment(endDate).format('YYYY-MM-DD');
-  }
-  if (customer) {
-    query['customerId'] = customer?.id;
   }
 
   const { data, isLoading } = useGetCustomInvoicesQuery(
@@ -111,6 +136,24 @@ const CustomInvoices = () => {
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
+          <Grid item xs={12} md={3.5}>
+            <Autocomplete
+              value={group}
+              loading={groupLoading}
+              size="small"
+              fullWidth
+              options={allCustomerGroups}
+              getOptionLabel={(option) => option.label}
+              onChange={(e, newValue) => {
+                setGroup(newValue);
+                setCustomer(null);
+              }}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Group" />
+              )}
+            />
+          </Grid>
           <Grid item xs={12} lg={3.5}>
             <Autocomplete
               value={customer}

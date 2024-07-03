@@ -10,7 +10,6 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import CircularProgress from '@mui/material/CircularProgress';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -28,10 +27,7 @@ import {
 } from '@tabler/icons-react';
 import { InputBase } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
-import { useCustomerDetailsQuery } from 'store/api/customer/customerApi';
-import { useGetSalesOrdersQuery } from 'store/api/salesOrder/salesOrderApi';
 import { useUpdateInvoiceMutation } from 'store/api/invoice/invoiceApi';
-import moment from 'moment';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
 const style = {
@@ -51,23 +47,24 @@ const productValue = {
   quantity: 1,
 };
 
-const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
-  const { data: customerData } = useCustomerDetailsQuery('', {
-    refetchOnMountOrArgChange: true,
-  });
-
-  const allCustomers = customerData?.customers || [];
-  const findCustomer = allCustomers.find((el) => el.id === preData?.customerId);
+const UpdateSalesInvoice = ({
+  open,
+  handleClose,
+  preData,
+  allDetailCustomers,
+}) => {
+  const findCustomer = allDetailCustomers.find(
+    (el) => el.id === preData?.customerId
+  );
 
   const [loading, setLoading] = useState(false);
   const [customer, setCustomer] = useState(findCustomer || null);
-  const [order, setOrder] = useState(preData?.refNo);
   const [invoiceDate, setInvoiceDate] = useState(preData?.date);
 
   const [discount, setDiscount] = useState(preData?.discount);
 
   // hook form
-  const { register, handleSubmit, control, reset } = useForm({
+  const { register, handleSubmit, control } = useForm({
     defaultValues: {
       products: preData?.invoicedProducts || [productValue],
     },
@@ -82,13 +79,6 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
   };
   const handleRemove = (index) => remove(index);
   // end hook form
-
-  // handle order
-  const handleOrder = (value) => {
-    setOrder(value);
-    value && reset({ products: value.orderedProducts });
-  };
-  // end handle order
 
   // calculation
   const totalPayment = customer?.invoices?.voucherAmount || 0;
@@ -107,14 +97,6 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
     presentBalance > totalValue ? totalValue : presentBalance;
   // end calculation
 
-  // library
-  const { data: orderData, isLoading: orderLoading } = useGetSalesOrdersQuery(
-    { limit: 10, sortBy: 'orderNo', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allCustomerOrders = orderData?.salesOrders || [];
-  // end library
   // table
   const tableHeads = [
     {
@@ -150,7 +132,6 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
         discount: parseInt(discount || 0),
         amount: totalValue,
         paidAmount: givenFromBalance,
-        orderId: order?.id,
         status:
           givenFromBalance === totalValue
             ? 'Paid'
@@ -222,13 +203,13 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <Autocomplete
                 value={customer}
                 disabled
                 size="small"
                 fullWidth
-                options={allCustomers}
+                options={allDetailCustomers}
                 getOptionLabel={(option) => option.customerName}
                 onChange={(e, newValue) => setCustomer(newValue)}
                 isOptionEqualToValue={(item, value) => item.id === value.id}
@@ -237,17 +218,8 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
                 )}
               />
             </Grid>
-            <Grid item xs={4} sx={{ alignSelf: 'center' }}>
-              {customer ? (
-                <Typography sx={{ fontSize: 11 }}>
-                  Balance:{' '}
-                  <span style={{ color: 'red' }}>
-                    {presentBalance > 0 ? presentBalance : 0}
-                  </span>
-                </Typography>
-              ) : null}
-            </Grid>
-            <Grid item xs={12} md={6}>
+
+            <Grid item xs={8} md={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DatePicker
                   label="Invoice Date"
@@ -269,31 +241,16 @@ const UpdateSalesInvoice = ({ open, handleClose, preData }) => {
                 />
               </LocalizationProvider>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={4} sx={{ alignSelf: 'center' }}>
               {customer ? (
-                orderLoading ? (
-                  <CircularProgress size={35} thickness={6} />
-                ) : (
-                  <Autocomplete
-                    value={order}
-                    size="small"
-                    fullWidth
-                    options={allCustomerOrders}
-                    getOptionLabel={(option) =>
-                      option.orderNo +
-                      ' - ' +
-                      moment(option.date).format('DD/MM/YYYY')
-                    }
-                    onChange={(e, newValue) => handleOrder(newValue)}
-                    isOptionEqualToValue={(item, value) => item.id === value.id}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Select Order" />
-                    )}
-                  />
-                )
+                <Typography sx={{ fontSize: 11 }}>
+                  Balance:{' '}
+                  <span style={{ color: 'red' }}>
+                    {presentBalance > 0 ? presentBalance : 0}
+                  </span>
+                </Typography>
               ) : null}
             </Grid>
-
             <Grid item xs={12}>
               <Box sx={{ overflow: 'auto' }}>
                 <Table sx={{ minWidth: 500 }}>

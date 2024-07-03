@@ -67,7 +67,7 @@ const ProductSelect = ({ control, index, field }) => {
   const [product, setProduct] = useState(field?.product || null);
   // library
   const { data: productData } = useGetProductsQuery(
-    { limit: 100 },
+    { limit: 100, isDist: true },
     { refetchOnMountOrArgChange: true }
   );
 

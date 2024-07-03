@@ -100,8 +100,7 @@ const DistAdvPaid = () => {
   const allDueReports = getAllReports
     ?.filter(
       (el) =>
-        (distributor ? el.id === distributor.id : true) &&
-        (el.differentAmount > 0 ? true : false)
+        el.id === distributor?.id && (el.differentAmount > 0 ? true : false)
     )
     .sort((a, b) => b.differentAmount - a.differentAmount);
 
@@ -111,7 +110,7 @@ const DistAdvPaid = () => {
   const totalDue = totalSum(allDueReports, 'differentAmount');
 
   return (
-    <MainCard title="Payable">
+    <MainCard title="Advanced Paid">
       {/* filter area */}
       <Box
         sx={{ mb: 2 }}

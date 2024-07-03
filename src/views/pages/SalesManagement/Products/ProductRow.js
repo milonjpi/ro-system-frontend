@@ -16,6 +16,13 @@ const ProductRow = ({ sn, data }) => {
       <StyledTableCell>{data?.uom}</StyledTableCell>
       <StyledTableCell>{data?.price}</StyledTableCell>
       <StyledTableCell align="center">
+        {data?.isDist ? (
+          <span style={{ color: 'green' }}>Yes</span>
+        ) : (
+          <span style={{ color: 'red' }}>No</span>
+        )}
+      </StyledTableCell>
+      <StyledTableCell align="center">
         <IconButton color="primary" size="small" onClick={() => setOpen(true)}>
           <IconEdit color="#468B97" size={18} />
         </IconButton>
