@@ -40,6 +40,9 @@ export const api = createApi({
     'distInvoice',
     'distVoucher',
     'distExpense',
+    'fosClient',
+    'fosProduct',
+    'fosInvoice',
   ],
   endpoints: () => ({}),
 });

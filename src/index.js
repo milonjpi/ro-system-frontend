@@ -13,7 +13,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 // style + assets
 import 'assets/scss/style.scss';
-import config from './config';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 
