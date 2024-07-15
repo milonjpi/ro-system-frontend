@@ -1,7 +1,7 @@
 import TableRow from '@mui/material/TableRow';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 
-const DonationReportRow = ({ sn, data }) => {
+const FocSummaryRow = ({ sn, data }) => {
   return (
     <TableRow>
       <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
@@ -13,10 +13,10 @@ const DonationReportRow = ({ sn, data }) => {
         {data?.customerNameBn}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.mobile ? data?.mobile : 'n/a'}
+        {data?.mobile || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.address ? data?.address : 'n/a'}
+        {data?.address || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.quantity}
@@ -25,4 +25,4 @@ const DonationReportRow = ({ sn, data }) => {
   );
 };
 
-export default DonationReportRow;
+export default FocSummaryRow;

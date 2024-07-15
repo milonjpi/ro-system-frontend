@@ -13,16 +13,16 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { IconPrinter } from '@tabler/icons-react';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useDonationReportQuery } from 'store/api/report/reportSlice';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { dueMonths, dueYears } from 'assets/data';
-import DonationReportRow from './DonationReportRow';
-import PrintDonationReport from './PrintDonationReport';
+import { useGetFosSummaryQuery } from 'store/api/fosInvoice/fosInvoiceApi';
+import PrintFocSummary from './PrintFocSummary';
+import FocSummaryRow from './FocSummaryRow';
 
-const DonationReport = () => {
+const FocSummary = () => {
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
 
@@ -75,14 +75,15 @@ const DonationReport = () => {
     query['startDate'] = `${year}-${month?.value || '01'}-01`;
     query['endDate'] = `${year}-${month?.value || '12'}-${month?.max || '31'}`;
   }
-  const { data, isLoading } = useDonationReportQuery(
+  const { data, isLoading } = useGetFosSummaryQuery(
     { ...query },
     {
       refetchOnMountOrArgChange: true,
     }
   );
 
-  const allDonationReport = data?.report || [];
+  const allDonationReport = data?.data || [];
+  console.log(allDonationReport);
 
   let sn = page * rowsPerPage + 1;
 
@@ -104,7 +105,7 @@ const DonationReport = () => {
 
   return (
     <MainCard
-      title="Donation Report"
+      title="FOC Summary"
       secondary={
         <Tooltip title="Print">
           <IconButton size="small" color="secondary" onClick={handlePrint}>
@@ -155,7 +156,7 @@ const DonationReport = () => {
 
       {/* popup item */}
       <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintDonationReport
+        <PrintFocSummary
           ref={componentRef}
           tableHeads={tableHeads}
           data={allDonationReport}
@@ -187,7 +188,7 @@ const DonationReport = () => {
               allDonationReport
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((item) => (
-                  <DonationReportRow key={item.id} sn={sn++} data={item} />
+                  <FocSummaryRow key={item.id} sn={sn++} data={item} />
                 ))
             ) : (
               <TableRow>
@@ -238,4 +239,4 @@ const DonationReport = () => {
   );
 };
 
-export default DonationReport;
+export default FocSummary;

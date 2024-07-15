@@ -35,6 +35,20 @@ const CustomInvoices = Loadable(
   lazy(() => import('views/pages/SalesManagement/CustomInvoices'))
 );
 
+// foc management
+const FocProduct = Loadable(
+  lazy(() => import('views/pages/FocManagement/FocProduct'))
+);
+const FocClient = Loadable(
+  lazy(() => import('views/pages/FocManagement/FocClient'))
+);
+const FocInvoice = Loadable(
+  lazy(() => import('views/pages/FocManagement/FocInvoice'))
+);
+const FocSummary = Loadable(
+  lazy(() => import('views/pages/FocManagement/FocSummary'))
+);
+
 // financial
 const AccountTypes = Loadable(
   lazy(() => import('views/pages/Financial/AccountTypes'))
@@ -138,9 +152,6 @@ const ReportSummary = Loadable(
 );
 const DailyReport = Loadable(
   lazy(() => import('views/pages/Report/DailyReport'))
-);
-const DonationReport = Loadable(
-  lazy(() => import('views/pages/Report/DonationReport'))
 );
 // payment report
 const PaymentReport = Loadable(
@@ -314,6 +325,55 @@ const MainRoutes = {
                       allowedCodes={['custom-invoices']}
                     >
                       <CustomInvoices />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'foc-management',
+              children: [
+                {
+                  path: 'foc-products',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['foc-products']}
+                    >
+                      <FocProduct />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'foc-clients',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['foc-clients']}
+                    >
+                      <FocClient />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'foc-invoices',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['foc-invoices']}
+                    >
+                      <FocInvoice />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'foc-summary',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['foc-summary']}
+                    >
+                      <FocSummary />
                     </AuthenticationRoutes>
                   ),
                 },
@@ -780,17 +840,6 @@ const MainRoutes = {
                       allowedCodes={['daily-support']}
                     >
                       <DailyReport />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'donation-report',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['donation-report']}
-                    >
-                      <DonationReport />
                     </AuthenticationRoutes>
                   ),
                 },

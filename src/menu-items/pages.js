@@ -461,13 +461,6 @@ const pages = {
           access: ['super_admin'],
         },
         {
-          id: 'donation-report',
-          title: 'Donation Report',
-          type: 'item',
-          url: '/pages/report/donation-report',
-          access: ['super_admin'],
-        },
-        {
           id: 'payment-report',
           title: 'Payment Report',
           type: 'item',

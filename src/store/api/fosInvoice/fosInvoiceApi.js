@@ -21,6 +21,16 @@ const fosInvoiceApi = api.injectEndpoints({
       providesTags: ['fosInvoice'],
     }),
 
+    // summary
+    getFosSummary: build.query({
+      query: (params) => ({
+        url: `${FOS_INVOICE_URL}/summary`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['fosInvoice'],
+    }),
+
     // get single
     getSingleFosInvoice: build.query({
       query: (id) => ({
@@ -63,6 +73,7 @@ const fosInvoiceApi = api.injectEndpoints({
 
 export const {
   useGetFosInvoicesQuery,
+  useGetFosSummaryQuery,
   useGetSingleFosInvoiceQuery,
   useCreateFosInvoiceMutation,
   useUpdateFosInvoiceMutation,

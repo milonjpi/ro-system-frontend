@@ -7,9 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import LinearProgress from '@mui/material/LinearProgress';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import DonationReportRow from './DonationReportRow';
+import FocSummaryRow from './FocSummaryRow';
 
-const PrintDonationReport = forwardRef(
+const PrintFocSummary = forwardRef(
   ({ tableHeads, data, month, year, totalDonation, loading }, ref) => {
     let sn = 1;
     return (
@@ -28,7 +28,7 @@ const PrintDonationReport = forwardRef(
             component="h6"
             sx={{ fontSize: 16, textAlign: 'center', fontWeight: 700 }}
           >
-            Donation Report{' '}
+            Free of Cost Summary{' '}
             {year ? ' - ' + (month ? month + ', ' : '') + year : null}
           </Typography>
         </Box>
@@ -49,7 +49,7 @@ const PrintDonationReport = forwardRef(
           <TableBody>
             {data?.length ? (
               data.map((item) => (
-                <DonationReportRow key={item.id} sn={sn++} data={item} />
+                <FocSummaryRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <TableRow>
@@ -90,4 +90,4 @@ const PrintDonationReport = forwardRef(
   }
 );
 
-export default PrintDonationReport;
+export default PrintFocSummary;
