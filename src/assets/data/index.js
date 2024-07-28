@@ -75,3 +75,34 @@ export const dueMonths = (year = new Date().getFullYear()) => {
     },
   ];
 };
+
+export const electricMonths = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+export const electricYears = [
+  '2017',
+  '2018',
+  '2019',
+  '2020',
+  '2021',
+  '2022',
+  '2023',
+  '2024',
+  '2025',
+  '2026',
+  '2027',
+  '2028',
+  '2029',
+  '2030',
+];

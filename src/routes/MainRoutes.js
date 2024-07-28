@@ -110,6 +110,14 @@ const AllExpenses = Loadable(
   lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
 );
 
+// electricity bills
+const MeterInfo = Loadable(
+  lazy(() => import('views/pages/ElectricityBills/MeterInfo'))
+);
+const ElectricBills = Loadable(
+  lazy(() => import('views/pages/ElectricityBills/ElectricBills'))
+);
+
 // income expense
 const InExCategory = Loadable(
   lazy(() => import('views/pages/IncomeExpense/InExCategory'))
@@ -153,6 +161,7 @@ const ReportSummary = Loadable(
 const DailyReport = Loadable(
   lazy(() => import('views/pages/Report/DailyReport'))
 );
+
 // payment report
 const PaymentReport = Loadable(
   lazy(() => import('views/pages/Report/PaymentReport'))
@@ -473,6 +482,33 @@ const MainRoutes = {
                       allowedCodes={['all-expenses']}
                     >
                       <AllExpenses />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'electricity-bills',
+              children: [
+                {
+                  path: 'meter-info',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['meter-info']}
+                    >
+                      <MeterInfo />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'electric-bills',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['electric-bills']}
+                    >
+                      <ElectricBills />
                     </AuthenticationRoutes>
                   ),
                 },

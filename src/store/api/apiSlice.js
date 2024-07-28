@@ -43,6 +43,12 @@ export const api = createApi({
     'fosClient',
     'fosProduct',
     'fosInvoice',
+    'meter',
+    'electricityBill',
+    'drCustomer',
+    'drProduct',
+    'drInvoice',
+    'drVoucher',
   ],
   endpoints: () => ({}),
 });
