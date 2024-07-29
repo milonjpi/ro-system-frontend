@@ -23,6 +23,9 @@ import { useDebounced } from 'hooks';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useGetDrCustomersQuery } from 'store/api/drCustomer/drCustomerApi';
 import { useGetDrInvoicesQuery } from 'store/api/drInvoice/drInvoiceApi';
+import { useGetDrProductsQuery } from 'store/api/drProduct/drProductApi';
+import AddDrInvoice from './AddDrInvoice';
+import DrInvoiceRow from './DrInvoiceRow';
 
 const DrInvoices = () => {
   const [searchText, setSearchText] = useState('');
@@ -44,6 +47,18 @@ const DrInvoices = () => {
   );
 
   const allCustomers = customerData?.customers || [];
+
+  const { data: productData } = useGetDrProductsQuery(
+    {
+      limit: 1000,
+      sortBy: 'label',
+      sortOrder: 'asc',
+      isActive: true,
+    },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allProducts = productData?.products || [];
   // end library
 
   // table
@@ -161,7 +176,12 @@ const DrInvoices = () => {
       }
     >
       {/* pop up items */}
-      <AddDistInvoice open={open} handleClose={() => setOpen(false)} />
+      <AddDrInvoice
+        open={open}
+        handleClose={() => setOpen(false)}
+        allCustomers={allCustomers}
+        allProducts={allProducts}
+      />
       {/* pop up items */}
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
@@ -311,7 +331,15 @@ const DrInvoices = () => {
           ) : null
         }
         data={allInvoices}
-        options={(el) => <DistInvoiceRow key={el.id} sn={sn++} data={el} />}
+        options={(el) => (
+          <DrInvoiceRow
+            key={el.id}
+            sn={sn++}
+            data={el}
+            allCustomers={allCustomers}
+            allProducts={allProducts}
+          />
+        )}
         loading={isLoading}
         pagination={true}
         page={page}

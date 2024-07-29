@@ -59,7 +59,7 @@ const drCustomerApi = api.injectEndpoints({
     }),
 
     // customer details
-    customerDetails: build.query({
+    drCustomerDetails: build.query({
       query: (params) => ({
         url: `${DR_CUSTOMER_URL}/customer-details`,
         method: 'GET',
@@ -81,4 +81,5 @@ export const {
   useCreateDrCustomerMutation,
   useUpdateDrCustomerMutation,
   useDeleteDrCustomerMutation,
+  useDrCustomerDetailsQuery,
 } = drCustomerApi;

@@ -19,7 +19,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
 import { setToast } from 'store/toastSlice';
-import moment from 'moment';
 import { useFieldArray, useForm, useWatch } from 'react-hook-form';
 import {
   IconFileInvoice,
@@ -29,7 +28,7 @@ import { InputBase } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import DrInvoiceFields from './DrInvoiceFields';
-import { useCreateDrInvoiceMutation } from 'store/api/drInvoice/drInvoiceApi';
+import { useUpdateDrInvoiceMutation } from 'store/api/drInvoice/drInvoiceApi';
 
 const style = {
   position: 'absolute',
@@ -48,17 +47,23 @@ const productValue = {
   quantity: 1,
 };
 
-const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
+const UpdateDrInvoice = ({
+  open,
+  handleClose,
+  preData,
+  allCustomers,
+  allProducts,
+}) => {
   const [loading, setLoading] = useState(false);
-  const [customer, setCustomer] = useState(null);
-  const [invoiceDate, setInvoiceDate] = useState(moment());
+  const [customer, setCustomer] = useState(preData?.customer || null);
+  const [invoiceDate, setInvoiceDate] = useState(preData?.date);
 
-  const [discount, setDiscount] = useState('');
+  const [discount, setDiscount] = useState(preData?.discount || '');
 
   // hook form
-  const { register, handleSubmit, control, reset } = useForm({
+  const { register, handleSubmit, control } = useForm({
     defaultValues: {
-      products: [productValue],
+      products: preData?.drInvoicedProducts || [productValue],
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -105,7 +110,7 @@ const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
   // end table
 
   const dispatch = useDispatch();
-  const [createDrInvoice] = useCreateDrInvoiceMutation();
+  const [updateDrInvoice] = useUpdateDrInvoiceMutation();
 
   const onSubmit = async (data) => {
     if (data?.products?.length < 1) {
@@ -124,7 +129,6 @@ const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
       totalPrice: subTotal,
       discount: parseInt(discount || 0),
       amount: totalValue,
-      status: 'Due',
       drInvoicedProducts:
         data?.products?.map((el) => ({
           productId: el.product?.id,
@@ -135,13 +139,14 @@ const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
     };
     try {
       setLoading(true);
-      const res = await createDrInvoice({ ...newData }).unwrap();
+      const res = await updateDrInvoice({
+        id: preData?.id,
+        body: newData,
+      }).unwrap();
+
       if (res.success) {
         handleClose();
         setLoading(false);
-        setCustomer(null);
-        setInvoiceDate(moment());
-        reset({ products: [productValue] });
         dispatch(
           setToast({
             open: true,
@@ -173,7 +178,7 @@ const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Create Invoice
+            Edit Invoice
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -320,7 +325,7 @@ const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
                 variant="contained"
                 type="submit"
               >
-                Create Invoice
+                Update Invoice
               </LoadingButton>
             </Grid>
           </Grid>
@@ -330,7 +335,7 @@ const AddDrInvoice = ({ open, handleClose, allCustomers, allProducts }) => {
   );
 };
 
-export default AddDrInvoice;
+export default UpdateDrInvoice;
 
 const styles = {
   inputNumber: {
