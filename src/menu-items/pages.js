@@ -354,6 +354,13 @@ const pages = {
           url: '/pages/electricity-bills/electric-bills',
           access: ['super_admin'],
         },
+        {
+          id: 'electric-overview',
+          title: 'Overview',
+          type: 'item',
+          url: '/pages/electricity-bills/electric-overview',
+          access: ['super_admin'],
+        },
       ],
     },
     {

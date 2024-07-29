@@ -117,6 +117,9 @@ const MeterInfo = Loadable(
 const ElectricBills = Loadable(
   lazy(() => import('views/pages/ElectricityBills/ElectricBills'))
 );
+const ElectricOverview = Loadable(
+  lazy(() => import('views/pages/ElectricityBills/ElectricOverview'))
+);
 
 // income expense
 const InExCategory = Loadable(
@@ -209,7 +212,9 @@ const DistAdvancedReport = Loadable(
   lazy(() => import('views/pages/Distribution/DistAdvancedReport'))
 );
 const DistAdvReceived = Loadable(
-  lazy(() => import('views/pages/Distribution/DistAdvancedReport/DistAdvReceived'))
+  lazy(() =>
+    import('views/pages/Distribution/DistAdvancedReport/DistAdvReceived')
+  )
 );
 const DistAdvPaid = Loadable(
   lazy(() => import('views/pages/Distribution/DistAdvancedReport/DistAdvPaid'))
@@ -509,6 +514,17 @@ const MainRoutes = {
                       allowedCodes={['electric-bills']}
                     >
                       <ElectricBills />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'electric-overview',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['electric-overview']}
+                    >
+                      <ElectricOverview />
                     </AuthenticationRoutes>
                   ),
                 },

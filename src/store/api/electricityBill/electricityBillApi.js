@@ -13,10 +13,31 @@ const electricityBillApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          electricityBills: response?.data,
+          electricityBills: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
+      providesTags: ['electricityBill'],
+    }),
+
+    // month summary
+    getElectricMonthSummary: build.query({
+      query: (params) => ({
+        url: `${ELECTRICITY_BILL_URL}/month-summary`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['electricityBill'],
+    }),
+
+    // year summary
+    getElectricYearSummary: build.query({
+      query: (params) => ({
+        url: `${ELECTRICITY_BILL_URL}/year-summary`,
+        method: 'GET',
+        params: params,
+      }),
       providesTags: ['electricityBill'],
     }),
 
@@ -62,6 +83,8 @@ const electricityBillApi = api.injectEndpoints({
 
 export const {
   useGetElectricityBillsQuery,
+  useGetElectricMonthSummaryQuery,
+  useGetElectricYearSummaryQuery,
   useGetSingleElectricityBillQuery,
   useCreateElectricityBillMutation,
   useUpdateElectricityBillMutation,

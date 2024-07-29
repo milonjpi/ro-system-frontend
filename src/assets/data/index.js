@@ -91,9 +91,6 @@ export const electricMonths = [
   'December',
 ];
 export const electricYears = [
-  '2017',
-  '2018',
-  '2019',
   '2020',
   '2021',
   '2022',
@@ -102,7 +99,14 @@ export const electricYears = [
   '2025',
   '2026',
   '2027',
-  '2028',
-  '2029',
-  '2030',
 ];
+export const electricYearIndex = {
+  1: '2020',
+  2: '2021',
+  3: '2022',
+  4: '2023',
+  5: '2024',
+  6: '2025',
+  7: '2026',
+  8: '2027',
+};

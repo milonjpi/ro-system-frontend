@@ -95,6 +95,8 @@ const ElectricBills = () => {
 
   const allElectricityBills = data?.electricityBills || [];
   const meta = data?.meta;
+  const totalUnit = data?.sum?._sum?.unit || 0;
+  const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
   return (
@@ -213,6 +215,23 @@ const ElectricBills = () => {
                 </StyledTableCell>
               </StyledTableRow>
             )}
+            {allElectricityBills?.length ? (
+              <StyledTableRow>
+                <StyledTableCell
+                  colSpan={5}
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                >
+                  Total:
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalUnit}
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalAmount}
+                </StyledTableCell>
+              </StyledTableRow>
+            ) : null}
           </TableBody>
         </Table>
       </Box>
