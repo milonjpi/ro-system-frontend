@@ -110,6 +110,24 @@ const AllExpenses = Loadable(
   lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
 );
 
+// Manage distributor
+const Distributors = Loadable(
+  lazy(() => import('views/pages/ManageDistributor/Distributors'))
+);
+const DrProducts = Loadable(
+  lazy(() => import('views/pages/ManageDistributor/DrProducts'))
+);
+const DrInvoices = Loadable(
+  lazy(() => import('views/pages/ManageDistributor/DrInvoices'))
+);
+const DrVouchers = Loadable(
+  lazy(() => import('views/pages/ManageDistributor/DrVouchers'))
+);
+const DrSummary = Loadable(
+  lazy(() => import('views/pages/ManageDistributor/DrSummary'))
+);
+
+
 // electricity bills
 const MeterInfo = Loadable(
   lazy(() => import('views/pages/ElectricityBills/MeterInfo'))
@@ -487,6 +505,66 @@ const MainRoutes = {
                       allowedCodes={['all-expenses']}
                     >
                       <AllExpenses />
+                    </AuthenticationRoutes>
+                  ),
+                },
+              ],
+            },
+            {
+              path: 'manage-distributor',
+              children: [
+                {
+                  path: 'distributors',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['distributors']}
+                    >
+                      <Distributors />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'dr-products',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['dr-products']}
+                    >
+                      <DrProducts />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'dr-invoices',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['dr-invoices']}
+                    >
+                      <DrInvoices />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'dr-vouchers',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['dr-vouchers']}
+                    >
+                      <DrVouchers />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'dr-summary',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['dr-summary']}
+                    >
+                      <DrSummary />
                     </AuthenticationRoutes>
                   ),
                 },

@@ -13,7 +13,7 @@ const drProductApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          drProducts: response?.data,
+          products: response?.data,
           meta: response?.meta,
         };
       },

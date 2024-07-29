@@ -13,8 +13,9 @@ const drInvoiceApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          invoices: response?.data,
+          invoices: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['drInvoice'],
