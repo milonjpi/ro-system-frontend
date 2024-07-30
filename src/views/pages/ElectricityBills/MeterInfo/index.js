@@ -100,6 +100,8 @@ const MeterInfo = () => {
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
               <StyledTableCell>Meter No</StyledTableCell>
+              <StyledTableCell>SMS Account</StyledTableCell>
+              <StyledTableCell>Owner</StyledTableCell>
               <StyledTableCell>Location</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>

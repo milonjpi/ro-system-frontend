@@ -154,7 +154,7 @@ const AddElectricBill = ({ open, handleClose }) => {
                 options={allMeters}
                 getOptionLabel={(option) =>
                   option.label +
-                  (option.location ? ', ' + option?.location : '')
+                  (option.smsAccount ? ', ' + option.smsAccount : '')
                 }
                 onChange={(e, newValue) => setMeter(newValue)}
                 isOptionEqualToValue={(item, value) => item.id === value.id}

@@ -48,7 +48,11 @@ const ElectricBillRow = ({ sn, data }) => {
       <StyledTableCell>
         {data?.date ? moment(data?.date).format('DD/MM/YYYY') : 'n/a'}
       </StyledTableCell>
-      <StyledTableCell>{data?.meter?.label}</StyledTableCell>
+      <StyledTableCell>
+        {data?.meter?.label +
+          (data?.meter?.smsAccount ? ', ' + data?.meter?.smsAccount : '')}
+      </StyledTableCell>
+      <StyledTableCell>{data?.meter?.location || 'n/a'}</StyledTableCell>
       <StyledTableCell>{data?.year}</StyledTableCell>
       <StyledTableCell>{data?.month}</StyledTableCell>
       <StyledTableCell align="right">{data?.unit || 0}</StyledTableCell>

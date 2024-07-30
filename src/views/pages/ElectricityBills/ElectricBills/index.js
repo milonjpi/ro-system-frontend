@@ -139,7 +139,8 @@ const ElectricBills = () => {
               fullWidth
               options={allMeters}
               getOptionLabel={(option) =>
-                option.label + (option.location ? ', ' + option?.location : '')
+                option.label +
+                (option.smsAccount ? ', ' + option?.smsAccount : '')
               }
               onChange={(e, newValue) => setMeter(newValue)}
               isOptionEqualToValue={(item, value) => item.id === value.id}
@@ -189,7 +190,8 @@ const ElectricBills = () => {
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
               <StyledTableCell>Paid Date</StyledTableCell>
-              <StyledTableCell>Meter</StyledTableCell>
+              <StyledTableCell>Meter Info</StyledTableCell>
+              <StyledTableCell>Meter Location</StyledTableCell>
               <StyledTableCell>Year</StyledTableCell>
               <StyledTableCell>Month</StyledTableCell>
               <StyledTableCell align="right">Unit</StyledTableCell>
@@ -218,7 +220,7 @@ const ElectricBills = () => {
             {allElectricityBills?.length ? (
               <StyledTableRow>
                 <StyledTableCell
-                  colSpan={5}
+                  colSpan={6}
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >

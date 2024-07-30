@@ -11,6 +11,8 @@ const MeterInfoRow = ({ sn, data }) => {
     <StyledTableRow>
       <StyledTableCell align="center">{sn}</StyledTableCell>
       <StyledTableCell>{data?.label}</StyledTableCell>
+      <StyledTableCell>{data?.smsAccount || 'n/a'}</StyledTableCell>
+      <StyledTableCell>{data?.customerName || 'n/a'}</StyledTableCell>
       <StyledTableCell>{data?.location || 'n/a'}</StyledTableCell>
       <StyledTableCell>{data?.remarks || 'n/a'}</StyledTableCell>
       <StyledTableCell align="center">

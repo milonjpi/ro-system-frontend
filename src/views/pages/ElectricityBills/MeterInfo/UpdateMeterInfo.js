@@ -40,6 +40,8 @@ const UpdateMeterInfo = ({ open, handleClose, preData }) => {
     const newData = {
       label: data?.label,
       location: data?.location,
+      smsAccount: data?.smsAccount,
+      customerName: data?.customerName,
       remarks: data?.remarks,
     };
     try {
@@ -95,7 +97,7 @@ const UpdateMeterInfo = ({ open, handleClose, preData }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 required
@@ -104,7 +106,24 @@ const UpdateMeterInfo = ({ open, handleClose, preData }) => {
                 {...register('label', { required: true })}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                required
+                label="SMS Account No"
+                size="small"
+                {...register('smsAccount', { required: true })}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Owner Name"
+                size="small"
+                {...register('customerName')}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 label="Location"
