@@ -37,7 +37,7 @@ const voucherApi = api.injectEndpoints({
         method: 'POST',
         data: data,
       }),
-      invalidatesTags: ['voucher'],
+      invalidatesTags: ['voucher', 'customer', 'invoice'],
     }),
 
     // update receive payment
@@ -47,7 +47,7 @@ const voucherApi = api.injectEndpoints({
         method: 'PATCH',
         data: data.body,
       }),
-      invalidatesTags: ['voucher'],
+      invalidatesTags: ['voucher', 'customer', 'invoice'],
     }),
 
     // delete receive payment
@@ -56,7 +56,7 @@ const voucherApi = api.injectEndpoints({
         url: `${VOUCHER_URL}/receive-payment/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['voucher'],
+      invalidatesTags: ['voucher', 'customer', 'invoice'],
     }),
 
     // make payment
@@ -66,7 +66,7 @@ const voucherApi = api.injectEndpoints({
         method: 'POST',
         data: data,
       }),
-      invalidatesTags: ['voucher'],
+      invalidatesTags: ['voucher', 'customer', 'invoice'],
     }),
   }),
 });

@@ -222,10 +222,7 @@ const UpdateDrInvoice = ({
                 size="small"
                 fullWidth
                 options={allCustomers}
-                getOptionLabel={(option) =>
-                  option.customerName +
-                  (option.customerNameBn ? ', ' + option.customerNameBn : '')
-                }
+                getOptionLabel={(option) => option.customerName}
                 onChange={(e, newValue) => setCustomer(newValue)}
                 isOptionEqualToValue={(item, value) => item.id === value.id}
                 renderInput={(params) => (

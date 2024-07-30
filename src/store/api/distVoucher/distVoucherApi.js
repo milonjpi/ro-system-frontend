@@ -37,7 +37,7 @@ const distVoucherApi = api.injectEndpoints({
         method: 'POST',
         data: data,
       }),
-      invalidatesTags: ['distVoucher', 'distClient'],
+      invalidatesTags: ['distVoucher', 'distClient', 'distInvoice'],
     }),
 
     // update receive payment
@@ -47,7 +47,7 @@ const distVoucherApi = api.injectEndpoints({
         method: 'PATCH',
         data: data.body,
       }),
-      invalidatesTags: ['distVoucher', 'distClient'],
+      invalidatesTags: ['distVoucher', 'distClient', 'distInvoice'],
     }),
 
     // delete receive payment
@@ -56,7 +56,7 @@ const distVoucherApi = api.injectEndpoints({
         url: `${DIST_VOUCHER_URL}/receive-payment/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['distVoucher', 'distClient'],
+      invalidatesTags: ['distVoucher', 'distClient', 'distInvoice'],
     }),
   }),
 });

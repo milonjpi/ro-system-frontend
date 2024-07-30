@@ -83,7 +83,6 @@ const FocSummary = () => {
   );
 
   const allDonationReport = data?.data || [];
-  console.log(allDonationReport);
 
   let sn = page * rowsPerPage + 1;
 

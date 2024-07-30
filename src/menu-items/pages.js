@@ -280,7 +280,7 @@ const pages = {
         },
         {
           id: 'dr-vouchers',
-          title: 'Vouchers',
+          title: 'Receive Amount',
           type: 'item',
           url: '/pages/manage-distributor/dr-vouchers',
           access: ['super_admin'],

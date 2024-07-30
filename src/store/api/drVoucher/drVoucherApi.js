@@ -13,8 +13,9 @@ const drVoucherApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          vouchers: response?.data,
+          vouchers: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['drVoucher'],
@@ -27,7 +28,7 @@ const drVoucherApi = api.injectEndpoints({
         method: 'POST',
         data: data,
       }),
-      invalidatesTags: ['drVoucher'],
+      invalidatesTags: ['drVoucher', 'drCustomer', 'drInvoice'],
     }),
 
     // update
@@ -37,7 +38,7 @@ const drVoucherApi = api.injectEndpoints({
         method: 'PATCH',
         data: data?.body,
       }),
-      invalidatesTags: ['drVoucher'],
+      invalidatesTags: ['drVoucher', 'drCustomer', 'drInvoice'],
     }),
 
     // delete
@@ -46,7 +47,7 @@ const drVoucherApi = api.injectEndpoints({
         url: `${DR_VOUCHER_URL}/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['drVoucher'],
+      invalidatesTags: ['drVoucher', 'drCustomer', 'drInvoice'],
     }),
   }),
 });
