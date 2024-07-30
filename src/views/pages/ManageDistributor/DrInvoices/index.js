@@ -51,7 +51,7 @@ const DrInvoices = () => {
   const { data: productData } = useGetDrProductsQuery(
     {
       limit: 1000,
-      sortBy: 'label',
+      sortBy: 'productId',
       sortOrder: 'asc',
       isActive: true,
     },

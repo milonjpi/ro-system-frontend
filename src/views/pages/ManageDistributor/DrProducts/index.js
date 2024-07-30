@@ -42,6 +42,8 @@ const DrProducts = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
+  query['sortBy'] = 'productId';
+  query['sortOrder'] = 'asc';
   query['isActive'] = true;
 
   // search term
