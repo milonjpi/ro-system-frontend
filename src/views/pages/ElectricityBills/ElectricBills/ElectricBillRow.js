@@ -51,11 +51,18 @@ const ElectricBillRow = ({ sn, data }) => {
       <StyledTableCell>
         {data?.meter?.label +
           (data?.meter?.smsAccount ? ', ' + data?.meter?.smsAccount : '')}
+        <br />
+        {data?.meter?.location || 'N/A'}
       </StyledTableCell>
-      <StyledTableCell>{data?.meter?.location || 'n/a'}</StyledTableCell>
       <StyledTableCell>{data?.year}</StyledTableCell>
       <StyledTableCell>{data?.month}</StyledTableCell>
+      <StyledTableCell align="right">{data?.meterReading}</StyledTableCell>
       <StyledTableCell align="right">{data?.unit || 0}</StyledTableCell>
+      <StyledTableCell>{data?.unitDetails}</StyledTableCell>
+      <StyledTableCell align="right">{data?.netBill}</StyledTableCell>
+      <StyledTableCell align="right">
+        {data?.serviceCharge || 0}
+      </StyledTableCell>
       <StyledTableCell align="right">{data?.amount}</StyledTableCell>
       <StyledTableCell>{data?.paidBy}</StyledTableCell>
       <StyledTableCell>{data?.remarks || 'n/a'}</StyledTableCell>

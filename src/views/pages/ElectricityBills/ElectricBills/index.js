@@ -96,6 +96,8 @@ const ElectricBills = () => {
   const allElectricityBills = data?.electricityBills || [];
   const meta = data?.meta;
   const totalUnit = data?.sum?._sum?.unit || 0;
+  const totalNetBill = data?.sum?._sum?.netBill || 0;
+  const totalServiceCharge = data?.sum?._sum?.serviceCharge || 0;
   const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
@@ -191,11 +193,14 @@ const ElectricBills = () => {
               <StyledTableCell align="center">SN</StyledTableCell>
               <StyledTableCell>Paid Date</StyledTableCell>
               <StyledTableCell>Meter Info</StyledTableCell>
-              <StyledTableCell>Meter Location</StyledTableCell>
               <StyledTableCell>Year</StyledTableCell>
               <StyledTableCell>Month</StyledTableCell>
+              <StyledTableCell align="right">Reading</StyledTableCell>
               <StyledTableCell align="right">Unit</StyledTableCell>
-              <StyledTableCell align="right">Amount</StyledTableCell>
+              <StyledTableCell>Unit Details Amount</StyledTableCell>
+              <StyledTableCell align="right">Net Bill</StyledTableCell>
+              <StyledTableCell align="right">Service Charge</StyledTableCell>
+              <StyledTableCell align="right">Total Bill</StyledTableCell>
               <StyledTableCell>Paid By</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
@@ -208,7 +213,7 @@ const ElectricBills = () => {
               ))
             ) : (
               <StyledTableRow>
-                <StyledTableCell colSpan={10} sx={{ border: 0 }} align="center">
+                <StyledTableCell colSpan={16} sx={{ border: 0 }} align="center">
                   {isLoading ? (
                     <LinearProgress sx={{ opacity: 0.5, py: 0.5 }} />
                   ) : (
@@ -228,6 +233,16 @@ const ElectricBills = () => {
                 </StyledTableCell>
                 <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
                   {totalUnit}
+                </StyledTableCell>
+                <StyledTableCell
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                ></StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalNetBill}
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                  {totalServiceCharge}
                 </StyledTableCell>
                 <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
                   {totalAmount}

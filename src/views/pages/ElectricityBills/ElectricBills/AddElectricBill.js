@@ -15,7 +15,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
 import { electricMonths, electricYears } from 'assets/data';
@@ -50,19 +50,36 @@ const AddElectricBill = ({ open, handleClose }) => {
   const allMeters = meterData?.meters || [];
   // end library
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, control, reset } = useForm();
 
   const dispatch = useDispatch();
 
   const [createElectricityBill] = useCreateElectricityBillMutation();
 
+  // watch value
+  const netBill = useWatch({ control, name: 'netBill' });
+  const amount = useWatch({ control, name: 'amount' });
+
   const onSubmit = async (data) => {
+    if (data.netBill > data?.amount) {
+      return dispatch(
+        setToast({
+          open: true,
+          variant: 'error',
+          message: 'Net Bill is Greater than Total Bill',
+        })
+      );
+    }
     const newData = {
       date: date,
       meterId: meter?.id,
       month: month,
       year: year,
+      meterReading: data?.meterReading,
       unit: data?.unit,
+      unitDetails: data?.unitDetails,
+      netBill: data?.netBill,
+      serviceCharge: data?.amount - data?.netBill,
       amount: data?.amount,
       paidBy: data?.paidBy,
       remarks: data?.remarks,
@@ -188,36 +205,6 @@ const AddElectricBill = ({ open, handleClose }) => {
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <TextField
-                fullWidth
-                label="Unit"
-                size="small"
-                type="number"
-                InputProps={{ inputProps: { min: 1 } }}
-                {...register('unit', { valueAsNumber: true })}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <TextField
-                fullWidth
-                label="Amount"
-                size="small"
-                type="number"
-                InputProps={{ inputProps: { min: 1 } }}
-                required
-                {...register('amount', { required: true, valueAsNumber: true })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Paid By"
-                size="small"
-                required
-                {...register('paidBy', { required: true })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
               <Autocomplete
                 value={status}
                 size="small"
@@ -229,7 +216,82 @@ const AddElectricBill = ({ open, handleClose }) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6} md={3}>
+              <TextField
+                fullWidth
+                label="Meter Reading"
+                size="small"
+                type="number"
+                required
+                InputProps={{ inputProps: { min: 1 } }}
+                {...register('meterReading', {
+                  valueAsNumber: true,
+                  required: true,
+                })}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <TextField
+                fullWidth
+                label="Unit"
+                size="small"
+                type="number"
+                required
+                InputProps={{ inputProps: { min: 1 } }}
+                {...register('unit', { valueAsNumber: true, required: true })}
+              />
+            </Grid>
+            <Grid item xs={12} md={9}>
+              <TextField
+                fullWidth
+                label="Unit Details With Amount"
+                size="small"
+                required
+                {...register('unitDetails', { required: true })}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                fullWidth
+                label="Net Bill"
+                size="small"
+                type="number"
+                InputProps={{ inputProps: { min: 1 } }}
+                required
+                {...register('netBill', {
+                  required: true,
+                  valueAsNumber: true,
+                })}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Typography>Service Charge</Typography>
+              <Typography sx={{ fontWeight: 700 }}>
+                {netBill && amount ? amount - netBill : 0}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                fullWidth
+                label="Total Bill"
+                size="small"
+                type="number"
+                InputProps={{ inputProps: { min: 1 } }}
+                required
+                {...register('amount', { required: true, valueAsNumber: true })}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                fullWidth
+                label="Paid By"
+                size="small"
+                required
+                {...register('paidBy', { required: true })}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 label="Remarks"
