@@ -7,15 +7,11 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import InputBase from '@mui/material/InputBase';
-import InputAdornment from '@mui/material/InputAdornment';
 import LinearProgress from '@mui/material/LinearProgress';
-import SearchIcon from '@mui/icons-material/Search';
 import MainCard from 'ui-component/cards/MainCard';
 import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
-import { useDebounced } from 'hooks';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
 import AddElectricBill from './AddElectricBill';
 import ElectricBillRow from './ElectricBillRow';
@@ -23,7 +19,7 @@ import { useGetElectricityBillsQuery } from 'store/api/electricityBill/electrici
 import { electricMonths, electricYears } from 'assets/data';
 
 const ElectricBills = () => {
-  const [searchText, setSearchText] = useState('');
+  const [smsAccount, setSmsAccount] = useState(null);
   const [meter, setMeter] = useState(null);
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
@@ -62,6 +58,10 @@ const ElectricBills = () => {
   query['sortBy'] = 'date';
   query['sortOrder'] = 'asc';
 
+  if (smsAccount) {
+    query['smsAccount'] = smsAccount;
+  }
+
   if (meter) {
     query['meterId'] = meter?.id;
   }
@@ -76,16 +76,6 @@ const ElectricBills = () => {
 
   if (status) {
     query['status'] = status;
-  }
-
-  // search term
-  const debouncedSearchTerm = useDebounced({
-    searchQuery: searchText,
-    delay: 600,
-  });
-
-  if (!!debouncedSearchTerm) {
-    query['searchTerm'] = debouncedSearchTerm;
   }
 
   const { data, isLoading } = useGetElectricityBillsQuery(
@@ -120,17 +110,16 @@ const ElectricBills = () => {
           sx={{ alignItems: 'end' }}
         >
           <Grid item xs={12} md={3}>
-            <InputBase
+            <Autocomplete
+              value={smsAccount}
+              loading={meterLoading}
+              size="small"
               fullWidth
-              placeholder="Search..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              sx={{ borderBottom: '1px solid #ccc' }}
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              }
+              options={[...new Set(allMeters?.map((el) => el.smsAccount))]}
+              onChange={(e, newValue) => setSmsAccount(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="SMS Account" />
+              )}
             />
           </Grid>
           <Grid item xs={12} md={3}>
