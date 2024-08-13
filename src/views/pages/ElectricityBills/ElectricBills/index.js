@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Table from '@mui/material/Table';
@@ -10,13 +12,16 @@ import TextField from '@mui/material/TextField';
 import LinearProgress from '@mui/material/LinearProgress';
 import MainCard from 'ui-component/cards/MainCard';
 import CardAction from 'ui-component/cards/CardAction';
-import { IconPlus } from '@tabler/icons-react';
+import { IconPlus, IconPrinter } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
 import AddElectricBill from './AddElectricBill';
 import ElectricBillRow from './ElectricBillRow';
 import { useGetElectricityBillsQuery } from 'store/api/electricityBill/electricityBillApi';
 import { electricMonths, electricYears } from 'assets/data';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import PrintElectricBills from './PrintElectricBills';
 
 const ElectricBills = () => {
   const [smsAccount, setSmsAccount] = useState(null);
@@ -91,9 +96,40 @@ const ElectricBills = () => {
   const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
+
+  // print data
+  const { data: printData } = useGetElectricityBillsQuery(
+    { ...query, page: 0, limit: 10000 },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allPrintElectricityBills = printData?.electricityBills || [];
+  const printSum = printData?.sum;
+
+  // handle print
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+      @media print {
+        .pageBreakRow {
+          page-break-inside: avoid;
+        }
+      }
+      `,
+  });
   return (
     <MainCard
-      title="Electric Bills"
+      title={
+        <span>
+          Electric Bills{' '}
+          <Tooltip title="Print">
+            <IconButton size="small" color="primary" onClick={handlePrint}>
+              <IconPrinter size={20} />
+            </IconButton>
+          </Tooltip>
+        </span>
+      }
       secondary={
         <CardAction
           title="Add Bill"
@@ -174,6 +210,13 @@ const ElectricBills = () => {
       </Box>
       {/* popup items */}
       <AddElectricBill open={open} handleClose={() => setOpen(false)} />
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintElectricBills
+          ref={componentRef}
+          allElectricityBills={allPrintElectricityBills}
+          printSum={printSum}
+        />
+      </Box>
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 750 }}>
