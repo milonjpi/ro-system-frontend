@@ -162,9 +162,9 @@ const DrVoucherView = ({ open, handleClose, data }) => {
                           {sn++}
                         </StyledTableCellWithBorder>
                         <StyledTableCellWithBorder>
-                          {el.drInvoice?.invoiceNo +
+                          {el.invoice?.invoiceNo +
                             ' - ' +
-                            el.drInvoice?.totalQty +
+                            el.invoice?.totalQty +
                             ' pcs'}
                         </StyledTableCellWithBorder>
                         <StyledTableCellWithBorder align="right">

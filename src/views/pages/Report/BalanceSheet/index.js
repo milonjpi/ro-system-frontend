@@ -50,6 +50,10 @@ const BalanceSheet = () => {
   const totalInvoices = allReports?.invoices?._sum?.amount || 0;
   const totalInvoicesPaid = allReports?.invoices?._sum?.paidAmount || 0;
 
+  // distributor info
+  const distributorAmount = allReports?.distributor?._sum?.amount || 0;
+  const distributorPaidAmount = allReports?.distributor?._sum?.amount || 0;
+
   // assets
   const vouchers = allReports?.vouchers || [];
   const findReceived =
@@ -57,14 +61,23 @@ const BalanceSheet = () => {
   const findPaid =
     vouchers?.find((el) => el.type === 'Paid')?._sum?.amount || 0;
 
-  const accountReceivable = totalInvoices - totalInvoicesPaid;
+  const accountReceivable =
+    totalInvoices +
+    distributorAmount -
+    totalInvoicesPaid -
+    distributorPaidAmount;
   const accountPayable = equipmentBills - equipmentBillsPaid;
   const advancedReceived = findReceived - totalInvoicesPaid;
   const advancedPaid = findPaid - equipmentBillsPaid;
 
   // cash and equivalent
   const cashAndEquivalent =
-    investmentCash + findReceived - withdraws - totalExpenses - findPaid;
+    investmentCash +
+    findReceived +
+    distributorPaidAmount -
+    withdraws -
+    totalExpenses -
+    findPaid;
 
   // total asset
   const totalAsset =
@@ -82,7 +95,8 @@ const BalanceSheet = () => {
       (advancedReceived > 0 ? advancedReceived : 0));
 
   // profit
-  const totalProfit = totalInvoices - totalExpenses - equipmentBills;
+  const totalProfit =
+    totalInvoices + distributorAmount - totalExpenses - equipmentBills;
 
   return (
     <MainCard title="Balance Sheet">
@@ -154,9 +168,13 @@ const BalanceSheet = () => {
                   title="Incomes"
                   loadItem={1}
                   loading={isLoading}
-                  value={totalInvoices}
+                  value={totalInvoices + distributorAmount}
                 >
                   <CardItem title="Sales" value={totalInvoices} />
+                  <CardItem
+                    title="Distributor Sales"
+                    value={distributorAmount}
+                  />
                 </BalanceCard>
               </Grid>
               <Grid item xs={12}>
