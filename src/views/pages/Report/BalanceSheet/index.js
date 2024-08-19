@@ -52,7 +52,7 @@ const BalanceSheet = () => {
 
   // distributor info
   const distributorAmount = allReports?.distributor?._sum?.amount || 0;
-  const distributorPaidAmount = allReports?.distributor?._sum?.amount || 0;
+  const distributorPaidAmount = allReports?.distributor?._sum?.paidAmount || 0;
 
   // assets
   const vouchers = allReports?.vouchers || [];
