@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -14,10 +16,12 @@ import InputBase from '@mui/material/InputBase';
 import InputAdornment from '@mui/material/InputAdornment';
 import MainCard from 'ui-component/cards/MainCard';
 import SearchIcon from '@mui/icons-material/Search';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { allInvoiceStatus } from 'assets/data';
 import { IconPlus } from '@tabler/icons-react';
 import CardAction from 'ui-component/cards/CardAction';
 import DataTable from 'ui-component/table';
+import { utils, writeFile } from 'xlsx';
 import moment from 'moment';
 import { useDebounced } from 'hooks';
 import AddPurchaseBill from './AddPurchaseBill';
@@ -151,9 +155,70 @@ const PurchaseBill = () => {
   const due = amount - paidAmount;
 
   let sn = page * rowsPerPage + 1;
+
+  // handle export
+  // fetch export data
+  const { data: exportData } = useGetBillsQuery(
+    { ...query, page: 0, limit: 1000 },
+    { refetchOnMountOrArgChange: true }
+  );
+  const allExportBills = exportData?.bills || [];
+
+  let xSn = 1;
+  let elt = allExportBills?.map((el, index) => ({
+    SN: xSn + index,
+    Project: '',
+    Date: moment(el?.date).format('DD/MM/YYYY'),
+    'Bill No': el?.billNo,
+    Vendor: el?.vendor?.vendorName,
+    'Equipment Details': el?.billEquipments
+      ?.map(
+        (be) =>
+          be.equipment?.label +
+          ' - ' +
+          be.quantity +
+          ' ' +
+          be.equipment?.uom?.toLowerCase()
+      )
+      ?.join(', '),
+    'Total Price': el?.totalPrice,
+    Discount: el?.discount,
+    Amount: el?.amount,
+    Due: el?.amount - el?.paidAmount,
+    Status: el?.status?.toUpperCase(),
+  }));
+  const handleExport = () => {
+    let wb = utils.book_new();
+    let ws = utils.json_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 15 },
+      { wch: 10 },
+      { wch: 9 },
+      { wch: 25 },
+      { wch: 30 },
+      { wch: 10 },
+      { wch: 8 },
+      { wch: 10 },
+      { wch: 8 },
+      { wch: 10 },
+    ];
+    writeFile(wb, `AllBills.xlsx`);
+  };
   return (
     <MainCard
-      title="The Bills"
+      title={
+        <span>
+          The Bills{' '}
+          <Tooltip title="Export to Excel">
+            <IconButton color="primary" size="small" onClick={handleExport}>
+              <CloudDownloadIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </span>
+      }
       secondary={
         <CardAction
           title="Create Bill"
