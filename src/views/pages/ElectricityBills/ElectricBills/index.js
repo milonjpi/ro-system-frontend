@@ -13,7 +13,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import MainCard from 'ui-component/cards/MainCard';
 import CardAction from 'ui-component/cards/CardAction';
 import { IconPlus, IconPrinter } from '@tabler/icons-react';
-import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
 import AddElectricBill from './AddElectricBill';
 import ElectricBillRow from './ElectricBillRow';
@@ -22,6 +22,7 @@ import { electricMonths, electricYears } from 'assets/data';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import PrintElectricBills from './PrintElectricBills';
+import { TableRow } from '@mui/material';
 
 const ElectricBills = () => {
   const [smsAccount, setSmsAccount] = useState(null);
@@ -221,22 +222,34 @@ const ElectricBills = () => {
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 750 }}>
           <TableHead>
-            <StyledTableRow>
-              <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Paid Date</StyledTableCell>
-              <StyledTableCell>Meter Info</StyledTableCell>
-              <StyledTableCell>Year</StyledTableCell>
-              <StyledTableCell>Month</StyledTableCell>
-              <StyledTableCell align="right">Reading</StyledTableCell>
-              <StyledTableCell align="right">Unit</StyledTableCell>
-              <StyledTableCell>Unit Details Amount</StyledTableCell>
-              <StyledTableCell align="right">Net Bill</StyledTableCell>
-              <StyledTableCell align="right">Service Charge</StyledTableCell>
-              <StyledTableCell align="right">Total Bill</StyledTableCell>
-              <StyledTableCell>Paid By</StyledTableCell>
-              <StyledTableCell>Remarks</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
-            </StyledTableRow>
+            <TableRow>
+              <StyledTableCellWithBorder align="center">
+                SN
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Paid Date</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Meter Info</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Year</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Month</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Reading
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Unit
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Net Bill
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Service Charge
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Total Bill
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Paid By</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="center">
+                Action
+              </StyledTableCellWithBorder>
+            </TableRow>
           </TableHead>
           <TableBody>
             {allElectricityBills?.length ? (
@@ -244,42 +257,53 @@ const ElectricBills = () => {
                 <ElectricBillRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
-              <StyledTableRow>
-                <StyledTableCell colSpan={16} sx={{ border: 0 }} align="center">
+              <TableRow>
+                <StyledTableCellWithBorder
+                  colSpan={16}
+                  sx={{ border: 0 }}
+                  align="center"
+                >
                   {isLoading ? (
                     <LinearProgress sx={{ opacity: 0.5, py: 0.5 }} />
                   ) : (
                     'No Data'
                   )}
-                </StyledTableCell>
-              </StyledTableRow>
+                </StyledTableCellWithBorder>
+              </TableRow>
             )}
             {allElectricityBills?.length ? (
-              <StyledTableRow>
-                <StyledTableCell
-                  colSpan={6}
+              <TableRow>
+                <StyledTableCellWithBorder colSpan={6} sx={{ fontWeight: 700 }}>
+                  TOTAL
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >
-                  Total:
-                </StyledTableCell>
-                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
                   {totalUnit}
-                </StyledTableCell>
-                <StyledTableCell
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontWeight: 700 }}
-                ></StyledTableCell>
-                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                >
                   {totalNetBill}
-                </StyledTableCell>
-                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                >
                   {totalServiceCharge}
-                </StyledTableCell>
-                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
+                  align="right"
+                  sx={{ fontWeight: 700 }}
+                >
                   {totalAmount}
-                </StyledTableCell>
-              </StyledTableRow>
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
+                  colSpan={2}
+                ></StyledTableCellWithBorder>
+              </TableRow>
             ) : null}
           </TableBody>
         </Table>

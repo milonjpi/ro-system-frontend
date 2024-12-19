@@ -77,12 +77,10 @@ const AddElectricBill = ({ open, handleClose }) => {
       year: year,
       meterReading: data?.meterReading,
       unit: data?.unit,
-      unitDetails: data?.unitDetails,
       netBill: data?.netBill,
       serviceCharge: data?.amount - data?.netBill,
       amount: data?.amount,
       paidBy: data?.paidBy,
-      remarks: data?.remarks,
       status: status,
     };
     try {
@@ -241,16 +239,8 @@ const AddElectricBill = ({ open, handleClose }) => {
                 {...register('unit', { valueAsNumber: true, required: true })}
               />
             </Grid>
-            <Grid item xs={12} md={9}>
-              <TextField
-                fullWidth
-                label="Unit Details With Amount"
-                size="small"
-                required
-                {...register('unitDetails', { required: true })}
-              />
-            </Grid>
-            <Grid item xs={12} md={4}>
+
+            <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
                 label="Net Bill"
@@ -264,13 +254,13 @@ const AddElectricBill = ({ open, handleClose }) => {
                 })}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={3}>
               <Typography>Service Charge</Typography>
               <Typography sx={{ fontWeight: 700 }}>
                 {netBill && amount ? amount - netBill : 0}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
                 label="Total Bill"
@@ -281,22 +271,13 @@ const AddElectricBill = ({ open, handleClose }) => {
                 {...register('amount', { required: true, valueAsNumber: true })}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Paid By"
                 size="small"
                 required
                 {...register('paidBy', { required: true })}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={8}>
-              <TextField
-                fullWidth
-                label="Remarks"
-                size="small"
-                {...register('remarks')}
               />
             </Grid>
 

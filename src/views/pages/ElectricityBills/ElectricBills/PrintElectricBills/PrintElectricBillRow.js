@@ -9,7 +9,7 @@ const PrintElectricBillRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>
         {data?.date ? moment(data?.date).format('DD/MM/YYYY') : 'n/a'}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
+      <StyledTableCellWithBorder sx={{ minWidth: 150 }}>
         {data?.meter?.label +
           (data?.meter?.smsAccount ? ', ' + data?.meter?.smsAccount : '')}
         <br />
@@ -23,7 +23,6 @@ const PrintElectricBillRow = ({ sn, data }) => {
       <StyledTableCellWithBorder align="right">
         {data?.unit || 0}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.unitDetails}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.netBill}
       </StyledTableCellWithBorder>
@@ -34,9 +33,6 @@ const PrintElectricBillRow = ({ sn, data }) => {
         {data?.amount}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>{data?.paidBy}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.remarks || 'n/a'}
-      </StyledTableCellWithBorder>
     </TableRow>
   );
 };

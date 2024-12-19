@@ -44,9 +44,6 @@ const PrintElectricBills = forwardRef(
               <StyledTableCellWithBorder align="right">
                 Unit
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>
-                Unit Details Amount
-              </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
                 Net Bill
               </StyledTableCellWithBorder>
@@ -57,7 +54,6 @@ const PrintElectricBills = forwardRef(
                 Total Bill
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Paid By</StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Remarks</StyledTableCellWithBorder>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -78,12 +74,8 @@ const PrintElectricBills = forwardRef(
             )}
             {allElectricityBills?.length ? (
               <TableRow>
-                <StyledTableCellWithBorder
-                  colSpan={6}
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                >
-                  Total:
+                <StyledTableCellWithBorder colSpan={6} sx={{ fontWeight: 700 }}>
+                  TOTAL
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
                   align="right"
@@ -91,10 +83,6 @@ const PrintElectricBills = forwardRef(
                 >
                   {totalUnit}
                 </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                ></StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontWeight: 700 }}
@@ -113,10 +101,6 @@ const PrintElectricBills = forwardRef(
                 >
                   {totalAmount}
                 </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                ></StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontWeight: 700 }}

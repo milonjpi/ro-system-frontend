@@ -6,10 +6,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDeleteElectricityBillMutation } from 'store/api/electricityBill/electricityBillApi';
 import { setToast } from 'store/toastSlice';
-import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import UpdateElectricBill from './UpdateElectricBill';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import moment from 'moment';
+import { TableRow } from '@mui/material';
 
 const ElectricBillRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -43,30 +44,36 @@ const ElectricBillRow = ({ sn, data }) => {
   };
 
   return (
-    <StyledTableRow>
-      <StyledTableCell align="center">{sn}</StyledTableCell>
-      <StyledTableCell>
+    <TableRow>
+      <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
         {data?.date ? moment(data?.date).format('DD/MM/YYYY') : 'n/a'}
-      </StyledTableCell>
-      <StyledTableCell>
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder sx={{ minWidth: 150 }}>
         {data?.meter?.label +
           (data?.meter?.smsAccount ? ', ' + data?.meter?.smsAccount : '')}
         <br />
         {data?.meter?.location || 'N/A'}
-      </StyledTableCell>
-      <StyledTableCell>{data?.year}</StyledTableCell>
-      <StyledTableCell>{data?.month}</StyledTableCell>
-      <StyledTableCell align="right">{data?.meterReading}</StyledTableCell>
-      <StyledTableCell align="right">{data?.unit || 0}</StyledTableCell>
-      <StyledTableCell>{data?.unitDetails}</StyledTableCell>
-      <StyledTableCell align="right">{data?.netBill}</StyledTableCell>
-      <StyledTableCell align="right">
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.year}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.month}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.meterReading}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.unit || 0}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.netBill}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
         {data?.serviceCharge || 0}
-      </StyledTableCell>
-      <StyledTableCell align="right">{data?.amount}</StyledTableCell>
-      <StyledTableCell>{data?.paidBy}</StyledTableCell>
-      <StyledTableCell>{data?.remarks || 'n/a'}</StyledTableCell>
-      <StyledTableCell align="center" sx={{ minWidth: 95 }}>
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.amount}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.paidBy}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center" sx={{ minWidth: 95 }}>
         <ButtonGroup>
           <IconButton
             color="primary"
@@ -94,8 +101,8 @@ const ElectricBillRow = ({ sn, data }) => {
           content="Delete Electric Bill"
           handleDelete={handleDelete}
         />
-      </StyledTableCell>
-    </StyledTableRow>
+      </StyledTableCellWithBorder>
+    </TableRow>
   );
 };
 
