@@ -9,10 +9,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import MainCard from 'ui-component/cards/MainCard';
 import { useGetCustomersQuery } from 'store/api/customer/customerApi';
 import DataTable from 'ui-component/table';
+import { utils, writeFile } from 'xlsx';
 import moment from 'moment';
 import { useGetCustomInvoicesQuery } from 'store/api/customInvoice/customInvoiceApi';
 import CustomInvoiceRow from './CustomInvoiceRow';
 import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
+import { totalSum } from 'views/utilities/NeedyFunction';
+import { IconButton, Tooltip } from '@mui/material';
+import { IconCloudDownload } from '@tabler/icons-react';
 
 const CustomInvoices = () => {
   const [group, setGroup] = useState(null);
@@ -131,8 +135,69 @@ const CustomInvoices = () => {
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
+
+  // export data
+  const { data: printData, isLoading: printLoading } =
+    useGetCustomInvoicesQuery(
+      { ...query, page: 0, limit: 5000 },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allPrintCustomInvoices = printData?.customInvoices || [];
+
+  const handleExport = () => {
+    let elt = allPrintCustomInvoices.map((el, index) => {
+      const invoiceCount = el?.invoices?.length || 0;
+
+      // calculation
+      const totalPrice = totalSum(el?.invoices || [], 'totalPrice');
+      const totalDiscount = totalSum(el?.invoices || [], 'discount');
+      const totalAmount = totalSum(el?.invoices || [], 'amount');
+      const paidAmount = totalSum(el?.invoices || [], 'paidAmount');
+      const dueAmount = totalAmount - paidAmount;
+      return {
+        SN: index + 1,
+        Customer: el.customerName,
+        'Total Invoice': invoiceCount,
+        'Total Price': totalPrice,
+        Discount: totalDiscount,
+        Amount: totalAmount,
+        'Paid Amount': paidAmount,
+        Due: dueAmount,
+      };
+    });
+    let wb = utils.book_new();
+    let ws = utils.json_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 20 },
+      { wch: 11 },
+      { wch: 9 },
+      { wch: 8 },
+      { wch: 7 },
+      { wch: 11 },
+      { wch: 7 },
+    ];
+    writeFile(wb, `Custom-Invoice.xlsx`);
+  };
   return (
-    <MainCard title="Custom Invoices">
+    <MainCard
+      title="Custom Invoices"
+      secondary={
+        <Tooltip title="Export">
+          <IconButton
+            color="primary"
+            size="small"
+            disabled={printLoading}
+            onClick={handleExport}
+          >
+            <IconCloudDownload size={20} />
+          </IconButton>
+        </Tooltip>
+      }
+    >
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={1} sx={{ alignItems: 'end' }}>
