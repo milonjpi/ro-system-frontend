@@ -117,6 +117,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
   const totalValue = subTotal - parseInt(discount || 0);
   const givenFromBalance =
     presentBalance > totalValue ? totalValue : presentBalance;
+
   const receiveAmount = useWatch({ control, name: 'receiveAmount' });
 
   const paidInvoiceAmount = givenFromBalance + (receiveAmount || 0);
@@ -172,7 +173,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
           unitPrice: el.product?.price,
           totalPrice: (el.quantity || 1) * el.product?.price,
         })) || [],
-      voucher: { amount: receiveAmount || 0 },
+      voucher: { amount: data?.receiveAmount || 0 },
     };
     try {
       setLoading(true);

@@ -25,17 +25,21 @@ import {
   IconFileInvoice,
   IconSquareRoundedPlusFilled,
 } from '@tabler/icons-react';
-import { InputBase } from '@mui/material';
+import { InputBase, TableRow } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { useUpdateInvoiceMutation } from 'store/api/invoice/invoiceApi';
-import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+import {
+  StyledTableCell,
+  StyledTableCellWithBorder,
+  StyledTableRow,
+} from 'ui-component/table-component';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 500, md: 700 },
+  width: { xs: 350, sm: 550, md: 850 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -63,10 +67,14 @@ const UpdateSalesInvoice = ({
 
   const [discount, setDiscount] = useState(preData?.discount);
 
+  const voucherDetails = preData?.voucherDetails || [];
+  const voucherAmount = totalSum(voucherDetails, 'receiveAmount');
+
   // hook form
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       products: preData?.invoicedProducts || [productValue],
+      receiveAmount: voucherAmount,
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -84,7 +92,7 @@ const UpdateSalesInvoice = ({
   const totalPayment = customer?.invoices?.voucherAmount || 0;
   const paidAmount =
     (customer?.invoices?.paidAmount || 0) - preData?.paidAmount;
-  const presentBalance = totalPayment - paidAmount;
+  const presentBalance = totalPayment - paidAmount - voucherAmount;
 
   const watchValue = useWatch({ control, name: 'products' });
   const subTotalMapped = watchValue?.map((el) => ({
@@ -95,6 +103,10 @@ const UpdateSalesInvoice = ({
 
   const givenFromBalance =
     presentBalance > totalValue ? totalValue : presentBalance;
+
+  const receiveAmount = useWatch({ control, name: 'receiveAmount' });
+
+  const paidInvoiceAmount = givenFromBalance + (receiveAmount || 0);
   // end calculation
 
   // table
@@ -131,11 +143,11 @@ const UpdateSalesInvoice = ({
         totalPrice: subTotal,
         discount: parseInt(discount || 0),
         amount: totalValue,
-        paidAmount: givenFromBalance,
+        paidAmount: paidInvoiceAmount,
         status:
-          givenFromBalance === totalValue
+          paidInvoiceAmount === totalValue
             ? 'Paid'
-            : givenFromBalance > 0
+            : paidInvoiceAmount > 0
             ? 'Partial'
             : 'Due',
       },
@@ -146,6 +158,7 @@ const UpdateSalesInvoice = ({
           unitPrice: el.product?.price,
           totalPrice: (el.quantity || 1) * el.product?.price,
         })) || [],
+      voucher: { amount: data?.receiveAmount || 0 },
     };
     try {
       setLoading(true);
@@ -203,53 +216,110 @@ const UpdateSalesInvoice = ({
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Autocomplete
-                value={customer}
-                disabled
-                size="small"
-                fullWidth
-                options={allDetailCustomers}
-                getOptionLabel={(option) => option.customerName}
-                onChange={(e, newValue) => setCustomer(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="Select Customer" required />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={8} md={6}>
-              <LocalizationProvider dateAdapter={AdapterMoment}>
-                <DatePicker
-                  label="Invoice Date"
-                  views={['year', 'month', 'day']}
-                  inputFormat="DD/MM/YYYY"
-                  value={invoiceDate}
-                  onChange={(newValue) => {
-                    setInvoiceDate(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      size="small"
-                      required
-                      autoComplete="off"
+            <Grid item xs={12} md={7}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <LocalizationProvider dateAdapter={AdapterMoment}>
+                    <DatePicker
+                      label="Invoice Date"
+                      views={['year', 'month', 'day']}
+                      inputFormat="DD/MM/YYYY"
+                      value={invoiceDate}
+                      onChange={(newValue) => {
+                        setInvoiceDate(newValue);
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          size="small"
+                          required
+                          autoComplete="off"
+                        />
+                      )}
                     />
-                  )}
-                />
-              </LocalizationProvider>
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <Autocomplete
+                    value={customer}
+                    disabled
+                    size="small"
+                    fullWidth
+                    options={[findCustomer]}
+                    getOptionLabel={(option) => option.customerName}
+                    onChange={(e, newValue) => setCustomer(newValue)}
+                    isOptionEqualToValue={(item, value) => item.id === value.id}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Select Customer" required />
+                    )}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={4} sx={{ alignSelf: 'center' }}>
-              {customer ? (
-                <Typography sx={{ fontSize: 11 }}>
-                  Balance:{' '}
-                  <span style={{ color: 'red' }}>
-                    {presentBalance > 0 ? presentBalance : 0}
-                  </span>
-                </Typography>
-              ) : null}
+            <Grid item xs={12} md={5}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCellWithBorder
+                      colSpan={2}
+                      align="center"
+                      sx={{ py: '2px !important' }}
+                    >
+                      Adjust Payment
+                    </StyledTableCellWithBorder>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <StyledTableCellWithBorder sx={{ py: '6px !important' }}>
+                      Advance &#40;{presentBalance > 0 ? presentBalance : 0}
+                      &#41;
+                    </StyledTableCellWithBorder>
+                    <StyledTableCellWithBorder
+                      align="right"
+                      sx={{ width: 120, py: '6px !important' }}
+                    >
+                      {givenFromBalance}
+                    </StyledTableCellWithBorder>
+                  </TableRow>
+                  <TableRow>
+                    <StyledTableCellWithBorder sx={{ py: '6px !important' }}>
+                      New Payment
+                    </StyledTableCellWithBorder>
+                    <StyledTableCellWithBorder
+                      align="right"
+                      sx={{ width: 120, py: '6px !important' }}
+                    >
+                      <TextField
+                        fullWidth
+                        size="small"
+                        placeholder="Amount"
+                        type="number"
+                        InputProps={{
+                          inputProps: {
+                            min: 0,
+                            max: totalValue - givenFromBalance,
+                          },
+                        }}
+                        sx={{
+                          '& .MuiInputBase-input': {
+                            fontSize: 10,
+                            px: 1,
+                            py: 0.7,
+                          },
+                          '& .MuiInputBase-input::placeholder': {
+                            fontSize: 10,
+                          },
+                        }}
+                        {...register('receiveAmount', {
+                          valueAsNumber: true,
+                        })}
+                      />
+                    </StyledTableCellWithBorder>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Grid>
             <Grid item xs={12}>
               <Box sx={{ overflow: 'auto' }}>
