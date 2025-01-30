@@ -84,11 +84,7 @@ const SalesInvoiceRow = ({ sn, data, allDetailCustomers }) => {
             color="primary"
             size="small"
             onClick={() => setOpen(true)}
-            // disabled={
-            //   data?.status === 'Due' || !data?.voucherDetails?.length
-            //     ? false
-            //     : true
-            // }
+            disabled={data?.version ? false : true}
           >
             <IconEdit size={18} />
           </IconButton>
@@ -96,11 +92,7 @@ const SalesInvoiceRow = ({ sn, data, allDetailCustomers }) => {
             size="small"
             color="error"
             onClick={() => setDialog(true)}
-            // disabled={
-            //   data?.status === 'Due' || !data?.voucherDetails?.length
-            //     ? false
-            //     : true
-            // }
+            disabled={data?.version ? false : true}
           >
             <IconTrashXFilled size={18} />
           </IconButton>
@@ -117,12 +109,15 @@ const SalesInvoiceRow = ({ sn, data, allDetailCustomers }) => {
           content="Delete Invoice"
           handleDelete={handleDelete}
         />
-        <UpdateSalesInvoice
-          open={open}
-          preData={data}
-          handleClose={() => setOpen(false)}
-          allDetailCustomers={allDetailCustomers}
-        />
+        {allDetailCustomers?.length ? (
+          <UpdateSalesInvoice
+            open={open}
+            preData={data}
+            handleClose={() => setOpen(false)}
+            allDetailCustomers={allDetailCustomers}
+          />
+        ) : null}
+
         {/* end popup items */}
       </StyledTableCell>
     </StyledTableRow>

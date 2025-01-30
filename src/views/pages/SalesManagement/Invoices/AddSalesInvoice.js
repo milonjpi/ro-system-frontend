@@ -60,6 +60,8 @@ const AddSalesInvoice = ({ open, handleClose }) => {
   const [customer, setCustomer] = useState(null);
   const [invoiceDate, setInvoiceDate] = useState(moment());
 
+  const [advance, setAdvance] = useState(0);
+  const [receiveAmount, setReceiveAmount] = useState(0);
   const [discount, setDiscount] = useState('');
 
   // hook form
@@ -115,12 +117,8 @@ const AddSalesInvoice = ({ open, handleClose }) => {
 
   const subTotal = totalSum(subTotalMapped || [], 'amount');
   const totalValue = subTotal - parseInt(discount || 0);
-  const givenFromBalance =
-    presentBalance > totalValue ? totalValue : presentBalance;
 
-  const receiveAmount = useWatch({ control, name: 'receiveAmount' });
-
-  const paidInvoiceAmount = givenFromBalance + (receiveAmount || 0);
+  const paidInvoiceAmount = Number(advance || 0) + Number(receiveAmount || 0);
 
   // end calculation
 
@@ -173,7 +171,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
           unitPrice: el.product?.price,
           totalPrice: (el.quantity || 1) * el.product?.price,
         })) || [],
-      voucher: { amount: data?.receiveAmount || 0 },
+      voucher: { amount: Number(receiveAmount || '0') },
     };
     try {
       setLoading(true);
@@ -182,6 +180,8 @@ const AddSalesInvoice = ({ open, handleClose }) => {
         handleClose();
         setLoading(false);
         setCustomer(null);
+        setAdvance(0);
+        setReceiveAmount(0);
         setInvoiceDate(moment());
         reset({ products: [productValue] });
         dispatch(
@@ -317,7 +317,33 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                       align="right"
                       sx={{ width: 120, py: '6px !important' }}
                     >
-                      {givenFromBalance}
+                      <TextField
+                        fullWidth
+                        size="small"
+                        placeholder="Amount"
+                        type="number"
+                        value={advance}
+                        onChange={(e) => setAdvance(e.target.value)}
+                        InputProps={{
+                          inputProps: {
+                            min: 0,
+                            max:
+                              totalValue > presentBalance
+                                ? presentBalance
+                                : totalValue,
+                          },
+                        }}
+                        sx={{
+                          '& .MuiInputBase-input': {
+                            fontSize: 10,
+                            px: 1,
+                            py: 0.7,
+                          },
+                          '& .MuiInputBase-input::placeholder': {
+                            fontSize: 10,
+                          },
+                        }}
+                      />
                     </StyledTableCellWithBorder>
                   </TableRow>
                   <TableRow>
@@ -333,10 +359,12 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                         size="small"
                         placeholder="Amount"
                         type="number"
+                        value={receiveAmount}
+                        onChange={(e) => setReceiveAmount(e.target.value)}
                         InputProps={{
                           inputProps: {
                             min: 0,
-                            max: totalValue - givenFromBalance,
+                            max: totalValue - Number(advance || '0'),
                           },
                         }}
                         sx={{
@@ -349,9 +377,6 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                             fontSize: 10,
                           },
                         }}
-                        {...register('receiveAmount', {
-                          valueAsNumber: true,
-                        })}
                       />
                     </StyledTableCellWithBorder>
                   </TableRow>
@@ -435,7 +460,8 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                               {totalValue}
                             </Typography>
                             <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                              {givenFromBalance + (receiveAmount || 0)}
+                              {Number(advance || '0') +
+                                Number(receiveAmount || 0)}
                             </Typography>
                           </StyledTableCell>
                         </>

@@ -34,8 +34,8 @@ const PurchaseBill = () => {
   const [searchText, setSearchText] = useState('');
   const [status, setStatus] = useState('all');
   const [vendor, setVendor] = useState(null);
-  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
-  const [endDate, setEndDate] = useState(moment());
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [open, setOpen] = useState(false);
 

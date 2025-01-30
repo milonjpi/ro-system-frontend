@@ -35,8 +35,8 @@ import PrintAllExpenses from './PrintAllExpenses';
 const AllExpenses = () => {
   const [searchText, setSearchText] = useState('');
   const [expenseHead, setExpenseHead] = useState(null);
-  const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
-  const [endDate, setEndDate] = useState(moment());
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [open, setOpen] = useState(false);
 

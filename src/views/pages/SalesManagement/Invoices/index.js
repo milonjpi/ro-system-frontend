@@ -33,8 +33,8 @@ const Invoices = () => {
   const [searchText, setSearchText] = useState('');
   const [status, setStatus] = useState('all');
   const [customer, setCustomer] = useState(null);
-  const [startDate, setStartDate] = useState(moment());
-  const [endDate, setEndDate] = useState(moment());
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [open, setOpen] = useState(false);
 

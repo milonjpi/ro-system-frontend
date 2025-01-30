@@ -61,15 +61,19 @@ const UpdateSalesInvoice = ({
     (el) => el.id === preData?.customerId
   );
 
-  const [loading, setLoading] = useState(false);
-  const [customer, setCustomer] = useState(findCustomer || null);
-  const [invoiceDate, setInvoiceDate] = useState(preData?.date);
-
-  const [discount, setDiscount] = useState(preData?.discount);
 
   const voucherDetails = preData?.voucherDetails || [];
   const voucherAmount = totalSum(voucherDetails, 'receiveAmount');
 
+  const [loading, setLoading] = useState(false);
+  const [customer, setCustomer] = useState(findCustomer);
+  const [invoiceDate, setInvoiceDate] = useState(preData?.date);
+
+  const [advance, setAdvance] = useState(
+    preData?.paidAmount - voucherAmount || 0
+  );
+  const [receiveAmount, setReceiveAmount] = useState(voucherAmount || 0);
+  const [discount, setDiscount] = useState(preData?.discount);
   // hook form
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
@@ -101,12 +105,7 @@ const UpdateSalesInvoice = ({
   const subTotal = totalSum(subTotalMapped, 'amount');
   const totalValue = subTotal - parseInt(discount || 0);
 
-  const givenFromBalance =
-    presentBalance > totalValue ? totalValue : presentBalance;
-
-  const receiveAmount = useWatch({ control, name: 'receiveAmount' });
-
-  const paidInvoiceAmount = givenFromBalance + (receiveAmount || 0);
+  const paidInvoiceAmount = Number(advance || 0) + Number(receiveAmount || 0);
   // end calculation
 
   // table
@@ -158,7 +157,10 @@ const UpdateSalesInvoice = ({
           unitPrice: el.product?.price,
           totalPrice: (el.quantity || 1) * el.product?.price,
         })) || [],
-      voucher: { amount: data?.receiveAmount || 0 },
+      voucher: {
+        id: voucherDetails[0]?.voucherId || '123',
+        amount: Number(receiveAmount || '0'),
+      },
     };
     try {
       setLoading(true);
@@ -280,7 +282,33 @@ const UpdateSalesInvoice = ({
                       align="right"
                       sx={{ width: 120, py: '6px !important' }}
                     >
-                      {givenFromBalance}
+                      <TextField
+                        fullWidth
+                        size="small"
+                        placeholder="Amount"
+                        type="number"
+                        value={advance}
+                        onChange={(e) => setAdvance(e.target.value)}
+                        InputProps={{
+                          inputProps: {
+                            min: 0,
+                            max:
+                              totalValue > presentBalance
+                                ? presentBalance
+                                : totalValue,
+                          },
+                        }}
+                        sx={{
+                          '& .MuiInputBase-input': {
+                            fontSize: 10,
+                            px: 1,
+                            py: 0.7,
+                          },
+                          '& .MuiInputBase-input::placeholder': {
+                            fontSize: 10,
+                          },
+                        }}
+                      />
                     </StyledTableCellWithBorder>
                   </TableRow>
                   <TableRow>
@@ -296,10 +324,12 @@ const UpdateSalesInvoice = ({
                         size="small"
                         placeholder="Amount"
                         type="number"
+                        value={receiveAmount}
+                        onChange={(e) => setReceiveAmount(e.target.value)}
                         InputProps={{
                           inputProps: {
                             min: 0,
-                            max: totalValue - givenFromBalance,
+                            max: totalValue - Number(advance || '0'),
                           },
                         }}
                         sx={{
@@ -312,9 +342,6 @@ const UpdateSalesInvoice = ({
                             fontSize: 10,
                           },
                         }}
-                        {...register('receiveAmount', {
-                          valueAsNumber: true,
-                        })}
                       />
                     </StyledTableCellWithBorder>
                   </TableRow>
@@ -397,7 +424,8 @@ const UpdateSalesInvoice = ({
                               {totalValue}
                             </Typography>
                             <Typography sx={{ fontSize: 12, fontWeight: 700 }}>
-                              {givenFromBalance}
+                              {Number(advance || '0') +
+                                Number(receiveAmount || 0)}
                             </Typography>
                           </StyledTableCell>
                         </>

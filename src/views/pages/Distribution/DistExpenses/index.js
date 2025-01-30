@@ -133,7 +133,6 @@ const DistExpenses = () => {
   const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
-  console.log(data);
 
   // export to excel
   const exportQuery = {};

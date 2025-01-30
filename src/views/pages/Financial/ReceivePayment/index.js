@@ -24,8 +24,8 @@ import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 const ReceivePayment = () => {
   const [searchText, setSearchText] = useState('');
   const [customer, setCustomer] = useState(null);
-  const [startDate, setStartDate] = useState(moment());
-  const [endDate, setEndDate] = useState(moment());
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [open, setOpen] = useState(false);
 
