@@ -15,8 +15,11 @@ const PrintAllExpenseRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>
         {data?.vendor ? data?.vendor?.vendorName : 'n/a'}
       </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder sx={{ maxWidth: 200 }}>
+        {data?.expenseDetails || 'n/a'}
+      </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.remarks ? data?.remarks : 'n/a'}
+        {data?.remarks || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.amount}

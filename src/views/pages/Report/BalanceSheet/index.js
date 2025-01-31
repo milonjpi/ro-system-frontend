@@ -43,8 +43,6 @@ const BalanceSheet = () => {
     })
     .sort((a, b) => a.label?.localeCompare(b.label));
   const totalExpenses = totalSum(mappedExpenses || [], 'amount');
-  const equipmentBills = allReports?.bills?._sum?.amount || 0;
-  const equipmentBillsPaid = allReports?.bills?._sum?.paidAmount || 0;
 
   // invoices
   const totalInvoices = allReports?.invoices?._sum?.amount || 0;
@@ -58,17 +56,14 @@ const BalanceSheet = () => {
   const vouchers = allReports?.vouchers || [];
   const findReceived =
     vouchers?.find((el) => el.type === 'Received')?._sum?.amount || 0;
-  const findPaid =
-    vouchers?.find((el) => el.type === 'Paid')?._sum?.amount || 0;
 
   const accountReceivable =
     totalInvoices +
     distributorAmount -
     totalInvoicesPaid -
     distributorPaidAmount;
-  const accountPayable = equipmentBills - equipmentBillsPaid;
+
   const advancedReceived = findReceived - totalInvoicesPaid;
-  const advancedPaid = findPaid - equipmentBillsPaid;
 
   // cash and equivalent
   const cashAndEquivalent =
@@ -76,27 +71,21 @@ const BalanceSheet = () => {
     findReceived +
     distributorPaidAmount -
     withdraws -
-    totalExpenses -
-    findPaid;
+    totalExpenses;
 
   // total asset
   const totalAsset =
     fixedAssets +
     cashAndEquivalent +
     investmentAsset +
-    accountReceivable +
-    advancedPaid -
+    accountReceivable -
     withdraws;
 
   // equity
-  const equity =
-    totalAsset -
-    ((accountPayable > 0 ? accountPayable : 0) +
-      (advancedReceived > 0 ? advancedReceived : 0));
+  const equity = totalAsset - (advancedReceived > 0 ? advancedReceived : 0);
 
   // profit
-  const totalProfit =
-    totalInvoices + distributorAmount - totalExpenses - equipmentBills;
+  const totalProfit = totalInvoices + distributorAmount - totalExpenses;
 
   return (
     <MainCard title="Balance Sheet">
@@ -124,25 +113,16 @@ const BalanceSheet = () => {
                     title="Account Receivable"
                     value={accountReceivable > 0 ? accountReceivable : 0}
                   />
-                  <CardItem
-                    title="Advanced Payment"
-                    value={advancedPaid > 0 ? advancedPaid : 0}
-                  />
+                  <CardItem title="Advanced Payment" value={0} />
                 </BalanceCard>
               </Grid>
               <Grid item xs={12}>
                 <BalanceCard
                   title="Liabilities"
                   loading={isLoading}
-                  value={
-                    (accountPayable > 0 ? accountPayable : 0) +
-                    (advancedReceived > 0 ? advancedReceived : 0)
-                  }
+                  value={advancedReceived > 0 ? advancedReceived : 0}
                 >
-                  <CardItem
-                    title="Account Payable"
-                    value={accountPayable > 0 ? accountPayable : 0}
-                  />
+                  <CardItem title="Account Payable" value={0} />
                   <CardItem
                     title="Advanced Received"
                     value={advancedReceived > 0 ? advancedReceived : 0}
@@ -181,7 +161,7 @@ const BalanceSheet = () => {
                 <BalanceCard
                   title="Expenses"
                   loading={isLoading}
-                  value={totalExpenses + equipmentBills}
+                  value={totalExpenses}
                 >
                   {mappedExpenses?.map((el) => (
                     <CardItem
@@ -190,7 +170,6 @@ const BalanceSheet = () => {
                       value={el?.amount || 0}
                     />
                   ))}
-                  <CardItem title="PURCHASE EQUIPMENT" value={equipmentBills} />
                 </BalanceCard>
               </Grid>
               <Grid item xs={12}>

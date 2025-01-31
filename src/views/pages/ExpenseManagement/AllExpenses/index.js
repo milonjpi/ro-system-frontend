@@ -155,6 +155,7 @@ const AllExpenses = () => {
       { wch: 22 },
       { wch: 20 },
       { wch: 46 },
+      { wch: 46 },
       { wch: 10 },
     ];
     writeFile(wb, `Expenses.xlsx`);
@@ -295,6 +296,7 @@ const AllExpenses = () => {
               <StyledTableCell>Date</StyledTableCell>
               <StyledTableCell>Expense Head</StyledTableCell>
               <StyledTableCell>Vendor</StyledTableCell>
+              <StyledTableCell>Expense Details</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
               <StyledTableCell align="right">Amount</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
@@ -319,7 +321,7 @@ const AllExpenses = () => {
             {allExpenses?.length ? (
               <StyledTableRow>
                 <StyledTableCell
-                  colSpan={5}
+                  colSpan={6}
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >

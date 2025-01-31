@@ -44,6 +44,9 @@ const PrintAllExpenses = forwardRef(
                 Expense Head
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Vendor</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>
+                Expense Details
+              </StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Remarks</StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
                 Amount
@@ -69,7 +72,7 @@ const PrintAllExpenses = forwardRef(
             {allExpenses?.length ? (
               <TableRow>
                 <StyledTableCellWithBorder
-                  colSpan={5}
+                  colSpan={6}
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >

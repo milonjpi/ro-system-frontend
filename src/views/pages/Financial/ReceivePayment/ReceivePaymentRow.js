@@ -10,7 +10,6 @@ import ConfirmDialog from 'ui-component/ConfirmDialog';
 import { useDispatch } from 'react-redux';
 import { useDeleteReceivePaymentMutation } from 'store/api/voucher/voucherApi';
 import { setToast } from 'store/toastSlice';
-import { totalSum } from 'views/utilities/NeedyFunction';
 
 const ReceivePaymentRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -76,9 +75,7 @@ const ReceivePaymentRow = ({ sn, data }) => {
           <IconButton
             color="primary"
             size="small"
-            disabled={
-              data?.amount > totalSum(data?.voucherDetails, 'receiveAmount')
-            }
+            disabled={data?.version ? false : true}
             onClick={() => setOpen(true)}
           >
             <IconEdit size={18} />
@@ -86,9 +83,7 @@ const ReceivePaymentRow = ({ sn, data }) => {
           <IconButton
             size="small"
             color="error"
-            disabled={
-              data?.amount > totalSum(data?.voucherDetails, 'receiveAmount')
-            }
+            disabled={data?.version ? false : true}
             onClick={() => setDialog(true)}
           >
             <IconTrashXFilled size={18} />

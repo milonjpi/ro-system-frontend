@@ -13,6 +13,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
@@ -20,13 +21,15 @@ import ControlledAutoComplete from 'ui-component/form-components/ControlledAutoC
 import { useVendorDetailsQuery } from 'store/api/vendor/vendorApi';
 import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
 import { useUpdateExpenseMutation } from 'store/api/expense/expenseApi';
+import { Button, Tooltip } from '@mui/material';
+import AddExpenseHead from '../ExpenseHeads/AddExpenseHead';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 600 },
+  width: { xs: 300, sm: 600, md: 650 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -37,6 +40,8 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
   const [date, setDate] = useState(preData?.date);
   const [expenseHead, setExpenseHead] = useState(preData?.expenseHead || null);
   const [vendor, setVendor] = useState(preData?.vendor || null);
+
+  const [headOpen, setHeadOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +73,8 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
       expenseHeadId: expenseHead?.id,
       vendorId: vendor?.id,
       amount: data?.amount,
-      remarks: data?.remarks,
+      expenseDetails: data?.expenseDetails || '',
+      remarks: data?.remarks || '',
     };
     try {
       setLoading(true);
@@ -121,13 +127,19 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
           </IconButton>
         </Box>
         <Divider sx={{ mb: 2 }} />
+        {/* popup items */}
+        <AddExpenseHead
+          open={headOpen}
+          handleClose={() => setHeadOpen(false)}
+        />
+        {/* end popup items */}
         <Box
           component="form"
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DatePicker
                   label="Date"
@@ -150,16 +162,29 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
               </LocalizationProvider>
             </Grid>
 
-            <Grid item xs={12} md={6}>
-              <ControlledAutoComplete
-                label="Select Expense Head"
-                required
-                value={expenseHead}
-                options={allExpenseHeads}
-                getOptionLabel={(option) => option.label}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                onChange={(e, newValue) => setExpenseHead(newValue)}
-              />
+            <Grid item xs={12} md={8}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ControlledAutoComplete
+                  label="Select Expense Head"
+                  required
+                  value={expenseHead}
+                  options={allExpenseHeads}
+                  getOptionLabel={(option) => option.label}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  onChange={(e, newValue) => setExpenseHead(newValue)}
+                />
+                <Tooltip title="Add Head">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
             </Grid>
             <Grid item xs={12} md={6}>
               <ControlledAutoComplete
@@ -179,6 +204,14 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
                 type="number"
                 required
                 {...register('amount', { required: true, valueAsNumber: true })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Expense Details"
+                size="small"
+                {...register('expenseDetails')}
               />
             </Grid>
             <Grid item xs={12}>

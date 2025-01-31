@@ -50,6 +50,9 @@ const ExpenseRow = ({ sn, data }) => {
       <StyledTableCell>
         {data?.vendor ? data?.vendor?.vendorName : 'n/a'}
       </StyledTableCell>
+      <StyledTableCell sx={{ maxWidth: 200 }}>
+        {data?.expenseDetails || 'n/a'}
+      </StyledTableCell>
       <StyledTableCell>{data?.remarks ? data?.remarks : 'n/a'}</StyledTableCell>
       <StyledTableCell align="right">{data?.amount}</StyledTableCell>
       <StyledTableCell align="center">

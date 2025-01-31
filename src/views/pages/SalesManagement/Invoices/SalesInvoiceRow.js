@@ -84,7 +84,11 @@ const SalesInvoiceRow = ({ sn, data, allDetailCustomers }) => {
             color="primary"
             size="small"
             onClick={() => setOpen(true)}
-            disabled={data?.version ? false : true}
+            disabled={
+              data?.version || ['Due', 'Partial'].includes(data?.status)
+                ? false
+                : true
+            }
           >
             <IconEdit size={18} />
           </IconButton>
