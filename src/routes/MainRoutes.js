@@ -127,6 +127,46 @@ const DrSummary = Loadable(
   lazy(() => import('views/pages/ManageDistributor/DrSummary'))
 );
 
+// building operation
+const OperationLibrary = Loadable(
+  lazy(() => import('views/pages/BuildingOperations/OperationLibrary'))
+);
+const BuildingExpenseHead = Loadable(
+  lazy(() =>
+    import(
+      'views/pages/BuildingOperations/OperationLibrary/BuildingExpenseHead'
+    )
+  )
+);
+const BuildingVendor = Loadable(
+  lazy(() =>
+    import('views/pages/BuildingOperations/OperationLibrary/BuildingVendor')
+  )
+);
+const BuildingBrand = Loadable(
+  lazy(() =>
+    import('views/pages/BuildingOperations/OperationLibrary/BuildingBrand')
+  )
+);
+const BuildingUom = Loadable(
+  lazy(() =>
+    import('views/pages/BuildingOperations/OperationLibrary/BuildingUom')
+  )
+);
+const BuildingPaymentMethod = Loadable(
+  lazy(() =>
+    import(
+      'views/pages/BuildingOperations/OperationLibrary/BuildingPaymentMethod'
+    )
+  )
+);
+const BuildingInvestmentSource = Loadable(
+  lazy(() =>
+    import(
+      'views/pages/BuildingOperations/OperationLibrary/BuildingInvestmentSource'
+    )
+  )
+);
 
 // electricity bills
 const MeterInfo = Loadable(
@@ -567,6 +607,48 @@ const MainRoutes = {
                       <DrSummary />
                     </AuthenticationRoutes>
                   ),
+                },
+              ],
+            },
+            {
+              path: 'building-operations',
+              children: [
+                {
+                  path: 'operation-library',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['operation-library']}
+                    >
+                      <OperationLibrary />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <BuildingExpenseHead />,
+                    },
+                    {
+                      path: 'vendor',
+                      element: <BuildingVendor />,
+                    },
+                    {
+                      path: 'brand',
+                      element: <BuildingBrand />,
+                    },
+                    {
+                      path: 'uom',
+                      element: <BuildingUom />,
+                    },
+                    {
+                      path: 'payment-method',
+                      element: <BuildingPaymentMethod />,
+                    },
+                    {
+                      path: 'investment-source',
+                      element: <BuildingInvestmentSource />,
+                    },
+                  ],
                 },
               ],
             },

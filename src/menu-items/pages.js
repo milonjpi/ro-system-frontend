@@ -10,6 +10,7 @@ import {
   IconReport,
   IconShoppingCart,
   IconCoins,
+  IconBuildingSkyscraper,
   IconGridGoldenratio,
 } from '@tabler/icons-react';
 
@@ -25,6 +26,7 @@ const icons = {
   IconBulb,
   IconShoppingCart,
   IconCoins,
+  IconBuildingSkyscraper,
   IconGridGoldenratio,
 };
 
@@ -328,6 +330,44 @@ const pages = {
           title: 'FOC Summary',
           type: 'item',
           url: '/pages/foc-management/foc-summary',
+          access: ['super_admin'],
+        },
+      ],
+    },
+    {
+      id: 'building-operations',
+      title: 'Building Operations',
+      type: 'collapse',
+      color: '#2F0F5D',
+      icon: icons.IconBuildingSkyscraper,
+      access: ['super_admin'],
+      children: [
+        {
+          id: 'operation-expenses',
+          title: 'Operation Expenses',
+          type: 'item',
+          url: '/pages/building-operations/operation-expenses',
+          access: ['super_admin'],
+        },
+        {
+          id: 'operation-investments',
+          title: 'Investments',
+          type: 'item',
+          url: '/pages/building-operations/operation-investments',
+          access: ['super_admin'],
+        },
+        {
+          id: 'operation-report',
+          title: 'Reports',
+          type: 'item',
+          url: '/pages/building-operations/operation-report',
+          access: ['super_admin'],
+        },
+        {
+          id: 'operation-library',
+          title: 'Library',
+          type: 'item',
+          url: '/pages/building-operations/operation-library',
           access: ['super_admin'],
         },
       ],
