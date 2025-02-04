@@ -128,6 +128,15 @@ const DrSummary = Loadable(
 );
 
 // building operation
+const OperationExpenses = Loadable(
+  lazy(() => import('views/pages/BuildingOperations/OperationExpenses'))
+);
+const OperationInvestments = Loadable(
+  lazy(() => import('views/pages/BuildingOperations/OperationInvestments'))
+);
+const OperationReports = Loadable(
+  lazy(() => import('views/pages/BuildingOperations/OperationReports'))
+);
 const OperationLibrary = Loadable(
   lazy(() => import('views/pages/BuildingOperations/OperationLibrary'))
 );
@@ -613,6 +622,39 @@ const MainRoutes = {
             {
               path: 'building-operations',
               children: [
+                {
+                  path: 'operation-expenses',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['operation-expenses']}
+                    >
+                      <OperationExpenses />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'operation-investments',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['operation-investments']}
+                    >
+                      <OperationInvestments />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'operation-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['operation-report']}
+                    >
+                      <OperationReports />
+                    </AuthenticationRoutes>
+                  ),
+                },
                 {
                   path: 'operation-library',
                   element: (

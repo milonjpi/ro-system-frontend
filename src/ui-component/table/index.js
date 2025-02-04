@@ -6,8 +6,10 @@ import TableHead from '@mui/material/TableHead';
 import LinearProgress from '@mui/material/LinearProgress';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 
+
 const DataTable = ({
   sx = {},
+  bordered,
   id,
   tableHeads,
   extra,
@@ -28,7 +30,11 @@ const DataTable = ({
           <TableHead>
             <StyledTableRow>
               {tableHeads?.map((el, index) => (
-                <StyledTableCell key={index} align={el.align || 'left'}>
+                <StyledTableCell
+                  key={index}
+                  align={el.align || 'left'}
+                  sx={{ border: bordered && '1px solid #686868 !important' }}
+                >
                   {el.title}
                 </StyledTableCell>
               ))}
@@ -58,7 +64,7 @@ const DataTable = ({
       </Box>
       {pagination ? (
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
+          rowsPerPageOptions={[10, 20, 40, 100]}
           component="div"
           count={count}
           rowsPerPage={rowsPerPage}
