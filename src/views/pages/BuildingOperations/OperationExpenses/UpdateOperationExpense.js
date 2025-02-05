@@ -22,7 +22,7 @@ import { Autocomplete, Button, Tooltip } from '@mui/material';
 import { useGetBuildingExpenseHeadsQuery } from 'store/api/buildingExpenseHead/buildingExpenseHeadApi';
 import { useGetBuildingVendorsQuery } from 'store/api/buildingVendor/buildingVendorApi';
 import { useGetBuildingBrandsQuery } from 'store/api/buildingBrand/buildingBrandApi';
-import { useCreateBuildingExpenseMutation } from 'store/api/buildingExpense/buildingExpenseApi';
+import { useUpdateBuildingExpenseMutation } from 'store/api/buildingExpense/buildingExpenseApi';
 import { useGetBuildingUomQuery } from 'store/api/buildingUom/buildingUomApi';
 import AddBuildingExpenseHead from '../OperationLibrary/BuildingExpenseHead/AddBuildingExpenseHead';
 import AddBuildingVendor from '../OperationLibrary/BuildingVendor/AddBuildingVendor';
@@ -51,13 +51,13 @@ const defaultValue = {
   amount: '',
 };
 
-const AddOperationExpense = ({ open, handleClose }) => {
+const UpdateOperationExpense = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
-  const [date, setDate] = useState(moment());
-  const [expenseHead, setExpenseHead] = useState(null);
-  const [vendor, setVendor] = useState(null);
-  const [brand, setBrand] = useState(null);
-  const [uom, setUom] = useState(null);
+  const [date, setDate] = useState(preData?.date);
+  const [expenseHead, setExpenseHead] = useState(preData?.expenseHead || null);
+  const [vendor, setVendor] = useState(preData?.vendor || null);
+  const [brand, setBrand] = useState(preData?.brand || null);
+  const [uom, setUom] = useState(preData?.uom || null);
 
   // library open
   const [expenseHeadOpen, setExpenseHeadOpen] = useState(false);
@@ -107,10 +107,8 @@ const AddOperationExpense = ({ open, handleClose }) => {
   // end library
 
   // hook form
-  const { register, handleSubmit, control, reset } = useForm({
-    defaultValues: {
-      buildingPayments: [defaultValue],
-    },
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: preData,
   });
   const { fields, append, remove } = useFieldArray({
     control,
@@ -128,7 +126,7 @@ const AddOperationExpense = ({ open, handleClose }) => {
 
   const dispatch = useDispatch();
 
-  const [createBuildingExpense] = useCreateBuildingExpenseMutation();
+  const [updateBuildingExpense] = useUpdateBuildingExpenseMutation();
 
   const onSubmit = async (data) => {
     if (totalAmount > (data?.amount || 0)) {
@@ -166,16 +164,13 @@ const AddOperationExpense = ({ open, handleClose }) => {
     };
     try {
       setLoading(true);
-      const res = await createBuildingExpense({ ...newData }).unwrap();
+      const res = await updateBuildingExpense({
+        id: preData?.id,
+        body: newData,
+      }).unwrap();
 
       if (res.success) {
         handleClose();
-        reset();
-        setDate(moment());
-        setExpenseHead(null);
-        setVendor(null);
-        setBrand(null);
-        setUom(null);
         dispatch(
           setToast({
             open: true,
@@ -208,7 +203,7 @@ const AddOperationExpense = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Add Operation Expense
+            Edit Operation Expense
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -453,7 +448,7 @@ const AddOperationExpense = ({ open, handleClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                Update
               </LoadingButton>
             </Grid>
           </Grid>
@@ -463,4 +458,4 @@ const AddOperationExpense = ({ open, handleClose }) => {
   );
 };
 
-export default AddOperationExpense;
+export default UpdateOperationExpense;

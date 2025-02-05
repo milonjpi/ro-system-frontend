@@ -137,6 +137,13 @@ const OperationInvestments = Loadable(
 const OperationReports = Loadable(
   lazy(() => import('views/pages/BuildingOperations/OperationReports'))
 );
+const OperationExpenseSummary = Loadable(
+  lazy(() =>
+    import(
+      'views/pages/BuildingOperations/OperationReports/OperationExpenseSummary'
+    )
+  )
+);
 const OperationLibrary = Loadable(
   lazy(() => import('views/pages/BuildingOperations/OperationLibrary'))
 );
@@ -654,6 +661,12 @@ const MainRoutes = {
                       <OperationReports />
                     </AuthenticationRoutes>
                   ),
+                  children: [
+                    {
+                      path: '',
+                      element: <OperationExpenseSummary />,
+                    },
+                  ],
                 },
                 {
                   path: 'operation-library',

@@ -5,13 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import MainCard from 'ui-component/cards/MainCard';
-import { IconPlus } from '@tabler/icons-react';
-import CardAction from 'ui-component/cards/CardAction';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
 import { Autocomplete, TableRow } from '@mui/material';
@@ -19,19 +13,15 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useGetBuildingExpenseHeadsQuery } from 'store/api/buildingExpenseHead/buildingExpenseHeadApi';
 import { useGetBuildingVendorsQuery } from 'store/api/buildingVendor/buildingVendorApi';
 import { useGetBuildingBrandsQuery } from 'store/api/buildingBrand/buildingBrandApi';
-import { useGetBuildingExpensesQuery } from 'store/api/buildingExpense/buildingExpenseApi';
-import AddOperationExpense from './AddOperationExpense';
-import OperationExpenseRow from './OperationExpenseRow';
+import { useGetBuildingExpenseSummaryQuery } from 'store/api/buildingExpense/buildingExpenseApi';
+import OperationExpenseSummaryRow from './OperationExpenseSummaryRow';
 
-const OperationExpenses = () => {
+const OperationExpenseSummary = () => {
   const [expenseHead, setExpenseHead] = useState(null);
   const [vendor, setVendor] = useState(null);
   const [brand, setBrand] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [status, setStatus] = useState('all');
-
-  const [open, setOpen] = useState(false);
 
   // library
   const { data: expenseHeadData, isLoading: expenseHeadLoading } =
@@ -80,40 +70,19 @@ const OperationExpenses = () => {
       align: 'center',
     },
     {
-      title: 'Date',
+      title: 'EXPENSE HEAD',
     },
     {
-      title: 'Vendor',
-    },
-    {
-      title: 'Expense Head',
-    },
-    {
-      title: 'Quantity',
+      title: 'QUANTITY',
       align: 'right',
     },
     {
-      title: 'Unit Price',
+      title: 'AVG. UNIT PRICE',
       align: 'right',
     },
     {
-      title: 'Amount',
+      title: 'AMOUNT',
       align: 'right',
-    },
-    {
-      title: 'Remarks',
-    },
-    {
-      title: 'Status',
-      align: 'center',
-    },
-    {
-      title: 'View',
-      align: 'center',
-    },
-    {
-      title: 'Action',
-      align: 'center',
     },
   ];
   // end table
@@ -145,34 +114,21 @@ const OperationExpenses = () => {
     query['endDate'] = moment(endDate).format('YYYY-MM-DD');
   }
 
-  if (status !== 'all') {
-    query['status'] = status;
-  }
-
-  const { data, isLoading } = useGetBuildingExpensesQuery(
+  const { data, isLoading } = useGetBuildingExpenseSummaryQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allExpenses = data?.buildingExpenses || [];
-  const meta = data?.meta;
-  const sum = data?.sum;
+  const allExpenses = data?.data || [];
+
+  const totalAmount = allExpenses?.reduce(
+    (acc, el) => el._sum?.amount + acc,
+    0
+  );
 
   let sn = page * rowsPerPage + 1;
   return (
-    <MainCard
-      title="Operation Expenses"
-      secondary={
-        <CardAction
-          title="Create"
-          icon={<IconPlus />}
-          onClick={() => setOpen(true)}
-        />
-      }
-    >
-      {/* pop up items */}
-      <AddOperationExpense open={open} handleClose={() => setOpen(false)} />
-      {/* pop up items */}
+    <MainCard title="Expense Summary">
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid
@@ -181,7 +137,7 @@ const OperationExpenses = () => {
           columnSpacing={1}
           sx={{ alignItems: 'end' }}
         >
-          <Grid item xs={12} md={2.5}>
+          <Grid item xs={12} md={3}>
             <Autocomplete
               loading={expenseHeadLoading}
               value={expenseHead}
@@ -209,7 +165,7 @@ const OperationExpenses = () => {
               renderInput={(params) => <TextField {...params} label="Vendor" />}
             />
           </Grid>
-          <Grid item xs={12} md={1.9}>
+          <Grid item xs={12} md={2.5}>
             <Autocomplete
               loading={brandLoading}
               value={brand}
@@ -222,7 +178,7 @@ const OperationExpenses = () => {
               renderInput={(params) => <TextField {...params} label="Brand" />}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={1.8}>
+          <Grid item xs={12} sm={6} md={2}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
                 label="Date (From)"
@@ -243,7 +199,7 @@ const OperationExpenses = () => {
               />
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={12} sm={6} md={1.8}>
+          <Grid item xs={12} sm={6} md={2}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
                 label="Date (To)"
@@ -264,26 +220,6 @@ const OperationExpenses = () => {
               />
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={12} md={1.5}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="sales-order-status-id">Status</InputLabel>
-              <Select
-                labelId="sales-order-status-id"
-                value={status}
-                label="Status"
-                onChange={(e) => setStatus(e.target.value)}
-              >
-                <MenuItem value="all">
-                  <em>All</em>
-                </MenuItem>
-                {['Due', 'Partial', 'Paid']?.map((el) => (
-                  <MenuItem key={el} value={el}>
-                    {el}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
@@ -292,9 +228,12 @@ const OperationExpenses = () => {
       <DataTable
         bordered
         tableHeads={tableHeads}
-        data={allExpenses}
-        options={(el) => (
-          <OperationExpenseRow key={el.id} sn={sn++} data={el} />
+        data={allExpenses.slice(
+          page * rowsPerPage,
+          page * rowsPerPage + rowsPerPage
+        )}
+        options={(el, index) => (
+          <OperationExpenseSummaryRow key={index} sn={sn++} data={el} />
         )}
         extra={
           allExpenses?.length ? (
@@ -303,30 +242,14 @@ const OperationExpenses = () => {
                 colSpan={4}
                 sx={{ fontSize: '12px !important', fontWeight: 700 }}
               >
-                Total
+                TOTAL
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"
                 sx={{ fontSize: '12px !important', fontWeight: 700 }}
               >
-                {sum?._sum?.quantity || 0}
+                {totalAmount}
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder
-                align="right"
-                sx={{ fontSize: '12px !important', fontWeight: 700 }}
-              >
-                {'AVG: ' + Math.round(sum?._avg?.unitPrice || 0)}
-              </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder
-                align="right"
-                sx={{ fontSize: '12px !important', fontWeight: 700 }}
-              >
-                {sum?._sum?.amount || 0}
-              </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder
-                colSpan={4}
-                sx={{ fontSize: '12px !important', fontWeight: 700 }}
-              ></StyledTableCellWithBorder>
             </TableRow>
           ) : null
         }
@@ -334,7 +257,7 @@ const OperationExpenses = () => {
         pagination={true}
         page={page}
         rowsPerPage={rowsPerPage}
-        count={meta?.total || 0}
+        count={allExpenses?.length || 0}
         handleChangePage={handleChangePage}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
       />
@@ -343,4 +266,4 @@ const OperationExpenses = () => {
   );
 };
 
-export default OperationExpenses;
+export default OperationExpenseSummary;

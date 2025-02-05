@@ -1,4 +1,4 @@
-import { TableRow } from '@mui/material';
+import { TableRow, Tooltip } from '@mui/material';
 import Button from '@mui/material/Button';
 import { IconEdit, IconTrashXFilled } from '@tabler/icons-react';
 import moment from 'moment';
@@ -9,10 +9,14 @@ import { setToast } from 'store/toastSlice';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import ShowStatus from 'ui-component/ShowStatus';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
+import UpdateOperationExpense from './UpdateOperationExpense';
+import { IconLayoutDashboard } from '@tabler/icons-react';
+import ViewOperationExpense from './ViewOperationExpense';
 
 const OperationExpenseRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
+  const [view, setView] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -69,6 +73,24 @@ const OperationExpenseRow = ({ sn, data }) => {
       <StyledTableCellWithBorder align="center">
         <ShowStatus status={data?.status} />
       </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center">
+        <Tooltip title="Quick View">
+          <Button
+            variant="contained"
+            sx={{ minWidth: 0 }}
+            color="secondary"
+            size="small"
+            onClick={() => setView(true)}
+          >
+            <IconLayoutDashboard size={14} />
+          </Button>
+        </Tooltip>
+        <ViewOperationExpense
+          open={view}
+          handleClose={() => setView(false)}
+          data={data}
+        />
+      </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
         <Button
           color="primary"
@@ -89,11 +111,11 @@ const OperationExpenseRow = ({ sn, data }) => {
           <IconTrashXFilled size={14} />
         </Button>
 
-        {/* <UpdateOperationInvestment
+        <UpdateOperationExpense
           open={open}
           preData={data}
           handleClose={() => setOpen(false)}
-        /> */}
+        />
 
         <ConfirmDialog
           open={dialog}

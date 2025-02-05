@@ -21,6 +21,16 @@ const buildingExpenseApi = api.injectEndpoints({
       providesTags: ['buildingExpense'],
     }),
 
+    // get expense summary
+    getBuildingExpenseSummary: build.query({
+      query: (params) => ({
+        url: `${BUILDING_EXPENSE_URL}/summary`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['buildingExpense'],
+    }),
+
     // get single
     getSingleBuildingExpense: build.query({
       query: (id) => ({
@@ -63,6 +73,7 @@ const buildingExpenseApi = api.injectEndpoints({
 
 export const {
   useGetBuildingExpensesQuery,
+  useGetBuildingExpenseSummaryQuery,
   useGetSingleBuildingExpenseQuery,
   useCreateBuildingExpenseMutation,
   useUpdateBuildingExpenseMutation,
