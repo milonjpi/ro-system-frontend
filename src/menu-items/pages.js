@@ -12,6 +12,7 @@ import {
   IconCoins,
   IconBuildingSkyscraper,
   IconGridGoldenratio,
+  IconCalendarDollar,
 } from '@tabler/icons-react';
 
 // constant
@@ -28,6 +29,7 @@ const icons = {
   IconCoins,
   IconBuildingSkyscraper,
   IconGridGoldenratio,
+  IconCalendarDollar,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -458,6 +460,51 @@ const pages = {
           title: 'Summary',
           type: 'item',
           url: '/pages/income-expense/income-expense-summary',
+          access: ['super_admin'],
+        },
+      ],
+    },
+    {
+      id: 'monthly-expense',
+      title: 'Monthly Expense',
+      type: 'collapse',
+      color: '#2F0F5D',
+      icon: icons.IconCalendarDollar,
+      access: ['super_admin'],
+      children: [
+        {
+          id: 'monthly-expense-overview',
+          title: 'Overview',
+          type: 'item',
+          url: '/pages/monthly-expense/monthly-expense-overview',
+          access: ['super_admin'],
+        },
+        {
+          id: 'monthly-expense-list',
+          title: 'Expenses',
+          type: 'item',
+          url: '/pages/monthly-expense/monthly-expense-list',
+          access: ['super_admin'],
+        },
+        {
+          id: 'opening-balance',
+          title: 'Opening Balance',
+          type: 'item',
+          url: '/pages/monthly-expense/opening-balance',
+          access: ['super_admin'],
+        },
+        {
+          id: 'monthly-expense-report',
+          title: 'Report',
+          type: 'item',
+          url: '/pages/monthly-expense/monthly-expense-report',
+          access: ['super_admin'],
+        },
+        {
+          id: 'monthly-expense-library',
+          title: 'Library',
+          type: 'item',
+          url: '/pages/monthly-expense/monthly-expense-library',
           access: ['super_admin'],
         },
       ],
