@@ -224,6 +224,35 @@ const InExSummary = Loadable(
   lazy(() => import('views/pages/IncomeExpense/InExSummary'))
 );
 
+// monthly expense
+const MonthlyExpenseOverview = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Overview'))
+);
+const MonthlyExpenses = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Expenses'))
+);
+const OpeningBalance = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/OpeningBalance'))
+);
+const MonthlyExpenseReport = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Report'))
+);
+const MonthlyExpenseLibrary = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Library'))
+);
+const ExpenseArea = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Library/ExpenseArea'))
+);
+const VehicleList = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Library/VehicleList'))
+);
+const MonthlyExpenseHead = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Library/ExpenseHead'))
+);
+const PaymentSource = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Library/PaymentSource'))
+);
+
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
@@ -824,6 +853,84 @@ const MainRoutes = {
                       <InExSummary />
                     </AuthenticationRoutes>
                   ),
+                },
+              ],
+            },
+            {
+              path: 'monthly-expense',
+              children: [
+                {
+                  path: 'monthly-expense-overview',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['monthly-expense-overview']}
+                    >
+                      <MonthlyExpenseOverview />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'monthly-expense-list',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['monthly-expense-list']}
+                    >
+                      <MonthlyExpenses />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'opening-balance',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['opening-balance']}
+                    >
+                      <OpeningBalance />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'monthly-expense-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['monthly-expense-report']}
+                    >
+                      <MonthlyExpenseReport />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'monthly-expense-library',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['monthly-expense-library']}
+                    >
+                      <MonthlyExpenseLibrary />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <ExpenseArea />,
+                    },
+                    {
+                      path: 'vehicle',
+                      element: <VehicleList />,
+                    },
+                    {
+                      path: 'expense-head',
+                      element: <MonthlyExpenseHead />,
+                    },
+                    {
+                      path: 'payment-source',
+                      element: <PaymentSource />,
+                    },
+                  ],
                 },
               ],
             },

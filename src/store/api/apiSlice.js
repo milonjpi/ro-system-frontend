@@ -58,6 +58,12 @@ export const api = createApi({
     'buildingPayment',
     'buildingInvestmentSource',
     'buildingInvestment',
+    'expenseArea',
+    'vehicle',
+    'monthlyExpenseHead',
+    'paymentSource',
+    'monthlyExpense',
+    'openingBalance',
   ],
   endpoints: () => ({}),
 });
