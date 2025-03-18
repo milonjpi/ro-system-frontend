@@ -1,6 +1,6 @@
 import { api } from '../../api/apiSlice';
 
-const PAYMENT_SOURCE_URL = '/expense-area';
+const PAYMENT_SOURCE_URL = '/payment-source';
 
 const paymentSourceApi = api.injectEndpoints({
   endpoints: (build) => ({
