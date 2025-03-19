@@ -21,7 +21,7 @@ import { useCreateOpeningBalanceMutation } from 'store/api/openingBalance/openin
 import moment from 'moment';
 import { Autocomplete } from '@mui/material';
 import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
-import { electricMonths } from 'assets/data';
+import { allMonths } from 'assets/data';
 
 const style = {
   position: 'absolute',
@@ -143,7 +143,7 @@ const AddOpeningBalance = ({ open, handleClose }) => {
                 value={month}
                 size="small"
                 fullWidth
-                options={electricMonths}
+                options={allMonths}
                 onChange={(e, newValue) => setMonth(newValue)}
                 renderInput={(params) => (
                   <TextField {...params} label="Month" required />

@@ -2,20 +2,45 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useState } from 'react';
 import { IconEdit } from '@tabler/icons-react';
 import { Button, TableRow } from '@mui/material';
-import UpdateOpeningBalance from './UpdateOpeningBalance';
+import moment from 'moment';
+import UpdateExpense from './UpdateExpense';
 
-const OpeningBalanceRow = ({ sn, data }) => {
+const ExpenseRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   return (
     <TableRow>
       <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.year}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.month}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.paymentSource?.label}
+        <span
+          style={{
+            textTransform: 'uppercase',
+            display: 'block',
+            lineHeight: 1,
+          }}
+        >
+          {data?.expenseArea?.label}
+        </span>
+        {data?.vehicle ? (
+          <span style={{ fontSize: 9, lineHeight: 1 }}>
+            {data?.vehicle?.label}
+          </span>
+        ) : null}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.remarks || 'n/a'}
+        {data?.month + ' - ' + data?.year}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {moment(data?.date).format('DD/MM/YYYY')}
+      </StyledTableCellWithBorder>
+
+      <StyledTableCellWithBorder>
+        {data?.monthlyExpenseHead?.label}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.expenseDetails || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.paymentSource?.label}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.amount}
@@ -31,7 +56,7 @@ const OpeningBalanceRow = ({ sn, data }) => {
           <IconEdit size={14} />
         </Button>
         {/* popup item */}
-        <UpdateOpeningBalance
+        <UpdateExpense
           preData={data}
           open={open}
           handleClose={() => setOpen(false)}
@@ -42,4 +67,4 @@ const OpeningBalanceRow = ({ sn, data }) => {
   );
 };
 
-export default OpeningBalanceRow;
+export default ExpenseRow;

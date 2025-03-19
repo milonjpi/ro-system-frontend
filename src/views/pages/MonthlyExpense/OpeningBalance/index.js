@@ -17,15 +17,27 @@ import { useDebounced } from 'hooks';
 import moment from 'moment';
 import { useGetOpeningBalancesQuery } from 'store/api/openingBalance/openingBalanceApi';
 import { Autocomplete } from '@mui/material';
-import { electricMonths } from 'assets/data';
+import { allMonths } from 'assets/data';
 import AddOpeningBalance from './AddOpeningBalance';
 import OpeningBalanceRow from './OpeningBalanceRow';
+import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 
 const OpeningBalance = () => {
   const [searchText, setSearchText] = useState('');
   const [year, setYear] = useState(moment().format('YYYY'));
   const [month, setMonth] = useState(moment().format('MMMM'));
+  const [paymentSource, setPaymentSource] = useState(null);
   const [open, setOpen] = useState(false);
+
+  // library
+  const { data: paymentSourceData, isLoading: paymentSourceLoading } =
+    useGetPaymentSourcesQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allPaymentSources = paymentSourceData?.paymentSources || [];
+  // end library
 
   // table
   // pagination
@@ -84,6 +96,10 @@ const OpeningBalance = () => {
 
   if (month) {
     query['month'] = month;
+  }
+
+  if (paymentSource) {
+    query['paymentSourceId'] = paymentSource?.id;
   }
 
   // search term
@@ -167,9 +183,22 @@ const OpeningBalance = () => {
               value={month}
               size="small"
               fullWidth
-              options={electricMonths}
+              options={allMonths}
               onChange={(e, newValue) => setMonth(newValue)}
               renderInput={(params) => <TextField {...params} label="Month" />}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Autocomplete
+              loading={paymentSourceLoading}
+              value={paymentSource}
+              size="small"
+              fullWidth
+              options={allPaymentSources}
+              onChange={(e, newValue) => setPaymentSource(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="Payment Source" />
+              )}
             />
           </Grid>
         </Grid>
@@ -178,6 +207,7 @@ const OpeningBalance = () => {
 
       {/* data table */}
       <DataTable
+        bordered
         tableHeads={tableHeads}
         data={allOpeningBalances}
         options={(el, index) => (

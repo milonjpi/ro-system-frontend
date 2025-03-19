@@ -20,7 +20,7 @@ import { setToast } from 'store/toastSlice';
 import { useUpdateOpeningBalanceMutation } from 'store/api/openingBalance/openingBalanceApi';
 import { Autocomplete } from '@mui/material';
 import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
-import { electricMonths } from 'assets/data';
+import { allMonths } from 'assets/data';
 
 const style = {
   position: 'absolute',
@@ -143,7 +143,7 @@ const UpdateOpeningBalance = ({ open, handleClose, preData }) => {
                 value={month}
                 size="small"
                 fullWidth
-                options={electricMonths}
+                options={allMonths}
                 onChange={(e, newValue) => setMonth(newValue)}
                 renderInput={(params) => (
                   <TextField {...params} label="Month" required />

@@ -90,6 +90,20 @@ export const electricMonths = [
   'NOVEMBER',
   'DECEMBER',
 ];
+export const allMonths = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 export const electricYears = [
   '2015',
   '2016',

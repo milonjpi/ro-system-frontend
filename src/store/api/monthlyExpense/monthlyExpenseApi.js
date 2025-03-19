@@ -13,8 +13,9 @@ const monthlyExpenseApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          monthlyExpenses: response?.data,
+          monthlyExpenses: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['monthlyExpense'],
