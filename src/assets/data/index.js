@@ -10,6 +10,18 @@ export const allOrderStatus = ['Pending', 'Delivered', 'Canceled'];
 export const allInvoiceStatus = ['Due', 'Partial', 'Paid', 'Canceled'];
 
 export const dueYears = ['2023', '2024', '2025', '2026', '2027'];
+export const zakatYears = [
+  '2021',
+  '2022',
+  '2023',
+  '2024',
+  '2025',
+  '2026',
+  '2027',
+  '2028',
+  '2029',
+  '2030',
+];
 export const dueMonths = (year = new Date().getFullYear()) => {
   const isLeapYear = leapYear(parseInt(year));
   return [

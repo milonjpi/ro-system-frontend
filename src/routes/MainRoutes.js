@@ -253,6 +253,15 @@ const PaymentSource = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Library/PaymentSource'))
 );
 
+// zakat
+const Zakat = Loadable(lazy(() => import('views/pages/MonthlyExpense/Zakat')));
+const ZakatPay = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatPay'))
+);
+const Recipient = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Zakat/Recipient'))
+);
+
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
@@ -891,6 +900,27 @@ const MainRoutes = {
                       <OpeningBalance />
                     </AuthenticationRoutes>
                   ),
+                },
+                {
+                  path: 'zakat',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['zakat']}
+                    >
+                      <Zakat />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <ZakatPay />,
+                    },
+                    {
+                      path: 'recipient',
+                      element: <Recipient />,
+                    },
+                  ],
                 },
                 {
                   path: 'monthly-expense-report',

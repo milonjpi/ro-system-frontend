@@ -2,32 +2,31 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useState } from 'react';
 import { IconEdit } from '@tabler/icons-react';
 import { Button, TableRow } from '@mui/material';
-import moment from 'moment';
-import UpdateExpense from './UpdateExpense';
 import { useDispatch } from 'react-redux';
-import { useDeleteMonthlyExpenseMutation } from 'store/api/monthlyExpense/monthlyExpenseApi';
 import { setToast } from 'store/toastSlice';
 import { IconTrashXFilled } from '@tabler/icons-react';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
+import { useDeleteZakatMutation } from 'store/api/zakat/zakatApi';
+import UpdateZakatPay from './UpdateZakatPay';
 
-const ExpenseRow = ({ sn, data }) => {
+const ZakatPayRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [deleteMonthlyExpense] = useDeleteMonthlyExpenseMutation();
+  const [deleteZakat] = useDeleteZakatMutation();
 
   const handleDelete = async () => {
     setDialog(false);
     try {
-      const res = await deleteMonthlyExpense(data?.id).unwrap();
+      const res = await deleteZakat(data?.id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
             open: true,
             variant: 'success',
-            message: 'Expense Deleted Successfully',
+            message: 'Zakat Deleted Successfully',
           })
         );
       }
@@ -45,37 +44,12 @@ const ExpenseRow = ({ sn, data }) => {
   return (
     <TableRow>
       <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.year}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        <span
-          style={{
-            textTransform: 'uppercase',
-            display: 'block',
-            lineHeight: 1,
-          }}
-        >
-          {data?.expenseArea?.label}
-        </span>
-        {data?.vehicle ? (
-          <span style={{ fontSize: 9, lineHeight: 1 }}>
-            {data?.vehicle?.label}
-          </span>
-        ) : null}
+        {data?.recipient?.fullName}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.month + ' - ' + data?.year}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {moment(data?.date).format('DD/MM/YYYY')}
-      </StyledTableCellWithBorder>
-
-      <StyledTableCellWithBorder>
-        {data?.monthlyExpenseHead?.label}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.expenseDetails || 'n/a'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.paymentSource?.label}
+        {data?.remarks || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.amount}
@@ -100,7 +74,7 @@ const ExpenseRow = ({ sn, data }) => {
           <IconTrashXFilled size={14} />
         </Button>
         {/* popup item */}
-        <UpdateExpense
+        <UpdateZakatPay
           preData={data}
           open={open}
           handleClose={() => setOpen(false)}
@@ -108,7 +82,7 @@ const ExpenseRow = ({ sn, data }) => {
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Delete Expense"
+          content="Delete Zakat Record"
           handleDelete={handleDelete}
         />
         {/* end popup item */}
@@ -117,4 +91,4 @@ const ExpenseRow = ({ sn, data }) => {
   );
 };
 
-export default ExpenseRow;
+export default ZakatPayRow;

@@ -494,6 +494,13 @@ const pages = {
           access: ['super_admin'],
         },
         {
+          id: 'zakat',
+          title: 'Zakat',
+          type: 'item',
+          url: '/pages/monthly-expense/zakat',
+          access: ['super_admin'],
+        },
+        {
           id: 'monthly-expense-report',
           title: 'Report',
           type: 'item',

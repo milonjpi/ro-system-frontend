@@ -64,6 +64,8 @@ export const api = createApi({
     'paymentSource',
     'monthlyExpense',
     'openingBalance',
+    'recipient',
+    'zakat',
   ],
   endpoints: () => ({}),
 });
