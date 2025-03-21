@@ -237,6 +237,12 @@ const OpeningBalance = Loadable(
 const MonthlyExpenseReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Report'))
 );
+const MonthlyExpenseReportSummary = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Report/ReportSummary'))
+);
+const MonthlyHeadWiseReport = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Report/HeadWiseReport'))
+);
 const MonthlyExpenseLibrary = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Library'))
 );
@@ -932,6 +938,16 @@ const MainRoutes = {
                       <MonthlyExpenseReport />
                     </AuthenticationRoutes>
                   ),
+                  children: [
+                    {
+                      path: '',
+                      element: <MonthlyExpenseReportSummary />,
+                    },
+                    {
+                      path: 'head-wise',
+                      element: <MonthlyHeadWiseReport />,
+                    },
+                  ],
                 },
                 {
                   path: 'monthly-expense-library',
