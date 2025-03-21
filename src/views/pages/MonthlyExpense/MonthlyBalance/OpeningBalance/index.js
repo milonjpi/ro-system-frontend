@@ -179,14 +179,21 @@ const OpeningBalance = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Autocomplete
-              value={month}
-              size="small"
-              fullWidth
-              options={allMonths}
-              onChange={(e, newValue) => setMonth(newValue)}
-              renderInput={(params) => <TextField {...params} label="Month" />}
-            />
+            <FormControl fullWidth size="small">
+              <InputLabel id="select-month-id">Month</InputLabel>
+              <Select
+                labelId="select-month-id"
+                value={month}
+                label="Month"
+                onChange={(e) => setMonth(e.target.value)}
+              >
+                {allMonths.map((el) => (
+                  <MenuItem key={el} value={el}>
+                    {el}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12} md={3}>
             <Autocomplete

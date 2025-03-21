@@ -7,22 +7,17 @@ import { useLocation, Link, Outlet } from 'react-router-dom';
 const menuList = [
   {
     id: 1,
-    label: 'Summary',
+    label: 'Opening Balance',
     path: '',
   },
   {
     id: 2,
-    label: 'Head Wise',
-    path: 'head-wise',
-  },
-  {
-    id: 3,
-    label: 'Source Wise',
-    path: 'source-wise',
+    label: 'Present Balance',
+    path: 'present',
   },
 ];
 
-const Report = () => {
+const MonthlyBalance = () => {
   // location
   let location = useLocation();
   const path = location?.pathname?.split('/')[4] || '';
@@ -56,4 +51,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default MonthlyBalance;

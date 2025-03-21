@@ -58,6 +58,55 @@ const monthlyExpenseApi = api.injectEndpoints({
       }),
       invalidatesTags: ['monthlyExpense'],
     }),
+    // get area wise report
+    getAreaWiseMonthlyReport: build.query({
+      query: (params) => ({
+        url: `${MONTHLY_EXPENSE_URL}/area`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['monthlyExpense'],
+    }),
+
+    // get area wise dash report
+    getAreaWiseDashMonthlyReport: build.query({
+      query: (params) => ({
+        url: `${MONTHLY_EXPENSE_URL}/area-dash`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['monthlyExpense'],
+    }),
+
+    // get head wise report
+    getHeadWiseMonthlyReport: build.query({
+      query: (params) => ({
+        url: `${MONTHLY_EXPENSE_URL}/head`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['monthlyExpense'],
+    }),
+
+    // get head wise dash report
+    getHeadWiseDashMonthlyReport: build.query({
+      query: (params) => ({
+        url: `${MONTHLY_EXPENSE_URL}/head-dash`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['monthlyExpense'],
+    }),
+
+    // get source wise report
+    getSourceWiseMonthlyReport: build.query({
+      query: (params) => ({
+        url: `${MONTHLY_EXPENSE_URL}/source`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['monthlyExpense'],
+    }),
   }),
 });
 
@@ -67,4 +116,9 @@ export const {
   useCreateMonthlyExpenseMutation,
   useUpdateMonthlyExpenseMutation,
   useDeleteMonthlyExpenseMutation,
+  useGetAreaWiseMonthlyReportQuery,
+  useGetAreaWiseDashMonthlyReportQuery,
+  useGetHeadWiseMonthlyReportQuery,
+  useGetHeadWiseDashMonthlyReportQuery,
+  useGetSourceWiseMonthlyReportQuery,
 } = monthlyExpenseApi;

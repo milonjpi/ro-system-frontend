@@ -8,6 +8,7 @@ import { useState } from 'react';
 import moment from 'moment';
 import { allMonths } from 'assets/data';
 import { useGetExpenseAreasQuery } from 'store/api/expenseArea/expenseAreaApi';
+import { useGetHeadWiseDashMonthlyReportQuery } from 'store/api/monthlyExpense/monthlyExpenseApi';
 
 const HeadWiseExpenseChart = () => {
   const [expenseArea, setExpenseArea] = useState(null);
@@ -23,10 +24,36 @@ const HeadWiseExpenseChart = () => {
 
   const allExpenseAreas = expenseAreaData?.expenseAreas || [];
   // end library
+
+  // filtering and pagination
+  const query = {};
+
+  if (year) {
+    query['year'] = year;
+  }
+
+  if (month) {
+    query['month'] = month;
+  }
+
+  if (expenseArea) {
+    query['expenseAreaId'] = expenseArea?.id;
+  }
+
+  const { data } = useGetHeadWiseDashMonthlyReportQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenses = data?.data || [];
+
+  const optionCat = allExpenses?.map((el) => el.expenseHead);
+  const optionData = allExpenses?.map((el) => el.amount);
+
   const series = [
     {
-      name: 'Inflation',
-      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+      name: 'ExpenseSummary',
+      data: optionData,
     },
   ];
   const options = {
@@ -48,7 +75,7 @@ const HeadWiseExpenseChart = () => {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return val + '%';
+        return val + '৳';
       },
       offsetY: -20,
       style: {
@@ -58,20 +85,7 @@ const HeadWiseExpenseChart = () => {
     },
 
     xaxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
+      categories: optionCat,
       position: 'top',
       axisBorder: {
         show: false,
@@ -105,12 +119,12 @@ const HeadWiseExpenseChart = () => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + '%';
+          return val + '৳';
         },
       },
     },
     title: {
-      text: 'Monthly Inflation in Argentina, 2002',
+      text: `Expense Head Wise Summary of ${month}, ${year}`,
       floating: true,
       offsetY: 330,
       align: 'center',
@@ -124,19 +138,6 @@ const HeadWiseExpenseChart = () => {
     <div>
       <Paper sx={{ p: 1, mb: 1 }}>
         <Grid container columnSpacing={1} rowSpacing={2}>
-          <Grid item xs={12} md={5}>
-            <Autocomplete
-              loading={expenseAreaLoading}
-              value={expenseArea}
-              size="small"
-              fullWidth
-              options={allExpenseAreas}
-              onChange={(e, newValue) => setExpenseArea(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Expense Area" />
-              )}
-            />
-          </Grid>
           <Grid item xs={12} md={3.5}>
             <FormControl fullWidth size="small">
               <InputLabel id="select-year-id">Year</InputLabel>
@@ -155,13 +156,33 @@ const HeadWiseExpenseChart = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12} md={3.5}>
+            <FormControl fullWidth size="small">
+              <InputLabel id="select-month-id">Month</InputLabel>
+              <Select
+                labelId="select-month-id"
+                value={month}
+                label="Month"
+                onChange={(e) => setMonth(e.target.value)}
+              >
+                {allMonths.map((el) => (
+                  <MenuItem key={el} value={el}>
+                    {el}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={5}>
             <Autocomplete
-              value={month}
+              loading={expenseAreaLoading}
+              value={expenseArea}
               size="small"
               fullWidth
-              options={allMonths}
-              onChange={(e, newValue) => setMonth(newValue)}
-              renderInput={(params) => <TextField {...params} label="Month" />}
+              options={allExpenseAreas}
+              onChange={(e, newValue) => setExpenseArea(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="Expense Area" />
+              )}
             />
           </Grid>
         </Grid>

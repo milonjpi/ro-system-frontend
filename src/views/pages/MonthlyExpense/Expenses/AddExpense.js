@@ -235,7 +235,7 @@ const AddExpense = ({ open, handleClose }) => {
                 )}
               />
             </Grid>
-            {expenseArea?.label?.includes('Vehicle') ? (
+            {expenseArea?.label?.toLowerCase()?.includes('vehicle') ? (
               <Grid item xs={12}>
                 <Autocomplete
                   loading={vehicleLoading}

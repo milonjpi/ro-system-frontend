@@ -1,4 +1,4 @@
-import { Autocomplete, Grid, Paper, TextField } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -7,14 +7,36 @@ import ReactApexChart from 'react-apexcharts';
 import { useState } from 'react';
 import moment from 'moment';
 import { allMonths } from 'assets/data';
+import { useGetAreaWiseDashMonthlyReportQuery } from 'store/api/monthlyExpense/monthlyExpenseApi';
 
 const MonthlyExpenseChart = () => {
   const [year, setYear] = useState(moment().format('YYYY'));
   const [month, setMonth] = useState(moment().format('MMMM'));
+  // filtering and pagination
+  const query = {};
+
+  if (year) {
+    query['year'] = year;
+  }
+
+  if (month) {
+    query['month'] = month;
+  }
+
+  const { data } = useGetAreaWiseDashMonthlyReportQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenses = data?.data || [];
+
+  const optionCat = allExpenses?.map((el) => el.expenseArea);
+  const optionData = allExpenses?.map((el) => el.amount);
+
   const series = [
     {
-      name: 'Inflation',
-      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+      name: 'ExpenseSummary',
+      data: optionData,
     },
   ];
   const options = {
@@ -36,7 +58,7 @@ const MonthlyExpenseChart = () => {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return val + '%';
+        return val + '৳';
       },
       offsetY: -20,
       style: {
@@ -46,20 +68,7 @@ const MonthlyExpenseChart = () => {
     },
 
     xaxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
+      categories: optionCat,
       position: 'top',
       axisBorder: {
         show: false,
@@ -93,12 +102,12 @@ const MonthlyExpenseChart = () => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + '%';
+          return val + '৳';
         },
       },
     },
     title: {
-      text: 'Monthly Inflation in Argentina, 2002',
+      text: `Monthly Expense of ${month}, ${year}`,
       floating: true,
       offsetY: 330,
       align: 'center',
@@ -130,14 +139,21 @@ const MonthlyExpenseChart = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Autocomplete
-              value={month}
-              size="small"
-              fullWidth
-              options={allMonths}
-              onChange={(e, newValue) => setMonth(newValue)}
-              renderInput={(params) => <TextField {...params} label="Month" />}
-            />
+            <FormControl fullWidth size="small">
+              <InputLabel id="select-month-id">Month</InputLabel>
+              <Select
+                labelId="select-month-id"
+                value={month}
+                label="Month"
+                onChange={(e) => setMonth(e.target.value)}
+              >
+                {allMonths.map((el) => (
+                  <MenuItem key={el} value={el}>
+                    {el}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
       </Paper>

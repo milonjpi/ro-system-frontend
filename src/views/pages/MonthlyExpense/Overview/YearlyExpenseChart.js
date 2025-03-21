@@ -1,4 +1,4 @@
-import { Autocomplete, Grid, Paper, TextField } from '@mui/material';
+import { Paper } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -6,14 +6,32 @@ import Select from '@mui/material/Select';
 import ReactApexChart from 'react-apexcharts';
 import { useState } from 'react';
 import moment from 'moment';
+import { useGetAreaWiseDashMonthlyReportQuery } from 'store/api/monthlyExpense/monthlyExpenseApi';
 
 const YearlyExpenseChart = () => {
   const [year, setYear] = useState(moment().format('YYYY'));
 
+  // filtering and pagination
+  const query = {};
+
+  if (year) {
+    query['year'] = year;
+  }
+
+  const { data } = useGetAreaWiseDashMonthlyReportQuery(
+    { ...query },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenses = data?.data || [];
+
+  const optionCat = allExpenses?.map((el) => el.expenseArea);
+  const optionData = allExpenses?.map((el) => el.amount);
+
   const series = [
     {
-      name: 'Inflation',
-      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+      name: 'ExpenseSummary',
+      data: optionData,
     },
   ];
   const options = {
@@ -35,7 +53,7 @@ const YearlyExpenseChart = () => {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return val + '%';
+        return val + '৳';
       },
       offsetY: -20,
       style: {
@@ -45,20 +63,7 @@ const YearlyExpenseChart = () => {
     },
 
     xaxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
+      categories: optionCat,
       position: 'top',
       axisBorder: {
         show: false,
@@ -92,12 +97,12 @@ const YearlyExpenseChart = () => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + '%';
+          return val + '৳';
         },
       },
     },
     title: {
-      text: 'Monthly Inflation in Argentina, 2002',
+      text: `Monthly Expense Summary of ${year}`,
       floating: true,
       offsetY: 330,
       align: 'center',

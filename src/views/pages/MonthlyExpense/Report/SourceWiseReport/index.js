@@ -10,25 +10,35 @@ import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
 import { Autocomplete, TableRow } from '@mui/material';
-import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
-import { useGetAreaWiseMonthlyReportQuery } from 'store/api/monthlyExpense/monthlyExpenseApi';
+import { useGetSourceWiseMonthlyReportQuery } from 'store/api/monthlyExpense/monthlyExpenseApi';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import ReportSummaryRow from './ReportSummaryRow';
 import groupBy from 'lodash.groupby';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import { useGetExpenseAreasQuery } from 'store/api/expenseArea/expenseAreaApi';
+import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/monthlyExpenseHeadApi';
+import SourceWiseReportRow from './SourceWiseReportRow';
 
-const ReportSummary = () => {
+const SourceWiseReport = () => {
   const [year, setYear] = useState(moment().format('YYYY'));
-  const [paymentSource, setPaymentSource] = useState(null);
+  const [expenseArea, setExpenseArea] = useState(null);
+  const [monthlyExpenseHead, setMonthlyExpenseHead] = useState(null);
 
   // library
-  const { data: paymentSourceData, isLoading: paymentSourceLoading } =
-    useGetPaymentSourcesQuery(
+  const { data: expenseAreaData, isLoading: expenseAreaLoading } =
+    useGetExpenseAreasQuery(
       { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
       { refetchOnMountOrArgChange: true }
     );
 
-  const allPaymentSources = paymentSourceData?.paymentSources || [];
+  const allExpenseAreas = expenseAreaData?.expenseAreas || [];
+
+  const { data: expenseHeadData, isLoading: expenseHeadLoading } =
+    useGetAllMonthlyExpenseHeadsQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allExpenseHeads = expenseHeadData?.monthlyExpenseHeads || [];
   // end library
 
   // table
@@ -38,7 +48,7 @@ const ReportSummary = () => {
       align: 'center',
     },
     {
-      title: 'Expense Area',
+      title: 'Payment Source',
     },
     {
       title: 'Jan',
@@ -102,17 +112,21 @@ const ReportSummary = () => {
     query['year'] = year;
   }
 
-  if (paymentSource) {
-    query['paymentSourceId'] = paymentSource?.id;
+  if (monthlyExpenseHead) {
+    query['monthlyExpenseHeadId'] = monthlyExpenseHead?.id;
   }
 
-  const { data, isLoading } = useGetAreaWiseMonthlyReportQuery(
+  if (expenseArea) {
+    query['expenseAreaId'] = expenseArea?.id;
+  }
+
+  const { data, isLoading } = useGetSourceWiseMonthlyReportQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
   const allExpenses = data?.data || [];
-  const groupedResult = groupBy(allExpenses, (el) => el.expenseArea?.label);
+  const groupedResult = groupBy(allExpenses, (el) => el.paymentSource?.label);
   const arrayGroup = Object.entries(groupedResult);
 
   // calculation
@@ -129,7 +143,7 @@ const ReportSummary = () => {
   const nov = allExpenses?.filter((el) => el.month === 'November');
   const dec = allExpenses?.filter((el) => el.month === 'December');
   return (
-    <SubCard title="Summary">
+    <SubCard title="Payment Source Wise Summary">
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid
@@ -138,7 +152,7 @@ const ReportSummary = () => {
           columnSpacing={1}
           sx={{ alignItems: 'end' }}
         >
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} md={3}>
             <FormControl fullWidth size="small">
               <InputLabel id="select-year-id">Year</InputLabel>
               <Select
@@ -155,16 +169,30 @@ const ReportSummary = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={2.5}>
             <Autocomplete
-              loading={paymentSourceLoading}
-              value={paymentSource}
+              loading={expenseAreaLoading}
+              value={expenseArea}
               size="small"
               fullWidth
-              options={allPaymentSources}
-              onChange={(e, newValue) => setPaymentSource(newValue)}
+              options={allExpenseAreas}
+              onChange={(e, newValue) => setExpenseArea(newValue)}
               renderInput={(params) => (
-                <TextField {...params} label="Payment Source" />
+                <TextField {...params} label="Expense Area" />
+              )}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={3}>
+            <Autocomplete
+              loading={expenseHeadLoading}
+              value={monthlyExpenseHead}
+              size="small"
+              fullWidth
+              options={allExpenseHeads}
+              onChange={(e, newValue) => setMonthlyExpenseHead(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="Expense Head" />
               )}
             />
           </Grid>
@@ -178,10 +206,10 @@ const ReportSummary = () => {
         tableHeads={tableHeads}
         data={arrayGroup}
         options={(el, index) => (
-          <ReportSummaryRow
+          <SourceWiseReportRow
             key={index}
             sn={index + 1}
-            area={el[0]}
+            source={el[0]}
             data={el[1]}
           />
         )}
@@ -325,4 +353,4 @@ const ReportSummary = () => {
   );
 };
 
-export default ReportSummary;
+export default SourceWiseReport;

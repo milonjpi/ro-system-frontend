@@ -231,8 +231,14 @@ const MonthlyExpenseOverview = Loadable(
 const MonthlyExpenses = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Expenses'))
 );
+const MonthlyBalance = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/MonthlyBalance'))
+);
 const OpeningBalance = Loadable(
-  lazy(() => import('views/pages/MonthlyExpense/OpeningBalance'))
+  lazy(() => import('views/pages/MonthlyExpense/MonthlyBalance/OpeningBalance'))
+);
+const PresentBalance = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/MonthlyBalance/PresentBalance'))
 );
 const MonthlyExpenseReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Report'))
@@ -242,6 +248,9 @@ const MonthlyExpenseReportSummary = Loadable(
 );
 const MonthlyHeadWiseReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Report/HeadWiseReport'))
+);
+const MonthlySourceWiseReport = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Report/SourceWiseReport'))
 );
 const MonthlyExpenseLibrary = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Library'))
@@ -897,15 +906,25 @@ const MainRoutes = {
                   ),
                 },
                 {
-                  path: 'opening-balance',
+                  path: 'monthly-balance',
                   element: (
                     <AuthenticationRoutes
                       allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['opening-balance']}
+                      allowedCodes={['monthly-balance']}
                     >
-                      <OpeningBalance />
+                      <MonthlyBalance />
                     </AuthenticationRoutes>
                   ),
+                  children: [
+                    {
+                      path: '',
+                      element: <OpeningBalance />,
+                    },
+                    {
+                      path: 'present',
+                      element: <PresentBalance />,
+                    },
+                  ],
                 },
                 {
                   path: 'zakat',
@@ -946,6 +965,10 @@ const MainRoutes = {
                     {
                       path: 'head-wise',
                       element: <MonthlyHeadWiseReport />,
+                    },
+                    {
+                      path: 'source-wise',
+                      element: <MonthlySourceWiseReport />,
                     },
                   ],
                 },

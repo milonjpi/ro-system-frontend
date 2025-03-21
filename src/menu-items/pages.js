@@ -487,10 +487,10 @@ const pages = {
           access: ['super_admin'],
         },
         {
-          id: 'opening-balance',
-          title: 'Opening Balance',
+          id: 'monthly-balance',
+          title: 'Monthly Balance',
           type: 'item',
-          url: '/pages/monthly-expense/opening-balance',
+          url: '/pages/monthly-expense/monthly-balance',
           access: ['super_admin'],
         },
         {
