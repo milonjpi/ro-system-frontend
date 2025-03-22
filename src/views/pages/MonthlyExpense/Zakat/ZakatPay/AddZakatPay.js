@@ -20,6 +20,10 @@ import { Autocomplete, Button, Tooltip } from '@mui/material';
 import { zakatYears } from 'assets/data';
 import { useCreateZakatMutation } from 'store/api/zakat/zakatApi';
 import AddRecipient from '../Recipient/AddRecipient';
+import {
+  convertToBanglaNumber,
+  convertToEnglishNumber,
+} from 'views/utilities/NeedyFunction';
 
 const style = {
   position: 'absolute',
@@ -51,17 +55,30 @@ const AddZakatPay = ({ open, handleClose }) => {
   const allRecipients = recipientData?.recipients || [];
   // end library
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
+
+  // watch amount
+  const watchAmount = watch('amount', ''); // Watch the amount field
 
   const dispatch = useDispatch();
 
   const [createZakat] = useCreateZakatMutation();
 
   const onSubmit = async (data) => {
+    if (isNaN(Number(convertToEnglishNumber(data.amount)))) {
+      return dispatch(
+        setToast({
+          open: true,
+          variant: 'success',
+          message: 'Please correct the amount',
+        })
+      );
+    }
+
     const newData = {
       year: year,
       recipientId: recipient?.id,
-      amount: data?.amount,
+      amount: Number(convertToEnglishNumber(data.amount)),
       remarks: data?.remarks || '',
     };
 
@@ -95,6 +112,8 @@ const AddZakatPay = ({ open, handleClose }) => {
     }
   };
 
+  // console.log(amount);
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>
@@ -106,7 +125,7 @@ const AddZakatPay = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Pay Zakat
+            যাকাত প্রদান করা
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -131,9 +150,10 @@ const AddZakatPay = ({ open, handleClose }) => {
                 size="small"
                 fullWidth
                 options={zakatYears}
+                getOptionLabel={(option) => convertToBanglaNumber(option)}
                 onChange={(e, newValue) => setYear(newValue)}
                 renderInput={(params) => (
-                  <TextField {...params} label="Select Year" required />
+                  <TextField {...params} label="বছর নির্বাচন করুন" required />
                 )}
               />
             </Grid>
@@ -149,7 +169,7 @@ const AddZakatPay = ({ open, handleClose }) => {
                   isOptionEqualToValue={(item, value) => item.id === value.id}
                   onChange={(e, newValue) => setRecipient(newValue)}
                   renderInput={(params) => (
-                    <TextField {...params} label="Select Recipient" required />
+                    <TextField {...params} label="যাকাত গ্রহীতা" required />
                   )}
                 />
                 <Tooltip title="Add Vendor">
@@ -170,16 +190,19 @@ const AddZakatPay = ({ open, handleClose }) => {
               <TextField
                 fullWidth
                 required
-                label="Amount"
-                type="number"
+                label="পরিমাণ"
+                type="text"
                 size="small"
-                {...register('amount', { required: true, valueAsNumber: true })}
+                value={convertToBanglaNumber(watchAmount)}
+                {...register('amount', {
+                  required: true,
+                })}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Remarks"
+                label="মন্তব্য"
                 size="small"
                 {...register('remarks')}
               />
@@ -195,7 +218,7 @@ const AddZakatPay = ({ open, handleClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                প্রদান করা
               </LoadingButton>
             </Grid>
           </Grid>

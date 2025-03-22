@@ -7,12 +7,12 @@ import { useLocation, Link, Outlet } from 'react-router-dom';
 const menuList = [
   {
     id: 1,
-    label: 'Home',
+    label: 'হোম',
     path: '',
   },
   {
     id: 2,
-    label: 'Recipient',
+    label: 'যাকাত গ্রহীতা',
     path: 'recipient',
   },
 ];

@@ -17,6 +17,7 @@ import { zakatYears } from 'assets/data';
 import ZakatPayRow from './ZakatPayRow';
 import AddZakatPay from './AddZakatPay';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
+import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
 
 const ZakatPay = () => {
   const [searchText, setSearchText] = useState('');
@@ -51,24 +52,24 @@ const ZakatPay = () => {
 
   const tableHeads = [
     {
-      title: 'SN',
+      title: 'ক্রোমিক',
       align: 'center',
     },
     {
-      title: 'Year',
+      title: 'বছর',
     },
     {
-      title: 'Recipient',
+      title: 'যাকাত গ্রহীতা',
     },
     {
-      title: 'Remarks',
+      title: 'মন্তব্য',
     },
     {
-      title: 'Amount',
+      title: 'পরিমাণ',
       align: 'right',
     },
     {
-      title: 'Action',
+      title: 'অ্যাকশন',
       align: 'center',
     },
   ];
@@ -110,7 +111,7 @@ const ZakatPay = () => {
   const sum = data?.sum;
   return (
     <SubCard
-      title="Vehicle List"
+      title="যাকাত"
       secondary={
         <Button
           size="small"
@@ -120,7 +121,7 @@ const ZakatPay = () => {
           sx={{ minWidth: 0, fontSize: 12 }}
           onClick={() => setOpen(true)}
         >
-          Add
+          যোগ করুন
         </Button>
       }
     >
@@ -139,7 +140,7 @@ const ZakatPay = () => {
           <Grid item xs={12} md={3}>
             <InputBase
               fullWidth
-              placeholder="Search..."
+              placeholder="অনুসন্ধান..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               sx={{ borderBottom: '1px solid #ccc' }}
@@ -161,7 +162,7 @@ const ZakatPay = () => {
               isOptionEqualToValue={(item, value) => item.id === value.id}
               onChange={(e, newValue) => setRecipient(newValue)}
               renderInput={(params) => (
-                <TextField {...params} label="Recipient" />
+                <TextField {...params} label="যাকাত গ্রহীতা" />
               )}
             />
           </Grid>
@@ -171,10 +172,9 @@ const ZakatPay = () => {
               size="small"
               fullWidth
               options={zakatYears}
+              getOptionLabel={(option) => convertToBanglaNumber(option)}
               onChange={(e, newValue) => setYear(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Year" />
-              )}
+              renderInput={(params) => <TextField {...params} label="বছর" />}
             />
           </Grid>
         </Grid>
@@ -203,7 +203,7 @@ const ZakatPay = () => {
                   fontWeight: 700,
                 }}
               >
-                TOTAL
+                মোট
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"
@@ -212,7 +212,7 @@ const ZakatPay = () => {
                   fontWeight: 700,
                 }}
               >
-                {sum?._sum?.amount || 0}
+                {convertToBanglaNumber(sum?._sum?.amount || 0)}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"

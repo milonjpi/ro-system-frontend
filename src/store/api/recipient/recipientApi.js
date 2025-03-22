@@ -13,8 +13,9 @@ const recipientApi = api.injectEndpoints({
       }),
       transformResponse: (response) => {
         return {
-          recipients: response?.data,
+          recipients: response?.data?.data,
           meta: response?.meta,
+          sum: response?.data?.sum,
         };
       },
       providesTags: ['recipient'],

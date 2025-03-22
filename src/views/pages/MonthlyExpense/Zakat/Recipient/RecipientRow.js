@@ -8,10 +8,12 @@ import { IconEdit } from '@tabler/icons';
 import { IconTrashXFilled } from '@tabler/icons-react';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import UpdateRecipient from './UpdateRecipient';
+import { convertToBanglaNumber, totalSum } from 'views/utilities/NeedyFunction';
 
 const RecipientRow = ({ sn, data }) => {
   const zakatDetails = data?.zakats || [];
   const rowSpan = zakatDetails.length || 1;
+  const totalAmount = totalSum(zakatDetails, 'amount');
 
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
@@ -49,13 +51,13 @@ const RecipientRow = ({ sn, data }) => {
       {/* Main Row */}
       <TableRow>
         <StyledTableCellWithBorder align="center" rowSpan={rowSpan}>
-          {sn}
+          {convertToBanglaNumber(sn)}
         </StyledTableCellWithBorder>
         <StyledTableCellWithBorder rowSpan={rowSpan}>
           {data?.fullName}
         </StyledTableCellWithBorder>
         <StyledTableCellWithBorder rowSpan={rowSpan}>
-          {data?.mobile || 'n/a'}
+          {data?.mobile ? convertToBanglaNumber(data?.mobile) : 'n/a'}
         </StyledTableCellWithBorder>
         <StyledTableCellWithBorder rowSpan={rowSpan}>
           {data?.address || 'n/a'}
@@ -64,17 +66,21 @@ const RecipientRow = ({ sn, data }) => {
         {zakatDetails.length > 0 ? (
           <>
             <StyledTableCellWithBorder align="center">
-              {zakatDetails[0].year}
+              {convertToBanglaNumber(zakatDetails[0].year)}
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder align="right">
-              {zakatDetails[0].amount}
+              {convertToBanglaNumber(zakatDetails[0].amount)}
             </StyledTableCellWithBorder>
           </>
         ) : (
           <StyledTableCellWithBorder colSpan={2} align="center">
-            No History
+            রেকর্ড নাই
           </StyledTableCellWithBorder>
         )}
+
+        <StyledTableCellWithBorder rowSpan={rowSpan} align="right">
+          {convertToBanglaNumber(totalAmount)}
+        </StyledTableCellWithBorder>
 
         {/* Totals and Actions */}
         <StyledTableCellWithBorder align="center" rowSpan={rowSpan}>
@@ -117,10 +123,10 @@ const RecipientRow = ({ sn, data }) => {
       {zakatDetails.slice(1).map((el, index) => (
         <TableRow key={index}>
           <StyledTableCellWithBorder align="center">
-            {el.year}
+            {convertToBanglaNumber(el.year)}
           </StyledTableCellWithBorder>
           <StyledTableCellWithBorder align="right">
-            {el.amount}
+            {convertToBanglaNumber(el.amount)}
           </StyledTableCellWithBorder>
         </TableRow>
       ))}

@@ -84,7 +84,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Edit Recipient
+            এডিট করুন
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -101,7 +101,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
               <TextField
                 fullWidth
                 required
-                label="Full Name"
+                label="গ্রহীতার নাম"
                 size="small"
                 {...register('fullName', { required: true })}
               />
@@ -109,7 +109,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Mobile"
+                label="মোবাইল নং"
                 size="small"
                 {...register('mobile')}
               />
@@ -117,7 +117,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Address"
+                label="ঠিকানা"
                 size="small"
                 {...register('address')}
               />
@@ -133,7 +133,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
                 variant="contained"
                 type="submit"
               >
-                Update
+                আপডেট
               </LoadingButton>
             </Grid>
           </Grid>

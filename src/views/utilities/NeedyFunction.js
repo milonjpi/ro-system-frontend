@@ -123,3 +123,14 @@ export const uniqueArray = (array1 = [], array2 = [], key) => {
 export const leapYear = (year) => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 };
+
+
+export const convertToBanglaNumber = (num) => {
+  return num.toString().replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[digit]);
+};
+
+export const convertToEnglishNumber = (banglaNum) => {
+  return banglaNum
+    .toString()
+    .replace(/[০-৯]/g, (digit) => '০১২৩৪৫৬৭৮৯'.indexOf(digit));
+};

@@ -8,6 +8,7 @@ import { IconTrashXFilled } from '@tabler/icons-react';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import { useDeleteZakatMutation } from 'store/api/zakat/zakatApi';
 import UpdateZakatPay from './UpdateZakatPay';
+import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
 
 const ZakatPayRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -43,8 +44,12 @@ const ZakatPayRow = ({ sn, data }) => {
   };
   return (
     <TableRow>
-      <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.year}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center">
+        {convertToBanglaNumber(sn)}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {convertToBanglaNumber(data?.year)}
+      </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
         {data?.recipient?.fullName}
       </StyledTableCellWithBorder>
@@ -52,7 +57,7 @@ const ZakatPayRow = ({ sn, data }) => {
         {data?.remarks || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {data?.amount}
+        {convertToBanglaNumber(data?.amount)}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="center">
         <Button

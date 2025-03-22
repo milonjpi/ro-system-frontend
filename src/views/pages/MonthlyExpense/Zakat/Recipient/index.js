@@ -21,6 +21,7 @@ import { useDebounced } from 'hooks';
 import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
 import RecipientRow from './RecipientRow';
 import AddRecipient from './AddRecipient';
+import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
 
 const Recipient = () => {
   const [searchText, setSearchText] = useState('');
@@ -46,8 +47,8 @@ const Recipient = () => {
   // filtering and pagination
   const query = {};
 
-  query['limit'] = rowsPerPage;
-  query['page'] = page;
+  query['limit'] = 2000;
+  query['page'] = 0;
   query['sortBy'] = 'fullName';
   query['sortOrder'] = 'asc';
 
@@ -67,11 +68,11 @@ const Recipient = () => {
   );
 
   const allRecipients = data?.recipients || [];
-  const meta = data?.meta;
+  const sum = data?.sum;
 
   return (
     <MainCard
-      title="Recipient List"
+      title="গ্রহীতার তালিকা"
       secondary={
         <Button
           size="small"
@@ -81,7 +82,7 @@ const Recipient = () => {
           sx={{ minWidth: 0, fontSize: 12 }}
           onClick={() => setOpen(true)}
         >
-          Add
+          যোগ করুন
         </Button>
       }
     >
@@ -99,7 +100,7 @@ const Recipient = () => {
           <Grid item xs={12} md={3}>
             <InputBase
               fullWidth
-              placeholder="Search..."
+              placeholder="অনুসন্ধান..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               sx={{ borderBottom: '1px solid #ccc' }}
@@ -119,42 +120,47 @@ const Recipient = () => {
         <TableHead>
           <TableRow>
             <StyledTableCellWithBorder align="center" rowSpan={2}>
-              SN
+              ক্রোমিক
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder rowSpan={2}>
-              Full Name
+              গ্রহীতার নাম
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder rowSpan={2}>
-              Mobile
+              মোবাইল নং
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder rowSpan={2}>
-              Address
+              ঠিকানা
             </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="center" colSpan={2}>
-              Zakat History
+            <StyledTableCellWithBorder align="center" colSpan={3}>
+              যাকাত গ্রহণ
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder align="center" rowSpan={2}>
-              Action
+              অ্যাকশন
             </StyledTableCellWithBorder>
           </TableRow>
           <TableRow>
             <StyledTableCellWithBorder align="center">
-              Year
+              বছর
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder align="right">
-              Amount
+              পরিমাণ
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right">
+              মোট গ্রহণ
             </StyledTableCellWithBorder>
           </TableRow>
         </TableHead>
         <TableBody>
           {allRecipients?.length ? (
-            allRecipients?.map((el, index) => (
-              <RecipientRow
-                key={el.id}
-                sn={page * rowsPerPage + index + 1}
-                data={el}
-              />
-            ))
+            allRecipients
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              ?.map((el, index) => (
+                <RecipientRow
+                  key={el.id}
+                  sn={page * rowsPerPage + index + 1}
+                  data={el}
+                />
+              ))
           ) : (
             <TableRow>
               <StyledTableCellWithBorder colSpan={15} align="center">
@@ -169,12 +175,41 @@ const Recipient = () => {
               </StyledTableCellWithBorder>
             </TableRow>
           )}
+          {allRecipients?.length ? (
+            <TableRow>
+              <StyledTableCellWithBorder
+                colSpan={6}
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                মোট
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                {convertToBanglaNumber(sum || 0)}
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              ></StyledTableCellWithBorder>
+            </TableRow>
+          ) : null}
         </TableBody>
       </Table>
       <TablePagination
         rowsPerPageOptions={[10, 20, 40, 100]}
         component="div"
-        count={meta?.total || 0}
+        count={allRecipients?.length || 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

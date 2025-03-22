@@ -19,6 +19,10 @@ import { zakatYears } from 'assets/data';
 import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
 import { useUpdateZakatMutation } from 'store/api/zakat/zakatApi';
 import AddRecipient from '../Recipient/AddRecipient';
+import {
+  convertToBanglaNumber,
+  convertToEnglishNumber,
+} from 'views/utilities/NeedyFunction';
 
 const style = {
   position: 'absolute',
@@ -50,17 +54,35 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
   const allRecipients = recipientData?.recipients || [];
   // end library
 
-  const { register, handleSubmit } = useForm({ defaultValues: preData });
+  const { register, handleSubmit, watch } = useForm({
+    defaultValues: {
+      ...preData,
+      amount: convertToBanglaNumber(preData?.amount),
+    },
+  });
+
+  // watch amount
+  const watchAmount = watch('amount', ''); // Watch the amount field
 
   const dispatch = useDispatch();
 
   const [updateZakat] = useUpdateZakatMutation();
 
   const onSubmit = async (data) => {
+    if (isNaN(Number(convertToEnglishNumber(data.amount)))) {
+      return dispatch(
+        setToast({
+          open: true,
+          variant: 'success',
+          message: 'Please correct the amount',
+        })
+      );
+    }
+
     const newData = {
       year: year,
       recipientId: recipient?.id,
-      amount: data?.amount,
+      amount: Number(convertToEnglishNumber(data.amount)),
       remarks: data?.remarks || '',
     };
 
@@ -105,7 +127,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Edit Paid Zakat
+            পরিশোধিত যাকাত সম্পাদনা করুন
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -130,9 +152,10 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
                 size="small"
                 fullWidth
                 options={zakatYears}
+                getOptionLabel={(option) => convertToBanglaNumber(option)}
                 onChange={(e, newValue) => setYear(newValue)}
                 renderInput={(params) => (
-                  <TextField {...params} label="Select Year" required />
+                  <TextField {...params} label="বছর নির্বাচন করুন" required />
                 )}
               />
             </Grid>
@@ -148,7 +171,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
                   isOptionEqualToValue={(item, value) => item.id === value.id}
                   onChange={(e, newValue) => setRecipient(newValue)}
                   renderInput={(params) => (
-                    <TextField {...params} label="Select Recipient" required />
+                    <TextField {...params} label="যাকাত গ্রহীতা" required />
                   )}
                 />
                 <Tooltip title="Add Vendor">
@@ -169,16 +192,19 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
               <TextField
                 fullWidth
                 required
-                label="Amount"
-                type="number"
+                label="পরিমাণ"
+                type="text"
                 size="small"
-                {...register('amount', { required: true, valueAsNumber: true })}
+                value={convertToBanglaNumber(watchAmount)}
+                {...register('amount', {
+                  required: true,
+                })}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Remarks"
+                label="মন্তব্য"
                 size="small"
                 {...register('remarks')}
               />
@@ -194,7 +220,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
                 variant="contained"
                 type="submit"
               >
-                Update
+                আপডেট
               </LoadingButton>
             </Grid>
           </Grid>

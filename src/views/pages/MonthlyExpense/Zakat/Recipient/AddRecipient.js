@@ -82,7 +82,7 @@ const AddRecipient = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Add Recipient
+            গ্রহীতা যোগ করুন
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -99,7 +99,7 @@ const AddRecipient = ({ open, handleClose }) => {
               <TextField
                 fullWidth
                 required
-                label="Full Name"
+                label="গ্রহীতার নাম"
                 size="small"
                 {...register('fullName', { required: true })}
               />
@@ -107,7 +107,7 @@ const AddRecipient = ({ open, handleClose }) => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Mobile"
+                label="মোবাইল নং"
                 size="small"
                 {...register('mobile')}
               />
@@ -115,7 +115,7 @@ const AddRecipient = ({ open, handleClose }) => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Address"
+                label="ঠিকানা"
                 size="small"
                 {...register('address')}
               />
@@ -131,7 +131,7 @@ const AddRecipient = ({ open, handleClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                সাবমিট
               </LoadingButton>
             </Grid>
           </Grid>

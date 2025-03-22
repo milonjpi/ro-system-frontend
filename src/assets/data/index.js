@@ -11,6 +11,11 @@ export const allInvoiceStatus = ['Due', 'Partial', 'Paid', 'Canceled'];
 
 export const dueYears = ['2023', '2024', '2025', '2026', '2027'];
 export const zakatYears = [
+  '2016',
+  '2017',
+  '2018',
+  '2019',
+  '2020',
   '2021',
   '2022',
   '2023',
