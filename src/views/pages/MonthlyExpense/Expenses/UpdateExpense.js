@@ -13,16 +13,18 @@ import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, Button, Tooltip } from '@mui/material';
 import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 import { useGetExpenseAreasQuery } from 'store/api/expenseArea/expenseAreaApi';
 import { useGetAllVehiclesQuery } from 'store/api/vehicle/vehicleApi';
 import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/monthlyExpenseHeadApi';
 import moment from 'moment';
 import { useUpdateMonthlyExpenseMutation } from 'store/api/monthlyExpense/monthlyExpenseApi';
+import AddExpenseHead from '../Library/ExpenseHead/AddExpenseHead';
 
 const style = {
   position: 'absolute',
@@ -47,6 +49,8 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
   const [paymentSource, setPaymentSource] = useState(
     preData?.paymentSource || null
   );
+
+  const [expenseHeadOpen, setExpenseHeadOpen] = useState(false);
 
   // library
   const { data: expenseAreaData, isLoading: expenseAreaLoading } =
@@ -149,6 +153,12 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
           </IconButton>
         </Box>
         <Divider sx={{ mb: 2, mt: 1 }} />
+        {/* popup items */}
+        <AddExpenseHead
+          open={expenseHeadOpen}
+          handleClose={() => setExpenseHeadOpen(false)}
+        />
+        {/* end popup items */}
         <Box
           component="form"
           autoComplete="off"
@@ -214,19 +224,32 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
             ) : null}
 
             <Grid item xs={12} md={4.5}>
-              <Autocomplete
-                loading={expenseHeadLoading}
-                value={monthlyExpenseHead}
-                size="small"
-                fullWidth
-                options={allExpenseHeads}
-                getOptionLabel={(option) => option.label}
-                onChange={(e, newValue) => setMonthlyExpenseHead(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="Expense Head" required />
-                )}
-              />
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Autocomplete
+                  loading={expenseHeadLoading}
+                  value={monthlyExpenseHead}
+                  size="small"
+                  fullWidth
+                  options={allExpenseHeads}
+                  getOptionLabel={(option) => option.label}
+                  onChange={(e, newValue) => setMonthlyExpenseHead(newValue)}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Expense Head" required />
+                  )}
+                />
+                <Tooltip title="Add Head">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setExpenseHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
             </Grid>
             <Grid item xs={12} md={7.5}>
               <TextField

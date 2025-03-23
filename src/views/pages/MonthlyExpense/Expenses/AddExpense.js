@@ -31,6 +31,7 @@ import { totalSum } from 'views/utilities/NeedyFunction';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { IconSquareRoundedPlusFilled } from '@tabler/icons-react';
 import ExpenseFields from './ExpenseFields';
+import AddExpenseHead from '../Library/ExpenseHead/AddExpenseHead';
 
 const style = {
   position: 'absolute',
@@ -57,6 +58,8 @@ const AddExpense = ({ open, handleClose }) => {
   const [date, setDate] = useState(moment());
   const [expenseArea, setExpenseArea] = useState(null);
   const [vehicle, setVehicle] = useState(null);
+
+  const [expenseHeadOpen, setExpenseHeadOpen] = useState(false);
 
   // library
   const { data: expenseAreaData, isLoading: expenseAreaLoading } =
@@ -189,6 +192,12 @@ const AddExpense = ({ open, handleClose }) => {
           </IconButton>
         </Box>
         <Divider sx={{ mb: 2, mt: 1 }} />
+        {/* popup items */}
+        <AddExpenseHead
+          open={expenseHeadOpen}
+          handleClose={() => setExpenseHeadOpen(false)}
+        />
+        {/* end popup items */}
         <Box
           component="form"
           autoComplete="off"
@@ -273,6 +282,7 @@ const AddExpense = ({ open, handleClose }) => {
                         control={control}
                         handleRemove={handleRemove}
                         register={register}
+                        setExpenseHeadOpen={setExpenseHeadOpen}
                       />
                     ))}
                     <StyledTableRow>
@@ -293,7 +303,7 @@ const AddExpense = ({ open, handleClose }) => {
                           </StyledTableCell>
                           <StyledTableCell align="right">
                             <Typography
-                              sx={{ fontSize: 14, fontWeight: 700, pr: 1.7 }}
+                              sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
                             >
                               {totalAmount}
                             </Typography>

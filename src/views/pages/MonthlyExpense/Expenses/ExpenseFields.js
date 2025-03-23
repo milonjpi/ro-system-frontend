@@ -2,13 +2,23 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import AddIcon from '@mui/icons-material/Add';
 import { Controller } from 'react-hook-form';
 import { IconSquareRoundedXFilled } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/monthlyExpenseHeadApi';
 import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
+import { Box } from '@mui/system';
+import { Button } from '@mui/material';
 
-const ExpenseFields = ({ field, index, control, handleRemove, register }) => {
+const ExpenseFields = ({
+  field,
+  index,
+  control,
+  handleRemove,
+  register,
+  setExpenseHeadOpen,
+}) => {
   // library
   const { data: expenseHeadData, isLoading: expenseHeadLoading } =
     useGetAllMonthlyExpenseHeadsQuery(
@@ -29,35 +39,48 @@ const ExpenseFields = ({ field, index, control, handleRemove, register }) => {
   // end library
   return (
     <StyledTableRow>
-      <StyledTableCell sx={{ minWidth: 160 }}>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Autocomplete
+      <StyledTableCell sx={{ minWidth: 180, px: '3px !important' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Autocomplete
+                size="small"
+                loading={expenseHeadLoading}
+                options={allExpenseHeads}
+                fullWidth
+                getOptionLabel={(option) => option.label}
+                isOptionEqualToValue={(item, value) => item.id === value.id}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Expense Head"
+                    variant="outlined"
+                    required
+                  />
+                )}
+                onChange={(e, data) => {
+                  onChange(data);
+                  return data;
+                }}
+              />
+            )}
+            name={`expenses[${index}].monthlyExpenseHead`}
+            control={control}
+          />
+          <Tooltip title="Add Head">
+            <Button
+              variant="contained"
+              color="secondary"
               size="small"
-              loading={expenseHeadLoading}
-              options={allExpenseHeads}
-              fullWidth
-              getOptionLabel={(option) => option.label}
-              isOptionEqualToValue={(item, value) => item.id === value.id}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Expense Head"
-                  variant="outlined"
-                  required
-                />
-              )}
-              onChange={(e, data) => {
-                onChange(data);
-                return data;
-              }}
-            />
-          )}
-          name={`expenses[${index}].monthlyExpenseHead`}
-          control={control}
-        />
+              sx={{ minWidth: 0, ml: 0.5 }}
+              onClick={() => setExpenseHeadOpen(true)}
+            >
+              <AddIcon />
+            </Button>
+          </Tooltip>
+        </Box>
       </StyledTableCell>
-      <StyledTableCell>
+      <StyledTableCell sx={{ px: '3px !important' }}>
         <TextField
           fullWidth
           label="Expense Details"
@@ -66,7 +89,7 @@ const ExpenseFields = ({ field, index, control, handleRemove, register }) => {
           {...register(`expenses[${index}].expenseDetails`)}
         />
       </StyledTableCell>
-      <StyledTableCell sx={{ minWidth: 120 }}>
+      <StyledTableCell sx={{ minWidth: 120, px: '3px !important' }}>
         <Controller
           render={({ field: { onChange, value } }) => (
             <Autocomplete
@@ -94,7 +117,7 @@ const ExpenseFields = ({ field, index, control, handleRemove, register }) => {
           control={control}
         />
       </StyledTableCell>
-      <StyledTableCell sx={{ width: 120 }}>
+      <StyledTableCell sx={{ width: 120, px: '3px !important' }}>
         <TextField
           fullWidth
           size="small"
@@ -122,7 +145,7 @@ const ExpenseFields = ({ field, index, control, handleRemove, register }) => {
         />
       </StyledTableCell>
 
-      <StyledTableCell align="center">
+      <StyledTableCell align="center" sx={{ px: '3px !important' }}>
         <Tooltip title="Remove Row">
           <IconButton
             size="small"
