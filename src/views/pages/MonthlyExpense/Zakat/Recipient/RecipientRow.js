@@ -8,12 +8,10 @@ import { IconEdit } from '@tabler/icons';
 import { IconTrashXFilled } from '@tabler/icons-react';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import UpdateRecipient from './UpdateRecipient';
-import { convertToBanglaNumber, totalSum } from 'views/utilities/NeedyFunction';
+import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
 
 const RecipientRow = ({ sn, data }) => {
   const zakatDetails = data?.zakats || [];
-  const rowSpan = zakatDetails.length || 1;
-  const totalAmount = totalSum(zakatDetails, 'amount');
 
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
@@ -47,90 +45,52 @@ const RecipientRow = ({ sn, data }) => {
     }
   };
   return (
-    <>
-      {/* Main Row */}
-      <TableRow>
-        <StyledTableCellWithBorder align="center" rowSpan={rowSpan}>
-          {convertToBanglaNumber(sn)}
-        </StyledTableCellWithBorder>
-        <StyledTableCellWithBorder rowSpan={rowSpan}>
-          {data?.fullName}
-        </StyledTableCellWithBorder>
-        <StyledTableCellWithBorder rowSpan={rowSpan}>
-          {data?.mobile ? convertToBanglaNumber(data?.mobile) : 'n/a'}
-        </StyledTableCellWithBorder>
-        <StyledTableCellWithBorder rowSpan={rowSpan}>
-          {data?.address || 'n/a'}
-        </StyledTableCellWithBorder>
-        {/* First row includes totals and actions */}
-        {zakatDetails.length > 0 ? (
-          <>
-            <StyledTableCellWithBorder align="center">
-              {convertToBanglaNumber(zakatDetails[0].year)}
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="right">
-              {convertToBanglaNumber(zakatDetails[0].amount)}
-            </StyledTableCellWithBorder>
-          </>
-        ) : (
-          <StyledTableCellWithBorder colSpan={2} align="center">
-            রেকর্ড নাই
-          </StyledTableCellWithBorder>
-        )}
-
-        <StyledTableCellWithBorder rowSpan={rowSpan} align="right">
-          {convertToBanglaNumber(totalAmount)}
-        </StyledTableCellWithBorder>
-
-        {/* Totals and Actions */}
-        <StyledTableCellWithBorder align="center" rowSpan={rowSpan}>
-          <Button
-            color="primary"
-            variant="contained"
-            size="small"
-            sx={{ minWidth: 0, mr: 0.5 }}
-            onClick={() => setOpen(true)}
-          >
-            <IconEdit size={14} />
-          </Button>
-          <Button
-            disabled={zakatDetails.length > 0 ? true : false}
-            color="error"
-            variant="contained"
-            size="small"
-            sx={{ minWidth: 0 }}
-            onClick={() => setDialog(true)}
-          >
-            <IconTrashXFilled size={14} />
-          </Button>
-          {/* popup item */}
-          <UpdateRecipient
-            preData={data}
-            open={open}
-            handleClose={() => setOpen(false)}
-          />
-          <ConfirmDialog
-            open={dialog}
-            setOpen={setDialog}
-            content="Delete Recipient"
-            handleDelete={handleDelete}
-          />
-          {/* end popup item */}
-        </StyledTableCellWithBorder>
-      </TableRow>
-
-      {/* Remaining Income Details Rows */}
-      {zakatDetails.slice(1).map((el, index) => (
-        <TableRow key={index}>
-          <StyledTableCellWithBorder align="center">
-            {convertToBanglaNumber(el.year)}
-          </StyledTableCellWithBorder>
-          <StyledTableCellWithBorder align="right">
-            {convertToBanglaNumber(el.amount)}
-          </StyledTableCellWithBorder>
-        </TableRow>
-      ))}
-    </>
+    <TableRow>
+      <StyledTableCellWithBorder align="center" sx={{ width: 80 }}>
+        {convertToBanglaNumber(sn)}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.fullName}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.mobile ? convertToBanglaNumber(data?.mobile) : 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.address || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center">
+        <Button
+          color="primary"
+          variant="contained"
+          size="small"
+          sx={{ minWidth: 0, mr: 0.5 }}
+          onClick={() => setOpen(true)}
+        >
+          <IconEdit size={14} />
+        </Button>
+        <Button
+          disabled={zakatDetails.length > 0 ? true : false}
+          color="error"
+          variant="contained"
+          size="small"
+          sx={{ minWidth: 0 }}
+          onClick={() => setDialog(true)}
+        >
+          <IconTrashXFilled size={14} />
+        </Button>
+        {/* popup item */}
+        <UpdateRecipient
+          preData={data}
+          open={open}
+          handleClose={() => setOpen(false)}
+        />
+        <ConfirmDialog
+          open={dialog}
+          setOpen={setDialog}
+          content="Delete Recipient"
+          handleDelete={handleDelete}
+        />
+        {/* end popup item */}
+      </StyledTableCellWithBorder>
+    </TableRow>
   );
 };
 

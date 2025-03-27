@@ -21,7 +21,6 @@ import { useDebounced } from 'hooks';
 import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
 import RecipientRow from './RecipientRow';
 import AddRecipient from './AddRecipient';
-import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
 
 const Recipient = () => {
   const [searchText, setSearchText] = useState('');
@@ -68,7 +67,6 @@ const Recipient = () => {
   );
 
   const allRecipients = data?.recipients || [];
-  const sum = data?.sum;
 
   return (
     <MainCard
@@ -119,34 +117,14 @@ const Recipient = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <StyledTableCellWithBorder align="center" rowSpan={2}>
-              ক্রোমিক
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder rowSpan={2}>
-              গ্রহীতার নাম
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder rowSpan={2}>
-              মোবাইল নং
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder rowSpan={2}>
-              ঠিকানা
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="center" colSpan={3}>
-              যাকাত গ্রহণ
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="center" rowSpan={2}>
-              অ্যাকশন
-            </StyledTableCellWithBorder>
-          </TableRow>
-          <TableRow>
             <StyledTableCellWithBorder align="center">
-              বছর
+              ক্রোমিক নং
             </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="right">
-              পরিমাণ
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="right">
-              মোট গ্রহণ
+            <StyledTableCellWithBorder>গ্রহীতার নাম</StyledTableCellWithBorder>
+            <StyledTableCellWithBorder>মোবাইল নং</StyledTableCellWithBorder>
+            <StyledTableCellWithBorder>ঠিকানা</StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="center">
+              অ্যাকশন
             </StyledTableCellWithBorder>
           </TableRow>
         </TableHead>
@@ -175,35 +153,6 @@ const Recipient = () => {
               </StyledTableCellWithBorder>
             </TableRow>
           )}
-          {allRecipients?.length ? (
-            <TableRow>
-              <StyledTableCellWithBorder
-                colSpan={6}
-                sx={{
-                  fontSize: '12px !important',
-                  fontWeight: 700,
-                }}
-              >
-                মোট
-              </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder
-                align="right"
-                sx={{
-                  fontSize: '12px !important',
-                  fontWeight: 700,
-                }}
-              >
-                {convertToBanglaNumber(sum || 0)}
-              </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder
-                align="right"
-                sx={{
-                  fontSize: '12px !important',
-                  fontWeight: 700,
-                }}
-              ></StyledTableCellWithBorder>
-            </TableRow>
-          ) : null}
         </TableBody>
       </Table>
       <TablePagination

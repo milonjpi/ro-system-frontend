@@ -15,6 +15,11 @@ const menuList = [
     label: 'যাকাত গ্রহীতা',
     path: 'recipient',
   },
+  {
+    id: 3,
+    label: 'যাকাত রিপোর্ট',
+    path: 'report',
+  },
 ];
 
 const Zakat = () => {

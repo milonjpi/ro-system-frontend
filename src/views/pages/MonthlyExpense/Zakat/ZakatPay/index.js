@@ -52,7 +52,7 @@ const ZakatPay = () => {
 
   const tableHeads = [
     {
-      title: 'ক্রোমিক',
+      title: 'ক্রোমিক নং',
       align: 'center',
     },
     {

@@ -27,6 +27,40 @@ export const zakatYears = [
   '2029',
   '2030',
 ];
+export const zakatTaken = [
+  {
+    label: 'কমপক্ষে ১ বার',
+    value: 1,
+  },
+  {
+    label: 'কমপক্ষে ২ বার',
+    value: 2,
+  },
+  {
+    label: 'কমপক্ষে ৩ বার',
+    value: 3,
+  },
+  {
+    label: 'কমপক্ষে ৪ বার',
+    value: 4,
+  },
+  {
+    label: 'কমপক্ষে ৫ বার',
+    value: 5,
+  },
+  {
+    label: 'কমপক্ষে ৬ বার',
+    value: 6,
+  },
+  {
+    label: 'কমপক্ষে ৭ বার',
+    value: 7,
+  },
+  {
+    label: 'কমপক্ষে ৮ বার',
+    value: 8,
+  },
+];
 export const dueMonths = (year = new Date().getFullYear()) => {
   const isLeapYear = leapYear(parseInt(year));
   return [

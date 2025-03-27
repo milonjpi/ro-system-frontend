@@ -276,6 +276,9 @@ const ZakatPay = Loadable(
 const Recipient = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/Recipient'))
 );
+const ZakatReport = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatReport'))
+);
 
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
@@ -944,6 +947,10 @@ const MainRoutes = {
                     {
                       path: 'recipient',
                       element: <Recipient />,
+                    },
+                    {
+                      path: 'report',
+                      element: <ZakatReport />,
                     },
                   ],
                 },
