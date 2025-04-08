@@ -12,13 +12,14 @@ import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconPlus } from '@tabler/icons-react';
+import { IconCloudDownload, IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import { useDebounced } from 'hooks';
 import moment from 'moment';
-import { Autocomplete, TableRow } from '@mui/material';
+import { utils, writeFile } from 'xlsx';
+import { Autocomplete, IconButton, TableRow, Tooltip } from '@mui/material';
 import { allMonths } from 'assets/data';
 import { useGetExpenseAreasQuery } from 'store/api/expenseArea/expenseAreaApi';
 import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/monthlyExpenseHeadApi';
@@ -170,9 +171,63 @@ const Expenses = () => {
   const allMonthlyExpenses = data?.monthlyExpenses || [];
   const meta = data?.meta;
   const sum = data?.sum;
+
+  // export
+  const { data: printData, isLoading: printLoading } =
+    useGetMonthlyExpensesQuery(
+      { ...query, page: 0, limit: 5000 },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allPrintMonthlyExpenses = printData?.monthlyExpenses || [];
+
+  const handleExport = () => {
+    let elt = allPrintMonthlyExpenses.map((el, index) => ({
+      SN: index + 1,
+      'Expense Area': `${el?.expenseArea?.label}\n${
+        el?.vehicle ? ', ' + el?.vehicle?.label : ''
+      }`,
+      Month: el?.month + ' - ' + el?.year,
+      Date: moment(el?.date).format('DD/MM/YYYY'),
+      'Expense Head': el?.monthlyExpenseHead?.label,
+      'Expense Details': el?.expenseDetails || 'n/a',
+      'Payment Source': el?.paymentSource?.label,
+      Amount: el?.amount,
+    }));
+    let wb = utils.book_new();
+    let ws = utils.json_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 41 },
+      { wch: 15 },
+      { wch: 12 },
+      { wch: 36 },
+      { wch: 27 },
+      { wch: 14 },
+      { wch: 14 },
+    ];
+    writeFile(wb, `MonthlyExpenses.xlsx`);
+  };
   return (
     <SubCard
-      title="Expenses"
+      title={
+        <span>
+          Expenses
+          <Tooltip title="Export">
+            <IconButton
+              color="primary"
+              size="small"
+              sx={{ ml: 0.5 }}
+              disabled={printLoading}
+              onClick={handleExport}
+            >
+              <IconCloudDownload size={18} />
+            </IconButton>
+          </Tooltip>
+        </span>
+      }
       secondary={
         <Button
           size="small"
