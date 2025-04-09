@@ -264,6 +264,9 @@ const VehicleList = Loadable(
 const MonthlyExpenseHead = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Library/ExpenseHead'))
 );
+const ExpenseDetail = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Library/ExpenseDetail'))
+);
 const PaymentSource = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Library/PaymentSource'))
 );
@@ -1001,6 +1004,10 @@ const MainRoutes = {
                     {
                       path: 'expense-head',
                       element: <MonthlyExpenseHead />,
+                    },
+                    {
+                      path: 'expense-details',
+                      element: <ExpenseDetail />,
                     },
                     {
                       path: 'payment-source',

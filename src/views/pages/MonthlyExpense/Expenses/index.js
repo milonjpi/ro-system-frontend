@@ -104,6 +104,9 @@ const Expenses = () => {
       title: 'Expense Details',
     },
     {
+      title: 'Remarks',
+    },
+    {
       title: 'Payment Source',
     },
     {
@@ -190,7 +193,8 @@ const Expenses = () => {
       Month: el?.month + ' - ' + el?.year,
       Date: moment(el?.date).format('DD/MM/YYYY'),
       'Expense Head': el?.monthlyExpenseHead?.label,
-      'Expense Details': el?.expenseDetails || 'n/a',
+      'Expense Details': el?.expenseDetail?.label || 'n/a',
+      Remarks: el?.expenseDetails || 'n/a',
       'Payment Source': el?.paymentSource?.label,
       Amount: el?.amount,
     }));
@@ -204,6 +208,7 @@ const Expenses = () => {
       { wch: 15 },
       { wch: 12 },
       { wch: 36 },
+      { wch: 27 },
       { wch: 27 },
       { wch: 14 },
       { wch: 14 },
@@ -395,7 +400,7 @@ const Expenses = () => {
           allMonthlyExpenses?.length ? (
             <TableRow>
               <StyledTableCellWithBorder
-                colSpan={7}
+                colSpan={8}
                 sx={{
                   fontSize: '12px !important',
                   fontWeight: 700,

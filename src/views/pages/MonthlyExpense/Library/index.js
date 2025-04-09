@@ -22,6 +22,11 @@ const menuList = [
   },
   {
     id: 4,
+    label: 'Expense Details',
+    path: 'expense-details',
+  },
+  {
+    id: 5,
     label: 'Payment Source',
     path: 'payment-source',
   },

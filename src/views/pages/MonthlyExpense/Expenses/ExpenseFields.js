@@ -10,6 +10,7 @@ import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/
 import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 import { Box } from '@mui/system';
 import { Button } from '@mui/material';
+import { useGetExpenseDetailsQuery } from 'store/api/expenseDetail/expenseDetailApi';
 
 const ExpenseFields = ({
   field,
@@ -18,6 +19,7 @@ const ExpenseFields = ({
   handleRemove,
   register,
   setExpenseHeadOpen,
+  setExpenseDetailOpen,
 }) => {
   // library
   const { data: expenseHeadData, isLoading: expenseHeadLoading } =
@@ -27,6 +29,14 @@ const ExpenseFields = ({
     );
 
   const allExpenseHeads = expenseHeadData?.monthlyExpenseHeads || [];
+
+  const { data: expenseDetailData, isLoading: expenseDetailLoading } =
+    useGetExpenseDetailsQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allExpenseDetails = expenseDetailData?.expenseDetails || [];
 
   const { data: paymentSourceData, isLoading: paymentSourceLoading } =
     useGetPaymentSourcesQuery(
@@ -39,7 +49,7 @@ const ExpenseFields = ({
   // end library
   return (
     <StyledTableRow>
-      <StyledTableCell sx={{ minWidth: 180, px: '3px !important' }}>
+      <StyledTableCell sx={{ minWidth: 160, px: '3px !important' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Controller
             render={({ field: { onChange, value } }) => (
@@ -81,13 +91,44 @@ const ExpenseFields = ({
         </Box>
       </StyledTableCell>
       <StyledTableCell sx={{ px: '3px !important' }}>
-        <TextField
-          fullWidth
-          label="Expense Details"
-          size="small"
-          name={`expenses[${index}].expenseDetails`}
-          {...register(`expenses[${index}].expenseDetails`)}
-        />
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Autocomplete
+                size="small"
+                loading={expenseDetailLoading}
+                options={allExpenseDetails}
+                fullWidth
+                getOptionLabel={(option) => option.label}
+                isOptionEqualToValue={(item, value) => item.id === value.id}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Expense Details"
+                    variant="outlined"
+                  />
+                )}
+                onChange={(e, data) => {
+                  onChange(data);
+                  return data;
+                }}
+              />
+            )}
+            name={`expenses[${index}].expenseDetail`}
+            control={control}
+          />
+          <Tooltip title="Add Detail">
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              sx={{ minWidth: 0, ml: 0.5 }}
+              onClick={() => setExpenseDetailOpen(true)}
+            >
+              <AddIcon />
+            </Button>
+          </Tooltip>
+        </Box>
       </StyledTableCell>
       <StyledTableCell sx={{ minWidth: 120, px: '3px !important' }}>
         <Controller
@@ -117,7 +158,16 @@ const ExpenseFields = ({
           control={control}
         />
       </StyledTableCell>
-      <StyledTableCell sx={{ width: 120, px: '3px !important' }}>
+      <StyledTableCell sx={{ width: 150, px: '3px !important' }}>
+        <TextField
+          fullWidth
+          label="Remarks"
+          size="small"
+          name={`expenses[${index}].expenseDetails`}
+          {...register(`expenses[${index}].expenseDetails`)}
+        />
+      </StyledTableCell>
+      <StyledTableCell sx={{ width: 100, px: '3px !important' }}>
         <TextField
           fullWidth
           size="small"

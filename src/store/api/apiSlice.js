@@ -59,6 +59,7 @@ export const api = createApi({
     'buildingInvestmentSource',
     'buildingInvestment',
     'expenseArea',
+    'expenseDetail',
     'vehicle',
     'monthlyExpenseHead',
     'paymentSource',

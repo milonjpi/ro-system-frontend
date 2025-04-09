@@ -32,13 +32,14 @@ import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { IconSquareRoundedPlusFilled } from '@tabler/icons-react';
 import ExpenseFields from './ExpenseFields';
 import AddExpenseHead from '../Library/ExpenseHead/AddExpenseHead';
+import AddExpenseDetail from '../Library/ExpenseDetail/AddExpenseDetail';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 400, sm: 550, md: 850 },
+  width: { xs: 400, sm: 550, md: 850, lg: 950 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -48,6 +49,7 @@ const style = {
 const defaultValue = {
   date: moment(),
   monthlyExpenseHead: null,
+  expenseDetail: null,
   expenseDetails: '',
   paymentSource: null,
   amount: 0,
@@ -60,6 +62,7 @@ const AddExpense = ({ open, handleClose }) => {
   const [vehicle, setVehicle] = useState(null);
 
   const [expenseHeadOpen, setExpenseHeadOpen] = useState(false);
+  const [expenseDetailOpen, setExpenseDetailOpen] = useState(false);
 
   // library
   const { data: expenseAreaData, isLoading: expenseAreaLoading } =
@@ -116,6 +119,9 @@ const AddExpense = ({ open, handleClose }) => {
       title: 'Payment Source',
     },
     {
+      title: 'Remarks',
+    },
+    {
       title: 'Amount',
       align: 'right',
     },
@@ -138,6 +144,7 @@ const AddExpense = ({ open, handleClose }) => {
       expenseAreaId: expenseArea?.id,
       vehicleId: vehicle?.id,
       monthlyExpenseHeadId: el.monthlyExpenseHead?.id,
+      expenseDetailId: el.expenseDetail?.id,
       expenseDetails: el?.expenseDetails || '',
       amount: el?.amount,
       paymentSourceId: el.paymentSource?.id,
@@ -196,6 +203,10 @@ const AddExpense = ({ open, handleClose }) => {
         <AddExpenseHead
           open={expenseHeadOpen}
           handleClose={() => setExpenseHeadOpen(false)}
+        />
+        <AddExpenseDetail
+          open={expenseDetailOpen}
+          handleClose={() => setExpenseDetailOpen(false)}
         />
         {/* end popup items */}
         <Box
@@ -263,7 +274,7 @@ const AddExpense = ({ open, handleClose }) => {
             ) : null}
             <Grid item xs={12}>
               <Box sx={{ overflow: 'auto' }}>
-                <Table sx={{ minWidth: 500 }}>
+                <Table sx={{ minWidth: 800 }}>
                   <TableHead>
                     <StyledTableRow>
                       {tableHeads?.map((el, index) => (
@@ -283,6 +294,7 @@ const AddExpense = ({ open, handleClose }) => {
                         handleRemove={handleRemove}
                         register={register}
                         setExpenseHeadOpen={setExpenseHeadOpen}
+                        setExpenseDetailOpen={setExpenseDetailOpen}
                       />
                     ))}
                     <StyledTableRow>
@@ -296,7 +308,7 @@ const AddExpense = ({ open, handleClose }) => {
 
                       {watchValue?.length ? (
                         <>
-                          <StyledTableCell colSpan={2} align="right">
+                          <StyledTableCell colSpan={3} align="right">
                             <Typography sx={{ fontSize: 14, fontWeight: 700 }}>
                               Total Amount:
                             </Typography>

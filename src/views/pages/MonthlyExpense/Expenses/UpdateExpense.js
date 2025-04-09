@@ -25,6 +25,8 @@ import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/
 import moment from 'moment';
 import { useUpdateMonthlyExpenseMutation } from 'store/api/monthlyExpense/monthlyExpenseApi';
 import AddExpenseHead from '../Library/ExpenseHead/AddExpenseHead';
+import { useGetExpenseDetailsQuery } from 'store/api/expenseDetail/expenseDetailApi';
+import AddExpenseDetail from '../Library/ExpenseDetail/AddExpenseDetail';
 
 const style = {
   position: 'absolute',
@@ -46,11 +48,15 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
   const [monthlyExpenseHead, setMonthlyExpenseHead] = useState(
     preData?.monthlyExpenseHead || null
   );
+  const [expenseDetail, setExpenseDetail] = useState(
+    preData?.expenseDetail || null
+  );
   const [paymentSource, setPaymentSource] = useState(
     preData?.paymentSource || null
   );
 
   const [expenseHeadOpen, setExpenseHeadOpen] = useState(false);
+  const [expenseDetailOpen, setExpenseDetailOpen] = useState(false);
 
   // library
   const { data: expenseAreaData, isLoading: expenseAreaLoading } =
@@ -60,6 +66,14 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
     );
 
   const allExpenseAreas = expenseAreaData?.expenseAreas || [];
+
+  const { data: expenseDetailData, isLoading: expenseDetailLoading } =
+    useGetExpenseDetailsQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allExpenseDetails = expenseDetailData?.expenseDetails || [];
 
   const { data: vehicleData, isLoading: vehicleLoading } =
     useGetAllVehiclesQuery(
@@ -100,6 +114,7 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
       expenseAreaId: expenseArea?.id,
       vehicleId: vehicle?.id,
       monthlyExpenseHeadId: monthlyExpenseHead?.id,
+      expenseDetailId: expenseDetail?.id,
       expenseDetails: data?.expenseDetails || '',
       amount: data?.amount,
       paymentSourceId: paymentSource?.id,
@@ -157,6 +172,10 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
         <AddExpenseHead
           open={expenseHeadOpen}
           handleClose={() => setExpenseHeadOpen(false)}
+        />
+        <AddExpenseDetail
+          open={expenseDetailOpen}
+          handleClose={() => setExpenseDetailOpen(false)}
         />
         {/* end popup items */}
         <Box
@@ -223,7 +242,7 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
               </Grid>
             ) : null}
 
-            <Grid item xs={12} md={4.5}>
+            <Grid item xs={12} md={6}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Autocomplete
                   loading={expenseHeadLoading}
@@ -251,10 +270,38 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
                 </Tooltip>
               </Box>
             </Grid>
-            <Grid item xs={12} md={7.5}>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Autocomplete
+                  loading={expenseDetailLoading}
+                  value={expenseDetail}
+                  size="small"
+                  fullWidth
+                  options={allExpenseDetails}
+                  getOptionLabel={(option) => option.label}
+                  onChange={(e, newValue) => setExpenseDetail(newValue)}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Expense Detail" />
+                  )}
+                />
+                <Tooltip title="Add Detail">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setExpenseDetailOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Expense Details"
+                label="Remarks"
                 size="small"
                 {...register('expenseDetails')}
               />

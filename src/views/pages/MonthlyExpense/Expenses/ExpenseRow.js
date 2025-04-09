@@ -72,6 +72,9 @@ const ExpenseRow = ({ sn, data }) => {
         {data?.monthlyExpenseHead?.label}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
+        {data?.expenseDetail?.label || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder sx={{ fontSize: '9px !important' }}>
         {data?.expenseDetails || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
