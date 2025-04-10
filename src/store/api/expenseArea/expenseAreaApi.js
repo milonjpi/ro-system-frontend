@@ -48,6 +48,14 @@ const expenseAreaApi = api.injectEndpoints({
       }),
       invalidatesTags: ['expenseArea'],
     }),
+    // delete
+    deleteExpenseArea: build.mutation({
+      query: (id) => ({
+        url: `${EXPENSE_AREA_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['expenseArea'],
+    }),
   }),
 });
 
@@ -56,4 +64,5 @@ export const {
   useGetSingleExpenseAreaQuery,
   useCreateExpenseAreaMutation,
   useUpdateExpenseAreaMutation,
+  useDeleteExpenseAreaMutation,
 } = expenseAreaApi;

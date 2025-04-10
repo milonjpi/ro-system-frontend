@@ -48,6 +48,14 @@ const monthlyExpenseHeadApi = api.injectEndpoints({
       }),
       invalidatesTags: ['monthlyExpenseHead'],
     }),
+    // delete
+    deleteMonthlyExpenseHead: build.mutation({
+      query: (id) => ({
+        url: `${MONTHLY_EXPENSE_HEAD_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['monthlyExpenseHead'],
+    }),
   }),
 });
 
@@ -56,4 +64,5 @@ export const {
   useGetSingleMonthlyExpenseHeadQuery,
   useCreateMonthlyExpenseHeadMutation,
   useUpdateMonthlyExpenseHeadMutation,
+  useDeleteMonthlyExpenseHeadMutation,
 } = monthlyExpenseHeadApi;

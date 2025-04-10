@@ -48,6 +48,14 @@ const vehicleApi = api.injectEndpoints({
       }),
       invalidatesTags: ['vehicle'],
     }),
+    // delete
+    deleteVehicle: build.mutation({
+      query: (id) => ({
+        url: `${VEHICLE_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['vehicle'],
+    }),
   }),
 });
 
@@ -56,4 +64,5 @@ export const {
   useGetSingleVehicleQuery,
   useCreateVehicleMutation,
   useUpdateVehicleMutation,
+  useDeleteVehicleMutation,
 } = vehicleApi;

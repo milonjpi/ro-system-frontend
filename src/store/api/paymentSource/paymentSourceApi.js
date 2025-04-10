@@ -48,6 +48,14 @@ const paymentSourceApi = api.injectEndpoints({
       }),
       invalidatesTags: ['paymentSource'],
     }),
+    // delete
+    deletePaymentSource: build.mutation({
+      query: (id) => ({
+        url: `${PAYMENT_SOURCE_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['paymentSource'],
+    }),
   }),
 });
 
@@ -56,4 +64,5 @@ export const {
   useGetSinglePaymentSourceQuery,
   useCreatePaymentSourceMutation,
   useUpdatePaymentSourceMutation,
+  useDeletePaymentSourceMutation,
 } = paymentSourceApi;

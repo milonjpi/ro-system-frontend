@@ -48,6 +48,14 @@ const expenseDetailApi = api.injectEndpoints({
       }),
       invalidatesTags: ['expenseDetail'],
     }),
+    // delete
+    deleteExpenseDetail: build.mutation({
+      query: (id) => ({
+        url: `${EXPENSE_DETAIL_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['expenseDetail'],
+    }),
   }),
 });
 
@@ -56,4 +64,5 @@ export const {
   useGetSingleExpenseDetailQuery,
   useCreateExpenseDetailMutation,
   useUpdateExpenseDetailMutation,
+  useDeleteExpenseDetailMutation,
 } = expenseDetailApi;
