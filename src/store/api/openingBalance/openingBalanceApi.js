@@ -20,6 +20,22 @@ const openingBalanceApi = api.injectEndpoints({
       providesTags: ['openingBalance'],
     }),
 
+    // present balance
+    getPresentBalance: build.query({
+      query: (params) => ({
+        url: `${OPENING_BALANCE_URL}/present-balance`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          presentBalances: response?.data,
+          meta: response?.meta,
+        };
+      },
+      providesTags: ['openingBalance'],
+    }),
+
     // get single
     getSingleOpeningBalance: build.query({
       query: (id) => ({
@@ -62,6 +78,7 @@ const openingBalanceApi = api.injectEndpoints({
 
 export const {
   useGetOpeningBalancesQuery,
+  useGetPresentBalanceQuery,
   useGetSingleOpeningBalanceQuery,
   useCreateOpeningBalanceMutation,
   useUpdateOpeningBalanceMutation,

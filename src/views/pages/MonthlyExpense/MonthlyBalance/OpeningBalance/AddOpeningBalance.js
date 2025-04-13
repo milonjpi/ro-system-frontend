@@ -20,7 +20,6 @@ import { setToast } from 'store/toastSlice';
 import { useCreateOpeningBalanceMutation } from 'store/api/openingBalance/openingBalanceApi';
 import moment from 'moment';
 import { Autocomplete } from '@mui/material';
-import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 import { allMonths } from 'assets/data';
 
 const style = {
@@ -39,17 +38,6 @@ const AddOpeningBalance = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(moment().format('YYYY'));
   const [month, setMonth] = useState(moment().format('MMMM'));
-  const [paymentSource, setPaymentSource] = useState(null);
-
-  // library
-  const { data: paymentSourceData, isLoading: paymentSourceLoading } =
-    useGetPaymentSourcesQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allPaymentSources = paymentSourceData?.paymentSources || [];
-  // end library
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -62,7 +50,6 @@ const AddOpeningBalance = ({ open, handleClose }) => {
       year: year,
       month: month,
       amount: data?.amount || 0,
-      paymentSourceId: paymentSource?.id,
       remarks: data?.remarks || '',
     };
 
@@ -75,7 +62,6 @@ const AddOpeningBalance = ({ open, handleClose }) => {
         reset();
         setMonth(moment().format('MMMM'));
         setYear(moment().format('YYYY'));
-        setPaymentSource(null);
         dispatch(
           setToast({
             open: true,
@@ -150,23 +136,7 @@ const AddOpeningBalance = ({ open, handleClose }) => {
                 )}
               />
             </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Autocomplete
-                loading={paymentSourceLoading}
-                value={paymentSource}
-                size="small"
-                fullWidth
-                options={allPaymentSources}
-                getOptionLabel={(option) => option.label}
-                onChange={(e, newValue) => setPaymentSource(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="Payment Source" required />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 required

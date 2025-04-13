@@ -19,7 +19,6 @@ import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import { useUpdateOpeningBalanceMutation } from 'store/api/openingBalance/openingBalanceApi';
 import { Autocomplete } from '@mui/material';
-import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 import { allMonths } from 'assets/data';
 
 const style = {
@@ -38,19 +37,6 @@ const UpdateOpeningBalance = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(preData?.year);
   const [month, setMonth] = useState(preData?.month);
-  const [paymentSource, setPaymentSource] = useState(
-    preData?.paymentSource || null
-  );
-
-  // library
-  const { data: paymentSourceData, isLoading: paymentSourceLoading } =
-    useGetPaymentSourcesQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allPaymentSources = paymentSourceData?.paymentSources || [];
-  // end library
 
   const { register, handleSubmit } = useForm({ defaultValues: preData });
 
@@ -63,7 +49,6 @@ const UpdateOpeningBalance = ({ open, handleClose, preData }) => {
       year: year,
       month: month,
       amount: data?.amount || 0,
-      paymentSourceId: paymentSource?.id,
       remarks: data?.remarks || '',
     };
 
@@ -150,23 +135,7 @@ const UpdateOpeningBalance = ({ open, handleClose, preData }) => {
                 )}
               />
             </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Autocomplete
-                loading={paymentSourceLoading}
-                value={paymentSource}
-                size="small"
-                fullWidth
-                options={allPaymentSources}
-                getOptionLabel={(option) => option.label}
-                onChange={(e, newValue) => setPaymentSource(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="Payment Source" required />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 required

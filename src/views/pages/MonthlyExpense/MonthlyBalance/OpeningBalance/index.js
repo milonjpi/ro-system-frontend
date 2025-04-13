@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -16,28 +16,15 @@ import DataTable from 'ui-component/table';
 import { useDebounced } from 'hooks';
 import moment from 'moment';
 import { useGetOpeningBalancesQuery } from 'store/api/openingBalance/openingBalanceApi';
-import { Autocomplete } from '@mui/material';
 import { allMonths } from 'assets/data';
 import AddOpeningBalance from './AddOpeningBalance';
 import OpeningBalanceRow from './OpeningBalanceRow';
-import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 
 const OpeningBalance = () => {
   const [searchText, setSearchText] = useState('');
   const [year, setYear] = useState(moment().format('YYYY'));
   const [month, setMonth] = useState(moment().format('MMMM'));
-  const [paymentSource, setPaymentSource] = useState(null);
   const [open, setOpen] = useState(false);
-
-  // library
-  const { data: paymentSourceData, isLoading: paymentSourceLoading } =
-    useGetPaymentSourcesQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allPaymentSources = paymentSourceData?.paymentSources || [];
-  // end library
 
   // table
   // pagination
@@ -64,9 +51,6 @@ const OpeningBalance = () => {
     },
     {
       title: 'Month',
-    },
-    {
-      title: 'Payment Source',
     },
     {
       title: 'Remarks',
@@ -96,10 +80,6 @@ const OpeningBalance = () => {
 
   if (month) {
     query['month'] = month;
-  }
-
-  if (paymentSource) {
-    query['paymentSourceId'] = paymentSource?.id;
   }
 
   // search term
@@ -194,19 +174,6 @@ const OpeningBalance = () => {
                 ))}
               </Select>
             </FormControl>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Autocomplete
-              loading={paymentSourceLoading}
-              value={paymentSource}
-              size="small"
-              fullWidth
-              options={allPaymentSources}
-              onChange={(e, newValue) => setPaymentSource(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Payment Source" />
-              )}
-            />
           </Grid>
         </Grid>
       </Box>

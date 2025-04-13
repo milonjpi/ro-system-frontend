@@ -4,15 +4,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
-import { useGetOpeningBalancesQuery } from 'store/api/openingBalance/openingBalanceApi';
-import { Autocomplete, TableRow } from '@mui/material';
+import { useGetPresentBalanceQuery } from 'store/api/openingBalance/openingBalanceApi';
+import { TableRow } from '@mui/material';
 import { allMonths } from 'assets/data';
-import { useGetPaymentSourcesQuery } from 'store/api/paymentSource/paymentSourceApi';
 import PresentBalanceRow from './PresentBalanceRow';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { totalSum } from 'views/utilities/NeedyFunction';
@@ -20,17 +18,6 @@ import { totalSum } from 'views/utilities/NeedyFunction';
 const PresentBalance = () => {
   const [year, setYear] = useState(moment().format('YYYY'));
   const [month, setMonth] = useState(moment().format('MMMM'));
-  const [paymentSource, setPaymentSource] = useState(null);
-
-  // library
-  const { data: paymentSourceData, isLoading: paymentSourceLoading } =
-    useGetPaymentSourcesQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allPaymentSources = paymentSourceData?.paymentSources || [];
-  // end library
 
   // table
   // pagination
@@ -57,9 +44,6 @@ const PresentBalance = () => {
     },
     {
       title: 'Month',
-    },
-    {
-      title: 'Payment Source',
     },
     {
       title: 'Opening Balance',
@@ -92,26 +76,17 @@ const PresentBalance = () => {
     query['month'] = month;
   }
 
-  if (paymentSource) {
-    query['paymentSourceId'] = paymentSource?.id;
-  }
-
-  const { data, isLoading } = useGetOpeningBalancesQuery(
+  const { data, isLoading } = useGetPresentBalanceQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allOpeningBalances = data?.openingBalances || [];
+  const allPresentBalances = data?.presentBalances || [];
   const meta = data?.meta;
 
   // calculation
-  const openingAmount = totalSum(allOpeningBalances, 'amount');
-  const expenseAmount = totalSum(
-    allOpeningBalances?.map((el) => ({
-      amount: totalSum(el.paymentSource?.monthlyExpenses || [], 'amount'),
-    })),
-    'amount'
-  );
+  const openingAmount = totalSum(allPresentBalances, 'amount');
+  const expenseAmount = totalSum(allPresentBalances, 'cost');
   return (
     <SubCard title="Present Balance">
       {/* filter area */}
@@ -156,19 +131,6 @@ const PresentBalance = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Autocomplete
-              loading={paymentSourceLoading}
-              value={paymentSource}
-              size="small"
-              fullWidth
-              options={allPaymentSources}
-              onChange={(e, newValue) => setPaymentSource(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} label="Payment Source" />
-              )}
-            />
-          </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
@@ -177,7 +139,7 @@ const PresentBalance = () => {
       <DataTable
         bordered
         tableHeads={tableHeads}
-        data={allOpeningBalances}
+        data={allPresentBalances}
         options={(el, index) => (
           <PresentBalanceRow
             key={el.id}
@@ -186,10 +148,10 @@ const PresentBalance = () => {
           />
         )}
         extra={
-          allOpeningBalances?.length ? (
+          allPresentBalances?.length ? (
             <TableRow>
               <StyledTableCellWithBorder
-                colSpan={4}
+                colSpan={3}
                 sx={{
                   fontSize: '12px !important',
                   fontWeight: 700,
