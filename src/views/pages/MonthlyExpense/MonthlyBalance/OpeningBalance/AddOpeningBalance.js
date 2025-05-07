@@ -3,10 +3,9 @@ import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -20,7 +19,7 @@ import { setToast } from 'store/toastSlice';
 import { useCreateOpeningBalanceMutation } from 'store/api/openingBalance/openingBalanceApi';
 import moment from 'moment';
 import { Autocomplete } from '@mui/material';
-import { allMonths } from 'assets/data';
+import { useGetSourcesQuery } from 'store/api/source/sourceApi';
 
 const style = {
   position: 'absolute',
@@ -36,8 +35,17 @@ const style = {
 
 const AddOpeningBalance = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [year, setYear] = useState(moment().format('YYYY'));
-  const [month, setMonth] = useState(moment().format('MMMM'));
+  const [date, setDate] = useState(null);
+  const [source, setSource] = useState(null);
+
+  // library
+  const { data: sourceData, isLoading: sourceLoading } = useGetSourcesQuery(
+    { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allSources = sourceData?.sources || [];
+  // end library
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -47,8 +55,10 @@ const AddOpeningBalance = ({ open, handleClose }) => {
 
   const onSubmit = async (data) => {
     const newData = {
-      year: year,
-      month: month,
+      date: date,
+      sourceId: source?.id,
+      year: moment(date).format('YYYY'),
+      month: moment(date).format('MMMM'),
       amount: data?.amount || 0,
       remarks: data?.remarks || '',
     };
@@ -60,8 +70,8 @@ const AddOpeningBalance = ({ open, handleClose }) => {
         handleClose();
         setLoading(false);
         reset();
-        setMonth(moment().format('MMMM'));
-        setYear(moment().format('YYYY'));
+        setDate(null);
+        setSource(null);
         dispatch(
           setToast({
             open: true,
@@ -107,36 +117,44 @@ const AddOpeningBalance = ({ open, handleClose }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <FormControl fullWidth size="small" required>
-                <InputLabel id="select-year-id">Year</InputLabel>
-                <Select
-                  labelId="select-year-id"
-                  value={year}
-                  label="Year"
-                  onChange={(e) => setYear(e.target.value)}
-                >
-                  {[1, 2, 3, 4, 5, 6].map((el) => (
-                    <MenuItem key={el} value={`${2024 + el}`}>
-                      {2024 + el}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+            <Grid item xs={12}>
+              <LocalizationProvider dateAdapter={AdapterMoment}>
+                <DatePicker
+                  label="Date"
+                  views={['year', 'month', 'day']}
+                  inputFormat="DD/MM/YYYY"
+                  value={date}
+                  onChange={(newValue) => {
+                    setDate(newValue);
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      size="small"
+                      autoComplete="off"
+                      required
+                    />
+                  )}
+                />
+              </LocalizationProvider>
             </Grid>
             <Grid item xs={12} md={6}>
               <Autocomplete
-                value={month}
+                loading={sourceLoading}
+                value={source}
                 size="small"
                 fullWidth
-                options={allMonths}
-                onChange={(e, newValue) => setMonth(newValue)}
+                options={allSources}
+                getOptionLabel={(option) => option.label}
+                onChange={(e, newValue) => setSource(newValue)}
+                isOptionEqualToValue={(item, value) => item.id === value.id}
                 renderInput={(params) => (
-                  <TextField {...params} label="Month" required />
+                  <TextField {...params} label="Source" required />
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 required

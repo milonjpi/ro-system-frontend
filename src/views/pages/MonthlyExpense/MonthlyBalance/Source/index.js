@@ -1,10 +1,5 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -14,16 +9,12 @@ import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import { useDebounced } from 'hooks';
-import moment from 'moment';
-import { useGetOpeningBalancesQuery } from 'store/api/openingBalance/openingBalanceApi';
-import { allMonths } from 'assets/data';
-import AddOpeningBalance from './AddOpeningBalance';
-import OpeningBalanceRow from './OpeningBalanceRow';
+import { useGetSourcesQuery } from 'store/api/source/sourceApi';
+import AddSource from './AddSource';
+import SourceRow from './SourceRow';
 
-const OpeningBalance = () => {
+const Source = () => {
   const [searchText, setSearchText] = useState('');
-  const [year, setYear] = useState(moment().format('YYYY'));
-  const [month, setMonth] = useState(moment().format('MMMM'));
   const [open, setOpen] = useState(false);
 
   // table
@@ -47,23 +38,7 @@ const OpeningBalance = () => {
       align: 'center',
     },
     {
-      title: 'Year',
-    },
-    {
-      title: 'Month',
-    },
-    {
-      title: 'Date',
-    },
-    {
-      title: 'Remarks',
-    },
-    {
       title: 'Source',
-    },
-    {
-      title: 'Amount',
-      align: 'right',
     },
     {
       title: 'Action',
@@ -77,16 +52,8 @@ const OpeningBalance = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
-  query['sortBy'] = 'createdAt';
-  query['sortOrder'] = 'desc';
-
-  if (year) {
-    query['year'] = year;
-  }
-
-  if (month) {
-    query['month'] = month;
-  }
+  query['sortBy'] = 'label';
+  query['sortOrder'] = 'asc';
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -98,16 +65,16 @@ const OpeningBalance = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetOpeningBalancesQuery(
+  const { data, isLoading } = useGetSourcesQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allOpeningBalances = data?.openingBalances || [];
+  const allSources = data?.sources || [];
   const meta = data?.meta;
   return (
     <SubCard
-      title="Opening Balance"
+      title="Source"
       secondary={
         <Button
           size="small"
@@ -122,7 +89,7 @@ const OpeningBalance = () => {
       }
     >
       {/* popup items */}
-      <AddOpeningBalance open={open} handleClose={() => setOpen(false)} />
+      <AddSource open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
 
       {/* filter area */}
@@ -147,51 +114,16 @@ const OpeningBalance = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="select-year-id">Year</InputLabel>
-              <Select
-                labelId="select-year-id"
-                value={year}
-                label="Year"
-                onChange={(e) => setYear(e.target.value)}
-              >
-                {[1, 2, 3, 4, 5, 6].map((el) => (
-                  <MenuItem key={el} value={`${2024 + el}`}>
-                    {2024 + el}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="select-month-id">Month</InputLabel>
-              <Select
-                labelId="select-month-id"
-                value={month}
-                label="Month"
-                onChange={(e) => setMonth(e.target.value)}
-              >
-                {allMonths.map((el) => (
-                  <MenuItem key={el} value={el}>
-                    {el}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
 
       {/* data table */}
       <DataTable
-        bordered
         tableHeads={tableHeads}
-        data={allOpeningBalances}
+        data={allSources}
         options={(el, index) => (
-          <OpeningBalanceRow
+          <SourceRow
             key={el.id}
             sn={page * rowsPerPage + index + 1}
             data={el}
@@ -211,4 +143,4 @@ const OpeningBalance = () => {
   );
 };
 
-export default OpeningBalance;
+export default Source;

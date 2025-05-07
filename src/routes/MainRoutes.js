@@ -240,6 +240,10 @@ const OpeningBalance = Loadable(
 const PresentBalance = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/MonthlyBalance/PresentBalance'))
 );
+const Source = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/MonthlyBalance/Source'))
+);
+
 const MonthlyExpenseReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Report'))
 );
@@ -929,6 +933,10 @@ const MainRoutes = {
                     {
                       path: 'present',
                       element: <PresentBalance />,
+                    },
+                    {
+                      path: 'source',
+                      element: <Source />,
                     },
                   ],
                 },

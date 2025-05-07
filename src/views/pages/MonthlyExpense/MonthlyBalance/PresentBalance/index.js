@@ -9,7 +9,7 @@ import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
 import { useGetPresentBalanceQuery } from 'store/api/openingBalance/openingBalanceApi';
-import { TableRow } from '@mui/material';
+import { Autocomplete, TableRow, TextField } from '@mui/material';
 import { allMonths } from 'assets/data';
 import PresentBalanceRow from './PresentBalanceRow';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
@@ -17,7 +17,7 @@ import { totalSum } from 'views/utilities/NeedyFunction';
 
 const PresentBalance = () => {
   const [year, setYear] = useState(moment().format('YYYY'));
-  const [month, setMonth] = useState(moment().format('MMMM'));
+  const [month, setMonth] = useState(null);
 
   // table
   // pagination
@@ -115,21 +115,14 @@ const PresentBalance = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="select-month-id">Month</InputLabel>
-              <Select
-                labelId="select-month-id"
-                value={month}
-                label="Month"
-                onChange={(e) => setMonth(e.target.value)}
-              >
-                {allMonths.map((el) => (
-                  <MenuItem key={el} value={el}>
-                    {el}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <Autocomplete
+              value={month}
+              size="small"
+              fullWidth
+              options={allMonths}
+              onChange={(e, newValue) => setMonth(newValue)}
+              renderInput={(params) => <TextField {...params} label="Month" />}
+            />
           </Grid>
         </Grid>
       </Box>
@@ -142,7 +135,7 @@ const PresentBalance = () => {
         data={allPresentBalances}
         options={(el, index) => (
           <PresentBalanceRow
-            key={el.id}
+            key={index}
             sn={page * rowsPerPage + index + 1}
             data={el}
           />
@@ -166,7 +159,7 @@ const PresentBalance = () => {
                   fontWeight: 700,
                 }}
               >
-                {openingAmount}
+                {openingAmount?.toFixed()}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"
@@ -175,7 +168,7 @@ const PresentBalance = () => {
                   fontWeight: 700,
                 }}
               >
-                {expenseAmount}
+                {expenseAmount?.toFixed()}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"
@@ -184,7 +177,7 @@ const PresentBalance = () => {
                   fontWeight: 700,
                 }}
               >
-                {openingAmount - expenseAmount}
+                {(openingAmount - expenseAmount)?.toFixed()}
               </StyledTableCellWithBorder>
             </TableRow>
           ) : null

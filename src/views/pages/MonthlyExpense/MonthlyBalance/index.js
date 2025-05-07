@@ -15,6 +15,11 @@ const menuList = [
     label: 'Present Balance',
     path: 'present',
   },
+  {
+    id: 3,
+    label: 'Source',
+    path: 'source',
+  },
 ];
 
 const MonthlyBalance = () => {

@@ -8,13 +8,13 @@ const PresentBalanceRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>{data?.year}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder>{data?.month}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {data?.amount}
+        {data?.amount?.toFixed()}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {data?.cost}
+        {data?.cost?.toFixed()}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {data?.amount - data?.cost}
+        {(data?.amount - data?.cost).toFixed()}
       </StyledTableCellWithBorder>
     </TableRow>
   );
