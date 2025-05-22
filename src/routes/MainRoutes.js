@@ -13,6 +13,14 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
 
 // pages routing
 
+// ro management
+const RoLibrary = Loadable(
+  lazy(() => import('views/pages/RoManagement/RoLibrary'))
+);
+const RoReport = Loadable(
+  lazy(() => import('views/pages/RoManagement/RoReport'))
+);
+
 // customer management
 const CustomerGroups = Loadable(
   lazy(() => import('views/pages/CustomerManagement/CustomerGroups'))
@@ -25,29 +33,29 @@ const AllCustomers = Loadable(
 const Products = Loadable(
   lazy(() => import('views/pages/SalesManagement/Products'))
 );
-const SalesOrder = Loadable(
-  lazy(() => import('views/pages/SalesManagement/SalesOrder'))
-);
+// const SalesOrder = Loadable(
+//   lazy(() => import('views/pages/SalesManagement/SalesOrder'))
+// );
 const Invoices = Loadable(
   lazy(() => import('views/pages/SalesManagement/Invoices'))
 );
-const CustomInvoices = Loadable(
-  lazy(() => import('views/pages/SalesManagement/CustomInvoices'))
-);
+// const CustomInvoices = Loadable(
+//   lazy(() => import('views/pages/SalesManagement/CustomInvoices'))
+// );
 
 // foc management
-const FocProduct = Loadable(
-  lazy(() => import('views/pages/FocManagement/FocProduct'))
-);
-const FocClient = Loadable(
-  lazy(() => import('views/pages/FocManagement/FocClient'))
-);
-const FocInvoice = Loadable(
-  lazy(() => import('views/pages/FocManagement/FocInvoice'))
-);
-const FocSummary = Loadable(
-  lazy(() => import('views/pages/FocManagement/FocSummary'))
-);
+// const FocProduct = Loadable(
+//   lazy(() => import('views/pages/FocManagement/FocProduct'))
+// );
+// const FocClient = Loadable(
+//   lazy(() => import('views/pages/FocManagement/FocClient'))
+// );
+// const FocInvoice = Loadable(
+//   lazy(() => import('views/pages/FocManagement/FocInvoice'))
+// );
+// const FocSummary = Loadable(
+//   lazy(() => import('views/pages/FocManagement/FocSummary'))
+// );
 
 // financial
 const AccountTypes = Loadable(
@@ -64,9 +72,9 @@ const ReceivePayment = Loadable(
   lazy(() => import('views/pages/Financial/ReceivePayment'))
 );
 
-const MakePayment = Loadable(
-  lazy(() => import('views/pages/Financial/MakePayment'))
-);
+// const MakePayment = Loadable(
+//   lazy(() => import('views/pages/Financial/MakePayment'))
+// );
 
 const FixedAsset = Loadable(
   lazy(() => import('views/pages/Financial/FixedAsset'))
@@ -79,27 +87,27 @@ const Investment = Loadable(
 const Withdraw = Loadable(lazy(() => import('views/pages/Financial/Withdraw')));
 
 // store management
-const UnitOfMeasurement = Loadable(
-  lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
-);
-const ItemsName = Loadable(
-  lazy(() => import('views/pages/StoreManagement/ItemsName'))
-);
-const Vendors = Loadable(
-  lazy(() => import('views/pages/StoreManagement/Vendors'))
-);
-const PurchaseBill = Loadable(
-  lazy(() => import('views/pages/StoreManagement/PurchaseBill'))
-);
-const ItemsIn = Loadable(
-  lazy(() => import('views/pages/StoreManagement/ItemsIn'))
-);
-const ItemsOut = Loadable(
-  lazy(() => import('views/pages/StoreManagement/ItemsOut'))
-);
-const StockStatus = Loadable(
-  lazy(() => import('views/pages/StoreManagement/StockStatus'))
-);
+// const UnitOfMeasurement = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/UnitOfMeasurement'))
+// );
+// const ItemsName = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/ItemsName'))
+// );
+// const Vendors = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/Vendors'))
+// );
+// const PurchaseBill = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/PurchaseBill'))
+// );
+// const ItemsIn = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/ItemsIn'))
+// );
+// const ItemsOut = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/ItemsOut'))
+// );
+// const StockStatus = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/StockStatus'))
+// );
 
 // expense management
 const ExpenseHeads = Loadable(
@@ -111,21 +119,21 @@ const AllExpenses = Loadable(
 );
 
 // Manage distributor
-const Distributors = Loadable(
-  lazy(() => import('views/pages/ManageDistributor/Distributors'))
-);
-const DrProducts = Loadable(
-  lazy(() => import('views/pages/ManageDistributor/DrProducts'))
-);
-const DrInvoices = Loadable(
-  lazy(() => import('views/pages/ManageDistributor/DrInvoices'))
-);
-const DrVouchers = Loadable(
-  lazy(() => import('views/pages/ManageDistributor/DrVouchers'))
-);
-const DrSummary = Loadable(
-  lazy(() => import('views/pages/ManageDistributor/DrSummary'))
-);
+// const Distributors = Loadable(
+//   lazy(() => import('views/pages/ManageDistributor/Distributors'))
+// );
+// const DrProducts = Loadable(
+//   lazy(() => import('views/pages/ManageDistributor/DrProducts'))
+// );
+// const DrInvoices = Loadable(
+//   lazy(() => import('views/pages/ManageDistributor/DrInvoices'))
+// );
+// const DrVouchers = Loadable(
+//   lazy(() => import('views/pages/ManageDistributor/DrVouchers'))
+// );
+// const DrSummary = Loadable(
+//   lazy(() => import('views/pages/ManageDistributor/DrSummary'))
+// );
 
 // building operation
 const OperationExpenses = Loadable(
@@ -196,33 +204,33 @@ const ElectricOverview = Loadable(
 );
 
 // income expense
-const InExCategory = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/InExCategory'))
-);
+// const InExCategory = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/InExCategory'))
+// );
 
-const IncomeHead = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/IncomeHead'))
-);
+// const IncomeHead = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/IncomeHead'))
+// );
 
-const ExpenseHead = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/ExpenseHead'))
-);
+// const ExpenseHead = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/ExpenseHead'))
+// );
 
-const ModeOfPayment = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/ModeOfPayment'))
-);
+// const ModeOfPayment = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/ModeOfPayment'))
+// );
 
-const PersonalIncome = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/PersonalIncome'))
-);
+// const PersonalIncome = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/PersonalIncome'))
+// );
 
-const PersonalExpense = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/PersonalExpense'))
-);
+// const PersonalExpense = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/PersonalExpense'))
+// );
 
-const InExSummary = Loadable(
-  lazy(() => import('views/pages/IncomeExpense/InExSummary'))
-);
+// const InExSummary = Loadable(
+//   lazy(() => import('views/pages/IncomeExpense/InExSummary'))
+// );
 
 // monthly expense
 const MonthlyExpenseOverview = Loadable(
@@ -303,18 +311,18 @@ const DailyReport = Loadable(
 );
 
 // payment report
-const PaymentReport = Loadable(
-  lazy(() => import('views/pages/Report/PaymentReport'))
-);
-const PaymentReportSummary = Loadable(
-  lazy(() => import('views/pages/Report/PaymentReport/PaymentReportSummary'))
-);
-const PaymentDueReport = Loadable(
-  lazy(() => import('views/pages/Report/PaymentReport/PaymentDueReport'))
-);
-const PaymentAdvanceReport = Loadable(
-  lazy(() => import('views/pages/Report/PaymentReport/PaymentAdvanceReport'))
-);
+// const PaymentReport = Loadable(
+//   lazy(() => import('views/pages/Report/PaymentReport'))
+// );
+// const PaymentReportSummary = Loadable(
+//   lazy(() => import('views/pages/Report/PaymentReport/PaymentReportSummary'))
+// );
+// const PaymentDueReport = Loadable(
+//   lazy(() => import('views/pages/Report/PaymentReport/PaymentDueReport'))
+// );
+// const PaymentAdvanceReport = Loadable(
+//   lazy(() => import('views/pages/Report/PaymentReport/PaymentAdvanceReport'))
+// );
 
 // Distribution
 // const DistClientList = Loadable(
@@ -406,57 +414,8 @@ const MainRoutes = {
           path: 'pages',
           children: [
             {
-              path: 'client-management',
+              path: 'ro-management',
               children: [
-                {
-                  path: 'client-groups',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['client-groups']}
-                    >
-                      <CustomerGroups />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'all-clients',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['all-clients']}
-                    >
-                      <AllCustomers />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
-            {
-              path: 'sales-management',
-              children: [
-                {
-                  path: 'products',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['products']}
-                    >
-                      <Products />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'sales-orders',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['sales-orders']}
-                    >
-                      <SalesOrder />
-                    </AuthenticationRoutes>
-                  ),
-                },
                 {
                   path: 'invoices',
                   element: (
@@ -469,226 +428,413 @@ const MainRoutes = {
                   ),
                 },
                 {
-                  path: 'custom-invoices',
+                  path: 'ro-expenses',
                   element: (
                     <AuthenticationRoutes
                       allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['custom-invoices']}
-                    >
-                      <CustomInvoices />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
-            {
-              path: 'foc-management',
-              children: [
-                {
-                  path: 'foc-products',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['foc-products']}
-                    >
-                      <FocProduct />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'foc-clients',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['foc-clients']}
-                    >
-                      <FocClient />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'foc-invoices',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['foc-invoices']}
-                    >
-                      <FocInvoice />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'foc-summary',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['foc-summary']}
-                    >
-                      <FocSummary />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
-            {
-              path: 'store-management',
-              children: [
-                {
-                  path: 'uom',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['uom']}
-                    >
-                      <UnitOfMeasurement />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'items-name',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['items-name']}
-                    >
-                      <ItemsName />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'vendors',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['vendors']}
-                    >
-                      <Vendors />
-                    </AuthenticationRoutes>
-                  ),
-                },
-
-                {
-                  path: 'items-in',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['items-in']}
-                    >
-                      <ItemsIn />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'items-out',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['items-out']}
-                    >
-                      <ItemsOut />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'stock-status',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['stock-status']}
-                    >
-                      <StockStatus />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
-            {
-              path: 'expense-management',
-              children: [
-                {
-                  path: 'expense-heads',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['expense-heads']}
-                    >
-                      <ExpenseHeads />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'all-expenses',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['all-expenses']}
+                      allowedCodes={['ro-expenses']}
                     >
                       <AllExpenses />
                     </AuthenticationRoutes>
                   ),
                 },
+                {
+                  path: 'receive-payment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['receive-payment']}
+                    >
+                      <ReceivePayment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'fixed-asset',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['fixed-asset']}
+                    >
+                      <FixedAsset />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'investment',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['investment']}
+                    >
+                      <Investment />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'withdraw',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['withdraw']}
+                    >
+                      <Withdraw />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'library',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['library']}
+                    >
+                      <RoLibrary />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <AllCustomers />,
+                    },
+                    {
+                      path: 'client-groups',
+                      element: <CustomerGroups />,
+                    },
+                    {
+                      path: 'ro-products',
+                      element: <Products />,
+                    },
+                    {
+                      path: 'expense-heads',
+                      element: <ExpenseHeads />,
+                    },
+                    {
+                      path: 'account-types',
+                      element: <AccountTypes />,
+                    },
+                    {
+                      path: 'account-heads',
+                      element: <AccountHeads />,
+                    },
+                    {
+                      path: 'payment-methods',
+                      element: <PaymentMethods />,
+                    },
+                  ],
+                },
+                {
+                  path: 'ro-report',
+                  element: <RoReport />,
+                  children: [
+                    {
+                      path: '',
+                      element: <ReportSummary />,
+                    },
+                    {
+                      path: 'daily-report',
+                      element: <DailyReport />,
+                    },
+                    {
+                      path: 'balance-sheet',
+                      element: <BalanceSheet />,
+                    },
+                    {
+                      path: 'due-report',
+                      element: <DueReport />,
+                    },
+                    {
+                      path: 'advance-report',
+                      element: <AdvanceReport />,
+                    },
+                  ],
+                },
               ],
             },
-            {
-              path: 'manage-distributor',
-              children: [
-                {
-                  path: 'distributors',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['distributors']}
-                    >
-                      <Distributors />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'dr-products',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['dr-products']}
-                    >
-                      <DrProducts />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'dr-invoices',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['dr-invoices']}
-                    >
-                      <DrInvoices />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'dr-vouchers',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['dr-vouchers']}
-                    >
-                      <DrVouchers />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'dr-summary',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['dr-summary']}
-                    >
-                      <DrSummary />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
+            // {
+            //   path: 'client-management',
+            //   children: [
+            //     {
+            //       path: 'client-groups',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['client-groups']}
+            //         >
+            //           <CustomerGroups />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'all-clients',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['all-clients']}
+            //         >
+            //           <AllCustomers />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: 'sales-management',
+            //   children: [
+            //     {
+            //       path: 'products',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['products']}
+            //         >
+            //           <Products />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'sales-orders',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['sales-orders']}
+            //         >
+            //           <SalesOrder />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'invoices',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['invoices']}
+            //         >
+            //           <Invoices />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'custom-invoices',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['custom-invoices']}
+            //         >
+            //           <CustomInvoices />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: 'foc-management',
+            //   children: [
+            //     {
+            //       path: 'foc-products',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['foc-products']}
+            //         >
+            //           <FocProduct />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'foc-clients',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['foc-clients']}
+            //         >
+            //           <FocClient />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'foc-invoices',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['foc-invoices']}
+            //         >
+            //           <FocInvoice />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'foc-summary',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['foc-summary']}
+            //         >
+            //           <FocSummary />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: 'store-management',
+            //   children: [
+            //     {
+            //       path: 'uom',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['uom']}
+            //         >
+            //           <UnitOfMeasurement />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'items-name',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['items-name']}
+            //         >
+            //           <ItemsName />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'vendors',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['vendors']}
+            //         >
+            //           <Vendors />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+
+            //     {
+            //       path: 'items-in',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['items-in']}
+            //         >
+            //           <ItemsIn />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'items-out',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['items-out']}
+            //         >
+            //           <ItemsOut />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'stock-status',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['stock-status']}
+            //         >
+            //           <StockStatus />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: 'expense-management',
+            //   children: [
+            //     {
+            //       path: 'expense-heads',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['expense-heads']}
+            //         >
+            //           <ExpenseHeads />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'all-expenses',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['all-expenses']}
+            //         >
+            //           <AllExpenses />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: 'manage-distributor',
+            //   children: [
+            //     {
+            //       path: 'distributors',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['distributors']}
+            //         >
+            //           <Distributors />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'dr-products',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['dr-products']}
+            //         >
+            //           <DrProducts />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'dr-invoices',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['dr-invoices']}
+            //         >
+            //           <DrInvoices />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'dr-vouchers',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['dr-vouchers']}
+            //         >
+            //           <DrVouchers />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'dr-summary',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['dr-summary']}
+            //         >
+            //           <DrSummary />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
             {
               path: 'building-operations',
               children: [
@@ -808,88 +954,88 @@ const MainRoutes = {
                 },
               ],
             },
-            {
-              path: 'income-expense',
-              children: [
-                {
-                  path: 'income-expense-category',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['income-expense-category']}
-                    >
-                      <InExCategory />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'income-head',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['income-head']}
-                    >
-                      <IncomeHead />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'expense-head',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['expense-head']}
-                    >
-                      <ExpenseHead />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'mode-of-payment',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['mode-of-payment']}
-                    >
-                      <ModeOfPayment />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'personal-income',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['personal-income']}
-                    >
-                      <PersonalIncome />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'personal-expense',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['personal-expense']}
-                    >
-                      <PersonalExpense />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'income-expense-summary',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['income-expense-summary']}
-                    >
-                      <InExSummary />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
+            // {
+            //   path: 'income-expense',
+            //   children: [
+            //     {
+            //       path: 'income-expense-category',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['income-expense-category']}
+            //         >
+            //           <InExCategory />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'income-head',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['income-head']}
+            //         >
+            //           <IncomeHead />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'expense-head',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['expense-head']}
+            //         >
+            //           <ExpenseHead />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'mode-of-payment',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['mode-of-payment']}
+            //         >
+            //           <ModeOfPayment />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'personal-income',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['personal-income']}
+            //         >
+            //           <PersonalIncome />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'personal-expense',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['personal-expense']}
+            //         >
+            //           <PersonalExpense />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'income-expense-summary',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['income-expense-summary']}
+            //         >
+            //           <InExSummary />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
             {
               path: 'monthly-expense',
               children: [
@@ -1146,195 +1292,195 @@ const MainRoutes = {
             //     },
             //   ],
             // },
-            {
-              path: 'financial',
-              children: [
-                {
-                  path: 'account-types',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['account-types']}
-                    >
-                      <AccountTypes />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'account-heads',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['account-heads']}
-                    >
-                      <AccountHeads />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'payment-methods',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['payment-methods']}
-                    >
-                      <PaymentMethods />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'receive-payment',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['receive-payment']}
-                    >
-                      <ReceivePayment />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'make-payment',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['make-payment']}
-                    >
-                      <MakePayment />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'bills',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['bills']}
-                    >
-                      <PurchaseBill />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'fixed-asset',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['fixed-asset']}
-                    >
-                      <FixedAsset />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'investment',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['investment']}
-                    >
-                      <Investment />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'withdraw',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['withdraw']}
-                    >
-                      <Withdraw />
-                    </AuthenticationRoutes>
-                  ),
-                },
-              ],
-            },
-            {
-              path: 'report',
-              children: [
-                {
-                  path: 'due-report',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['due-report']}
-                    >
-                      <DueReport />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'balance-sheet',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['balance-sheet']}
-                    >
-                      <BalanceSheet />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'advance-report',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['due-report']}
-                    >
-                      <AdvanceReport />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'summary',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['summary']}
-                    >
-                      <ReportSummary />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'daily-report',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['daily-support']}
-                    >
-                      <DailyReport />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'payment-report',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['payment-report']}
-                    >
-                      <PaymentReport />
-                    </AuthenticationRoutes>
-                  ),
-                  children: [
-                    {
-                      path: '',
-                      element: <PaymentReportSummary />,
-                    },
-                    {
-                      path: 'due-payment',
-                      element: <PaymentDueReport />,
-                    },
-                    {
-                      path: 'advance-report',
-                      element: <PaymentAdvanceReport />,
-                    },
-                  ],
-                },
-              ],
-            },
+            // {
+            //   path: 'financial',
+            //   children: [
+            //     {
+            //       path: 'account-types',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['account-types']}
+            //         >
+            //           <AccountTypes />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'account-heads',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['account-heads']}
+            //         >
+            //           <AccountHeads />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'payment-methods',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['payment-methods']}
+            //         >
+            //           <PaymentMethods />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'receive-payment',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['receive-payment']}
+            //         >
+            //           <ReceivePayment />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'make-payment',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['make-payment']}
+            //         >
+            //           <MakePayment />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'bills',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['bills']}
+            //         >
+            //           <PurchaseBill />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'fixed-asset',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['fixed-asset']}
+            //         >
+            //           <FixedAsset />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'investment',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['investment']}
+            //         >
+            //           <Investment />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'withdraw',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['withdraw']}
+            //         >
+            //           <Withdraw />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: 'report',
+            //   children: [
+            //     {
+            //       path: 'due-report',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['due-report']}
+            //         >
+            //           <DueReport />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'balance-sheet',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['balance-sheet']}
+            //         >
+            //           <BalanceSheet />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'advance-report',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['due-report']}
+            //         >
+            //           <AdvanceReport />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'summary',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['summary']}
+            //         >
+            //           <ReportSummary />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'daily-report',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['daily-support']}
+            //         >
+            //           <DailyReport />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'payment-report',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['payment-report']}
+            //         >
+            //           <PaymentReport />
+            //         </AuthenticationRoutes>
+            //       ),
+            //       children: [
+            //         {
+            //           path: '',
+            //           element: <PaymentReportSummary />,
+            //         },
+            //         {
+            //           path: 'due-payment',
+            //           element: <PaymentDueReport />,
+            //         },
+            //         {
+            //           path: 'advance-report',
+            //           element: <PaymentAdvanceReport />,
+            //         },
+            //       ],
+            //     },
+            //   ],
+            // },
           ],
         },
         {
