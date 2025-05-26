@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import TableBody from '@mui/material/TableBody';
@@ -27,23 +25,11 @@ import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { utils, writeFile } from 'xlsx';
 import PrintCustomer from './PrintCustomer';
-import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
 
 const AllCustomers = () => {
   const [searchText, setSearchText] = useState('');
-  const [group, setGroup] = useState(null);
 
   const [open, setOpen] = useState(false);
-
-  // library
-  const { data: groupData, isLoading: groupLoading } =
-    useGetCustomerGroupsQuery(
-      { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allCustomerGroups = groupData?.customerGroups || [];
-  // end library
 
   // pagination
   const [page, setPage] = useState(0);
@@ -67,11 +53,6 @@ const AllCustomers = () => {
   query['sortBy'] = 'customerId';
   query['sortOrder'] = 'asc';
   query['isActive'] = true;
-
-  if (group) {
-    query['groupId'] = group.id;
-  }
-
   // search term
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchText,
@@ -119,7 +100,6 @@ const AllCustomers = () => {
       { wch: 12 },
       { wch: 19 },
       { wch: 8 },
-      { wch: 12 },
       { wch: 15 },
     ];
     writeFile(wb, `AllClientList.xlsx`);
@@ -177,21 +157,6 @@ const AllCustomers = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Autocomplete
-              value={group}
-              loading={groupLoading}
-              size="small"
-              fullWidth
-              options={allCustomerGroups}
-              getOptionLabel={(option) => option.label}
-              onChange={(e, newValue) => setGroup(newValue)}
-              isOptionEqualToValue={(item, value) => item.id === value.id}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Group" />
-              )}
-            />
-          </Grid>
         </Grid>
       </Box>
       {/* popup items */}
@@ -211,7 +176,6 @@ const AllCustomers = () => {
               <StyledTableCell>Client Name &#40;BN&#41;</StyledTableCell>
               <StyledTableCell>Mobile</StyledTableCell>
               <StyledTableCell>Address</StyledTableCell>
-              <StyledTableCell>Group By</StyledTableCell>
               <StyledTableCell>Created At</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>

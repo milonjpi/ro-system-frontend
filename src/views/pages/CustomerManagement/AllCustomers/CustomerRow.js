@@ -16,7 +16,6 @@ const CustomerRow = ({ sn, data }) => {
       <StyledTableCell>{data?.customerNameBn}</StyledTableCell>
       <StyledTableCell>{data?.mobile || 'n/a'}</StyledTableCell>
       <StyledTableCell>{data?.address || 'n/a'}</StyledTableCell>
-      <StyledTableCell>{data?.group?.label || 'n/a'}</StyledTableCell>
       <StyledTableCell>
         {moment(data?.createdAt).format('DD/MM/YYYY')}
       </StyledTableCell>

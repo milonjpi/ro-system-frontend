@@ -12,21 +12,16 @@ const menuList = [
   },
   {
     id: 2,
-    label: 'Daily Report',
-    path: 'daily-report',
-  },
-  {
-    id: 3,
     label: 'Balance Sheet',
     path: 'balance-sheet',
   },
   {
-    id: 4,
+    id: 3,
     label: 'Due Report',
     path: 'due-report',
   },
   {
-    id: 5,
+    id: 4,
     label: 'Advance Report',
     path: 'advance-report',
   },

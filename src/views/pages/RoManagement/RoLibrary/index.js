@@ -12,31 +12,26 @@ const menuList = [
   },
   {
     id: 2,
-    label: 'Client Groups',
-    path: 'client-groups',
-  },
-  {
-    id: 3,
     label: 'Products',
     path: 'ro-products',
   },
   {
-    id: 4,
+    id: 3,
     label: 'Expense Heads',
     path: 'expense-heads',
   },
   {
-    id: 5,
+    id: 4,
     label: 'Account Types',
     path: 'account-types',
   },
   {
-    id: 6,
+    id: 5,
     label: 'Account Heads',
     path: 'account-heads',
   },
   {
-    id: 7,
+    id: 6,
     label: 'Payment Methods',
     path: 'payment-methods',
   },

@@ -14,8 +14,6 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import { useUpdateCustomerMutation } from 'store/api/customer/customerApi';
-import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
-import ControlledAutoComplete from 'ui-component/form-components/ControlledAutoComplete';
 
 const style = {
   position: 'absolute',
@@ -31,17 +29,8 @@ const style = {
 
 const UpdateCustomer = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
-  const [group, setGroup] = useState(preData?.group || null);
+
   const { register, handleSubmit } = useForm({ defaultValues: preData });
-
-  // library
-  const { data: groupData } = useGetCustomerGroupsQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allCustomerGroups = groupData?.customerGroups || [];
-  // end library
 
   const dispatch = useDispatch();
 
@@ -52,8 +41,6 @@ const UpdateCustomer = ({ open, handleClose, preData }) => {
       customerNameBn: data?.customerNameBn,
       mobile: data?.mobile,
       address: data?.address,
-      groupId: group?.id || null,
-      isDistributor: group?.label === 'DISTRIBUTOR' ? true : false,
     };
     try {
       setLoading(true);
@@ -129,17 +116,7 @@ const UpdateCustomer = ({ open, handleClose, preData }) => {
                 {...register('customerNameBn')}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <ControlledAutoComplete
-                label="Select Group"
-                value={group}
-                options={allCustomerGroups}
-                getOptionLabel={(option) => option.label}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                onChange={(e, newValue) => setGroup(newValue)}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Mobile No"

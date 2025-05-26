@@ -50,7 +50,6 @@ const PrintCustomer = forwardRef(({ data }, ref) => {
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder>Mobile</StyledTableCellWithBorder>
             <StyledTableCellWithBorder>Address</StyledTableCellWithBorder>
-            <StyledTableCellWithBorder>Group By</StyledTableCellWithBorder>
           </TableRow>
         </TableHead>
         <TableBody>

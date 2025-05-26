@@ -18,9 +18,6 @@ const PrintCustomerRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>
         {data?.address || 'n/a'}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.group?.label || 'n/a'}
-      </StyledTableCellWithBorder>
     </TableRow>
   );
 };

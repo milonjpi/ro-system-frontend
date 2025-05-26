@@ -35,7 +35,7 @@ import {
 } from 'ui-component/table-component';
 import ProductFields from './ProductFields';
 import { useCreateInvoiceMutation } from 'store/api/invoice/invoiceApi';
-import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
+
 
 const style = {
   position: 'absolute',
@@ -56,7 +56,6 @@ const productValue = {
 
 const AddSalesInvoice = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [group, setGroup] = useState(null);
   const [customer, setCustomer] = useState(null);
   const [invoiceDate, setInvoiceDate] = useState(moment());
 
@@ -82,19 +81,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
   // end hook form
 
   // library
-  const { data: groupData, isLoading: groupLoading } =
-    useGetCustomerGroupsQuery(
-      { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allCustomerGroups = groupData?.customerGroups || [];
-
   const customerQuery = {};
-
-  if (group) {
-    customerQuery['groupId'] = group.id;
-  }
 
   const { data: customerData } = useCustomerDetailsQuery(
     { ...customerQuery },
@@ -237,7 +224,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={7}>
               <Grid container spacing={2}>
-                <Grid item xs={12} md={4.5}>
+                <Grid item xs={12}>
                   <LocalizationProvider dateAdapter={AdapterMoment}>
                     <DatePicker
                       label="Invoice Date"
@@ -258,24 +245,6 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                       )}
                     />
                   </LocalizationProvider>
-                </Grid>
-                <Grid item xs={12} md={7.5}>
-                  <Autocomplete
-                    value={group}
-                    loading={groupLoading}
-                    size="small"
-                    fullWidth
-                    options={allCustomerGroups}
-                    getOptionLabel={(option) => option.label}
-                    onChange={(e, newValue) => {
-                      setGroup(newValue);
-                      setCustomer(null);
-                    }}
-                    isOptionEqualToValue={(item, value) => item.id === value.id}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Select Group" />
-                    )}
-                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Autocomplete

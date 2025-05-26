@@ -14,8 +14,6 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import { useCreateCustomerMutation } from 'store/api/customer/customerApi';
-import { useGetCustomerGroupsQuery } from 'store/api/customerGroup/customerGroupApi';
-import ControlledAutoComplete from 'ui-component/form-components/ControlledAutoComplete';
 
 const style = {
   position: 'absolute',
@@ -31,17 +29,7 @@ const style = {
 
 const AddCustomer = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [group, setGroup] = useState(null);
   const { register, handleSubmit, reset } = useForm();
-
-  // library
-  const { data: groupData } = useGetCustomerGroupsQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allCustomerGroups = groupData?.customerGroups || [];
-  // end library
 
   const dispatch = useDispatch();
 
@@ -52,8 +40,6 @@ const AddCustomer = ({ open, handleClose }) => {
       customerNameBn: data?.customerNameBn,
       mobile: data?.mobile,
       address: data?.address,
-      groupId: group?.id,
-      isDistributor: group?.label === 'DISTRIBUTOR' ? true : false,
     };
 
     try {
@@ -63,7 +49,6 @@ const AddCustomer = ({ open, handleClose }) => {
         handleClose();
         setLoading(false);
         reset();
-        setGroup(null);
         dispatch(
           setToast({
             open: true,
@@ -129,17 +114,7 @@ const AddCustomer = ({ open, handleClose }) => {
                 {...register('customerNameBn')}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <ControlledAutoComplete
-                label="Select Group"
-                value={group}
-                options={allCustomerGroups}
-                getOptionLabel={(option) => option.label}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                onChange={(e, newValue) => setGroup(newValue)}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Mobile No"
