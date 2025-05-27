@@ -295,6 +295,26 @@ const ZakatReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatReport'))
 );
 
+// jewellery
+const Jewelleries = Loadable(
+  lazy(() => import('views/pages/GAssets/Jewelleries'))
+);
+const GAssetLibrary = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary'))
+);
+const JewelleryType = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/JewelleryType'))
+);
+const Carat = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/Carat'))
+);
+const JewelleryVendor = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/JewelleryVendor'))
+);
+const JewelleryUom = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/JewelleryUom'))
+);
+
 // report
 const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
 const AdvanceReport = Loadable(
@@ -1166,6 +1186,51 @@ const MainRoutes = {
                     {
                       path: 'payment-source',
                       element: <PaymentSource />,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              path: 'g-assets',
+              children: [
+                {
+                  path: 'jewelleries',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['jewelleries']}
+                    >
+                      <Jewelleries />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'g-assets-library',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['g-assets-library']}
+                    >
+                      <GAssetLibrary />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <JewelleryType />,
+                    },
+                    {
+                      path: 'carat',
+                      element: <Carat />,
+                    },
+                    {
+                      path: 'vendor',
+                      element: <JewelleryVendor />,
+                    },
+                    {
+                      path: 'uom',
+                      element: <JewelleryUom />,
                     },
                   ],
                 },

@@ -14,6 +14,7 @@ import {
   IconBuildingSkyscraper,
   IconGridGoldenratio,
   IconCalendarDollar,
+  IconDiamond,
 } from '@tabler/icons-react';
 
 // constant
@@ -32,6 +33,7 @@ const icons = {
   IconBuildingSkyscraper,
   IconGridGoldenratio,
   IconCalendarDollar,
+  IconDiamond,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -534,7 +536,7 @@ const pages = {
     // },
     {
       id: 'monthly-expense',
-      title: 'Monthly Expense',
+      title: 'Expenses',
       type: 'collapse',
       color: '#2F0F5D',
       icon: icons.IconCalendarDollar,
@@ -580,6 +582,30 @@ const pages = {
           title: 'Library',
           type: 'item',
           url: '/pages/monthly-expense/monthly-expense-library',
+          access: ['super_admin'],
+        },
+      ],
+    },
+    {
+      id: 'g-assets',
+      title: 'G Assets',
+      type: 'collapse',
+      color: '#2F0F5D',
+      icon: icons.IconDiamond,
+      access: ['super_admin'],
+      children: [
+        {
+          id: 'jewelleries',
+          title: 'Jewelleries',
+          type: 'item',
+          url: '/pages/g-assets/jewelleries',
+          access: ['super_admin'],
+        },
+        {
+          id: 'g-assets-library',
+          title: 'Library',
+          type: 'item',
+          url: '/pages/g-assets/g-assets-library',
           access: ['super_admin'],
         },
       ],
