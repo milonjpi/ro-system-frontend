@@ -68,6 +68,11 @@ export const api = createApi({
     'openingBalance',
     'recipient',
     'zakat',
+    'jewelleryType',
+    'carat',
+    'jewelleryVendor',
+    'jewellery',
+    'jewelleryRate',
   ],
   endpoints: () => ({}),
 });
