@@ -81,7 +81,7 @@ const UpdateCarat = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Edit Carat
+            EDIT {preData?.category} KDM
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -98,7 +98,7 @@ const UpdateCarat = ({ open, handleClose, preData }) => {
               <TextField
                 fullWidth
                 required
-                label="Carat"
+                label="KDM"
                 size="small"
                 {...register('label', { required: true })}
               />

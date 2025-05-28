@@ -51,7 +51,7 @@ const defaultValue = {
   remarks: '',
 };
 
-const AddJewellery = ({ open, handleClose }) => {
+const AddJewellery = ({ open, handleClose, category }) => {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState(moment());
   const [vendor, setVendor] = useState(null);
@@ -87,6 +87,7 @@ const AddJewellery = ({ open, handleClose }) => {
 
   const watchValue = useWatch({ control, name: 'jewelleries' });
 
+  const totalWeight = totalSum(watchValue || [], 'weight');
   const totalAmount = totalSum(watchValue || [], 'price');
 
   // end calculation
@@ -97,14 +98,14 @@ const AddJewellery = ({ open, handleClose }) => {
       title: 'Jewellery Type',
     },
     {
-      title: 'Carat',
+      title: 'KDM',
     },
 
     {
       title: 'Remarks',
     },
     {
-      title: 'Weight',
+      title: 'Weight (gm)',
       align: 'right',
     },
     {
@@ -124,6 +125,7 @@ const AddJewellery = ({ open, handleClose }) => {
 
   const onSubmit = async (data) => {
     const newData = data?.jewelleries?.map((el) => ({
+      category: category,
       jewelleryTypeId: el.jewelleryType?.id,
       caratId: el.carat?.id,
       vendorId: vendor?.id,
@@ -177,7 +179,7 @@ const AddJewellery = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Add Jewellery
+            ADD {category} JEWELLERY
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -257,6 +259,7 @@ const AddJewellery = ({ open, handleClose }) => {
                         control={control}
                         handleRemove={handleRemove}
                         register={register}
+                        category={category}
                       />
                     ))}
                     <StyledTableRow>
@@ -270,9 +273,16 @@ const AddJewellery = ({ open, handleClose }) => {
 
                       {watchValue?.length ? (
                         <>
-                          <StyledTableCell colSpan={3} align="right">
+                          <StyledTableCell colSpan={2} align="right">
                             <Typography sx={{ fontSize: 14, fontWeight: 700 }}>
-                              Total Price:
+                              Total:
+                            </Typography>
+                          </StyledTableCell>
+                          <StyledTableCell align="right">
+                            <Typography
+                              sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
+                            >
+                              {totalWeight?.toFixed(2)}
                             </Typography>
                           </StyledTableCell>
                           <StyledTableCell align="right">

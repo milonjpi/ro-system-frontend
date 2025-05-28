@@ -602,6 +602,20 @@ const pages = {
           access: ['super_admin'],
         },
         {
+          id: 'zakat-calculation',
+          title: 'Zakat Calculation',
+          type: 'item',
+          url: '/pages/g-assets/zakat-calculation',
+          access: ['super_admin'],
+        },
+        {
+          id: 'g-assets-report',
+          title: 'Report',
+          type: 'item',
+          url: '/pages/g-assets/g-assets-report',
+          access: ['super_admin'],
+        },
+        {
           id: 'g-assets-library',
           title: 'Library',
           type: 'item',

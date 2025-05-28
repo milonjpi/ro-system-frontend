@@ -13,7 +13,7 @@ import { useGetCaratsQuery } from 'store/api/carat/caratApi';
 import AddCarat from './AddCarat';
 import CaratRow from './CaratRow';
 
-const Carat = () => {
+const Carat = ({ category }) => {
   const [searchText, setSearchText] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -38,7 +38,7 @@ const Carat = () => {
       align: 'center',
     },
     {
-      title: 'Carat',
+      title: 'KDM',
     },
     {
       title: 'Action',
@@ -54,6 +54,7 @@ const Carat = () => {
   query['page'] = page;
   query['sortBy'] = 'label';
   query['sortOrder'] = 'asc';
+  query['category'] = category;
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -74,7 +75,7 @@ const Carat = () => {
   const meta = data?.meta;
   return (
     <SubCard
-      title="Carat"
+      title={`${category} KDM LIST`}
       secondary={
         <Button
           size="small"
@@ -89,7 +90,11 @@ const Carat = () => {
       }
     >
       {/* popup items */}
-      <AddCarat open={open} handleClose={() => setOpen(false)} />
+      <AddCarat
+        open={open}
+        handleClose={() => setOpen(false)}
+        category={category}
+      />
       {/* end popup items */}
 
       {/* filter area */}
@@ -123,7 +128,12 @@ const Carat = () => {
         tableHeads={tableHeads}
         data={allCarats}
         options={(el, index) => (
-          <CaratRow key={el.id} sn={page * rowsPerPage + index + 1} data={el} />
+          <CaratRow
+            key={el.id}
+            sn={page * rowsPerPage + index + 1}
+            data={el}
+            category={category}
+          />
         )}
         loading={isLoading}
         pagination={true}

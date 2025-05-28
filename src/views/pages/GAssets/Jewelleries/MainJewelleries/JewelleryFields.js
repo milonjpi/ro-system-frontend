@@ -8,7 +8,14 @@ import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useGetJewelleryTypesQuery } from 'store/api/jewelleryType/jewelleryTypeApi';
 import { useGetCaratsQuery } from 'store/api/carat/caratApi';
 
-const JewelleryFields = ({ field, index, control, handleRemove, register }) => {
+const JewelleryFields = ({
+  field,
+  index,
+  control,
+  handleRemove,
+  register,
+  category,
+}) => {
   // library
   const { data: jewelleryTypeData, isLoading: jewelleryTypeLoading } =
     useGetJewelleryTypesQuery(
@@ -19,7 +26,7 @@ const JewelleryFields = ({ field, index, control, handleRemove, register }) => {
   const allJewelleryTypes = jewelleryTypeData?.jewelleryTypes || [];
 
   const { data: caratData, isLoading: caratLoading } = useGetCaratsQuery(
-    { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+    { limit: 1000, sortBy: 'label', sortOrder: 'asc', category: category },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -67,7 +74,12 @@ const JewelleryFields = ({ field, index, control, handleRemove, register }) => {
               getOptionLabel={(option) => option.label}
               isOptionEqualToValue={(item, value) => item.id === value.id}
               renderInput={(params) => (
-                <TextField {...params} label="Carat" variant="outlined" />
+                <TextField
+                  {...params}
+                  label="KDM"
+                  variant="outlined"
+                  required
+                />
               )}
               onChange={(e, data) => {
                 onChange(data);
@@ -79,7 +91,7 @@ const JewelleryFields = ({ field, index, control, handleRemove, register }) => {
           control={control}
         />
       </StyledTableCell>
-      <StyledTableCell sx={{ width: 150, px: '3px !important' }}>
+      <StyledTableCell sx={{ width: 160, px: '3px !important' }}>
         <TextField
           fullWidth
           label="Remarks"
@@ -88,7 +100,7 @@ const JewelleryFields = ({ field, index, control, handleRemove, register }) => {
           {...register(`jewelleries[${index}].remarks`)}
         />
       </StyledTableCell>
-      <StyledTableCell sx={{ width: 100, px: '3px !important' }}>
+      <StyledTableCell sx={{ width: 120, px: '3px !important' }}>
         <TextField
           fullWidth
           size="small"
@@ -115,7 +127,7 @@ const JewelleryFields = ({ field, index, control, handleRemove, register }) => {
           })}
         />
       </StyledTableCell>
-      <StyledTableCell sx={{ width: 100, px: '3px !important' }}>
+      <StyledTableCell sx={{ width: 120, px: '3px !important' }}>
         <TextField
           fullWidth
           size="small"

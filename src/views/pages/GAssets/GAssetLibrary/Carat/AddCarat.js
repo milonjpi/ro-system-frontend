@@ -27,7 +27,7 @@ const style = {
   p: 2,
 };
 
-const AddCarat = ({ open, handleClose }) => {
+const AddCarat = ({ open, handleClose, category }) => {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
@@ -37,6 +37,7 @@ const AddCarat = ({ open, handleClose }) => {
 
   const onSubmit = async (data) => {
     const newData = {
+      category: category,
       label: data?.label,
     };
 
@@ -79,7 +80,7 @@ const AddCarat = ({ open, handleClose }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Add Carat
+            ADD {category} KDM
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -96,7 +97,7 @@ const AddCarat = ({ open, handleClose }) => {
               <TextField
                 fullWidth
                 required
-                label="Carat"
+                label="KDM"
                 size="small"
                 {...register('label', { required: true })}
               />

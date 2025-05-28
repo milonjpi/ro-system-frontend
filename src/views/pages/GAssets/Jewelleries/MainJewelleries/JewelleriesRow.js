@@ -10,7 +10,7 @@ import ConfirmDialog from 'ui-component/ConfirmDialog';
 import { useDeleteJewelleryMutation } from 'store/api/jewellery/jewelleryApi';
 import UpdateJewellery from './UpdateJewellery';
 
-const JewelleriesRow = ({ sn, data }) => {
+const JewelleriesRow = ({ sn, data, category }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
@@ -54,6 +54,7 @@ const JewelleriesRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>
         {data?.vendor?.label}
       </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.invoiceNo}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
         {data?.carat?.label}
       </StyledTableCellWithBorder>
@@ -87,11 +88,12 @@ const JewelleriesRow = ({ sn, data }) => {
           preData={data}
           open={open}
           handleClose={() => setOpen(false)}
+          category={category}
         />
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Delete Jewellery"
+          content={`DELETE ${category} JEWELLERY`}
           handleDelete={handleDelete}
         />
         {/* end popup item */}

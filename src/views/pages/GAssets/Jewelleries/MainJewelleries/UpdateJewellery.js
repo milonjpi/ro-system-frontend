@@ -35,7 +35,7 @@ const style = {
   p: 2,
 };
 
-const UpdateJewellery = ({ open, handleClose, preData }) => {
+const UpdateJewellery = ({ open, handleClose, preData, category }) => {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState(preData?.dop);
   const [jewelleryType, setJewelleryType] = useState(
@@ -54,7 +54,7 @@ const UpdateJewellery = ({ open, handleClose, preData }) => {
   const allJewelleryTypes = jewelleryTypeData?.jewelleryTypes || [];
 
   const { data: caratData, isLoading: caratLoading } = useGetCaratsQuery(
-    { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+    { limit: 1000, sortBy: 'label', sortOrder: 'asc', category: category },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -130,7 +130,7 @@ const UpdateJewellery = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Edit Jewellery
+            EDIT {category} JEWELLERY
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -217,7 +217,7 @@ const UpdateJewellery = ({ open, handleClose, preData }) => {
                 isOptionEqualToValue={(item, value) => item.id === value.id}
                 onChange={(e, newValue) => setCarat(newValue)}
                 renderInput={(params) => (
-                  <TextField {...params} label="Select carat" required />
+                  <TextField {...params} label="Select KDM" required />
                 )}
               />
             </Grid>

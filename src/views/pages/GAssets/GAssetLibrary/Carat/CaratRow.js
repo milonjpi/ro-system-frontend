@@ -8,7 +8,7 @@ import ConfirmDialog from 'ui-component/ConfirmDialog';
 import { useDeleteCaratMutation } from 'store/api/carat/caratApi';
 import UpdateCarat from './UpdateCarat';
 
-const CaratRow = ({ sn, data }) => {
+const CaratRow = ({ sn, data, category }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
@@ -72,7 +72,7 @@ const CaratRow = ({ sn, data }) => {
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Delete Carat"
+          content={`DELETE ${category} KDM`}
           handleDelete={handleDelete}
         />
         {/* end popup item */}

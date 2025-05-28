@@ -299,20 +299,59 @@ const ZakatReport = Loadable(
 const Jewelleries = Loadable(
   lazy(() => import('views/pages/GAssets/Jewelleries'))
 );
+const GoldAsset = Loadable(
+  lazy(() => import('views/pages/GAssets/Jewelleries/GoldAsset'))
+);
+const DiamondAsset = Loadable(
+  lazy(() => import('views/pages/GAssets/Jewelleries/DiamondAsset'))
+);
+const SilverAsset = Loadable(
+  lazy(() => import('views/pages/GAssets/Jewelleries/SilverAsset'))
+);
+
+const ZakatCalculation = Loadable(
+  lazy(() => import('views/pages/GAssets/ZakatCalculation'))
+);
+const ZCalculation = Loadable(
+  lazy(() => import('views/pages/GAssets/ZakatCalculation/ZCalculation'))
+);
+const GoldRate = Loadable(
+  lazy(() => import('views/pages/GAssets/ZakatCalculation/GoldRate'))
+);
+const DiamondRate = Loadable(
+  lazy(() => import('views/pages/GAssets/ZakatCalculation/DiamondRate'))
+);
+const SilverRate = Loadable(
+  lazy(() => import('views/pages/GAssets/ZakatCalculation/SilverRate'))
+);
+
+const GAssetReport = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetReport'))
+);
+const GAssetSummary = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetReport/GAssetSummary'))
+);
+const KdmWiseSummary = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetReport/KdmWiseSummary'))
+);
+
 const GAssetLibrary = Loadable(
   lazy(() => import('views/pages/GAssets/GAssetLibrary'))
 );
 const JewelleryType = Loadable(
   lazy(() => import('views/pages/GAssets/GAssetLibrary/JewelleryType'))
 );
-const Carat = Loadable(
-  lazy(() => import('views/pages/GAssets/GAssetLibrary/Carat'))
+const GoldKDM = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/Carat/GoldKDM'))
+);
+const DiamondKDM = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/Carat/DiamondKDM'))
+);
+const SilverKDM = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetLibrary/Carat/SilverKDM'))
 );
 const JewelleryVendor = Loadable(
   lazy(() => import('views/pages/GAssets/GAssetLibrary/JewelleryVendor'))
-);
-const JewelleryUom = Loadable(
-  lazy(() => import('views/pages/GAssets/GAssetLibrary/JewelleryUom'))
 );
 
 // report
@@ -1204,6 +1243,70 @@ const MainRoutes = {
                       <Jewelleries />
                     </AuthenticationRoutes>
                   ),
+                  children: [
+                    {
+                      path: '',
+                      element: <GoldAsset />,
+                    },
+                    {
+                      path: 'diamond',
+                      element: <DiamondAsset />,
+                    },
+                    {
+                      path: 'silver',
+                      element: <SilverAsset />,
+                    },
+                  ],
+                },
+                {
+                  path: 'zakat-calculation',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['zakat-calculation']}
+                    >
+                      <ZakatCalculation />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <ZCalculation />,
+                    },
+                    {
+                      path: 'gold-rate',
+                      element: <GoldRate />,
+                    },
+                    {
+                      path: 'diamond-rate',
+                      element: <DiamondRate />,
+                    },
+                    {
+                      path: 'silver-rate',
+                      element: <SilverRate />,
+                    },
+                  ],
+                },
+                {
+                  path: 'g-assets-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['g-assets-report']}
+                    >
+                      <GAssetReport />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <GAssetSummary />,
+                    },
+                    {
+                      path: 'kdm-wise',
+                      element: <KdmWiseSummary />,
+                    },
+                  ],
                 },
                 {
                   path: 'g-assets-library',
@@ -1221,16 +1324,20 @@ const MainRoutes = {
                       element: <JewelleryType />,
                     },
                     {
-                      path: 'carat',
-                      element: <Carat />,
+                      path: 'gold-kdm',
+                      element: <GoldKDM />,
+                    },
+                    {
+                      path: 'diamond-kdm',
+                      element: <DiamondKDM />,
+                    },
+                    {
+                      path: 'silver-kdm',
+                      element: <SilverKDM />,
                     },
                     {
                       path: 'vendor',
                       element: <JewelleryVendor />,
-                    },
-                    {
-                      path: 'uom',
-                      element: <JewelleryUom />,
                     },
                   ],
                 },

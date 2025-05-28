@@ -7,22 +7,17 @@ import { useLocation, Link, Outlet } from 'react-router-dom';
 const menuList = [
   {
     id: 1,
-    label: 'Gold Jewelleries',
+    label: 'Summary',
     path: '',
   },
   {
     id: 2,
-    label: 'Diamond Jewelleries',
-    path: 'diamond',
-  },
-  {
-    id: 3,
-    label: 'Silver Jewelleries',
-    path: 'silver',
+    label: 'KDM Wise Summary',
+    path: 'kdm-wise',
   },
 ];
 
-const Jewelleries = () => {
+const GAssetReport = () => {
   // location
   let location = useLocation();
   const path = location?.pathname?.split('/')[4] || '';
@@ -56,4 +51,4 @@ const Jewelleries = () => {
   );
 };
 
-export default Jewelleries;
+export default GAssetReport;

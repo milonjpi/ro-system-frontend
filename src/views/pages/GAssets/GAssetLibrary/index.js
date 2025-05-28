@@ -12,18 +12,23 @@ const menuList = [
   },
   {
     id: 2,
-    label: 'Carat',
-    path: 'carat',
+    label: 'Gold KDM',
+    path: 'gold-kdm',
   },
   {
     id: 3,
-    label: 'Vendor',
-    path: 'vendor',
+    label: 'Diamond KDM',
+    path: 'diamond-kdm',
   },
   {
     id: 4,
-    label: 'UOM',
-    path: 'uom',
+    label: 'Silver KDM',
+    path: 'silver-kdm',
+  },
+  {
+    id: 5,
+    label: 'Vendor',
+    path: 'vendor',
   },
 ];
 

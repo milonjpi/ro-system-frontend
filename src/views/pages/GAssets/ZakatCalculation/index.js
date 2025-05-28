@@ -7,22 +7,27 @@ import { useLocation, Link, Outlet } from 'react-router-dom';
 const menuList = [
   {
     id: 1,
-    label: 'Gold Jewelleries',
+    label: 'Calculation',
     path: '',
   },
   {
     id: 2,
-    label: 'Diamond Jewelleries',
-    path: 'diamond',
+    label: 'Gold Rate',
+    path: 'gold-rate',
   },
   {
     id: 3,
-    label: 'Silver Jewelleries',
-    path: 'silver',
+    label: 'Diamond Rate',
+    path: 'diamond-rate',
+  },
+  {
+    id: 4,
+    label: 'Silver Rate',
+    path: 'silver-rate',
   },
 ];
 
-const Jewelleries = () => {
+const ZakatCalculation = () => {
   // location
   let location = useLocation();
   const path = location?.pathname?.split('/')[4] || '';
@@ -56,4 +61,4 @@ const Jewelleries = () => {
   );
 };
 
-export default Jewelleries;
+export default ZakatCalculation;
