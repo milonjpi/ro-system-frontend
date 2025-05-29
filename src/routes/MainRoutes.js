@@ -334,6 +334,9 @@ const GAssetSummary = Loadable(
 const KdmWiseSummary = Loadable(
   lazy(() => import('views/pages/GAssets/GAssetReport/KdmWiseSummary'))
 );
+const TypeWiseSummary = Loadable(
+  lazy(() => import('views/pages/GAssets/GAssetReport/TypeWiseSummary'))
+);
 
 const GAssetLibrary = Loadable(
   lazy(() => import('views/pages/GAssets/GAssetLibrary'))
@@ -1305,6 +1308,10 @@ const MainRoutes = {
                     {
                       path: 'kdm-wise',
                       element: <KdmWiseSummary />,
+                    },
+                    {
+                      path: 'type-wise',
+                      element: <TypeWiseSummary />,
                     },
                   ],
                 },

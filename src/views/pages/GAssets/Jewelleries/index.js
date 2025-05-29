@@ -7,13 +7,13 @@ import { useLocation, Link, Outlet } from 'react-router-dom';
 const menuList = [
   {
     id: 1,
-    label: 'Gold Jewelleries',
-    path: '',
+    label: 'Diamond Jewelleries',
+    path: 'diamond',
   },
   {
     id: 2,
-    label: 'Diamond Jewelleries',
-    path: 'diamond',
+    label: 'Gold Jewelleries',
+    path: '',
   },
   {
     id: 3,

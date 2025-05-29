@@ -12,13 +12,13 @@ const menuList = [
   },
   {
     id: 2,
-    label: 'Gold KDM',
-    path: 'gold-kdm',
+    label: 'Diamond KDM',
+    path: 'diamond-kdm',
   },
   {
     id: 3,
-    label: 'Diamond KDM',
-    path: 'diamond-kdm',
+    label: 'Gold KDM',
+    path: 'gold-kdm',
   },
   {
     id: 4,

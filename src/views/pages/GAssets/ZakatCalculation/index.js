@@ -12,13 +12,13 @@ const menuList = [
   },
   {
     id: 2,
-    label: 'Gold Rate',
-    path: 'gold-rate',
+    label: 'Diamond Rate',
+    path: 'diamond-rate',
   },
   {
     id: 3,
-    label: 'Diamond Rate',
-    path: 'diamond-rate',
+    label: 'Gold Rate',
+    path: 'gold-rate',
   },
   {
     id: 4,

@@ -114,7 +114,8 @@ const MainJewelleries = ({ category }) => {
   query['page'] = page;
   query['sortBy'] = 'dop';
   query['sortOrder'] = 'desc';
-  query['isActive'] = true;
+  query['isSold'] = false;
+  query['isExchanged'] = false;
   query['category'] = category;
 
   if (jewelleryType) {

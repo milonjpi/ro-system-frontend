@@ -3,10 +3,10 @@ import DataTable from 'ui-component/table';
 import { TableRow } from '@mui/material';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { totalSum } from 'views/utilities/NeedyFunction';
-import { useGetJewellerySummaryQuery } from 'store/api/jewelleryReport/jewelleryReportApi';
-import GAssetSummaryRow from './GAssetSummaryRow';
+import { useGetTypeWiseSummaryQuery } from 'store/api/jewelleryReport/jewelleryReportApi';
+import TypeWiseSummaryRow from './TypeWiseSummaryRow';
 
-const GAssetSummary = () => {
+const TypeWiseSummary = () => {
   // table
   const tableHeads = [
     {
@@ -17,11 +17,17 @@ const GAssetSummary = () => {
       title: 'Category',
     },
     {
+      title: 'Jewellery Type',
+    },
+    {
+      title: 'KDM',
+    },
+    {
       title: 'Weight (gm)',
       align: 'right',
     },
     {
-      title: 'Price (TK)',
+      title: 'Total Weight (gm)',
       align: 'right',
     },
   ];
@@ -30,7 +36,7 @@ const GAssetSummary = () => {
   // filtering and pagination
   const query = {};
 
-  const { data, isLoading } = useGetJewellerySummaryQuery(
+  const { data, isLoading } = useGetTypeWiseSummaryQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
@@ -39,24 +45,23 @@ const GAssetSummary = () => {
 
   // calculation
   const totalWeight = totalSum(allData, 'weight');
-  const totalPrice = totalSum(allData, 'price');
 
   return (
-    <SubCard title="Jewellery Summary">
+    <SubCard title="Jewellery Type Wise Summary">
       {/* data table */}
       <DataTable
         bordered
         tableHeads={tableHeads}
         data={allData}
         options={(el, index) => (
-          <GAssetSummaryRow key={index} sn={index + 1} data={el} />
+          <TypeWiseSummaryRow key={index} sn={index + 1} data={el} />
         )}
         loading={isLoading}
         extra={
           allData?.length ? (
             <TableRow>
               <StyledTableCellWithBorder
-                colSpan={2}
+                colSpan={5}
                 sx={{
                   fontSize: '12px !important',
                   fontWeight: 700,
@@ -73,15 +78,6 @@ const GAssetSummary = () => {
               >
                 {totalWeight?.toFixed(2)}
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder
-                align="right"
-                sx={{
-                  fontSize: '12px !important',
-                  fontWeight: 700,
-                }}
-              >
-                {totalPrice}
-              </StyledTableCellWithBorder>
             </TableRow>
           ) : null
         }
@@ -92,4 +88,4 @@ const GAssetSummary = () => {
   );
 };
 
-export default GAssetSummary;
+export default TypeWiseSummary;

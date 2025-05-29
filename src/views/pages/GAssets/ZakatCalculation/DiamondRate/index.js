@@ -1,11 +1,8 @@
 import React from 'react';
+import MainRate from '../MainRate';
 
 const DiamondRate = () => {
-  return (
-    <div>
-      <p>Diamond Rate</p>
-    </div>
-  );
+  return <MainRate category="DIAMOND" />;
 };
 
 export default DiamondRate;

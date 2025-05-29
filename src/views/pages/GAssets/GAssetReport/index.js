@@ -15,6 +15,11 @@ const menuList = [
     label: 'KDM Wise Summary',
     path: 'kdm-wise',
   },
+  {
+    id: 3,
+    label: 'Type Wise Summary',
+    path: 'type-wise',
+  },
 ];
 
 const GAssetReport = () => {

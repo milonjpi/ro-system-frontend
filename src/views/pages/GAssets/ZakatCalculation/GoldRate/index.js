@@ -1,11 +1,8 @@
 import React from 'react';
+import MainRate from '../MainRate';
 
 const GoldRate = () => {
-  return (
-    <div>
-      <p>Gold Rate</p>
-    </div>
-  );
+  return <MainRate category="GOLD" />;
 };
 
 export default GoldRate;
