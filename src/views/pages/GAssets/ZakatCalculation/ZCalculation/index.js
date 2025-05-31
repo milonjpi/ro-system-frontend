@@ -76,6 +76,10 @@ const ZCalculation = () => {
   const totalWeight = totalSum(mappedAllData, 'weight');
   const totalPrice = totalSum(mappedAllData, 'price');
 
+  const rebateAmount = Math.round(totalPrice * 0.18);
+  const afterRebate = totalPrice - rebateAmount;
+  const zakatAmount = Math.ceil(afterRebate * 0.025);
+
   return (
     <SubCard title="Zakat Calculation">
       {/* filter area */}
@@ -119,49 +123,114 @@ const ZCalculation = () => {
           loading={isLoading}
           extra={
             allData?.length ? (
-              <TableRow>
-                <StyledTableCellWithBorder
-                  colSpan={3}
-                  sx={{
-                    fontSize: '12px !important',
-                    fontWeight: 700,
-                  }}
-                >
-                  TOTAL
-                </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{
-                    fontSize: '12px !important',
-                    fontWeight: 700,
-                  }}
-                >
-                  {totalWeight?.toFixed(2)}
-                </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{
-                    fontSize: '12px !important',
-                    fontWeight: 700,
-                  }}
-                ></StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{
-                    fontSize: '12px !important',
-                    fontWeight: 700,
-                  }}
-                ></StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{
-                    fontSize: '12px !important',
-                    fontWeight: 700,
-                  }}
-                >
-                  {totalPrice}
-                </StyledTableCellWithBorder>
-              </TableRow>
+              <>
+                <TableRow>
+                  <StyledTableCellWithBorder
+                    colSpan={3}
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    TOTAL
+                  </StyledTableCellWithBorder>
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {totalWeight?.toFixed(2)}
+                  </StyledTableCellWithBorder>
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  ></StyledTableCellWithBorder>
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  ></StyledTableCellWithBorder>
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {totalPrice}
+                  </StyledTableCellWithBorder>
+                </TableRow>
+                <TableRow>
+                  <StyledTableCellWithBorder
+                    colSpan={6}
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    REBATE &#40;18%&#41;
+                  </StyledTableCellWithBorder>
+
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {rebateAmount}
+                  </StyledTableCellWithBorder>
+                </TableRow>
+                <TableRow>
+                  <StyledTableCellWithBorder
+                    colSpan={6}
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    AFTER REBATE
+                  </StyledTableCellWithBorder>
+
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {afterRebate}
+                  </StyledTableCellWithBorder>
+                </TableRow>
+                <TableRow>
+                  <StyledTableCellWithBorder
+                    colSpan={6}
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    ZAKAT &#40;2.5%&#41;
+                  </StyledTableCellWithBorder>
+
+                  <StyledTableCellWithBorder
+                    align="right"
+                    sx={{
+                      fontSize: '12px !important',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {zakatAmount}
+                  </StyledTableCellWithBorder>
+                </TableRow>
+              </>
             ) : null
           }
         />
