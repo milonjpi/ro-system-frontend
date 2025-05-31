@@ -74,7 +74,7 @@ const ZCalculation = () => {
     price: totalSum(el.carats || [], 'price'),
   }));
   const totalWeight = totalSum(mappedAllData, 'weight');
-  const totalPrice = totalSum(mappedAllData, 'price');
+  const totalPrice = Math.round(totalSum(mappedAllData, 'price'));
 
   const rebateAmount = Math.round(totalPrice * 0.18);
   const afterRebate = totalPrice - rebateAmount;

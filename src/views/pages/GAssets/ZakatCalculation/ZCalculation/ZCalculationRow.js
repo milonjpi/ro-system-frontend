@@ -35,13 +35,13 @@ const ZCalculationRow = ({ sn, data }) => {
               {allCarats[0].unitPrice ? allCarats[0].unitPrice : 'Not Found'}
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder align="right">
-              {allCarats[0].price}
+              {Math.round(allCarats[0].price)}
             </StyledTableCellWithBorder>
           </>
         )}
 
         <StyledTableCellWithBorder rowSpan={rowSpan} align="right">
-          {totalSum(allCarats, 'price')}
+          {Math.round(totalSum(allCarats, 'price'))}
         </StyledTableCellWithBorder>
       </TableRow>
 
@@ -59,7 +59,7 @@ const ZCalculationRow = ({ sn, data }) => {
             {el.unitPrice ? el.unitPrice : 'Not Found'}
           </StyledTableCellWithBorder>
           <StyledTableCellWithBorder align="right">
-            {el.price}
+            {Math.round(el.price)}
           </StyledTableCellWithBorder>
         </TableRow>
       ))}
