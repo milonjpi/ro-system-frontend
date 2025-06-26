@@ -1,6 +1,6 @@
 import axios from 'axios';
-export const BASE_ADDRESS = 'http://web.yplbd.com:5001';
-export const BASE_URL = 'http://web.yplbd.com:5001/api/v1';
+export const BASE_ADDRESS = 'https://web.yplbd.com/ro';
+export const BASE_URL = 'https://web.yplbd.com/ro/api/v1';
 
 const client = axios.create({
   baseURL: BASE_URL,
