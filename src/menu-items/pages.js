@@ -602,6 +602,13 @@ const pages = {
           access: ['super_admin'],
         },
         {
+          id: 'sold-jewelleries',
+          title: 'Sold Jewelleries',
+          type: 'item',
+          url: '/pages/g-assets/sold-jewelleries',
+          access: ['super_admin'],
+        },
+        {
           id: 'zakat-calculation',
           title: 'Zakat Calculation',
           type: 'item',

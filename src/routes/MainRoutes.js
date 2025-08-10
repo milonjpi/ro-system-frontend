@@ -309,6 +309,20 @@ const SilverAsset = Loadable(
   lazy(() => import('views/pages/GAssets/Jewelleries/SilverAsset'))
 );
 
+// sold jewellery
+const SoldJewelleries = Loadable(
+  lazy(() => import('views/pages/GAssets/SoldJewelleries'))
+);
+const SoldDiamondAsset = Loadable(
+  lazy(() => import('views/pages/GAssets/SoldJewelleries/SoldDiamondAsset'))
+);
+const SoldGoldAsset = Loadable(
+  lazy(() => import('views/pages/GAssets/SoldJewelleries/SoldGoldAsset'))
+);
+const SoldSilverAsset = Loadable(
+  lazy(() => import('views/pages/GAssets/SoldJewelleries/SoldSilverAsset'))
+);
+
 const ZakatCalculation = Loadable(
   lazy(() => import('views/pages/GAssets/ZakatCalculation'))
 );
@@ -1258,6 +1272,31 @@ const MainRoutes = {
                     {
                       path: 'silver',
                       element: <SilverAsset />,
+                    },
+                  ],
+                },
+                {
+                  path: 'sold-jewelleries',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['sold-jewelleries']}
+                    >
+                      <SoldJewelleries />
+                    </AuthenticationRoutes>
+                  ),
+                  children: [
+                    {
+                      path: '',
+                      element: <SoldGoldAsset />,
+                    },
+                    {
+                      path: 'diamond',
+                      element: <SoldDiamondAsset />,
+                    },
+                    {
+                      path: 'silver',
+                      element: <SoldSilverAsset />,
                     },
                   ],
                 },

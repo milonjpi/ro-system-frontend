@@ -72,6 +72,7 @@ export const api = createApi({
     'carat',
     'jewelleryVendor',
     'jewellery',
+    'soldJewellery',
     'jewelleryRate',
   ],
   endpoints: () => ({}),
