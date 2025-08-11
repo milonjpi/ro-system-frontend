@@ -48,6 +48,9 @@ const MainSoldAssetRow = ({ sn, data, category }) => {
       <StyledTableCellWithBorder>
         {moment(data?.soldDate).format('DD/MM/YYYY')}
       </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center">
+        {data?.soldType}
+      </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
         {data?.jewellery?.jewelleryType?.label}
       </StyledTableCellWithBorder>

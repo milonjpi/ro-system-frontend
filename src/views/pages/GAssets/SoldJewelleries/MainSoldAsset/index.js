@@ -69,6 +69,10 @@ const MainSoldAsset = ({ category }) => {
       title: 'Sold Date',
     },
     {
+      title: 'Sale/Exchange',
+      align: 'center',
+    },
+    {
       title: 'Jewellery Type',
     },
     {
