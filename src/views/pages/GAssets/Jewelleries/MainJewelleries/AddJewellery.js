@@ -47,6 +47,9 @@ const defaultValue = {
   jewelleryType: null,
   carat: null,
   weight: 0,
+  unitPrice: 0,
+  makingCharge: 0,
+  vat: 0,
   price: 0,
   remarks: '',
 };
@@ -67,7 +70,7 @@ const AddJewellery = ({ open, handleClose, category }) => {
   // end library
 
   // hook form
-  const { register, handleSubmit, control, reset } = useForm({
+  const { register, handleSubmit, control, setValue, reset } = useForm({
     defaultValues: {
       jewelleries: [defaultValue],
     },
@@ -88,6 +91,8 @@ const AddJewellery = ({ open, handleClose, category }) => {
   const watchValue = useWatch({ control, name: 'jewelleries' });
 
   const totalWeight = totalSum(watchValue || [], 'weight');
+  const makingCharge = totalSum(watchValue || [], 'makingCharge');
+  const vat = totalSum(watchValue || [], 'vat');
   const totalAmount = totalSum(watchValue || [], 'price');
 
   // end calculation
@@ -106,6 +111,18 @@ const AddJewellery = ({ open, handleClose, category }) => {
     },
     {
       title: 'Weight (gm)',
+      align: 'right',
+    },
+    {
+      title: 'Unit Price',
+      align: 'right',
+    },
+    {
+      title: 'Making Ch.',
+      align: 'right',
+    },
+    {
+      title: 'VAT',
       align: 'right',
     },
     {
@@ -134,6 +151,12 @@ const AddJewellery = ({ open, handleClose, category }) => {
       year: moment(date).format('YYYY'),
       month: moment(date).format('MMMM'),
       weight: el.weight,
+      unitPrice: el.unitPrice,
+      makingCharge: el.makingCharge,
+      vat: el.vat,
+      totalPrice: Math.round(
+        el.weight * el.unitPrice + el.makingCharge + el.vat
+      ),
       price: el.price,
       remarks: el.remarks || '',
     }));
@@ -259,6 +282,7 @@ const AddJewellery = ({ open, handleClose, category }) => {
                         control={control}
                         handleRemove={handleRemove}
                         register={register}
+                        setValue={setValue}
                         category={category}
                       />
                     ))}
@@ -283,6 +307,25 @@ const AddJewellery = ({ open, handleClose, category }) => {
                               sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
                             >
                               {totalWeight?.toFixed(2)}
+                            </Typography>
+                          </StyledTableCell>
+                          <StyledTableCell align="right">
+                            <Typography
+                              sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
+                            ></Typography>
+                          </StyledTableCell>
+                          <StyledTableCell align="right">
+                            <Typography
+                              sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
+                            >
+                              {makingCharge}
+                            </Typography>
+                          </StyledTableCell>
+                          <StyledTableCell align="right">
+                            <Typography
+                              sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
+                            >
+                              {vat}
                             </Typography>
                           </StyledTableCell>
                           <StyledTableCell align="right">

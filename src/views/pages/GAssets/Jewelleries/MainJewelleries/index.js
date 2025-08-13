@@ -97,6 +97,22 @@ const MainJewelleries = ({ category }) => {
       align: 'right',
     },
     {
+      title: 'Unit Price',
+      align: 'right',
+    },
+    {
+      title: 'Raw Price',
+      align: 'right',
+    },
+    {
+      title: 'Making Charge',
+      align: 'right',
+    },
+    {
+      title: 'VAT',
+      align: 'right',
+    },
+    {
       title: 'Price',
       align: 'right',
     },
@@ -313,6 +329,7 @@ const MainJewelleries = ({ category }) => {
 
       {/* data table */}
       <DataTable
+        sx={{ minWidth: allJewelleries?.length && 750 }}
         bordered
         tableHeads={tableHeads}
         data={allJewelleries}
@@ -351,8 +368,44 @@ const MainJewelleries = ({ category }) => {
                   fontSize: '12px !important',
                   fontWeight: 700,
                 }}
+              ></StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
               >
-                {sum?._sum?.price || 0}
+                {sum?._sum?.totalPrice -
+                  sum?._sum?.makingCharge -
+                  sum?._sum?.vat}
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                {sum?._sum?.makingCharge}
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                {sum?._sum?.vat}
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                {sum?._sum?.price}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"

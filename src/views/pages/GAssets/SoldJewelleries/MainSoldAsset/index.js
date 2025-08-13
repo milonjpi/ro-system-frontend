@@ -86,11 +86,19 @@ const MainSoldAsset = ({ category }) => {
       align: 'right',
     },
     {
-      title: 'Deduction (%)',
+      title: 'Unit Price',
       align: 'right',
     },
     {
-      title: 'Price',
+      title: 'Total Price',
+      align: 'right',
+    },
+    {
+      title: 'Deduction',
+      align: 'right',
+    },
+    {
+      title: 'Sale/Exchange Price',
       align: 'right',
     },
     {
@@ -230,6 +238,7 @@ const MainSoldAsset = ({ category }) => {
 
       {/* data table */}
       <DataTable
+        sx={{ minWidth: allSoldJewelleries?.length && 750 }}
         bordered
         tableHeads={tableHeads}
         data={allSoldJewelleries}
@@ -245,7 +254,7 @@ const MainSoldAsset = ({ category }) => {
           allSoldJewelleries?.length ? (
             <TableRow>
               <StyledTableCellWithBorder
-                colSpan={5}
+                colSpan={6}
                 sx={{
                   fontSize: '12px !important',
                   fontWeight: 700,
@@ -269,6 +278,24 @@ const MainSoldAsset = ({ category }) => {
                   fontWeight: 700,
                 }}
               ></StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                {sum?._sum?.totalPrice || 0}
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder
+                align="right"
+                sx={{
+                  fontSize: '12px !important',
+                  fontWeight: 700,
+                }}
+              >
+                {sum?._sum?.deduction || 0}
+              </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"
                 sx={{

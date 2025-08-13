@@ -18,7 +18,6 @@ import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import moment from 'moment';
 import { Autocomplete } from '@mui/material';
-import { useGetJewelleryVendorsQuery } from 'store/api/jewelleryVendor/jewelleryVendorApi';
 import { useGetJewelleriesQuery } from 'store/api/jewellery/jewelleryApi';
 import { useGetJewelleryTypesQuery } from 'store/api/jewelleryType/jewelleryTypeApi';
 import { useUpdateSoldJewelleryMutation } from 'store/api/soldJewellery/soldJewelleryApi';
@@ -39,21 +38,15 @@ const UpdateMainSoldAsset = ({ open, handleClose, category, preData }) => {
   const [loading, setLoading] = useState(false);
   const [soldDate, setSoldDate] = useState(preData?.soldDate);
   const [soldType, setSoldType] = useState(preData?.soldType || null);
-  const [vendor, setVendor] = useState(preData?.vendor || null);
   const [jewelleryType, setJewelleryType] = useState(
     preData?.jewellery?.jewelleryType || null
   );
   const [jewellery, setJewellery] = useState(preData?.jewellery || null);
+  const [unitPrice, setUnitPrice] = useState(preData?.unitPrice);
+  const [deduction, setDeduction] = useState(Number(preData?.percent));
+  const [price, setPrice] = useState(preData?.price);
 
   // library
-  const { data: vendorData, isLoading: vendorLoading } =
-    useGetJewelleryVendorsQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allVendors = vendorData?.jewelleryVendors || [];
-
   const { data: jewelleryTypeData, isLoading: jewelleryTypeLoading } =
     useGetJewelleryTypesQuery(
       { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
@@ -80,14 +73,13 @@ const UpdateMainSoldAsset = ({ open, handleClose, category, preData }) => {
       { refetchOnMountOrArgChange: true }
     );
 
-  let allJewelleries = jewelleryData?.jewelleries || [];
-  if (preData?.jewellery?.jewelleryTypeId === jewelleryType?.id) {
-    allJewelleries = [...allJewelleries, { ...preData.jewellery }];
-  }
+  const allJewelleries = jewelleryData?.jewelleries || [];
   // end library
 
   // hook form
-  const { register, handleSubmit } = useForm({ defaultValues: preData });
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: preData,
+  });
   // end hook form
 
   const dispatch = useDispatch();
@@ -98,14 +90,21 @@ const UpdateMainSoldAsset = ({ open, handleClose, category, preData }) => {
     const newData = {
       soldType,
       jewelleryId: jewellery?.id,
-      vendorId: vendor?.id,
       soldDate,
       year: moment(soldDate).format('YYYY'),
       month: moment(soldDate).format('MMMM'),
       percent: data?.percent?.toString(),
-      weight: jewellery?.weight,
+      weight: jewellery.weight,
+      unitPrice: data?.unitPrice,
+      totalPrice: Math.round(
+        (Number(jewellery?.weight) || 0) * (Number(unitPrice) || 0)
+      ),
+      deduction: Math.round(
+        (Number(jewellery?.weight) || 0) *
+          (Number(unitPrice) || 0) *
+          ((Number(deduction) || 0) / 100)
+      ),
       price: data?.price,
-      invoiceNo: data?.invoiceNo,
       remarks: data?.remarks || '',
     };
 
@@ -239,31 +238,101 @@ const UpdateMainSoldAsset = ({ open, handleClose, category, preData }) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Autocomplete
-                loading={vendorLoading}
-                value={vendor}
-                size="small"
-                fullWidth
-                options={allVendors}
-                getOptionLabel={(option) => option.label}
-                onChange={(e, newValue) => setVendor(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="Select Vendor" required />
-                )}
-              />
+            <Grid item xs={12}>
+              <Box sx={{ border: '1px solid #676767', borderRadius: 1, p: 1 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={6} md={4}>
+                    <Typography sx={{ fontSize: 11 }}>
+                      Weight:{' '}
+                      <span style={{ fontWeight: 700 }}>
+                        {jewellery?.weight}
+                      </span>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} md={4}>
+                    <Typography sx={{ fontSize: 11 }}>
+                      Unit Price:{' '}
+                      <span style={{ fontWeight: 700 }}>
+                        {jewellery?.unitPrice}
+                      </span>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Typography sx={{ fontSize: 11 }}>
+                      Raw Price:{' '}
+                      <span style={{ fontWeight: 700 }}>
+                        {Math.round(
+                          (jewellery?.weight || 0) * (jewellery?.unitPrice || 0)
+                        )}
+                      </span>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} md={4}>
+                    <Typography sx={{ fontSize: 11 }}>
+                      Making Charge:{' '}
+                      <span style={{ fontWeight: 700 }}>
+                        {jewellery?.makingCharge}
+                      </span>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} md={4}>
+                    <Typography sx={{ fontSize: 11 }}>
+                      VAT:{' '}
+                      <span style={{ fontWeight: 700 }}>{jewellery?.vat}</span>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Typography sx={{ fontSize: 11 }}>
+                      Total Price:{' '}
+                      <span style={{ fontWeight: 700 }}>
+                        {jewellery?.price}
+                      </span>
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6} md={3}>
               <TextField
                 fullWidth
                 required
-                label="Invoice No"
+                label="Unit Price"
+                type="number"
                 size="small"
-                {...register('invoiceNo', { required: true })}
+                inputProps={{ min: 0 }}
+                value={unitPrice}
+                {...register('unitPrice', {
+                  min: 0,
+                  required: true,
+                  valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setUnitPrice(newValue);
+                    const newPrice = Math.round(
+                      (Number(jewellery?.weight) || 0) * newValue -
+                        (Number(jewellery?.weight) || 0) *
+                          newValue *
+                          ((Number(deduction) || 0) / 100)
+                    );
+                    setValue('price', newPrice);
+                    setPrice(newPrice);
+                  },
+                })}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6} md={3}>
+              <TextField
+                fullWidth
+                required
+                label="Total Price"
+                size="small"
+                InputProps={{ readOnly: true }}
+                value={Math.round(
+                  (Number(jewellery?.weight) || 0) * (Number(unitPrice) || 0)
+                )}
+              />
+            </Grid>
+            <Grid item xs={6} md={3}>
               <TextField
                 fullWidth
                 required
@@ -271,23 +340,42 @@ const UpdateMainSoldAsset = ({ open, handleClose, category, preData }) => {
                 size="small"
                 type="number"
                 inputProps={{ min: 0, step: '0.01' }}
+                value={deduction}
                 {...register('percent', {
                   required: true,
                   valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setDeduction(newValue);
+                    const newPrice = Math.round(
+                      (Number(jewellery?.weight) || 0) *
+                        (Number(unitPrice) || 0) -
+                        (Number(jewellery?.weight) || 0) *
+                          (Number(unitPrice) || 0) *
+                          (newValue / 100)
+                    );
+                    setValue('price', newPrice);
+                    setPrice(newPrice);
+                  },
                 })}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6} md={3}>
               <TextField
                 fullWidth
                 required
-                label="Price"
+                label="Sale/Exchange Price"
                 size="small"
                 type="number"
                 inputProps={{ min: 0 }}
+                value={price}
                 {...register('price', {
                   required: true,
                   valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setPrice(newValue);
+                  },
                 })}
               />
             </Grid>

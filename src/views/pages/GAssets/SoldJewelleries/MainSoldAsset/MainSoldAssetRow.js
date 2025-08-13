@@ -55,14 +55,22 @@ const MainSoldAssetRow = ({ sn, data, category }) => {
         {data?.jewellery?.jewelleryType?.label}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.vendor?.label}
+        {data?.jewellery?.vendor?.label}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.invoiceNo}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.jewellery?.invoiceNo}
+      </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.weight}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {data?.percent + ' %'}
+        {data?.unitPrice}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.totalPrice}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.deduction + ' ( ' + data?.percent + ' % )'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.price}

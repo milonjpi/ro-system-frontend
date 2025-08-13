@@ -43,6 +43,11 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
   );
   const [carat, setCarat] = useState(preData?.carat || null);
   const [vendor, setVendor] = useState(preData?.vendor || null);
+  const [weight, setWeight] = useState(preData?.weight);
+  const [unitPrice, setUnitPrice] = useState(preData?.unitPrice);
+  const [makingCharge, setMakingCharge] = useState(preData?.makingCharge);
+  const [vat, setVat] = useState(preData?.vat);
+  const [price, setPrice] = useState(preData?.price);
 
   // library
   const { data: jewelleryTypeData, isLoading: jewelleryTypeLoading } =
@@ -69,7 +74,9 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
   const allVendors = vendorData?.jewelleryVendors || [];
   // end library
 
-  const { register, handleSubmit } = useForm({ defaultValues: preData });
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: preData,
+  });
 
   const dispatch = useDispatch();
 
@@ -85,6 +92,12 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
       year: moment(date).format('YYYY'),
       month: moment(date).format('MMMM'),
       weight: data.weight,
+      unitPrice: data.unitPrice,
+      makingCharge: data.makingCharge,
+      vat: data.vat,
+      totalPrice: Math.round(
+        data.weight * data.unitPrice + data.makingCharge + data.vat
+      ),
       price: data.price,
       remarks: data.remarks || '',
     };
@@ -222,7 +235,7 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
               />
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6} md={3}>
               <TextField
                 fullWidth
                 required
@@ -230,10 +243,119 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
                 type="number"
                 size="small"
                 inputProps={{ min: 0, step: '0.01' }}
+                value={weight}
                 {...register('weight', {
                   min: 0,
                   required: true,
                   valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setWeight(newValue);
+                    setValue(
+                      'price',
+                      newValue * (Number(unitPrice) || 0) +
+                        (Number(makingCharge) || 0) +
+                        (Number(vat) || 0)
+                    );
+                    setPrice(
+                      newValue * (Number(unitPrice) || 0) +
+                        (Number(makingCharge) || 0) +
+                        (Number(vat) || 0)
+                    );
+                  },
+                })}
+              />
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <TextField
+                fullWidth
+                required
+                label="Unit Price"
+                type="number"
+                size="small"
+                inputProps={{ min: 0 }}
+                value={unitPrice}
+                {...register('unitPrice', {
+                  min: 0,
+                  required: true,
+                  valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setUnitPrice(newValue);
+                    setValue(
+                      'price',
+                      (Number(weight) || 0) * newValue +
+                        (Number(makingCharge) || 0) +
+                        (Number(vat) || 0)
+                    );
+                    setPrice(
+                      (Number(weight) || 0) * newValue +
+                        (Number(makingCharge) || 0) +
+                        (Number(vat) || 0)
+                    );
+                  },
+                })}
+              />
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <TextField
+                fullWidth
+                required
+                label="Making Charge"
+                type="number"
+                size="small"
+                inputProps={{ min: 0 }}
+                value={makingCharge}
+                {...register('makingCharge', {
+                  min: 0,
+                  required: true,
+                  valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setMakingCharge(newValue);
+                    setValue(
+                      'price',
+                      (Number(weight) || 0) * (Number(unitPrice) || 0) +
+                        newValue +
+                        (Number(vat) || 0)
+                    );
+                    setPrice(
+                      (Number(weight) || 0) * (Number(unitPrice) || 0) +
+                        newValue +
+                        (Number(vat) || 0)
+                    );
+                  },
+                })}
+              />
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <TextField
+                fullWidth
+                required
+                label="VAT"
+                type="number"
+                size="small"
+                inputProps={{ min: 0 }}
+                value={vat}
+                {...register('vat', {
+                  min: 0,
+                  required: true,
+                  valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setVat(newValue);
+                    setValue(
+                      'price',
+                      (Number(weight) || 0) * (Number(unitPrice) || 0) +
+                        (Number(makingCharge) || 0) +
+                        newValue
+                    );
+                    setPrice(
+                      (Number(weight) || 0) * (Number(unitPrice) || 0) +
+                        (Number(makingCharge) || 0) +
+                        newValue
+                    );
+                  },
                 })}
               />
             </Grid>
@@ -245,14 +367,19 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
                 type="number"
                 size="small"
                 inputProps={{ min: 0 }}
+                value={price}
                 {...register('price', {
                   min: 0,
                   required: true,
                   valueAsNumber: true,
+                  onChange: (e) => {
+                    const newValue = Number(e.target.value) || 0;
+                    setPrice(newValue);
+                  },
                 })}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 label="Remarks"

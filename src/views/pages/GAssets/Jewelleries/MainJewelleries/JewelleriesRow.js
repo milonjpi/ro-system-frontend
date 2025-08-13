@@ -62,6 +62,18 @@ const JewelleriesRow = ({ sn, data, category }) => {
         {data?.weight}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
+        {data?.unitPrice}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {Math.round(data?.weight * data?.unitPrice)}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.makingCharge}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.vat}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
         {data?.price}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="center">
