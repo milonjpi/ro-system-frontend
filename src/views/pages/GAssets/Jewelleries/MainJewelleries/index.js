@@ -5,14 +5,19 @@ import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconCloudDownload, IconPlus } from '@tabler/icons-react';
+import { IconCloudDownload, IconPlus, IconPrinter } from '@tabler/icons-react';
 import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import { useDebounced } from 'hooks';
-import moment from 'moment';
 import { utils, writeFile } from 'xlsx';
-import { Autocomplete, IconButton, TableRow, Tooltip } from '@mui/material';
+import {
+  Autocomplete,
+  ButtonGroup,
+  IconButton,
+  TableRow,
+  Tooltip,
+} from '@mui/material';
 import { goldYears } from 'assets/data';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useGetJewelleryTypesQuery } from 'store/api/jewelleryType/jewelleryTypeApi';
@@ -21,6 +26,9 @@ import { useGetJewelleryVendorsQuery } from 'store/api/jewelleryVendor/jewellery
 import { useGetJewelleriesQuery } from 'store/api/jewellery/jewelleryApi';
 import AddJewellery from './AddJewellery';
 import JewelleriesRow from './JewelleriesRow';
+import PrintMainJewelleries from './PrintMainJewelleries';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 const MainJewelleries = ({ category }) => {
   const [searchText, setSearchText] = useState('');
@@ -170,61 +178,66 @@ const MainJewelleries = ({ category }) => {
   const sum = data?.sum;
 
   // export
-  //   const { data: printData, isLoading: printLoading } =
-  //     useGetMonthlyExpensesQuery(
-  //       { ...query, page: 0, limit: 5000 },
-  //       { refetchOnMountOrArgChange: true }
-  //     );
+  const { data: printData, isLoading: printLoading } = useGetJewelleriesQuery(
+    { ...query, page: 0, limit: 5000 },
+    { refetchOnMountOrArgChange: true }
+  );
 
-  //   const allPrintMonthlyExpenses = printData?.monthlyExpenses || [];
+  const allPrintJewelleries = printData?.jewelleries || [];
+  const printSum = printData?.sum;
 
-  //   const handleExport = () => {
-  //     let elt = allPrintMonthlyExpenses.map((el, index) => ({
-  //       SN: index + 1,
-  //       'Expense Area': `${el?.expenseArea?.label}\n${
-  //         el?.vehicle ? ', ' + el?.vehicle?.label : ''
-  //       }`,
-  //       Month: el?.month + ' - ' + el?.year,
-  //       Date: moment(el?.date).format('DD/MM/YYYY'),
-  //       'Expense Head': el?.monthlyExpenseHead?.label,
-  //       'Expense Details': el?.expenseDetail?.label || 'n/a',
-  //       Remarks: el?.expenseDetails || 'n/a',
-  //       'Payment Source': el?.paymentSource?.label,
-  //       Amount: el?.amount,
-  //     }));
-  //     let wb = utils.book_new();
-  //     let ws = utils.json_to_sheet(elt);
-  //     utils.book_append_sheet(wb, ws, 'sheet 1');
+  // print and export
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+        @media print {
+          .pageBreakRow {
+            page-break-inside: avoid;
+          }
+        }
+        `,
+  });
 
-  //     ws['!cols'] = [
-  //       { wch: 5 },
-  //       { wch: 41 },
-  //       { wch: 15 },
-  //       { wch: 12 },
-  //       { wch: 36 },
-  //       { wch: 27 },
-  //       { wch: 27 },
-  //       { wch: 14 },
-  //       { wch: 14 },
-  //     ];
-  //     writeFile(wb, `MonthlyExpenses.xlsx`);
-  //   };
+  const handleExport = () => {
+    let elt = document.getElementById('dataTable');
+    let wb = utils.book_new();
+    let ws = utils.table_to_sheet(elt);
+    utils.book_append_sheet(wb, ws, 'sheet 1');
+
+    ws['!cols'] = [
+      { wch: 5 },
+      { wch: 10 },
+      { wch: 15 },
+      { wch: 22 },
+      { wch: 9 },
+      { wch: 8 },
+      { wch: 11 },
+      { wch: 9 },
+      { wch: 9 },
+      { wch: 13 },
+      { wch: 9 },
+      { wch: 9 },
+    ];
+    writeFile(wb, `${category} JEWELLERIES.xlsx`);
+  };
   return (
     <SubCard
       title={
         <span>
           {category} JEWELLERIES
-          {/* <Tooltip title="Export">
-            <IconButton
-              color="primary"
-              size="small"
-              sx={{ ml: 0.5 }}
-              disabled={printLoading}
-              onClick={handleExport}
-            >
-              <IconCloudDownload size={18} />
-            </IconButton>
-          </Tooltip> */}
+          <ButtonGroup>
+            <Tooltip title="Export to Excel" onClick={handleExport}>
+              <IconButton color="primary" size="small">
+                <IconCloudDownload size={18} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Print">
+              <IconButton size="small" color="secondary" onClick={handlePrint}>
+                <IconPrinter size={18} />
+              </IconButton>
+            </Tooltip>
+          </ButtonGroup>
         </span>
       }
       secondary={
@@ -246,6 +259,15 @@ const MainJewelleries = ({ category }) => {
         handleClose={() => setOpen(false)}
         category={category}
       />
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintMainJewelleries
+          ref={componentRef}
+          category={category}
+          allJewelleries={allPrintJewelleries}
+          sum={printSum}
+          isLoading={printLoading}
+        />
+      </Box>
       {/* end popup items */}
 
       {/* filter area */}
