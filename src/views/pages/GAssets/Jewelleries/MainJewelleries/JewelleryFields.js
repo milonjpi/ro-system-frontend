@@ -134,7 +134,7 @@ const JewelleryFields = ({
                 margin: 0,
               },
           }}
-          InputProps={{ inputProps: { min: 0, step: '0.01' } }}
+          InputProps={{ inputProps: { min: 0, step: '0.001' } }}
           name={`jewelleries[${index}].weight`}
           value={weight}
           {...register(`jewelleries[${index}].weight`, {

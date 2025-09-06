@@ -306,7 +306,7 @@ const AddJewellery = ({ open, handleClose, category }) => {
                             <Typography
                               sx={{ fontSize: 14, fontWeight: 700, pr: 1.2 }}
                             >
-                              {totalWeight?.toFixed(2)}
+                              {totalWeight?.toFixed(3)}
                             </Typography>
                           </StyledTableCell>
                           <StyledTableCell align="right">

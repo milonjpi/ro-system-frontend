@@ -242,7 +242,7 @@ const UpdateJewellery = ({ open, handleClose, preData, category }) => {
                 label="Weight (gm)"
                 type="number"
                 size="small"
-                inputProps={{ min: 0, step: '0.01' }}
+                inputProps={{ min: 0, step: '0.001' }}
                 value={weight}
                 {...register('weight', {
                   min: 0,

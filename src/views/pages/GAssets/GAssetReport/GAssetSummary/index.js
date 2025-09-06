@@ -71,7 +71,7 @@ const GAssetSummary = () => {
                   fontWeight: 700,
                 }}
               >
-                {totalWeight?.toFixed(2)}
+                {totalWeight?.toFixed(3)}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"

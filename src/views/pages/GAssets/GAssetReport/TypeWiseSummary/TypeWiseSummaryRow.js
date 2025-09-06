@@ -52,12 +52,12 @@ const TypeWiseSummaryRow = ({ sn, data }) => {
                 {carats[0]?.carat}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                {carats[0]?.weight?.toFixed(2)}
+                {carats[0]?.weight?.toFixed(3)}
               </StyledTableCellWithBorder>
 
               {/* Show total weight in last row of this type */}
               <StyledTableCellWithBorder align="right" rowSpan={rowSpan}>
-                {typeTotalWeight.toFixed(2)}
+                {typeTotalWeight.toFixed(3)}
               </StyledTableCellWithBorder>
             </TableRow>
 
@@ -68,7 +68,7 @@ const TypeWiseSummaryRow = ({ sn, data }) => {
                   {caratItem.carat}
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder align="right">
-                  {caratItem.weight?.toFixed(2)}
+                  {caratItem.weight?.toFixed(3)}
                 </StyledTableCellWithBorder>
               </TableRow>
             ))}

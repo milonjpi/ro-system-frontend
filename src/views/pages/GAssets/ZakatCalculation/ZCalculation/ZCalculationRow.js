@@ -26,7 +26,7 @@ const ZCalculationRow = ({ sn, data }) => {
               {allCarats[0].carat}
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder align="right">
-              {allCarats[0].weight?.toFixed(2)}
+              {allCarats[0].weight?.toFixed(3)}
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder
               align="right"
@@ -50,7 +50,7 @@ const ZCalculationRow = ({ sn, data }) => {
         <TableRow key={index}>
           <StyledTableCellWithBorder>{el.carat}</StyledTableCellWithBorder>
           <StyledTableCellWithBorder align="right">
-            {el.weight?.toFixed(2)}
+            {el.weight?.toFixed(3)}
           </StyledTableCellWithBorder>
           <StyledTableCellWithBorder
             align="right"

@@ -382,7 +382,7 @@ const MainJewelleries = ({ category }) => {
                   fontWeight: 700,
                 }}
               >
-                {sum?._sum?.weight?.toFixed(2) || 0}
+                {sum?._sum?.weight?.toFixed(3) || 0}
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder
                 align="right"

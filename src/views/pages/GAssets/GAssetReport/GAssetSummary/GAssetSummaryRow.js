@@ -12,7 +12,7 @@ const GAssetSummaryRow = ({ sn, data }) => {
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>{data?.category}</StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
-        {data?.weight?.toFixed(2)}
+        {data?.weight?.toFixed(3)}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.price}
