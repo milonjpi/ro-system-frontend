@@ -36,7 +36,6 @@ import {
 import ProductFields from './ProductFields';
 import { useCreateInvoiceMutation } from 'store/api/invoice/invoiceApi';
 
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -62,6 +61,8 @@ const AddSalesInvoice = ({ open, handleClose }) => {
   const [advance, setAdvance] = useState(0);
   const [receiveAmount, setReceiveAmount] = useState(0);
   const [discount, setDiscount] = useState('');
+
+  console.log(customer);
 
   // hook form
   const { register, handleSubmit, control, reset } = useForm({
@@ -224,7 +225,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={7}>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={5}>
                   <LocalizationProvider dateAdapter={AdapterMoment}>
                     <DatePicker
                       label="Invoice Date"
@@ -246,7 +247,7 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                     />
                   </LocalizationProvider>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={7}>
                   <Autocomplete
                     value={customer}
                     size="small"
@@ -260,6 +261,98 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                     )}
                   />
                 </Grid>
+                <Grid item xs={12}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCellWithBorder
+                          colSpan={4}
+                          align="center"
+                          sx={{ py: '2px !important' }}
+                        >
+                          Adjust Payment
+                        </StyledTableCellWithBorder>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
+                        <StyledTableCellWithBorder
+                          sx={{ py: '6px !important' }}
+                        >
+                          Outstanding Balance &#40;
+                          {presentBalance > 0 ? presentBalance : 0}
+                          &#41;
+                        </StyledTableCellWithBorder>
+                        <StyledTableCellWithBorder
+                          align="right"
+                          sx={{ width: 120, py: '6px !important' }}
+                        >
+                          <TextField
+                            fullWidth
+                            size="small"
+                            placeholder="Amount"
+                            type="number"
+                            value={advance}
+                            onChange={(e) => setAdvance(e.target.value)}
+                            InputProps={{
+                              inputProps: {
+                                min: 0,
+                                max:
+                                  totalValue > presentBalance
+                                    ? presentBalance
+                                    : totalValue,
+                              },
+                            }}
+                            sx={{
+                              '& .MuiInputBase-input': {
+                                fontSize: 10,
+                                px: 1,
+                                py: 0.7,
+                              },
+                              '& .MuiInputBase-input::placeholder': {
+                                fontSize: 10,
+                              },
+                            }}
+                          />
+                        </StyledTableCellWithBorder>
+                        <StyledTableCellWithBorder
+                          sx={{ py: '6px !important' }}
+                        >
+                          New Payment
+                        </StyledTableCellWithBorder>
+                        <StyledTableCellWithBorder
+                          align="right"
+                          sx={{ width: 120, py: '6px !important' }}
+                        >
+                          <TextField
+                            fullWidth
+                            size="small"
+                            placeholder="Amount"
+                            type="number"
+                            value={receiveAmount}
+                            onChange={(e) => setReceiveAmount(e.target.value)}
+                            InputProps={{
+                              inputProps: {
+                                min: 0,
+                                max: totalValue - Number(advance || '0'),
+                              },
+                            }}
+                            sx={{
+                              '& .MuiInputBase-input': {
+                                fontSize: 10,
+                                px: 1,
+                                py: 0.7,
+                              },
+                              '& .MuiInputBase-input::placeholder': {
+                                fontSize: 10,
+                              },
+                            }}
+                          />
+                        </StyledTableCellWithBorder>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </Grid>
               </Grid>
             </Grid>
 
@@ -268,87 +361,87 @@ const AddSalesInvoice = ({ open, handleClose }) => {
                 <TableHead>
                   <TableRow>
                     <StyledTableCellWithBorder
-                      colSpan={2}
+                      colSpan={3}
                       align="center"
                       sx={{ py: '2px !important' }}
                     >
-                      Adjust Payment
+                      Adjust Due Invoices
+                    </StyledTableCellWithBorder>
+                  </TableRow>
+                  <TableRow>
+                    <StyledTableCellWithBorder sx={{ py: '2px !important' }}>
+                      Invoice No
+                    </StyledTableCellWithBorder>
+                    <StyledTableCellWithBorder
+                      sx={{ py: '2px !important' }}
+                      align="right"
+                    >
+                      Due
+                    </StyledTableCellWithBorder>
+                    <StyledTableCellWithBorder
+                      align="right"
+                      sx={{ py: '2px !important' }}
+                    >
+                      Pay Now
                     </StyledTableCellWithBorder>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow>
-                    <StyledTableCellWithBorder sx={{ py: '6px !important' }}>
-                      Advance &#40;{presentBalance > 0 ? presentBalance : 0}
-                      &#41;
-                    </StyledTableCellWithBorder>
-                    <StyledTableCellWithBorder
-                      align="right"
-                      sx={{ width: 120, py: '6px !important' }}
-                    >
-                      <TextField
-                        fullWidth
-                        size="small"
-                        placeholder="Amount"
-                        type="number"
-                        value={advance}
-                        onChange={(e) => setAdvance(e.target.value)}
-                        InputProps={{
-                          inputProps: {
-                            min: 0,
-                            max:
-                              totalValue > presentBalance
-                                ? presentBalance
-                                : totalValue,
-                          },
-                        }}
-                        sx={{
-                          '& .MuiInputBase-input': {
-                            fontSize: 10,
-                            px: 1,
-                            py: 0.7,
-                          },
-                          '& .MuiInputBase-input::placeholder': {
-                            fontSize: 10,
-                          },
-                        }}
-                      />
-                    </StyledTableCellWithBorder>
-                  </TableRow>
-                  <TableRow>
-                    <StyledTableCellWithBorder sx={{ py: '6px !important' }}>
-                      New Payment
-                    </StyledTableCellWithBorder>
-                    <StyledTableCellWithBorder
-                      align="right"
-                      sx={{ width: 120, py: '6px !important' }}
-                    >
-                      <TextField
-                        fullWidth
-                        size="small"
-                        placeholder="Amount"
-                        type="number"
-                        value={receiveAmount}
-                        onChange={(e) => setReceiveAmount(e.target.value)}
-                        InputProps={{
-                          inputProps: {
-                            min: 0,
-                            max: totalValue - Number(advance || '0'),
-                          },
-                        }}
-                        sx={{
-                          '& .MuiInputBase-input': {
-                            fontSize: 10,
-                            px: 1,
-                            py: 0.7,
-                          },
-                          '& .MuiInputBase-input::placeholder': {
-                            fontSize: 10,
-                          },
-                        }}
-                      />
-                    </StyledTableCellWithBorder>
-                  </TableRow>
+                  {customer?.due?.length ? (
+                    customer?.due?.map((bl) => (
+                      <TableRow>
+                        <StyledTableCellWithBorder
+                          sx={{ py: '6px !important' }}
+                        >
+                          {bl.invoiceNo}
+                        </StyledTableCellWithBorder>
+                        <StyledTableCellWithBorder
+                          sx={{ py: '6px !important' }}
+                          align="right"
+                        >
+                          {bl.amount - bl.paidAmount}
+                        </StyledTableCellWithBorder>
+                        <StyledTableCellWithBorder
+                          align="right"
+                          sx={{ width: 120, py: '6px !important' }}
+                        >
+                          <TextField
+                            fullWidth
+                            size="small"
+                            placeholder="Amount"
+                            type="number"
+                            value={advance}
+                            onChange={(e) => setAdvance(e.target.value)}
+                            InputProps={{
+                              inputProps: {
+                                min: 0,
+                                max:
+                                  totalValue > presentBalance
+                                    ? presentBalance
+                                    : totalValue,
+                              },
+                            }}
+                            sx={{
+                              '& .MuiInputBase-input': {
+                                fontSize: 10,
+                                px: 1,
+                                py: 0.7,
+                              },
+                              '& .MuiInputBase-input::placeholder': {
+                                fontSize: 10,
+                              },
+                            }}
+                          />
+                        </StyledTableCellWithBorder>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <StyledTableCellWithBorder colSpan={3} align="center">
+                        No Due
+                      </StyledTableCellWithBorder>
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
             </Grid>

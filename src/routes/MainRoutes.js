@@ -93,9 +93,9 @@ const Withdraw = Loadable(lazy(() => import('views/pages/Financial/Withdraw')));
 // const ItemsName = Loadable(
 //   lazy(() => import('views/pages/StoreManagement/ItemsName'))
 // );
-// const Vendors = Loadable(
-//   lazy(() => import('views/pages/StoreManagement/Vendors'))
-// );
+const Vendors = Loadable(
+  lazy(() => import('views/pages/StoreManagement/Vendors'))
+);
 // const PurchaseBill = Loadable(
 //   lazy(() => import('views/pages/StoreManagement/PurchaseBill'))
 // );
@@ -572,6 +572,10 @@ const MainRoutes = {
                     {
                       path: '',
                       element: <AllCustomers />,
+                    },
+                    {
+                      path: 'vendors',
+                      element: <Vendors />,
                     },
                     {
                       path: 'client-groups',
