@@ -24,6 +24,7 @@ import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
 import { useCreateExpenseMutation } from 'store/api/expense/expenseApi';
 import { Button, Tooltip } from '@mui/material';
 import AddExpenseHead from '../ExpenseHeads/AddExpenseHead';
+import AddVendor from 'views/pages/StoreManagement/Vendors/AddVendor';
 
 const style = {
   position: 'absolute',
@@ -43,6 +44,7 @@ const AddExpense = ({ open, handleClose }) => {
   const [vendor, setVendor] = useState(null);
 
   const [headOpen, setHeadOpen] = useState(false);
+  const [vendorOpen, setVendorOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -134,6 +136,7 @@ const AddExpense = ({ open, handleClose }) => {
           open={headOpen}
           handleClose={() => setHeadOpen(false)}
         />
+        <AddVendor open={vendorOpen} handleClose={() => setVendorOpen(false)} />
         {/* end popup items */}
         <Box
           component="form"
@@ -188,17 +191,30 @@ const AddExpense = ({ open, handleClose }) => {
                 </Tooltip>
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <ControlledAutoComplete
-                label="Select Vendor"
-                value={vendor}
-                options={allVendors}
-                getOptionLabel={(option) => option.vendorName}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                onChange={(e, newValue) => setVendor(newValue)}
-              />
+            <Grid item xs={12} md={7}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ControlledAutoComplete
+                  label="Select Vendor"
+                  value={vendor}
+                  options={allVendors}
+                  getOptionLabel={(option) => option.vendorName}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  onChange={(e, newValue) => setVendor(newValue)}
+                />
+                <Tooltip title="Add Vendor">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setVendorOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <TextField
                 fullWidth
                 label="Amount"

@@ -20,7 +20,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 600 },
+  width: { xs: 350, sm: 450, md: 525 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -99,8 +99,8 @@ const UpdateVendor = ({ open, handleClose, preData }) => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+          <Grid container rowSpacing={2} columnSpacing={1.5}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 required
@@ -109,7 +109,7 @@ const UpdateVendor = ({ open, handleClose, preData }) => {
                 {...register('vendorName', { required: true })}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Vendor Name (BN)"
@@ -117,7 +117,7 @@ const UpdateVendor = ({ open, handleClose, preData }) => {
                 {...register('vendorNameBn')}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 label="Mobile No"
@@ -125,7 +125,7 @@ const UpdateVendor = ({ open, handleClose, preData }) => {
                 {...register('mobile')}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 label="Address"

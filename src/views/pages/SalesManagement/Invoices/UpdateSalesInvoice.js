@@ -25,7 +25,7 @@ import {
   IconFileInvoice,
   IconSquareRoundedPlusFilled,
 } from '@tabler/icons-react';
-import { InputBase, TableRow } from '@mui/material';
+import { Button, InputBase, TableRow } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { useUpdateInvoiceMutation } from 'store/api/invoice/invoiceApi';
 import {
@@ -33,6 +33,7 @@ import {
   StyledTableCellWithBorder,
   StyledTableRow,
 } from 'ui-component/table-component';
+import NewPaymentReceive from 'views/pages/Financial/ReceivePayment/NewPaymentReceive';
 
 const style = {
   position: 'absolute',
@@ -61,7 +62,6 @@ const UpdateSalesInvoice = ({
     (el) => el.id === preData?.customerId
   );
 
-
   const voucherDetails = preData?.voucherDetails || [];
   const voucherAmount = totalSum(voucherDetails, 'receiveAmount');
 
@@ -74,6 +74,8 @@ const UpdateSalesInvoice = ({
   );
   const [receiveAmount, setReceiveAmount] = useState(voucherAmount || 0);
   const [discount, setDiscount] = useState(preData?.discount);
+
+  const [receiveOpen, setReceiveOpen] = useState(false);
   // hook form
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
@@ -210,7 +212,10 @@ const UpdateSalesInvoice = ({
         </Box>
         <Divider sx={{ mb: 2, mt: 1 }} />
         {/* popup items */}
-
+        <NewPaymentReceive
+          open={receiveOpen}
+          handleClose={() => setReceiveOpen(false)}
+        />
         {/* end popup items */}
         <Box
           component="form"
@@ -219,8 +224,8 @@ const UpdateSalesInvoice = ({
         >
           <Grid container spacing={2}>
             <Grid item xs={12} md={7}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
+              <Grid container rowSpacing={2} columnSpacing={1.5}>
+                <Grid item xs={12} md={5}>
                   <LocalizationProvider dateAdapter={AdapterMoment}>
                     <DatePicker
                       label="Invoice Date"
@@ -242,7 +247,7 @@ const UpdateSalesInvoice = ({
                     />
                   </LocalizationProvider>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={7}>
                   <Autocomplete
                     value={customer}
                     disabled
@@ -256,6 +261,16 @@ const UpdateSalesInvoice = ({
                       <TextField {...params} label="Select Customer" required />
                     )}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    onClick={() => setReceiveOpen(true)}
+                  >
+                    Advanced Receive
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
