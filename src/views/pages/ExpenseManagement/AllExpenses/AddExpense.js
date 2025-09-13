@@ -161,28 +161,52 @@ const AddExpense = ({ open, handleClose }) => {
         >
           <Grid container rowSpacing={2} columnSpacing={1.5}>
             <Grid item xs={12} md={6}>
-              <LocalizationProvider dateAdapter={AdapterMoment}>
-                <DatePicker
-                  label="Date"
-                  views={['year', 'month', 'day']}
-                  inputFormat="DD/MM/YYYY"
-                  value={date}
-                  onChange={(newValue) => {
-                    setDate(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      required
-                      size="small"
-                      autoComplete="off"
-                    />
-                  )}
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ControlledAutoComplete
+                  label="Expense Head"
+                  required
+                  value={expenseHead}
+                  options={allExpenseHeads}
+                  getOptionLabel={(option) => option.label}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  onChange={(e, newValue) => setExpenseHead(newValue)}
                 />
-              </LocalizationProvider>
+                <Tooltip title="Add Head">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
             </Grid>
-
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ControlledAutoComplete
+                  label="Expense Details"
+                  value={expenseSubHead}
+                  options={allExpenseSubHeads}
+                  getOptionLabel={(option) => option.label}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  onChange={(e, newValue) => setExpenseSubHead(newValue)}
+                />
+                <Tooltip title="Add Details">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setSubHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+            </Grid>
             <Grid item xs={12} md={6}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <ControlledAutoComplete
@@ -207,55 +231,7 @@ const AddExpense = ({ open, handleClose }) => {
               </Box>
             </Grid>
 
-            <Grid item xs={12} md={4.5}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <ControlledAutoComplete
-                  label="Expense Head"
-                  required
-                  value={expenseHead}
-                  options={allExpenseHeads}
-                  getOptionLabel={(option) => option.label}
-                  isOptionEqualToValue={(item, value) => item.id === value.id}
-                  onChange={(e, newValue) => setExpenseHead(newValue)}
-                />
-                <Tooltip title="Add Head">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    sx={{ minWidth: 0, ml: 0.5 }}
-                    onClick={() => setHeadOpen(true)}
-                  >
-                    <AddIcon />
-                  </Button>
-                </Tooltip>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={4.5}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <ControlledAutoComplete
-                  label="Expense Details"
-                  value={expenseSubHead}
-                  options={allExpenseSubHeads}
-                  getOptionLabel={(option) => option.label}
-                  isOptionEqualToValue={(item, value) => item.id === value.id}
-                  onChange={(e, newValue) => setExpenseSubHead(newValue)}
-                />
-                <Tooltip title="Add Details">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    sx={{ minWidth: 0, ml: 0.5 }}
-                    onClick={() => setSubHeadOpen(true)}
-                  >
-                    <AddIcon />
-                  </Button>
-                </Tooltip>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 label="Amount"
@@ -265,7 +241,30 @@ const AddExpense = ({ open, handleClose }) => {
                 {...register('amount', { required: true, valueAsNumber: true })}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={4}>
+              <LocalizationProvider dateAdapter={AdapterMoment}>
+                <DatePicker
+                  label="Date"
+                  views={['year', 'month', 'day']}
+                  inputFormat="DD/MM/YYYY"
+                  value={date}
+                  onChange={(newValue) => {
+                    setDate(newValue);
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      required
+                      size="small"
+                      autoComplete="off"
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+            </Grid>
+
+            <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 label="Remarks"
