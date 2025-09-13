@@ -20,7 +20,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 300, sm: 450 },
+  width: { xs: 300, sm: 400 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -87,7 +87,7 @@ const AddExpenseHead = ({ open, handleClose }) => {
             <CloseIcon sx={{ fontSize: 18 }} />
           </IconButton>
         </Box>
-        <Divider sx={{ mb: 2 }} />
+        <Divider sx={{ mb: 2, mt: 1 }} />
         <Box
           component="form"
           autoComplete="off"

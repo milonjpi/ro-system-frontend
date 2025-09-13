@@ -26,6 +26,7 @@ export const api = createApi({
     'equipmentIn',
     'equipmentOut',
     'expense-head',
+    'expense-sub-head',
     'expense',
     'asset',
     'fixed-asset',

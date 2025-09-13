@@ -40,10 +40,10 @@ const PrintAllExpenses = forwardRef(
                 SN
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Date</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Vendor</StyledTableCellWithBorder>
               <StyledTableCellWithBorder>
                 Expense Head
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Vendor</StyledTableCellWithBorder>
               <StyledTableCellWithBorder>
                 Expense Details
               </StyledTableCellWithBorder>
@@ -71,12 +71,8 @@ const PrintAllExpenses = forwardRef(
             )}
             {allExpenses?.length ? (
               <TableRow>
-                <StyledTableCellWithBorder
-                  colSpan={6}
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                >
-                  Total:
+                <StyledTableCellWithBorder colSpan={6} sx={{ fontWeight: 700 }}>
+                  TOTAL:
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
                   align="right"

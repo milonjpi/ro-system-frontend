@@ -10,10 +10,14 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import { useUpdateAssetMutation } from 'store/api/asset/assetApi';
+import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
+import { useUpdateExpenseSubHeadMutation } from 'store/api/expenseSubHead/expenseSubHeadApi';
+import { Autocomplete, Button, Tooltip } from '@mui/material';
+import AddExpenseHead from '../ExpenseHeads/AddExpenseHead';
 
 const style = {
   position: 'absolute',
@@ -27,17 +31,38 @@ const style = {
   p: 2,
 };
 
-const UpdateAsset = ({ open, handleClose, preData }) => {
+const UpdateSubHead = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
+  const [expenseHead, setExpenseHead] = useState(preData?.expenseHead || null);
+
+  const [headOpen, setHeadOpen] = useState(false);
+
+  // library
+  const { data: expenseHeadData } = useGetExpenseHeadsQuery(
+    { limit: 500, sortBy: 'label', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenseHeads = expenseHeadData?.expenseHeads || [];
+  // end library
+
   const { register, handleSubmit } = useForm({ defaultValues: preData });
 
   const dispatch = useDispatch();
 
-  const [updateAsset] = useUpdateAssetMutation();
+  const [updateExpenseSubHead] = useUpdateExpenseSubHeadMutation();
+
   const onSubmit = async (data) => {
+    const newData = {
+      expenseHeadId: expenseHead?.id,
+      label: data?.label,
+    };
     try {
       setLoading(true);
-      const res = await updateAsset({ id: preData?.id, body: data }).unwrap();
+      const res = await updateExpenseSubHead({
+        id: preData?.id,
+        body: newData,
+      }).unwrap();
       if (res.success) {
         handleClose();
         setLoading(false);
@@ -45,7 +70,7 @@ const UpdateAsset = ({ open, handleClose, preData }) => {
           setToast({
             open: true,
             variant: 'success',
-            message: res?.message,
+            message: 'Details Updated Successfully',
           })
         );
       }
@@ -72,7 +97,7 @@ const UpdateAsset = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            Edit Asset Title
+            Edit Expense Details
           </Typography>
           <IconButton
             color="error"
@@ -83,6 +108,12 @@ const UpdateAsset = ({ open, handleClose, preData }) => {
           </IconButton>
         </Box>
         <Divider sx={{ mb: 2, mt: 1 }} />
+        {/* popup items */}
+        <AddExpenseHead
+          open={headOpen}
+          handleClose={() => setHeadOpen(false)}
+        />
+        {/* end popup items */}
         <Box
           component="form"
           autoComplete="off"
@@ -90,14 +121,42 @@ const UpdateAsset = ({ open, handleClose, preData }) => {
         >
           <Grid container spacing={2}>
             <Grid item xs={12}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Autocomplete
+                  value={expenseHead}
+                  size="small"
+                  fullWidth
+                  options={allExpenseHeads}
+                  getOptionLabel={(option) => option.label}
+                  onChange={(e, newValue) => setExpenseHead(newValue)}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Expense Head" required />
+                  )}
+                />
+                <Tooltip title="Add Head">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 required
-                label="Asset Title"
+                label="Expense Details"
                 size="small"
                 {...register('label', { required: true })}
               />
             </Grid>
+
             <Grid item xs={12}>
               <LoadingButton
                 fullWidth
@@ -119,4 +178,4 @@ const UpdateAsset = ({ open, handleClose, preData }) => {
   );
 };
 
-export default UpdateAsset;
+export default UpdateSubHead;

@@ -104,7 +104,7 @@ const AddAccountHead = ({ open, handleClose }) => {
             <CloseIcon sx={{ fontSize: 18 }} />
           </IconButton>
         </Box>
-        <Divider sx={{ mb: 2 }} />
+        <Divider sx={{ mb: 2, mt: 1 }} />
         <Box
           component="form"
           autoComplete="off"

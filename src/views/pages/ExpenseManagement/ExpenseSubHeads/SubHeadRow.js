@@ -1,30 +1,30 @@
 import { IconEdit, IconTrashXFilled } from '@tabler/icons-react';
 import { useState } from 'react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
-import UpdateExpenseHead from './UpdateExpenseHead';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { useDeleteExpenseHeadMutation } from 'store/api/expenseHead/expenseHeadApi';
 import { setToast } from 'store/toastSlice';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
+import { useDeleteExpenseSubHeadMutation } from 'store/api/expenseSubHead/expenseSubHeadApi';
+import UpdateSubHead from './UpdateSubHead';
 
-const ExpenseHeadRow = ({ sn, data }) => {
+const SubHeadRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
   const dispatch = useDispatch();
-  const [deleteExpenseHead] = useDeleteExpenseHeadMutation();
+  const [deleteExpenseSubHead] = useDeleteExpenseSubHeadMutation();
 
   const handleDelete = async () => {
     setDialog(false);
     try {
-      const res = await deleteExpenseHead(data?.id).unwrap();
+      const res = await deleteExpenseSubHead(data?.id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
             open: true,
             variant: 'success',
-            message: res?.message,
+            message: 'Details Deleted Successfully',
           })
         );
       }
@@ -39,14 +39,12 @@ const ExpenseHeadRow = ({ sn, data }) => {
     }
   };
 
-  const docsCount =
-    (data?._count?.expenses || 0) +
-    (data?._count?.expenseSubHeads || 0) +
-    (data?._count?.distExpenses || 0);
+  const docsCount = data?._count?.expenses || 0;
 
   return (
     <StyledTableRow>
       <StyledTableCell align="center">{sn}</StyledTableCell>
+      <StyledTableCell>{data?.expenseHead?.label}</StyledTableCell>
       <StyledTableCell>{data?.label}</StyledTableCell>
       <StyledTableCell align="center" sx={{ minWidth: 85 }}>
         <Button
@@ -70,7 +68,7 @@ const ExpenseHeadRow = ({ sn, data }) => {
         </Button>
 
         {/* pop up items */}
-        <UpdateExpenseHead
+        <UpdateSubHead
           open={open}
           preData={data}
           handleClose={() => setOpen(false)}
@@ -78,7 +76,7 @@ const ExpenseHeadRow = ({ sn, data }) => {
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Delete Expense Head"
+          content="Delete Expense Details"
           handleDelete={handleDelete}
         />
         {/* end pop up items */}
@@ -87,4 +85,4 @@ const ExpenseHeadRow = ({ sn, data }) => {
   );
 };
 
-export default ExpenseHeadRow;
+export default SubHeadRow;

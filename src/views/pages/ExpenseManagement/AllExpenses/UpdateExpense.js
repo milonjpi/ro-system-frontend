@@ -24,6 +24,8 @@ import { useUpdateExpenseMutation } from 'store/api/expense/expenseApi';
 import { Button, Tooltip } from '@mui/material';
 import AddExpenseHead from '../ExpenseHeads/AddExpenseHead';
 import AddVendor from 'views/pages/StoreManagement/Vendors/AddVendor';
+import { useGetExpenseSubHeadsQuery } from 'store/api/expenseSubHead/expenseSubHeadApi';
+import AddSubHead from '../ExpenseSubHeads/AddSubHead';
 
 const style = {
   position: 'absolute',
@@ -40,14 +42,26 @@ const style = {
 const UpdateExpense = ({ open, handleClose, preData }) => {
   const [date, setDate] = useState(preData?.date);
   const [expenseHead, setExpenseHead] = useState(preData?.expenseHead || null);
+  const [expenseSubHead, setExpenseSubHead] = useState(
+    preData?.expenseSubHead || null
+  );
   const [vendor, setVendor] = useState(preData?.vendor || null);
 
   const [headOpen, setHeadOpen] = useState(false);
+  const [subHeadOpen, setSubHeadOpen] = useState(false);
   const [vendorOpen, setVendorOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit } = useForm({ defaultValues: preData });
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      ...preData,
+      remarks:
+        (preData?.expenseDetails
+          ? preData?.expenseDetails + (preData?.remarks ? ', ' : '')
+          : '') + (preData?.remarks || ''),
+    },
+  });
 
   // library
   const { data: expenseHeadData } = useGetExpenseHeadsQuery(
@@ -56,6 +70,13 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
   );
 
   const allExpenseHeads = expenseHeadData?.expenseHeads || [];
+
+  const { data: expenseSubHeadData } = useGetExpenseSubHeadsQuery(
+    { limit: 500, sortBy: 'label', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenseSubHeads = expenseSubHeadData?.expenseSubHeads || [];
 
   const { data: vendorData } = useVendorDetailsQuery('', {
     refetchOnMountOrArgChange: true,
@@ -73,9 +94,10 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
     const newData = {
       date,
       expenseHeadId: expenseHead?.id,
-      vendorId: vendor?.id,
+      expenseSubHeadId: expenseSubHead?.id || null,
+      vendorId: vendor?.id || null,
       amount: data?.amount,
-      expenseDetails: data?.expenseDetails || '',
+      expenseDetails: '',
       remarks: data?.remarks || '',
     };
     try {
@@ -128,11 +150,15 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
             <CloseIcon sx={{ fontSize: 18 }} />
           </IconButton>
         </Box>
-        <Divider sx={{ mb: 2 }} />
+        <Divider sx={{ mb: 2, mt: 1 }} />
         {/* popup items */}
         <AddExpenseHead
           open={headOpen}
           handleClose={() => setHeadOpen(false)}
+        />
+        <AddSubHead
+          open={subHeadOpen}
+          handleClose={() => setSubHeadOpen(false)}
         />
         <AddVendor open={vendorOpen} handleClose={() => setVendorOpen(false)} />
         {/* end popup items */}
@@ -141,8 +167,8 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+          <Grid container rowSpacing={2} columnSpacing={1.5}>
+            <Grid item xs={12} md={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DatePicker
                   label="Date"
@@ -165,30 +191,6 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
               </LocalizationProvider>
             </Grid>
 
-            <Grid item xs={12} md={8}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <ControlledAutoComplete
-                  label="Select Expense Head"
-                  required
-                  value={expenseHead}
-                  options={allExpenseHeads}
-                  getOptionLabel={(option) => option.label}
-                  isOptionEqualToValue={(item, value) => item.id === value.id}
-                  onChange={(e, newValue) => setExpenseHead(newValue)}
-                />
-                <Tooltip title="Add Head">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    sx={{ minWidth: 0, ml: 0.5 }}
-                    onClick={() => setHeadOpen(true)}
-                  >
-                    <AddIcon />
-                  </Button>
-                </Tooltip>
-              </Box>
-            </Grid>
             <Grid item xs={12} md={6}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <ControlledAutoComplete
@@ -212,7 +214,56 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
                 </Tooltip>
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+
+            <Grid item xs={12} md={4.5}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ControlledAutoComplete
+                  label="Expense Head"
+                  required
+                  value={expenseHead}
+                  options={allExpenseHeads}
+                  getOptionLabel={(option) => option.label}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  onChange={(e, newValue) => setExpenseHead(newValue)}
+                />
+                <Tooltip title="Add Head">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={4.5}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ControlledAutoComplete
+                  label="Expense Details"
+                  value={expenseSubHead}
+                  options={allExpenseSubHeads}
+                  getOptionLabel={(option) => option.label}
+                  isOptionEqualToValue={(item, value) => item.id === value.id}
+                  onChange={(e, newValue) => setExpenseSubHead(newValue)}
+                />
+                <Tooltip title="Add Details">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    sx={{ minWidth: 0, ml: 0.5 }}
+                    onClick={() => setSubHeadOpen(true)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+            </Grid>
+
+            <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
                 label="Amount"
@@ -220,14 +271,6 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
                 type="number"
                 required
                 {...register('amount', { required: true, valueAsNumber: true })}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Expense Details"
-                size="small"
-                {...register('expenseDetails')}
               />
             </Grid>
             <Grid item xs={12}>

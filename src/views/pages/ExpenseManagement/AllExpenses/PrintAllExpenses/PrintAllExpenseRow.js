@@ -10,16 +10,18 @@ const PrintAllExpenseRow = ({ sn, data }) => {
         {moment(data?.date).format('DD/MM/YYYY')}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
+        {data?.vendor?.vendorName || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
         {data?.expenseHead?.label}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.vendor ? data?.vendor?.vendorName : 'n/a'}
+        {data?.expenseSubHead?.label || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder sx={{ maxWidth: 200 }}>
-        {data?.expenseDetails || 'n/a'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.remarks || 'n/a'}
+        {(data?.expenseDetails
+          ? data?.expenseDetails + (data?.remarks ? ', ' : '')
+          : '') + (data?.remarks || '') || 'n/a'}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {data?.amount}

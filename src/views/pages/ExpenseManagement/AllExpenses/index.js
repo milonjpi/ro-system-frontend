@@ -20,7 +20,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MainCard from 'ui-component/cards/MainCard';
 import CardAction from 'ui-component/cards/CardAction';
 import { IconCloudDownload, IconPlus, IconPrinter } from '@tabler/icons-react';
-import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
 import { useGetExpensesQuery } from 'store/api/expense/expenseApi';
 import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
@@ -31,6 +31,7 @@ import moment from 'moment';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import PrintAllExpenses from './PrintAllExpenses';
+import { TableRow } from '@mui/material';
 
 const AllExpenses = () => {
   const [searchText, setSearchText] = useState('');
@@ -152,9 +153,9 @@ const AllExpenses = () => {
     ws['!cols'] = [
       { wch: 5 },
       { wch: 10 },
-      { wch: 22 },
       { wch: 20 },
-      { wch: 46 },
+      { wch: 22 },
+      { wch: 22 },
       { wch: 46 },
       { wch: 10 },
     ];
@@ -291,16 +292,26 @@ const AllExpenses = () => {
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 400 }}>
           <TableHead>
-            <StyledTableRow>
-              <StyledTableCell align="center">SN</StyledTableCell>
-              <StyledTableCell>Date</StyledTableCell>
-              <StyledTableCell>Expense Head</StyledTableCell>
-              <StyledTableCell>Vendor</StyledTableCell>
-              <StyledTableCell>Expense Details</StyledTableCell>
-              <StyledTableCell>Remarks</StyledTableCell>
-              <StyledTableCell align="right">Amount</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
-            </StyledTableRow>
+            <TableRow>
+              <StyledTableCellWithBorder align="center">
+                SN
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Date</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Vendor</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>
+                Expense Head
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>
+                Expense Details
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Remarks</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Amount
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="center">
+                Action
+              </StyledTableCellWithBorder>
+            </TableRow>
           </TableHead>
           <TableBody>
             {allExpenses?.length ? (
@@ -308,30 +319,33 @@ const AllExpenses = () => {
                 <ExpenseRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
-              <StyledTableRow>
-                <StyledTableCell colSpan={13} sx={{ border: 0 }} align="center">
+              <TableRow>
+                <StyledTableCellWithBorder
+                  colSpan={13}
+                  sx={{ border: 0 }}
+                  align="center"
+                >
                   {isLoading ? (
                     <LinearProgress sx={{ opacity: 0.5, py: 0.5 }} />
                   ) : (
                     'No Data'
                   )}
-                </StyledTableCell>
-              </StyledTableRow>
+                </StyledTableCellWithBorder>
+              </TableRow>
             )}
             {allExpenses?.length ? (
-              <StyledTableRow>
-                <StyledTableCell
-                  colSpan={6}
+              <TableRow>
+                <StyledTableCellWithBorder colSpan={6} sx={{ fontWeight: 700 }}>
+                  TOTAL:
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >
-                  Total:
-                </StyledTableCell>
-                <StyledTableCell align="right" sx={{ fontWeight: 700 }}>
                   {totalAmount}
-                </StyledTableCell>
-                <StyledTableCell></StyledTableCell>
-              </StyledTableRow>
+                </StyledTableCellWithBorder>
+                <StyledTableCellWithBorder></StyledTableCellWithBorder>
+              </TableRow>
             ) : null}
           </TableBody>
         </Table>

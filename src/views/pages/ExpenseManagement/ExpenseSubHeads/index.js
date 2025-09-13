@@ -15,13 +15,25 @@ import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
 import { useDebounced } from 'hooks';
 import { useGetExpenseHeadsQuery } from 'store/api/expenseHead/expenseHeadApi';
-import AddExpenseHead from './AddExpenseHead';
-import ExpenseHeadRow from './ExpenseHeadRow';
+import { useGetExpenseSubHeadsQuery } from 'store/api/expenseSubHead/expenseSubHeadApi';
+import { Autocomplete, TextField } from '@mui/material';
+import AddSubHead from './AddSubHead';
+import SubHeadRow from './SubHeadRow';
 
-const ExpenseHeads = () => {
+const ExpenseSubHeads = () => {
   const [searchText, setSearchText] = useState('');
+  const [expenseHead, setExpenseHead] = useState(null);
 
   const [open, setOpen] = useState(false);
+
+  // library
+  const { data: expenseHeadData } = useGetExpenseHeadsQuery(
+    { limit: 500, sortBy: 'label', sortOrder: 'asc' },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allExpenseHeads = expenseHeadData?.expenseHeads || [];
+  // end library
 
   // pagination
   const [page, setPage] = useState(0);
@@ -45,6 +57,10 @@ const ExpenseHeads = () => {
   query['sortBy'] = 'label';
   query['srtOrder'] = 'asc';
 
+  if (expenseHead) {
+    query['expenseHeadId'] = expenseHead?.id;
+  }
+
   // search term
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchText,
@@ -55,21 +71,21 @@ const ExpenseHeads = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetExpenseHeadsQuery(
+  const { data, isLoading } = useGetExpenseSubHeadsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allExpenseHeads = data?.expenseHeads || [];
+  const allExpenseSubHeads = data?.expenseSubHeads || [];
   const meta = data?.meta;
 
   let sn = page * rowsPerPage + 1;
   return (
     <MainCard
-      title="Expense Heads"
+      title="Expense Details"
       secondary={
         <CardAction
-          title="Add Expense Head"
+          title="Add Details"
           onClick={() => setOpen(true)}
           icon={<IconPlus />}
         />
@@ -91,10 +107,24 @@ const ExpenseHeads = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} md={3}>
+            <Autocomplete
+              value={expenseHead}
+              size="small"
+              fullWidth
+              options={allExpenseHeads}
+              getOptionLabel={(option) => option.label}
+              onChange={(e, newValue) => setExpenseHead(newValue)}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              renderInput={(params) => (
+                <TextField {...params} label="Expense Head" />
+              )}
+            />
+          </Grid>
         </Grid>
       </Box>
       {/* popup items */}
-      <AddExpenseHead open={open} handleClose={() => setOpen(false)} />
+      <AddSubHead open={open} handleClose={() => setOpen(false)} />
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
         <Table sx={{ minWidth: 450 }}>
@@ -102,13 +132,14 @@ const ExpenseHeads = () => {
             <StyledTableRow>
               <StyledTableCell align="center">SN</StyledTableCell>
               <StyledTableCell>Expense Head</StyledTableCell>
+              <StyledTableCell>Expense Details</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {allExpenseHeads?.length ? (
-              allExpenseHeads.map((item) => (
-                <ExpenseHeadRow key={item.id} sn={sn++} data={item} />
+            {allExpenseSubHeads?.length ? (
+              allExpenseSubHeads.map((item) => (
+                <SubHeadRow key={item.id} sn={sn++} data={item} />
               ))
             ) : (
               <StyledTableRow>
@@ -137,4 +168,4 @@ const ExpenseHeads = () => {
   );
 };
 
-export default ExpenseHeads;
+export default ExpenseSubHeads;

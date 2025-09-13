@@ -113,6 +113,9 @@ const Vendors = Loadable(
 const ExpenseHeads = Loadable(
   lazy(() => import('views/pages/ExpenseManagement/ExpenseHeads'))
 );
+const ExpenseSubHeads = Loadable(
+  lazy(() => import('views/pages/ExpenseManagement/ExpenseSubHeads'))
+);
 
 const AllExpenses = Loadable(
   lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
@@ -591,6 +594,10 @@ const MainRoutes = {
                     {
                       path: 'expense-heads',
                       element: <ExpenseHeads />,
+                    },
+                    {
+                      path: 'expense-details',
+                      element: <ExpenseSubHeads />,
                     },
                     {
                       path: 'account-types',

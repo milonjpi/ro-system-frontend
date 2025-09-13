@@ -27,16 +27,21 @@ const menuList = [
   },
   {
     id: 5,
+    label: 'Expense Details',
+    path: 'expense-details',
+  },
+  {
+    id: 6,
     label: 'Account Types',
     path: 'account-types',
   },
   {
-    id: 6,
+    id: 7,
     label: 'Account Heads',
     path: 'account-heads',
   },
   {
-    id: 7,
+    id: 8,
     label: 'Payment Methods',
     path: 'payment-methods',
   },

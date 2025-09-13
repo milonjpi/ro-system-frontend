@@ -1,14 +1,13 @@
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
 import { IconEdit, IconTrashXFilled } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import { setToast } from 'store/toastSlice';
 import moment from 'moment';
-import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useDeleteExpenseMutation } from 'store/api/expense/expenseApi';
 import UpdateExpense from './UpdateExpense';
+import { Button, TableRow } from '@mui/material';
 
 const ExpenseRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
@@ -41,37 +40,49 @@ const ExpenseRow = ({ sn, data }) => {
     }
   };
   return (
-    <StyledTableRow>
-      <StyledTableCell align="center">{sn}</StyledTableCell>
-      <StyledTableCell>
+    <TableRow>
+      <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
         {moment(data?.date).format('DD/MM/YYYY')}
-      </StyledTableCell>
-      <StyledTableCell>{data?.expenseHead?.label}</StyledTableCell>
-      <StyledTableCell>
-        {data?.vendor ? data?.vendor?.vendorName : 'n/a'}
-      </StyledTableCell>
-      <StyledTableCell sx={{ maxWidth: 200 }}>
-        {data?.expenseDetails || 'n/a'}
-      </StyledTableCell>
-      <StyledTableCell>{data?.remarks ? data?.remarks : 'n/a'}</StyledTableCell>
-      <StyledTableCell align="right">{data?.amount}</StyledTableCell>
-      <StyledTableCell align="center">
-        <ButtonGroup>
-          <IconButton
-            color="primary"
-            size="small"
-            onClick={() => setOpen(true)}
-          >
-            <IconEdit size={18} />
-          </IconButton>
-          <IconButton
-            size="small"
-            color="error"
-            onClick={() => setDialog(true)}
-          >
-            <IconTrashXFilled size={18} />
-          </IconButton>
-        </ButtonGroup>
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.vendor?.vendorName || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>
+        {data?.expenseHead?.label}
+      </StyledTableCellWithBorder>
+
+      <StyledTableCellWithBorder>
+        {data?.expenseSubHead?.label || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder sx={{ maxWidth: 200 }}>
+        {(data?.expenseDetails
+          ? data?.expenseDetails + (data?.remarks ? ', ' : '')
+          : '') + (data?.remarks || '') || 'n/a'}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {data?.amount}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          sx={{ minWidth: 0, mr: 0.5 }}
+          onClick={() => setOpen(true)}
+        >
+          <IconEdit size={14} />
+        </Button>
+        <Button
+          variant="contained"
+          size="small"
+          color="error"
+          sx={{ minWidth: 0 }}
+          onClick={() => setDialog(true)}
+        >
+          <IconTrashXFilled size={14} />
+        </Button>
+
         {/* popup items */}
         <ConfirmDialog
           open={dialog}
@@ -85,8 +96,8 @@ const ExpenseRow = ({ sn, data }) => {
           handleClose={() => setOpen(false)}
         />
         {/* end popup items */}
-      </StyledTableCell>
-    </StyledTableRow>
+      </StyledTableCellWithBorder>
+    </TableRow>
   );
 };
 
