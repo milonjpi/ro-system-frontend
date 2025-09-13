@@ -25,6 +25,11 @@ const menuList = [
     label: 'Advance Report',
     path: 'advance-report',
   },
+  {
+    id: 5,
+    label: 'Expense Summary',
+    path: 'expense-summary',
+  },
 ];
 
 const RoReport = () => {

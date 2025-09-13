@@ -58,6 +58,16 @@ const expenseApi = api.injectEndpoints({
       }),
       invalidatesTags: ['expense'],
     }),
+
+    // get expense head summary
+    expenseHeadSummary: build.query({
+      query: (params) => ({
+        url: `${EXPENSE_URL}/head-summary`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['expense', 'expense-head'],
+    }),
   }),
 });
 
@@ -67,4 +77,5 @@ export const {
   useCreateExpenseMutation,
   useUpdateExpenseMutation,
   useDeleteExpenseMutation,
+  useExpenseHeadSummaryQuery,
 } = expenseApi;

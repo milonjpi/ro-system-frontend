@@ -385,6 +385,9 @@ const ReportSummary = Loadable(
 const DailyReport = Loadable(
   lazy(() => import('views/pages/Report/DailyReport'))
 );
+const ExpenseHeadSummary = Loadable(
+  lazy(() => import('views/pages/RoManagement/RoReport/ExpenseHeadSummary'))
+);
 
 // payment report
 // const PaymentReport = Loadable(
@@ -626,6 +629,10 @@ const MainRoutes = {
                     {
                       path: 'advance-report',
                       element: <AdvanceReport />,
+                    },
+                    {
+                      path: 'expense-summary',
+                      element: <ExpenseHeadSummary />,
                     },
                   ],
                 },
