@@ -15,10 +15,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
-import { useForm, useWatch } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
-import { electricMonths, electricYears } from 'assets/data';
+import { electricMonths, electricYears, paymentMethods } from 'assets/data';
 import { useCreateElectricityBillMutation } from 'store/api/electricityBill/electricityBillApi';
 
 const style = {
@@ -26,7 +26,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 350, sm: 500, md: 750 },
+  width: { xs: 350, sm: 500, md: 850, lg: 950 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -155,28 +155,11 @@ const AddElectricBill = ({ open, handleClose }) => {
                       fullWidth
                       size="small"
                       autoComplete="off"
+                      required
                     />
                   )}
                 />
               </LocalizationProvider>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Autocomplete
-                value={meter}
-                loading={meterLoading}
-                size="small"
-                fullWidth
-                options={allMeters}
-                getOptionLabel={(option) =>
-                  option.label +
-                  (option.smsAccount ? ', ' + option.smsAccount : '')
-                }
-                onChange={(e, newValue) => setMeter(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="Select Meter" required />
-                )}
-              />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <Autocomplete
@@ -202,83 +185,148 @@ const AddElectricBill = ({ open, handleClose }) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Autocomplete
-                value={status}
-                size="small"
-                fullWidth
-                options={['Due', 'Paid']}
-                onChange={(e, newValue) => setStatus(newValue)}
-                renderInput={(params) => (
-                  <TextField {...params} label="Paying Status" required />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <TextField
-                fullWidth
-                label="Meter Reading"
-                size="small"
-                type="number"
-                required
-                InputProps={{ inputProps: { min: 1 } }}
-                {...register('meterReading', {
-                  valueAsNumber: true,
-                  required: true,
-                })}
-              />
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <TextField
-                fullWidth
-                label="Unit"
-                size="small"
-                type="number"
-                required
-                InputProps={{ inputProps: { min: 1 } }}
-                {...register('unit', { valueAsNumber: true, required: true })}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={3}>
-              <TextField
-                fullWidth
-                label="Net Bill"
-                size="small"
-                type="number"
-                InputProps={{ inputProps: { min: 1 } }}
-                required
-                {...register('netBill', {
-                  required: true,
-                  valueAsNumber: true,
-                })}
-              />
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Typography>Service Charge</Typography>
-              <Typography sx={{ fontWeight: 700 }}>
-                {netBill && amount ? amount - netBill : 0}
+            <Grid item xs={12}>
+              <Typography
+                sx={{
+                  p: 1,
+                  background: '#ede7f6',
+                  color: '#5e35b1',
+                  textAlign: 'center',
+                  borderRadius: 1,
+                }}
+              >
+                Bill Details
               </Typography>
             </Grid>
-            <Grid item xs={12} md={3}>
-              <TextField
-                fullWidth
-                label="Total Bill"
-                size="small"
-                type="number"
-                InputProps={{ inputProps: { min: 1 } }}
-                required
-                {...register('amount', { required: true, valueAsNumber: true })}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Paid By"
-                size="small"
-                required
-                {...register('paidBy', { required: true })}
-              />
+            <Grid item xs={12} sx={{ overflow: 'auto' }}>
+              <Box sx={{ minWidth: 800 }}>
+                {allMeters?.map((el, index) => (
+                  <Grid
+                    key={index}
+                    container
+                    columnSpacing={1}
+                    rowSpacing={2}
+                    sx={{ mb: allMeters?.length !== index + 1 && 1.5 }}
+                  >
+                    <Grid item xs={3}>
+                      <Controller
+                        render={({ field: { onChange, value } }) => (
+                          <Autocomplete
+                            value={el}
+                            size="small"
+                            disableClearable
+                            options={[{ ...el }]}
+                            fullWidth
+                            getOptionLabel={(option) =>
+                              option.smsAccount + ', ' + option.label
+                            }
+                            isOptionEqualToValue={(item, value) =>
+                              item.id === value.id
+                            }
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                label="Select Meter"
+                                variant="outlined"
+                                required
+                                InputProps={{ readOnly: true }}
+                              />
+                            )}
+                            onChange={(e, data) => {
+                              onChange(data);
+                              return data;
+                            }}
+                          />
+                        )}
+                        name={`billDetails[${index}].meter`}
+                        control={control}
+                      />
+                    </Grid>
+                    <Grid item xs={2.1}>
+                      <TextField
+                        fullWidth
+                        label="Previous Reading"
+                        size="small"
+                        type="number"
+                        required
+                        InputProps={{ inputProps: { min: 1 } }}
+                        {...register(`billDetails[${index}].previousReading`, {
+                          valueAsNumber: true,
+                          required: true,
+                        })}
+                      />
+                    </Grid>
+                    <Grid item xs={1.8}>
+                      <TextField
+                        fullWidth
+                        label="Meter Reading"
+                        size="small"
+                        type="number"
+                        required
+                        InputProps={{ inputProps: { min: 1 } }}
+                        {...register(`billDetails[${index}].meterReading`, {
+                          valueAsNumber: true,
+                          required: true,
+                        })}
+                      />
+                    </Grid>
+                    <Grid item xs={1.5}>
+                      <TextField
+                        fullWidth
+                        label="Unit"
+                        size="small"
+                        type="number"
+                        required
+                        InputProps={{ inputProps: { min: 1 } }}
+                        {...register(`billDetails[${index}].unit`, {
+                          valueAsNumber: true,
+                          required: true,
+                        })}
+                      />
+                    </Grid>
+                    <Grid item xs={1.8}>
+                      <TextField
+                        fullWidth
+                        label="Total Bill"
+                        size="small"
+                        type="number"
+                        InputProps={{ inputProps: { min: 1 } }}
+                        required
+                        {...register(`billDetails[${index}].amount`, {
+                          required: true,
+                          valueAsNumber: true,
+                        })}
+                      />
+                    </Grid>
+                    <Grid item xs={1.8}>
+                      <Controller
+                        render={({ field: { onChange, value } }) => (
+                          <Autocomplete
+                            size="small"
+                            options={paymentMethods}
+                            fullWidth
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                label="Paid By"
+                                variant="outlined"
+                                required
+                              />
+                            )}
+                            onChange={(e, data) => {
+                              onChange(data);
+                              return data;
+                            }}
+                          />
+                        )}
+                        name={`billDetails[${index}].paidBy`}
+                        rules={[{ required: true }]}
+                        control={control}
+                      />
+                    </Grid>
+                  </Grid>
+                ))}
+              </Box>
             </Grid>
 
             <Grid item xs={12}>

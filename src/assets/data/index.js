@@ -210,3 +210,5 @@ export const electricYearIndex = {
   11: '2025',
   12: '2026',
 };
+
+export const paymentMethods = ['CASH', 'BKASH', 'NAGAD', 'ROCKET', 'BANK'];

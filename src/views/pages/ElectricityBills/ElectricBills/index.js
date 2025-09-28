@@ -29,7 +29,6 @@ const ElectricBills = () => {
   const [meter, setMeter] = useState(null);
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
-  const [status, setStatus] = useState(null);
 
   const [open, setOpen] = useState(false);
 
@@ -78,10 +77,6 @@ const ElectricBills = () => {
 
   if (month) {
     query['month'] = month;
-  }
-
-  if (status) {
-    query['status'] = status;
   }
 
   const { data, isLoading } = useGetElectricityBillsQuery(
@@ -159,7 +154,7 @@ const ElectricBills = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             <Autocomplete
               value={meter}
               loading={meterLoading}
@@ -167,8 +162,7 @@ const ElectricBills = () => {
               fullWidth
               options={allMeters}
               getOptionLabel={(option) =>
-                option.label +
-                (option.smsAccount ? ', ' + option?.smsAccount : '')
+                option.smsAccount + ', ' + option?.label
               }
               onChange={(e, newValue) => setMeter(newValue)}
               isOptionEqualToValue={(item, value) => item.id === value.id}
@@ -177,7 +171,7 @@ const ElectricBills = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={2.5}>
             <Autocomplete
               value={year}
               size="small"
@@ -187,7 +181,7 @@ const ElectricBills = () => {
               renderInput={(params) => <TextField {...params} label="Year" />}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={2.5}>
             <Autocomplete
               value={month}
               size="small"
@@ -195,16 +189,6 @@ const ElectricBills = () => {
               options={electricMonths}
               onChange={(e, newValue) => setMonth(newValue)}
               renderInput={(params) => <TextField {...params} label="Month" />}
-            />
-          </Grid>
-          <Grid item xs={12} md={2}>
-            <Autocomplete
-              value={status}
-              size="small"
-              fullWidth
-              options={['Due', 'Paid']}
-              onChange={(e, newValue) => setStatus(newValue)}
-              renderInput={(params) => <TextField {...params} label="Status" />}
             />
           </Grid>
         </Grid>
