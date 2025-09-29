@@ -17,9 +17,11 @@ import { useDebounced } from 'hooks';
 import AddMeterInfo from './AddMeterInfo';
 import MeterInfoRow from './MeterInfoRow';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const MeterInfo = () => {
   const [searchText, setSearchText] = useState('');
+  const [status, setStatus] = useState(true);
 
   const [open, setOpen] = useState(false);
 
@@ -42,6 +44,7 @@ const MeterInfo = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
+  query['isActive'] = status;
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -89,6 +92,20 @@ const MeterInfo = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} md={4}>
+            <FormControl fullWidth size="small">
+              <InputLabel id="status-select-label">Status</InputLabel>
+              <Select
+                labelId="status-select-label"
+                value={status}
+                label="Age"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <MenuItem value={true}>Active</MenuItem>
+                <MenuItem value={false}>Inactive</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
       </Box>
       {/* popup items */}
@@ -104,6 +121,7 @@ const MeterInfo = () => {
               <StyledTableCell>Owner</StyledTableCell>
               <StyledTableCell>Location</StyledTableCell>
               <StyledTableCell>Remarks</StyledTableCell>
+              <StyledTableCell align="center">Status</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>

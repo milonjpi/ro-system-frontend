@@ -20,6 +20,22 @@ const electricityBillApi = api.injectEndpoints({
       },
       providesTags: ['electricityBill'],
     }),
+    // get all group
+    getGroupElectricityBills: build.query({
+      query: (params) => ({
+        url: `${ELECTRICITY_BILL_URL}/group`,
+        method: 'GET',
+        params: params,
+      }),
+      transformResponse: (response) => {
+        return {
+          electricityBills: response?.data?.data,
+          meta: response?.meta,
+          sum: response?.data?.sum,
+        };
+      },
+      providesTags: ['electricityBill'],
+    }),
 
     // month summary
     getElectricMonthSummary: build.query({
@@ -57,7 +73,17 @@ const electricityBillApi = api.injectEndpoints({
         method: 'POST',
         data: data,
       }),
-      invalidatesTags: ['electricityBill'],
+      invalidatesTags: ['electricityBill', 'meter'],
+    }),
+
+    // create many
+    createManyElectricityBill: build.mutation({
+      query: (data) => ({
+        url: `${ELECTRICITY_BILL_URL}/create-many`,
+        method: 'POST',
+        data: data,
+      }),
+      invalidatesTags: ['electricityBill', 'meter'],
     }),
 
     // update
@@ -67,7 +93,7 @@ const electricityBillApi = api.injectEndpoints({
         method: 'PATCH',
         data: data?.body,
       }),
-      invalidatesTags: ['electricityBill'],
+      invalidatesTags: ['electricityBill', 'meter'],
     }),
 
     // delete
@@ -83,10 +109,12 @@ const electricityBillApi = api.injectEndpoints({
 
 export const {
   useGetElectricityBillsQuery,
+  useGetGroupElectricityBillsQuery,
   useGetElectricMonthSummaryQuery,
   useGetElectricYearSummaryQuery,
   useGetSingleElectricityBillQuery,
   useCreateElectricityBillMutation,
+  useCreateManyElectricityBillMutation,
   useUpdateElectricityBillMutation,
   useDeleteElectricityBillMutation,
 } = electricityBillApi;

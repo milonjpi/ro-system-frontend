@@ -14,8 +14,6 @@ const PrintElectricBills = forwardRef(
 
     // calculation
     const totalUnit = printSum?._sum?.unit || 0;
-    const totalNetBill = printSum?._sum?.netBill || 0;
-    const totalServiceCharge = printSum?._sum?.serviceCharge || 0;
     const totalAmount = printSum?._sum?.amount || 0;
     return (
       <Box component="div" ref={ref}>
@@ -34,26 +32,25 @@ const PrintElectricBills = forwardRef(
               <StyledTableCellWithBorder align="center">
                 SN
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Paid Date</StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Meter Info</StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Year</StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Month</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Paid Date</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Paid By</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Meter Info</StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                Reading
+                Previous Reading
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Present Reading
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
                 Unit
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                Net Bill
+                Amount
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                Service Charge
+                Total Amount
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder align="right">
-                Total Bill
-              </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Paid By</StyledTableCellWithBorder>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -74,7 +71,7 @@ const PrintElectricBills = forwardRef(
             )}
             {allElectricityBills?.length ? (
               <TableRow>
-                <StyledTableCellWithBorder colSpan={6} sx={{ fontWeight: 700 }}>
+                <StyledTableCellWithBorder colSpan={7} sx={{ fontWeight: 700 }}>
                   TOTAL
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
@@ -87,13 +84,7 @@ const PrintElectricBills = forwardRef(
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >
-                  {totalNetBill}
-                </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                >
-                  {totalServiceCharge}
+                  {totalAmount}
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
                   align="right"
@@ -101,10 +92,6 @@ const PrintElectricBills = forwardRef(
                 >
                   {totalAmount}
                 </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                ></StyledTableCellWithBorder>
               </TableRow>
             ) : null}
           </TableBody>

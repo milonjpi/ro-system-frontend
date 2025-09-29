@@ -9,17 +9,17 @@ import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
-import { Controller, useForm, useWatch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import { useGetMetersQuery } from 'store/api/meter/meterApi';
-import { electricMonths, electricYears, paymentMethods } from 'assets/data';
-import { useCreateElectricityBillMutation } from 'store/api/electricityBill/electricityBillApi';
+import { useGetSmsAccountsQuery } from 'store/api/meter/meterApi';
+import { electricMonths, electricYears } from 'assets/data';
+import { useCreateManyElectricityBillMutation } from 'store/api/electricityBill/electricityBillApi';
+import ElectricBillField from './ElectricBillField';
+import { useEffect } from 'react';
+import { useMemo } from 'react';
 
 const style = {
   position: 'absolute',
@@ -35,66 +35,54 @@ const style = {
 
 const AddElectricBill = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [date, setDate] = useState(null);
-  const [meter, setMeter] = useState(null);
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
-  const [status, setStatus] = useState(null);
 
   // library
-  const { data: meterData, isLoading: meterLoading } = useGetMetersQuery(
+  const { data: meterData } = useGetSmsAccountsQuery(
     { limit: 100, sortBy: 'label', sortOrder: 'asc' },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allMeters = meterData?.meters || [];
+  const allMeters = useMemo(() => meterData?.data || [], [meterData]);
   // end library
 
-  const { register, handleSubmit, control, reset } = useForm();
+  const { control, register, handleSubmit, setValue, reset } = useForm({
+    defaultValues: {
+      month: null,
+      year: null,
+      billDetails: [],
+    },
+  });
 
   const dispatch = useDispatch();
 
-  const [createElectricityBill] = useCreateElectricityBillMutation();
-
-  // watch value
-  const netBill = useWatch({ control, name: 'netBill' });
-  const amount = useWatch({ control, name: 'amount' });
+  const [createManyElectricityBill] = useCreateManyElectricityBillMutation();
 
   const onSubmit = async (data) => {
-    if (data.netBill > data?.amount) {
-      return dispatch(
-        setToast({
-          open: true,
-          variant: 'error',
-          message: 'Net Bill is Greater than Total Bill',
-        })
-      );
-    }
-    const newData = {
-      date: date,
-      meterId: meter?.id,
+    const newData = data?.billDetails?.map((el) => ({
+      date: el.date,
+      meterId: el.meter?.id,
       month: month,
       year: year,
-      meterReading: data?.meterReading,
-      unit: data?.unit,
-      netBill: data?.netBill,
-      serviceCharge: data?.amount - data?.netBill,
-      amount: data?.amount,
-      paidBy: data?.paidBy,
-      status: status,
-    };
+      previousReading: el.previousReading || 0,
+      meterReading: el.meterReading || 0,
+      unit: Math.max((el.meterReading || 0) - (el.previousReading || 0), 0),
+      amount: el.amount,
+      paidBy: el.paidBy,
+      remarks: el.remarks || '',
+      status: 'Paid',
+    }));
+
     try {
       setLoading(true);
-      const res = await createElectricityBill({ ...newData }).unwrap();
+      const res = await createManyElectricityBill({ data: newData }).unwrap();
       if (res.success) {
         handleClose();
         setLoading(false);
         reset();
-        setDate(null);
-        setMeter(null);
         setYear(null);
         setMonth(null);
-        setStatus(null);
         dispatch(
           setToast({
             open: true,
@@ -114,6 +102,22 @@ const AddElectricBill = ({ open, handleClose }) => {
       );
     }
   };
+
+  useEffect(() => {
+    if (allMeters.length) {
+      reset({
+        billDetails: allMeters.map((el) => ({
+          date: null,
+          meter: el,
+          previousReading: el.electricityBills?.[0]?.meterReading || 0,
+          meterReading: '',
+          unit: 0,
+          amount: '',
+          paidBy: '',
+        })),
+      });
+    }
+  }, [allMeters, reset]);
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -139,29 +143,7 @@ const AddElectricBill = ({ open, handleClose }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <LocalizationProvider dateAdapter={AdapterMoment}>
-                <DatePicker
-                  label="Paid Date"
-                  views={['year', 'month', 'day']}
-                  inputFormat="DD/MM/YYYY"
-                  value={date}
-                  onChange={(newValue) => {
-                    setDate(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      size="small"
-                      autoComplete="off"
-                      required
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6}>
               <Autocomplete
                 value={year}
                 size="small"
@@ -173,7 +155,7 @@ const AddElectricBill = ({ open, handleClose }) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6}>
               <Autocomplete
                 value={month}
                 size="small"
@@ -201,130 +183,15 @@ const AddElectricBill = ({ open, handleClose }) => {
             <Grid item xs={12} sx={{ overflow: 'auto' }}>
               <Box sx={{ minWidth: 800 }}>
                 {allMeters?.map((el, index) => (
-                  <Grid
+                  <ElectricBillField
                     key={index}
-                    container
-                    columnSpacing={1}
-                    rowSpacing={2}
-                    sx={{ mb: allMeters?.length !== index + 1 && 1.5 }}
-                  >
-                    <Grid item xs={3}>
-                      <Controller
-                        render={({ field: { onChange, value } }) => (
-                          <Autocomplete
-                            value={el}
-                            size="small"
-                            disableClearable
-                            options={[{ ...el }]}
-                            fullWidth
-                            getOptionLabel={(option) =>
-                              option.smsAccount + ', ' + option.label
-                            }
-                            isOptionEqualToValue={(item, value) =>
-                              item.id === value.id
-                            }
-                            renderInput={(params) => (
-                              <TextField
-                                {...params}
-                                label="Select Meter"
-                                variant="outlined"
-                                required
-                                InputProps={{ readOnly: true }}
-                              />
-                            )}
-                            onChange={(e, data) => {
-                              onChange(data);
-                              return data;
-                            }}
-                          />
-                        )}
-                        name={`billDetails[${index}].meter`}
-                        control={control}
-                      />
-                    </Grid>
-                    <Grid item xs={2.1}>
-                      <TextField
-                        fullWidth
-                        label="Previous Reading"
-                        size="small"
-                        type="number"
-                        required
-                        InputProps={{ inputProps: { min: 1 } }}
-                        {...register(`billDetails[${index}].previousReading`, {
-                          valueAsNumber: true,
-                          required: true,
-                        })}
-                      />
-                    </Grid>
-                    <Grid item xs={1.8}>
-                      <TextField
-                        fullWidth
-                        label="Meter Reading"
-                        size="small"
-                        type="number"
-                        required
-                        InputProps={{ inputProps: { min: 1 } }}
-                        {...register(`billDetails[${index}].meterReading`, {
-                          valueAsNumber: true,
-                          required: true,
-                        })}
-                      />
-                    </Grid>
-                    <Grid item xs={1.5}>
-                      <TextField
-                        fullWidth
-                        label="Unit"
-                        size="small"
-                        type="number"
-                        required
-                        InputProps={{ inputProps: { min: 1 } }}
-                        {...register(`billDetails[${index}].unit`, {
-                          valueAsNumber: true,
-                          required: true,
-                        })}
-                      />
-                    </Grid>
-                    <Grid item xs={1.8}>
-                      <TextField
-                        fullWidth
-                        label="Total Bill"
-                        size="small"
-                        type="number"
-                        InputProps={{ inputProps: { min: 1 } }}
-                        required
-                        {...register(`billDetails[${index}].amount`, {
-                          required: true,
-                          valueAsNumber: true,
-                        })}
-                      />
-                    </Grid>
-                    <Grid item xs={1.8}>
-                      <Controller
-                        render={({ field: { onChange, value } }) => (
-                          <Autocomplete
-                            size="small"
-                            options={paymentMethods}
-                            fullWidth
-                            renderInput={(params) => (
-                              <TextField
-                                {...params}
-                                label="Paid By"
-                                variant="outlined"
-                                required
-                              />
-                            )}
-                            onChange={(e, data) => {
-                              onChange(data);
-                              return data;
-                            }}
-                          />
-                        )}
-                        name={`billDetails[${index}].paidBy`}
-                        rules={[{ required: true }]}
-                        control={control}
-                      />
-                    </Grid>
-                  </Grid>
+                    field={el}
+                    index={index}
+                    control={control}
+                    register={register}
+                    setValue={setValue}
+                    mb={allMeters?.length !== index + 1 && 2}
+                  />
                 ))}
               </Box>
             </Grid>

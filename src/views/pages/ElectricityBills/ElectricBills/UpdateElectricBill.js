@@ -15,10 +15,9 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
-import { useForm, useWatch } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import { useGetMetersQuery } from 'store/api/meter/meterApi';
-import { electricMonths, electricYears } from 'assets/data';
+import { electricMonths, electricYears, paymentMethods } from 'assets/data';
 import { useUpdateElectricityBillMutation } from 'store/api/electricityBill/electricityBillApi';
 
 const style = {
@@ -26,7 +25,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 350, sm: 500, md: 750 },
+  width: { xs: 350, sm: 500, md: 700 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -35,32 +34,30 @@ const style = {
 
 const UpdateElectricBill = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
-  const [date, setDate] = useState(preData?.date);
+  const [date, setDate] = useState(preData?.date || null);
   const [meter, setMeter] = useState(preData?.meter || null);
   const [year, setYear] = useState(preData?.year);
   const [month, setMonth] = useState(preData?.month);
-  const [status, setStatus] = useState(preData?.status);
-
-  // library
-  const { data: meterData, isLoading: meterLoading } = useGetMetersQuery(
-    { limit: 100, sortBy: 'label', sortOrder: 'asc' },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  const allMeters = meterData?.meters || [];
-  // end library
 
   const { register, handleSubmit, control } = useForm({
     defaultValues: preData,
   });
 
+  const previousReading = useWatch({
+    control,
+    name: 'previousReading',
+  });
+
+  const meterReading = useWatch({
+    control,
+    name: 'meterReading',
+  });
+
+  const unit = Math.max((meterReading || 0) - (previousReading || 0), 0);
+
   const dispatch = useDispatch();
 
   const [updateElectricityBill] = useUpdateElectricityBillMutation();
-
-  // watch value
-  const netBill = useWatch({ control, name: 'netBill' });
-  const amount = useWatch({ control, name: 'amount' });
 
   const onSubmit = async (data) => {
     if (data.netBill > data?.amount) {
@@ -77,13 +74,11 @@ const UpdateElectricBill = ({ open, handleClose, preData }) => {
       meterId: meter?.id,
       month: month,
       year: year,
-      meterReading: data?.meterReading,
-      unit: data?.unit,
-      netBill: data?.netBill,
-      serviceCharge: data?.amount - data?.netBill,
-      amount: data?.amount,
-      paidBy: data?.paidBy,
-      status: status,
+      previousReading: data.previousReading || 0,
+      meterReading: data.meterReading || 0,
+      unit: Math.max((data.meterReading || 0) - (data.previousReading || 0), 0),
+      amount: data.amount,
+      paidBy: data.paidBy,
     };
     try {
       setLoading(true);
@@ -138,6 +133,30 @@ const UpdateElectricBill = ({ open, handleClose, preData }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={2.5}>
+              <Autocomplete
+                value={year}
+                size="small"
+                fullWidth
+                options={electricYears}
+                onChange={(e, newValue) => setYear(newValue)}
+                renderInput={(params) => (
+                  <TextField {...params} label="Year" required />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3.5}>
+              <Autocomplete
+                value={month}
+                size="small"
+                fullWidth
+                options={electricMonths}
+                onChange={(e, newValue) => setMonth(newValue)}
+                renderInput={(params) => (
+                  <TextField {...params} label="Month" required />
+                )}
+              />
+            </Grid>
             <Grid item xs={12} md={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DatePicker
@@ -162,13 +181,12 @@ const UpdateElectricBill = ({ open, handleClose, preData }) => {
             <Grid item xs={12} md={6}>
               <Autocomplete
                 value={meter}
-                loading={meterLoading}
                 size="small"
                 fullWidth
-                options={allMeters}
+                disabled
+                options={preData?.meter ? [{ ...preData?.meter }] : []}
                 getOptionLabel={(option) =>
-                  option.label +
-                  (option.smsAccount ? ', ' + option.smsAccount : '')
+                  option.smsAccount + ', ' + option.label
                 }
                 onChange={(e, newValue) => setMeter(newValue)}
                 isOptionEqualToValue={(item, value) => item.id === value.id}
@@ -178,49 +196,27 @@ const UpdateElectricBill = ({ open, handleClose, preData }) => {
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Autocomplete
-                value={year}
-                size="small"
+              <TextField
                 fullWidth
-                options={electricYears}
-                onChange={(e, newValue) => setYear(newValue)}
-                renderInput={(params) => (
-                  <TextField {...params} label="Year" required />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Autocomplete
-                value={month}
+                label="Previous Reading"
                 size="small"
-                fullWidth
-                options={electricMonths}
-                onChange={(e, newValue) => setMonth(newValue)}
-                renderInput={(params) => (
-                  <TextField {...params} label="Month" required />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Autocomplete
-                value={status}
-                size="small"
-                fullWidth
-                options={['Due', 'Paid']}
-                onChange={(e, newValue) => setStatus(newValue)}
-                renderInput={(params) => (
-                  <TextField {...params} label="Paying Status" required />
-                )}
+                type="number"
+                required
+                InputProps={{ inputProps: { min: 0 } }}
+                {...register('previousReading', {
+                  valueAsNumber: true,
+                  required: true,
+                })}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <TextField
                 fullWidth
-                label="Meter Reading"
+                label="New Reading"
                 size="small"
                 type="number"
                 required
-                InputProps={{ inputProps: { min: 1 } }}
+                InputProps={{ inputProps: { min: 0 } }}
                 {...register('meterReading', {
                   valueAsNumber: true,
                   required: true,
@@ -230,52 +226,43 @@ const UpdateElectricBill = ({ open, handleClose, preData }) => {
             <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
+                value={unit}
                 label="Unit"
                 size="small"
                 type="number"
                 required
-                InputProps={{ inputProps: { min: 1 } }}
-                {...register('unit', { valueAsNumber: true, required: true })}
+                InputProps={{ inputProps: { min: 0, readOnly: true } }}
               />
             </Grid>
-            <Grid item xs={12} md={3}>
-              <TextField
-                fullWidth
-                label="Net Bill"
-                size="small"
-                type="number"
-                InputProps={{ inputProps: { min: 1 } }}
-                required
-                {...register('netBill', {
-                  required: true,
-                  valueAsNumber: true,
-                })}
-              />
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Typography>Service Charge</Typography>
-              <Typography sx={{ fontWeight: 700 }}>
-                {netBill && amount ? amount - netBill : 0}
-              </Typography>
-            </Grid>
+
             <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
                 label="Total Bill"
                 size="small"
                 type="number"
-                InputProps={{ inputProps: { min: 1 } }}
+                InputProps={{ inputProps: { min: 0 } }}
                 required
                 {...register('amount', { required: true, valueAsNumber: true })}
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Paid By"
-                size="small"
-                required
-                {...register('paidBy', { required: true })}
+            <Grid item xs={12} md={6}>
+              <Controller
+                name={'paidBy'}
+                control={control}
+                rules={{ required: true }}
+                render={({ field: paidField }) => (
+                  <Autocomplete
+                    value={paidField.value || null}
+                    options={paymentMethods}
+                    size="small"
+                    fullWidth
+                    renderInput={(params) => (
+                      <TextField {...params} label="Paid By" required />
+                    )}
+                    onChange={(_, data) => paidField.onChange(data)}
+                  />
+                )}
               />
             </Grid>
 

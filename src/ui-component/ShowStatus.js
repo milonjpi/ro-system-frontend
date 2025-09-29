@@ -2,9 +2,11 @@ import Typography from '@mui/material/Typography';
 
 const colors = {
   Pending: '#E53935',
+  Inactive: '#E53935',
   'In Progress': '#0747A6',
   Solved: '#006644',
   Approved: '#006644',
+  Active: '#006644',
   'In Stand': '#006644',
   Due: '#42526E',
   Partial: '#0747A6',
@@ -13,9 +15,11 @@ const colors = {
 
 const backgrounds = {
   Pending: '#ffcdd2',
+  Inactive: '#ffcdd2',
   'In Progress': '#DEEBFF',
   Solved: '#E3FCEF',
   Approved: '#E3FCEF',
+  Active: '#E3FCEF',
   'In Stand': '#E3FCEF',
   Due: '#DFE1E6',
   Partial: '#DEEBFF',

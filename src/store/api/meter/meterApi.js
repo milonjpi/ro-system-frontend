@@ -19,6 +19,15 @@ const meterApi = api.injectEndpoints({
       },
       providesTags: ['meter'],
     }),
+    // get sms account
+    getSmsAccounts: build.query({
+      query: (params) => ({
+        url: `${METER_URL}/sms-account`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['meter', 'electricityBill'],
+    }),
 
     // get single
     getSingleMeter: build.query({
@@ -63,6 +72,7 @@ const meterApi = api.injectEndpoints({
 export const {
   useGetMetersQuery,
   useGetSingleMeterQuery,
+  useGetSmsAccountsQuery,
   useCreateMeterMutation,
   useUpdateMeterMutation,
   useDeleteMeterMutation,

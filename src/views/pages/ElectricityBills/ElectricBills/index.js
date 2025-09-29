@@ -17,7 +17,7 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useGetMetersQuery } from 'store/api/meter/meterApi';
 import AddElectricBill from './AddElectricBill';
 import ElectricBillRow from './ElectricBillRow';
-import { useGetElectricityBillsQuery } from 'store/api/electricityBill/electricityBillApi';
+import { useGetGroupElectricityBillsQuery } from 'store/api/electricityBill/electricityBillApi';
 import { electricMonths, electricYears } from 'assets/data';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
@@ -43,7 +43,7 @@ const ElectricBills = () => {
 
   // pagination
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -79,7 +79,7 @@ const ElectricBills = () => {
     query['month'] = month;
   }
 
-  const { data, isLoading } = useGetElectricityBillsQuery(
+  const { data, isLoading } = useGetGroupElectricityBillsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
@@ -87,14 +87,12 @@ const ElectricBills = () => {
   const allElectricityBills = data?.electricityBills || [];
   const meta = data?.meta;
   const totalUnit = data?.sum?._sum?.unit || 0;
-  const totalNetBill = data?.sum?._sum?.netBill || 0;
-  const totalServiceCharge = data?.sum?._sum?.serviceCharge || 0;
   const totalAmount = data?.sum?._sum?.amount || 0;
 
   let sn = page * rowsPerPage + 1;
 
   // print data
-  const { data: printData } = useGetElectricityBillsQuery(
+  const { data: printData } = useGetGroupElectricityBillsQuery(
     { ...query, page: 0, limit: 10000 },
     { refetchOnMountOrArgChange: true }
   );
@@ -210,26 +208,25 @@ const ElectricBills = () => {
               <StyledTableCellWithBorder align="center">
                 SN
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Paid Date</StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Meter Info</StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Year</StyledTableCellWithBorder>
               <StyledTableCellWithBorder>Month</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Paid Date</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Paid By</StyledTableCellWithBorder>
+              <StyledTableCellWithBorder>Meter Info</StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                Reading
+                Previous Reading
+              </StyledTableCellWithBorder>
+              <StyledTableCellWithBorder align="right">
+                Present Reading
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
                 Unit
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                Net Bill
+                Amount
               </StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="right">
-                Service Charge
+                Total Amount
               </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder align="right">
-                Total Bill
-              </StyledTableCellWithBorder>
-              <StyledTableCellWithBorder>Paid By</StyledTableCellWithBorder>
               <StyledTableCellWithBorder align="center">
                 Action
               </StyledTableCellWithBorder>
@@ -257,7 +254,7 @@ const ElectricBills = () => {
             )}
             {allElectricityBills?.length ? (
               <TableRow>
-                <StyledTableCellWithBorder colSpan={6} sx={{ fontWeight: 700 }}>
+                <StyledTableCellWithBorder colSpan={7} sx={{ fontWeight: 700 }}>
                   TOTAL
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
@@ -270,13 +267,7 @@ const ElectricBills = () => {
                   align="right"
                   sx={{ fontWeight: 700 }}
                 >
-                  {totalNetBill}
-                </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  align="right"
-                  sx={{ fontWeight: 700 }}
-                >
-                  {totalServiceCharge}
+                  {totalAmount}
                 </StyledTableCellWithBorder>
                 <StyledTableCellWithBorder
                   align="right"
@@ -284,16 +275,14 @@ const ElectricBills = () => {
                 >
                   {totalAmount}
                 </StyledTableCellWithBorder>
-                <StyledTableCellWithBorder
-                  colSpan={2}
-                ></StyledTableCellWithBorder>
+                <StyledTableCellWithBorder></StyledTableCellWithBorder>
               </TableRow>
             ) : null}
           </TableBody>
         </Table>
       </Box>
       <TablePagination
-        rowsPerPageOptions={[10, 20, 40]}
+        rowsPerPageOptions={[5, 10, 20, 40]}
         component="div"
         count={meta?.total || 0}
         rowsPerPage={rowsPerPage}

@@ -1,11 +1,78 @@
-import IconButton from '@mui/material/IconButton';
-import { IconEdit } from '@tabler/icons-react';
+import { IconEdit, IconRotate, IconTrashXFilled } from '@tabler/icons-react';
 import { useState } from 'react';
 import { StyledTableCell, StyledTableRow } from 'ui-component/table-component';
+
+import { useDispatch } from 'react-redux';
+import { useUpdateMeterMutation } from 'store/api/meter/meterApi';
+import { setToast } from 'store/toastSlice';
+import { Button } from '@mui/material';
 import UpdateMeterInfo from './UpdateMeterInfo';
+import ConfirmDialog from 'ui-component/ConfirmDialog';
+import ShowStatus from 'ui-component/ShowStatus';
 
 const MeterInfoRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
+  const [dialog, setDialog] = useState(false);
+  const [reactivate, setReactivate] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const [updateMeter] = useUpdateMeterMutation();
+
+  const handleDelete = async () => {
+    setDialog(false);
+    try {
+      const res = await updateMeter({
+        id: data?.id,
+        body: { isActive: false },
+      }).unwrap();
+      if (res.success) {
+        dispatch(
+          setToast({
+            open: true,
+            variant: 'success',
+            message: 'Meter Deactivated Successfully',
+          })
+        );
+      }
+    } catch (err) {
+      dispatch(
+        setToast({
+          open: true,
+          variant: 'error',
+          message: err?.data?.message || 'Something Went Wrong',
+          errorMessages: err?.data?.errorMessages,
+        })
+      );
+    }
+  };
+  const handleReactive = async () => {
+    setDialog(false);
+    try {
+      const res = await updateMeter({
+        id: data?.id,
+        body: { isActive: true },
+      }).unwrap();
+      if (res.success) {
+        dispatch(
+          setToast({
+            open: true,
+            variant: 'success',
+            message: 'Meter Reactivated Successfully',
+          })
+        );
+      }
+    } catch (err) {
+      dispatch(
+        setToast({
+          open: true,
+          variant: 'error',
+          message: err?.data?.message || 'Something Went Wrong',
+          errorMessages: err?.data?.errorMessages,
+        })
+      );
+    }
+  };
 
   return (
     <StyledTableRow>
@@ -16,13 +83,59 @@ const MeterInfoRow = ({ sn, data }) => {
       <StyledTableCell>{data?.location || 'n/a'}</StyledTableCell>
       <StyledTableCell>{data?.remarks || 'n/a'}</StyledTableCell>
       <StyledTableCell align="center">
-        <IconButton color="primary" size="small" onClick={() => setOpen(true)}>
-          <IconEdit color="#468B97" size={18} />
-        </IconButton>
+        <ShowStatus status={data?.isActive ? 'Active' : 'Inactive'} />
+      </StyledTableCell>
+      <StyledTableCell align="center" sx={{ minWidth: 85 }}>
+        {data?.isActive ? (
+          <>
+            <Button
+              color="primary"
+              variant="contained"
+              size="small"
+              sx={{ minWidth: 0, mr: 0.5 }}
+              onClick={() => setOpen(true)}
+            >
+              <IconEdit size={14} />
+            </Button>
+            <Button
+              color="error"
+              variant="contained"
+              size="small"
+              sx={{ minWidth: 0 }}
+              onClick={() => setDialog(true)}
+            >
+              <IconTrashXFilled size={14} />
+            </Button>
+          </>
+        ) : (
+          <Button
+            color="primary"
+            variant="contained"
+            size="small"
+            sx={{ minWidth: 0 }}
+            onClick={() => setReactivate(true)}
+          >
+            <IconRotate size={14} />
+          </Button>
+        )}
+
         <UpdateMeterInfo
           open={open}
           preData={data}
           handleClose={() => setOpen(false)}
+        />
+
+        <ConfirmDialog
+          open={dialog}
+          setOpen={setDialog}
+          content="Deactivate Meter"
+          handleDelete={handleDelete}
+        />
+        <ConfirmDialog
+          open={reactivate}
+          setOpen={setReactivate}
+          content="Reactivate Meter"
+          handleDelete={handleReactive}
         />
       </StyledTableCell>
     </StyledTableRow>

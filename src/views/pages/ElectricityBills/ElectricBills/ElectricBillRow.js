@@ -1,5 +1,3 @@
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
 import { IconTrashXFilled } from '@tabler/icons-react';
 import { IconEdit } from '@tabler/icons-react';
 import { useState } from 'react';
@@ -10,19 +8,24 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import UpdateElectricBill from './UpdateElectricBill';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
 import moment from 'moment';
-import { TableRow } from '@mui/material';
+import { Button, TableRow } from '@mui/material';
+import { totalSum } from 'views/utilities/NeedyFunction';
 
 const ElectricBillRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
+  const billDetails = data?.data || [];
+  const rowSpan = billDetails.length || 1;
+  const totalAmount = totalSum(billDetails, 'amount');
+
   const dispatch = useDispatch();
   const [deleteElectricityBill] = useDeleteElectricityBillMutation();
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     setDialog(false);
     try {
-      const res = await deleteElectricityBill(data?.id).unwrap();
+      const res = await deleteElectricityBill(id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
@@ -44,65 +47,147 @@ const ElectricBillRow = ({ sn, data }) => {
   };
 
   return (
-    <TableRow>
-      <StyledTableCellWithBorder align="center">{sn}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.date ? moment(data?.date).format('DD/MM/YYYY') : 'n/a'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder sx={{ minWidth: 150 }}>
-        {data?.meter?.label +
-          (data?.meter?.smsAccount ? ', ' + data?.meter?.smsAccount : '')}
-        <br />
-        {data?.meter?.location || 'N/A'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.year}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.month}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="right">
-        {data?.meterReading}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="right">
-        {data?.unit || 0}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="right">
-        {data?.netBill}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="right">
-        {data?.serviceCharge || 0}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="right">
-        {data?.amount}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.paidBy}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center" sx={{ minWidth: 95 }}>
-        <ButtonGroup>
-          <IconButton
-            color="primary"
-            size="small"
-            onClick={() => setOpen(true)}
-          >
-            <IconEdit size={18} />
-          </IconButton>
-          <IconButton
-            size="small"
-            color="error"
-            onClick={() => setDialog(true)}
-          >
-            <IconTrashXFilled size={18} />
-          </IconButton>
-        </ButtonGroup>
-        <UpdateElectricBill
-          open={open}
-          preData={data}
-          handleClose={() => setOpen(false)}
-        />
-        <ConfirmDialog
-          open={dialog}
-          setOpen={setDialog}
-          content="Delete Electric Bill"
-          handleDelete={handleDelete}
-        />
-      </StyledTableCellWithBorder>
-    </TableRow>
+    <>
+      {/* Main Row */}
+      <TableRow>
+        <StyledTableCellWithBorder align="center" rowSpan={rowSpan}>
+          {sn}
+        </StyledTableCellWithBorder>
+        <StyledTableCellWithBorder rowSpan={rowSpan}>
+          {data?.month + '-' + data?.year}
+        </StyledTableCellWithBorder>
+        {/* First row includes totals and actions */}
+        {billDetails.length > 0 && (
+          <>
+            <StyledTableCellWithBorder>
+              {billDetails[0].date
+                ? moment(billDetails[0].date).format('DD/MM/YYYY')
+                : 'N/A'}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder>
+              {billDetails[0]?.paidBy || 'N/A'}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder>
+              {billDetails[0]?.meter?.smsAccount +
+                ', ' +
+                billDetails[0]?.meter?.label}
+              <br />
+              {billDetails[0]?.meter?.location || 'N/A'}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right">
+              {billDetails[0]?.previousReading}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right">
+              {billDetails[0]?.meterReading}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right">
+              {billDetails[0].unit}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right">
+              {billDetails[0].amount}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right" rowSpan={rowSpan}>
+              {totalAmount}
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                sx={{ minWidth: 0, mr: 0.5 }}
+                onClick={() => setOpen(true)}
+              >
+                <IconEdit size={14} />
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                color="error"
+                sx={{ minWidth: 0 }}
+                onClick={() => setDialog(true)}
+              >
+                <IconTrashXFilled size={14} />
+              </Button>
+
+              <UpdateElectricBill
+                open={open}
+                preData={billDetails[0]}
+                handleClose={() => setOpen(false)}
+              />
+              <ConfirmDialog
+                open={dialog}
+                setOpen={setDialog}
+                content="Delete Electric Bill"
+                handleDelete={() => handleDelete(billDetails[0]?.id)}
+              />
+            </StyledTableCellWithBorder>
+          </>
+        )}
+
+        {/* Totals and Actions */}
+      </TableRow>
+
+      {/* Remaining Income Details Rows */}
+      {billDetails.slice(1).map((el, index) => (
+        <TableRow key={index}>
+          <StyledTableCellWithBorder>
+            {el.date ? moment(el.date).format('DD/MM/YYYY') : 'N/A'}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder>
+            {el?.paidBy || 'N/A'}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder>
+            {el?.meter?.smsAccount + ', ' + el?.meter?.label}
+            <br />
+            {el?.meter?.location || 'N/A'}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder align="right">
+            {el?.previousReading}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder align="right">
+            {el?.meterReading}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder align="right">
+            {el.unit}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder align="right">
+            {el.amount}
+          </StyledTableCellWithBorder>
+          <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              sx={{ minWidth: 0, mr: 0.5 }}
+              onClick={() => setOpen(true)}
+            >
+              <IconEdit size={14} />
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              color="error"
+              sx={{ minWidth: 0 }}
+              onClick={() => setDialog(true)}
+            >
+              <IconTrashXFilled size={14} />
+            </Button>
+
+            <UpdateElectricBill
+              open={open}
+              preData={el}
+              handleClose={() => setOpen(false)}
+            />
+            <ConfirmDialog
+              open={dialog}
+              setOpen={setDialog}
+              content="Delete Electric Bill"
+              handleDelete={() => handleDelete(el?.id)}
+            />
+          </StyledTableCellWithBorder>
+        </TableRow>
+      ))}
+    </>
   );
 };
 
