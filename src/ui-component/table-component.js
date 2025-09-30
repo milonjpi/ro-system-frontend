@@ -29,6 +29,24 @@ export const StyledTableCellWithBorder = styled(TableCell)(({ theme }) => ({
     border: '1px solid #686868',
   },
 }));
+
+export const StyledTableCellWithNanoBorder = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#ede7f6',
+    color: '#5e35b1',
+    padding: '3px',
+    fontSize: 9,
+    fontWeight: 400,
+    border: '1px solid #686868',
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 9,
+    fontWeight: 300,
+    padding: '3px 3px',
+    border: '1px solid #686868',
+  },
+}));
+
 export const StyledTableCellWithNoBorder = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#ede7f6',

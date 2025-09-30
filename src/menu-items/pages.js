@@ -467,6 +467,13 @@ const pages = {
           access: ['super_admin'],
         },
         {
+          id: 'electric-report',
+          title: 'Report',
+          type: 'item',
+          url: '/pages/electricity-bills/electric-report',
+          access: ['super_admin'],
+        },
+        {
           id: 'electric-overview',
           title: 'Overview',
           type: 'item',

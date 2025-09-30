@@ -57,6 +57,15 @@ const electricityBillApi = api.injectEndpoints({
       providesTags: ['electricityBill'],
     }),
 
+    // all summary
+    getElectricAllSummary: build.query({
+      query: () => ({
+        url: `${ELECTRICITY_BILL_URL}/all-summary`,
+        method: 'GET',
+      }),
+      providesTags: ['electricityBill'],
+    }),
+
     // get single
     getSingleElectricityBill: build.query({
       query: (id) => ({
@@ -110,6 +119,7 @@ const electricityBillApi = api.injectEndpoints({
 export const {
   useGetElectricityBillsQuery,
   useGetGroupElectricityBillsQuery,
+  useGetElectricAllSummaryQuery,
   useGetElectricMonthSummaryQuery,
   useGetElectricYearSummaryQuery,
   useGetSingleElectricityBillQuery,

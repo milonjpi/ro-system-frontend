@@ -202,6 +202,9 @@ const MeterInfo = Loadable(
 const ElectricBills = Loadable(
   lazy(() => import('views/pages/ElectricityBills/ElectricBills'))
 );
+const ElectricReport = Loadable(
+  lazy(() => import('views/pages/ElectricityBills/ElectricReport'))
+);
 const ElectricOverview = Loadable(
   lazy(() => import('views/pages/ElectricityBills/ElectricOverview'))
 );
@@ -1032,6 +1035,17 @@ const MainRoutes = {
                       allowedCodes={['electric-bills']}
                     >
                       <ElectricBills />
+                    </AuthenticationRoutes>
+                  ),
+                },
+                {
+                  path: 'electric-report',
+                  element: (
+                    <AuthenticationRoutes
+                      allowedRoles={['super_admin', 'admin']}
+                      allowedCodes={['electric-report']}
+                    >
+                      <ElectricReport />
                     </AuthenticationRoutes>
                   ),
                 },
