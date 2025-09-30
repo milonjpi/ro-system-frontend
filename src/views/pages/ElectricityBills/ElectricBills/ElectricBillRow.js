@@ -1,50 +1,13 @@
-import { IconTrashXFilled } from '@tabler/icons-react';
-import { IconEdit } from '@tabler/icons-react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useDeleteElectricityBillMutation } from 'store/api/electricityBill/electricityBillApi';
-import { setToast } from 'store/toastSlice';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import UpdateElectricBill from './UpdateElectricBill';
-import ConfirmDialog from 'ui-component/ConfirmDialog';
 import moment from 'moment';
-import { Button, TableRow } from '@mui/material';
+import { TableRow } from '@mui/material';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import ElectricityBillAction from './ElectricityBillAction';
 
 const ElectricBillRow = ({ sn, data }) => {
-  const [open, setOpen] = useState(false);
-  const [dialog, setDialog] = useState(false);
-
   const billDetails = data?.data || [];
   const rowSpan = billDetails.length || 1;
   const totalAmount = totalSum(billDetails, 'amount');
-
-  const dispatch = useDispatch();
-  const [deleteElectricityBill] = useDeleteElectricityBillMutation();
-
-  const handleDelete = async (id) => {
-    setDialog(false);
-    try {
-      const res = await deleteElectricityBill(id).unwrap();
-      if (res.success) {
-        dispatch(
-          setToast({
-            open: true,
-            variant: 'success',
-            message: res?.message,
-          })
-        );
-      }
-    } catch (err) {
-      dispatch(
-        setToast({
-          open: true,
-          variant: 'error',
-          message: err?.data?.message || 'Something Went Wrong',
-        })
-      );
-    }
-  };
 
   return (
     <>
@@ -89,38 +52,7 @@ const ElectricBillRow = ({ sn, data }) => {
             <StyledTableCellWithBorder align="right" rowSpan={rowSpan}>
               {totalAmount}
             </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                sx={{ minWidth: 0, mr: 0.5 }}
-                onClick={() => setOpen(true)}
-              >
-                <IconEdit size={14} />
-              </Button>
-              <Button
-                variant="contained"
-                size="small"
-                color="error"
-                sx={{ minWidth: 0 }}
-                onClick={() => setDialog(true)}
-              >
-                <IconTrashXFilled size={14} />
-              </Button>
-
-              <UpdateElectricBill
-                open={open}
-                preData={billDetails[0]}
-                handleClose={() => setOpen(false)}
-              />
-              <ConfirmDialog
-                open={dialog}
-                setOpen={setDialog}
-                content="Delete Electric Bill"
-                handleDelete={() => handleDelete(billDetails[0]?.id)}
-              />
-            </StyledTableCellWithBorder>
+            <ElectricityBillAction data={billDetails[0]} />
           </>
         )}
 
@@ -153,38 +85,7 @@ const ElectricBillRow = ({ sn, data }) => {
           <StyledTableCellWithBorder align="right">
             {el.amount}
           </StyledTableCellWithBorder>
-          <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              sx={{ minWidth: 0, mr: 0.5 }}
-              onClick={() => setOpen(true)}
-            >
-              <IconEdit size={14} />
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              color="error"
-              sx={{ minWidth: 0 }}
-              onClick={() => setDialog(true)}
-            >
-              <IconTrashXFilled size={14} />
-            </Button>
-
-            <UpdateElectricBill
-              open={open}
-              preData={el}
-              handleClose={() => setOpen(false)}
-            />
-            <ConfirmDialog
-              open={dialog}
-              setOpen={setDialog}
-              content="Delete Electric Bill"
-              handleDelete={() => handleDelete(el?.id)}
-            />
-          </StyledTableCellWithBorder>
+          <ElectricityBillAction data={el} />
         </TableRow>
       ))}
     </>
