@@ -161,9 +161,9 @@ const HeadWiseReport = () => {
                 label="Year"
                 onChange={(e) => setYear(e.target.value)}
               >
-                {[1, 2, 3, 4, 5, 6].map((el) => (
-                  <MenuItem key={el} value={`${2024 + el}`}>
-                    {2024 + el}
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((el) => (
+                  <MenuItem key={el} value={`${2020 + el}`}>
+                    {2020 + el}
                   </MenuItem>
                 ))}
               </Select>
