@@ -10,17 +10,23 @@ import MainCard from 'ui-component/cards/MainCard';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import {
   Autocomplete,
+  IconButton,
   InputAdornment,
   InputBase,
   LinearProgress,
   TablePagination,
   TextField,
+  Tooltip,
 } from '@mui/material';
 import { useDebounced } from 'hooks';
 import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
 import { convertToBanglaNumber, totalSum } from 'views/utilities/NeedyFunction';
 import ZakatReportRow from './ZakatReportRow';
 import { zakatTaken, zakatYears } from 'assets/data';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { IconPrinter } from '@tabler/icons-react';
+import PrintZakatReport from './PrintZakatReport';
 
 const ZakatReport = () => {
   const [searchText, setSearchText] = useState('');
@@ -95,8 +101,40 @@ const ZakatReport = () => {
     'amount'
   );
 
+  // handle Print
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+              @media print {
+                .pageBreakRow {
+                  page-break-inside: avoid;
+                }
+              }
+              `,
+  });
+
   return (
-    <MainCard title="যাকাত রিপোর্ট">
+    <MainCard
+      title="যাকাত রিপোর্ট"
+      secondary={
+        <Tooltip title="Print">
+          <IconButton size="small" color="primary" onClick={handlePrint}>
+            <IconPrinter size={18} />
+          </IconButton>
+        </Tooltip>
+      }
+    >
+      {/* popup items */}
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintZakatReport
+          ref={componentRef}
+          allRecipients={allRecipients}
+          isLoading={isLoading}
+          totalAmount={totalAmount}
+        />
+      </Box>
+      {/* end popup items */}
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid

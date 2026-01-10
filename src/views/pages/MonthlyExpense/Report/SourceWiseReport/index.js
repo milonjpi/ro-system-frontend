@@ -9,7 +9,7 @@ import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import moment from 'moment';
-import { Autocomplete, TableRow } from '@mui/material';
+import { Autocomplete, IconButton, TableRow, Tooltip } from '@mui/material';
 import { useGetSourceWiseMonthlyReportQuery } from 'store/api/monthlyExpense/monthlyExpenseApi';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import groupBy from 'lodash.groupby';
@@ -17,6 +17,10 @@ import { totalSum } from 'views/utilities/NeedyFunction';
 import { useGetExpenseAreasQuery } from 'store/api/expenseArea/expenseAreaApi';
 import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/monthlyExpenseHeadApi';
 import SourceWiseReportRow from './SourceWiseReportRow';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { IconPrinter } from '@tabler/icons-react';
+import PrintSourceWiseReport from './PrintSourceWiseReport';
 
 const SourceWiseReport = () => {
   const [year, setYear] = useState(moment().format('YYYY'));
@@ -142,8 +146,53 @@ const SourceWiseReport = () => {
   const oct = allExpenses?.filter((el) => el.month === 'October');
   const nov = allExpenses?.filter((el) => el.month === 'November');
   const dec = allExpenses?.filter((el) => el.month === 'December');
+
+  // handle Print
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+          @media print {
+            .pageBreakRow {
+              page-break-inside: avoid;
+            }
+          }
+          `,
+  });
   return (
-    <SubCard title="Payment Source Wise Summary">
+    <SubCard
+      title="Payment Source Wise Summary"
+      secondary={
+        <Tooltip title="Print">
+          <IconButton size="small" color="primary" onClick={handlePrint}>
+            <IconPrinter size={18} />
+          </IconButton>
+        </Tooltip>
+      }
+    >
+      {/* popup items */}
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintSourceWiseReport
+          ref={componentRef}
+          tableHeads={tableHeads}
+          arrayGroup={arrayGroup}
+          isLoading={isLoading}
+          allExpenses={allExpenses}
+          jan={jan}
+          feb={feb}
+          mar={mar}
+          apr={apr}
+          may={may}
+          jun={jun}
+          jul={jul}
+          aug={aug}
+          sep={sep}
+          oct={oct}
+          nov={nov}
+          dec={dec}
+        />
+      </Box>
+      {/* end popup items */}
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid

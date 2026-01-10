@@ -12,7 +12,7 @@ import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconCloudDownload, IconPlus } from '@tabler/icons-react';
+import { IconCloudDownload, IconPlus, IconPrinter } from '@tabler/icons-react';
 import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
@@ -28,6 +28,9 @@ import { useGetMonthlyExpensesQuery } from 'store/api/monthlyExpense/monthlyExpe
 import AddExpense from './AddExpense';
 import ExpenseRow from './ExpenseRow';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import PrintExpenses from './PrintExpenses';
 
 const Expenses = () => {
   const [searchText, setSearchText] = useState('');
@@ -215,20 +218,45 @@ const Expenses = () => {
     ];
     writeFile(wb, `MonthlyExpenses.xlsx`);
   };
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+            @media print {
+              .pageBreakRow {
+                page-break-inside: avoid;
+              }
+            }
+            `,
+  });
   return (
     <SubCard
       title={
         <span>
           Expenses
           <Tooltip title="Export">
+            <span>
+              <IconButton
+                color="primary"
+                size="small"
+                sx={{ ml: 0.5 }}
+                disabled={printLoading}
+                onClick={handleExport}
+              >
+                <IconCloudDownload size={18} />
+              </IconButton>
+            </span>
+          </Tooltip>
+          <Tooltip title="Print">
             <IconButton
-              color="primary"
+              color="secondary"
               size="small"
               sx={{ ml: 0.5 }}
               disabled={printLoading}
-              onClick={handleExport}
+              onClick={handlePrint}
             >
-              <IconCloudDownload size={18} />
+              <IconPrinter size={18} />
             </IconButton>
           </Tooltip>
         </span>
@@ -248,6 +276,14 @@ const Expenses = () => {
     >
       {/* popup items */}
       <AddExpense open={open} handleClose={() => setOpen(false)} />
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintExpenses
+          ref={componentRef}
+          allMonthlyExpenses={allPrintMonthlyExpenses}
+          isLoading={isLoading}
+          sum={sum}
+        />
+      </Box>
       {/* end popup items */}
 
       {/* filter area */}

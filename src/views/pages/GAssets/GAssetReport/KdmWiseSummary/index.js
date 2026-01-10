@@ -1,10 +1,14 @@
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
-import { TableRow } from '@mui/material';
+import { Box, IconButton, TableRow, Tooltip } from '@mui/material';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { totalSum } from 'views/utilities/NeedyFunction';
 import { useGetCaratWiseSummaryQuery } from 'store/api/jewelleryReport/jewelleryReportApi';
 import KdmWiseSummaryRow from './KdmWiseSummaryRow';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { IconPrinter } from '@tabler/icons-react';
+import PrintKdmWiseSummary from './PrintKdmWiseSummary';
 
 const KdmWiseSummary = () => {
   // table
@@ -48,8 +52,42 @@ const KdmWiseSummary = () => {
   const totalWeight = totalSum(mappedAllData, 'weight');
   const totalPrice = totalSum(mappedAllData, 'price');
 
+  // handle print
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+          @media print {
+            .pageBreakRow {
+              page-break-inside: avoid;
+            }
+          }
+          `,
+  });
+
   return (
-    <SubCard title="KDM Wise Summary">
+    <SubCard
+      title="KDM Wise Summary"
+      secondary={
+        <Tooltip title="Print">
+          <IconButton size="small" color="primary" onClick={handlePrint}>
+            <IconPrinter size={18} />
+          </IconButton>
+        </Tooltip>
+      }
+    >
+      {/* popup items */}
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintKdmWiseSummary
+          ref={componentRef}
+          tableHeads={tableHeads}
+          allData={allData}
+          isLoading={isLoading}
+          totalWeight={totalWeight}
+          totalPrice={totalPrice}
+        />
+      </Box>
+      {/* end popup items */}
       {/* data table */}
       <DataTable
         bordered

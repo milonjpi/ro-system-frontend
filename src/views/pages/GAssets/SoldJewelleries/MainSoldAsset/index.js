@@ -5,12 +5,12 @@ import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconPlus } from '@tabler/icons-react';
+import { IconPlus, IconPrinter } from '@tabler/icons-react';
 import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import { useDebounced } from 'hooks';
-import { Autocomplete, TableRow } from '@mui/material';
+import { Autocomplete, IconButton, TableRow, Tooltip } from '@mui/material';
 import { goldYears } from 'assets/data';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useGetJewelleryTypesQuery } from 'store/api/jewelleryType/jewelleryTypeApi';
@@ -18,6 +18,9 @@ import { useGetJewelleryVendorsQuery } from 'store/api/jewelleryVendor/jewellery
 import { useGetSoldJewelleriesQuery } from 'store/api/soldJewellery/soldJewelleryApi';
 import AddMainSoldAsset from './AddMainSoldAsset';
 import MainSoldAssetRow from './MainSoldAssetRow';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import PrintMainSoldAsset from './PrintMainSoldAsset';
 
 const MainSoldAsset = ({ category }) => {
   const [searchText, setSearchText] = useState('');
@@ -148,9 +151,38 @@ const MainSoldAsset = ({ category }) => {
   const meta = data?.meta;
   const sum = data?.sum;
 
+  // handle Print
+    const { data: printData, isLoading: printLoading } = useGetSoldJewelleriesQuery(
+    { ...query, page: 0, limit: 5000 },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allPrintSoldJewelleries = printData?.jewelleries || [];
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+          @media print {
+            .pageBreakRow {
+              page-break-inside: avoid;
+            }
+          }
+          `,
+  });
+
   return (
     <SubCard
-      title={`SOLD ${category} JEWELLERIES`}
+      title={
+        <span>
+          SOLD {category} JEWELLERIES{' '}
+          <Tooltip title="Print">
+            <IconButton size="small" color="primary" onClick={handlePrint}>
+              <IconPrinter size={16} />
+            </IconButton>
+          </Tooltip>
+        </span>
+      }
       secondary={
         <Button
           size="small"
@@ -170,6 +202,15 @@ const MainSoldAsset = ({ category }) => {
         handleClose={() => setOpen(false)}
         category={category}
       />
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintMainSoldAsset
+          ref={componentRef}
+          title={`SOLD ${category} JEWELLERIES`}
+          allSoldJewelleries={allPrintSoldJewelleries}
+          isLoading={printLoading}
+          sum={sum}
+        />
+      </Box>
       {/* end popup items */}
 
       {/* filter area */}

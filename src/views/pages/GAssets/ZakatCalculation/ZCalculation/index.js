@@ -4,12 +4,23 @@ import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
 import { useGetDistinctDatesQuery } from 'store/api/jewelleryRate/jewelleryRateApi';
-import { Autocomplete, TableRow, TextField, Typography } from '@mui/material';
+import {
+  Autocomplete,
+  IconButton,
+  TableRow,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import moment from 'moment';
 import { useGetZakatCalculationQuery } from 'store/api/jewelleryReport/jewelleryReportApi';
 import ZCalculationRow from './ZCalculationRow';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { totalSum } from 'views/utilities/NeedyFunction';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { IconPrinter } from '@tabler/icons-react';
+import PrintZCalculation from './PrintZCalculation';
 
 const ZCalculation = () => {
   const [date, setDate] = useState(null);
@@ -80,8 +91,54 @@ const ZCalculation = () => {
   const afterRebate = totalPrice - rebateAmount;
   const zakatAmount = Math.ceil(afterRebate * 0.025);
 
+  // handle Print
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: `
+          @media print {
+            .pageBreakRow {
+              page-break-inside: avoid;
+            }
+          }
+          `,
+  });
+
+
   return (
-    <SubCard title="Zakat Calculation">
+    <SubCard
+      title="Zakat Calculation"
+      secondary={
+        <Tooltip title="Print">
+          <span>
+            <IconButton
+              size="small"
+              color="primary"
+              onClick={handlePrint}
+              disabled={date ? false : true}
+            >
+              <IconPrinter size={18} />
+            </IconButton>
+          </span>
+        </Tooltip>
+      }
+    >
+      {/* popup items */}
+      <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
+        <PrintZCalculation
+          ref={componentRef}
+          tableHeads={tableHeads}
+          allData={allData}
+          isLoading={isLoading}
+          totalWeight={totalWeight}
+          date={date}
+          totalPrice={totalPrice}
+          rebateAmount={rebateAmount}
+          afterRebate={afterRebate}
+          zakatAmount={zakatAmount}
+        />
+      </Box>
+      {/* end popup items */}
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
         <Grid
