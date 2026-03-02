@@ -41,6 +41,7 @@ const AddZakatPay = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(moment().format('YYYY'));
   const [recipient, setRecipient] = useState(null);
+  const [status, setStatus] = useState(null);
 
   // library open
   const [recipientOpen, setRecipientOpen] = useState(false);
@@ -63,7 +64,6 @@ const AddZakatPay = ({ open, handleClose }) => {
   const dispatch = useDispatch();
 
   const [createZakat] = useCreateZakatMutation();
-
   const onSubmit = async (data) => {
     if (isNaN(Number(convertToEnglishNumber(data.amount)))) {
       return dispatch(
@@ -79,6 +79,7 @@ const AddZakatPay = ({ open, handleClose }) => {
       year: year,
       recipientId: recipient?.id,
       amount: Number(convertToEnglishNumber(data.amount)),
+      status: status,
       remarks: data?.remarks || '',
     };
 
@@ -89,6 +90,7 @@ const AddZakatPay = ({ open, handleClose }) => {
         handleClose();
         setLoading(false);
         reset();
+        setStatus(null);
         setYear(moment().format('YYYY'));
         setRecipient(null);
         dispatch(
@@ -199,7 +201,19 @@ const AddZakatPay = ({ open, handleClose }) => {
                 })}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={3}>
+              <Autocomplete
+                value={status}
+                size="small"
+                fullWidth
+                options={['DUE', 'PAID']}
+                onChange={(e, newValue) => setStatus(newValue)}
+                renderInput={(params) => (
+                  <TextField {...params} label="স্ট্যাটাস" required />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} md={9}>
               <TextField
                 fullWidth
                 label="মন্তব্য"

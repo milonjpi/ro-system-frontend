@@ -23,6 +23,7 @@ const ZakatPay = () => {
   const [searchText, setSearchText] = useState('');
   const [year, setYear] = useState(moment().format('YYYY'));
   const [recipient, setRecipient] = useState(null);
+  const [status, setStatus] = useState(null);
   const [open, setOpen] = useState(false);
 
   // library
@@ -65,6 +66,10 @@ const ZakatPay = () => {
       title: 'মন্তব্য',
     },
     {
+      title: 'স্ট্যাটাস',
+      align: 'center',
+    },
+    {
       title: 'পরিমাণ',
       align: 'right',
     },
@@ -80,11 +85,13 @@ const ZakatPay = () => {
 
   query['limit'] = rowsPerPage;
   query['page'] = page;
-  query['sortBy'] = 'label';
-  query['sortOrder'] = 'asc';
 
   if (year) {
     query['year'] = year;
+  }
+
+  if (status) {
+    query['status'] = status;
   }
 
   if (recipient) {
@@ -177,6 +184,18 @@ const ZakatPay = () => {
               renderInput={(params) => <TextField {...params} label="বছর" />}
             />
           </Grid>
+          <Grid item xs={12} md={3}>
+            <Autocomplete
+              value={status}
+              size="small"
+              fullWidth
+              options={['DUE', 'PAID']}
+              onChange={(e, newValue) => setStatus(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label="স্ট্যাটাস" />
+              )}
+            />
+          </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
@@ -184,6 +203,7 @@ const ZakatPay = () => {
       {/* data table */}
       <DataTable
         bordered
+        sx={{minWidth: allZakats?.length && 600}}
         tableHeads={tableHeads}
         data={allZakats}
         options={(el, index) => (
@@ -197,7 +217,7 @@ const ZakatPay = () => {
           allZakats?.length ? (
             <TableRow>
               <StyledTableCellWithBorder
-                colSpan={4}
+                colSpan={5}
                 sx={{
                   fontSize: '12px !important',
                   fontWeight: 700,

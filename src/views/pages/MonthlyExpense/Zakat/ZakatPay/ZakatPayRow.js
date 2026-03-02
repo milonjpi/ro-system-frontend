@@ -1,12 +1,15 @@
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { useState } from 'react';
 import { IconEdit } from '@tabler/icons-react';
-import { Button, TableRow } from '@mui/material';
+import { Button, FormControlLabel, Switch, TableRow } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { setToast } from 'store/toastSlice';
 import { IconTrashXFilled } from '@tabler/icons-react';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
-import { useDeleteZakatMutation } from 'store/api/zakat/zakatApi';
+import {
+  useDeleteZakatMutation,
+  useUpdateZakatMutation,
+} from 'store/api/zakat/zakatApi';
 import UpdateZakatPay from './UpdateZakatPay';
 import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
 
@@ -16,7 +19,28 @@ const ZakatPayRow = ({ sn, data }) => {
 
   const dispatch = useDispatch();
 
+  const [updateZakat] = useUpdateZakatMutation();
   const [deleteZakat] = useDeleteZakatMutation();
+
+  const handleStatus = async (e) => {
+    const checked = e.target.checked;
+    setDialog(false);
+    try {
+      await updateZakat({
+        id: data?.id,
+        body: { status: checked ? 'PAID' : 'DUE' },
+      }).unwrap();
+    } catch (err) {
+      dispatch(
+        setToast({
+          open: true,
+          variant: 'error',
+          message: err?.data?.message || 'Something Went Wrong',
+          errorMessages: err?.data?.errorMessages,
+        })
+      );
+    }
+  };
 
   const handleDelete = async () => {
     setDialog(false);
@@ -56,10 +80,21 @@ const ZakatPayRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>
         {data?.remarks || 'n/a'}
       </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center" sx={{width: 90}}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={data?.status === 'PAID' ? true : false}
+              onChange={handleStatus}
+            />
+          }
+          label={data?.status}
+        />
+      </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {convertToBanglaNumber(data?.amount)}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center">
+      <StyledTableCellWithBorder align="center" sx={{minWidth: 85}}>
         <Button
           color="primary"
           variant="contained"

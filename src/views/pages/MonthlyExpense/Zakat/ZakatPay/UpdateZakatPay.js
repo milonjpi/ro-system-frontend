@@ -40,6 +40,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(preData?.year);
   const [recipient, setRecipient] = useState(preData?.recipient || null);
+  const [status, setStatus] = useState(preData?.status || null);
 
   // library open
   const [recipientOpen, setRecipientOpen] = useState(false);
@@ -83,6 +84,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
       year: year,
       recipientId: recipient?.id,
       amount: Number(convertToEnglishNumber(data.amount)),
+      status: status,
       remarks: data?.remarks || '',
     };
 
@@ -201,7 +203,19 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
                 })}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={3}>
+              <Autocomplete
+                value={status}
+                size="small"
+                fullWidth
+                options={['DUE', 'PAID']}
+                onChange={(e, newValue) => setStatus(newValue)}
+                renderInput={(params) => (
+                  <TextField {...params} label="স্ট্যাটাস" required />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} md={9}>
               <TextField
                 fullWidth
                 label="মন্তব্য"

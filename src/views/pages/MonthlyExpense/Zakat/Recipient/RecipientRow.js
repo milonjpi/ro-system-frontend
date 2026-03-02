@@ -56,7 +56,7 @@ const RecipientRow = ({ sn, data }) => {
       <StyledTableCellWithBorder>
         {data?.address || 'n/a'}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center">
+      <StyledTableCellWithBorder align="center" sx={{minWidth: 85}}>
         <Button
           color="primary"
           variant="contained"
