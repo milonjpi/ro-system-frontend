@@ -20,20 +20,37 @@ import {
 } from '@mui/material';
 import { useDebounced } from 'hooks';
 import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
-import { convertToBanglaNumber, totalSum } from 'views/utilities/NeedyFunction';
+import {
+  convertToBanglaNumber,
+  getYearArray,
+  totalSum,
+} from 'views/utilities/NeedyFunction';
 import ZakatReportRow from './ZakatReportRow';
 import { zakatTaken, zakatYears } from 'assets/data';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { IconPrinter } from '@tabler/icons-react';
 import PrintZakatReport from './PrintZakatReport';
+import { useGetRecipientGroupsQuery } from 'store/api/recipientGroup/recipientGroupApi';
 
 const ZakatReport = () => {
   const [searchText, setSearchText] = useState('');
+  const [recipientGroup, setRecipientGroup] = useState(null);
   const [year, setYear] = useState(null);
   const [taken, setTaken] = useState(null);
   const [minAmount, setMinAmount] = useState('');
   const [maxAmount, setMaxAmount] = useState('');
+  const allYears = year ? [year] : getYearArray();
+
+  // library
+  const { data: groupData, isLoading: groupLoading } =
+    useGetRecipientGroupsQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allRecipientGroups = groupData?.recipientGroups || [];
+  // end library
 
   // table
   // pagination
@@ -58,6 +75,10 @@ const ZakatReport = () => {
   query['page'] = 0;
   query['sortBy'] = 'fullName';
   query['sortOrder'] = 'asc';
+
+  if (recipientGroup) {
+    query['recipientGroupId'] = recipientGroup?.id;
+  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -130,6 +151,7 @@ const ZakatReport = () => {
         <PrintZakatReport
           ref={componentRef}
           allRecipients={allRecipients}
+          allYears={allYears}
           isLoading={isLoading}
           totalAmount={totalAmount}
         />
@@ -143,7 +165,7 @@ const ZakatReport = () => {
           columnSpacing={1}
           sx={{ alignItems: 'end' }}
         >
-          <Grid item xs={12} md={3.5}>
+          <Grid item xs={12} md={2.5}>
             <InputBase
               disabled={taken ? true : false}
               fullWidth
@@ -160,6 +182,23 @@ const ZakatReport = () => {
           </Grid>
           <Grid item xs={12} md={2.5}>
             <Autocomplete
+              loading={groupLoading}
+              value={recipientGroup}
+              size="small"
+              fullWidth
+              options={allRecipientGroups}
+              getOptionLabel={(option) =>
+                option.labelBn + ' => ' + option.label
+              }
+              onChange={(e, newValue) => setRecipientGroup(newValue)}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              renderInput={(params) => (
+                <TextField {...params} label="গ্রহীতা গ্রুপ" />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} md={1.7}>
+            <Autocomplete
               disabled={taken ? true : false}
               value={year}
               size="small"
@@ -170,7 +209,7 @@ const ZakatReport = () => {
               renderInput={(params) => <TextField {...params} label="বছর" />}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={1.7}>
             <TextField
               disabled={taken ? true : false}
               fullWidth
@@ -182,7 +221,7 @@ const ZakatReport = () => {
               onChange={(e) => setMinAmount(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={1.8}>
             <TextField
               disabled={taken ? true : false}
               fullWidth
@@ -194,7 +233,7 @@ const ZakatReport = () => {
               onChange={(e) => setMaxAmount(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} md={2}>
+          <Grid item xs={12} md={1.8}>
             <Autocomplete
               value={taken}
               size="small"
@@ -203,6 +242,7 @@ const ZakatReport = () => {
               onChange={(e, newValue) => {
                 setTaken(newValue);
                 setSearchText('');
+                setRecipientGroup(null);
                 setYear(null);
                 setMinAmount('');
                 setMaxAmount('');
@@ -229,20 +269,22 @@ const ZakatReport = () => {
             <StyledTableCellWithBorder rowSpan={2}>
               ঠিকানা
             </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="center" colSpan={3}>
-              যাকাত গ্রহণ
+            <StyledTableCellWithBorder
+              align="center"
+              colSpan={allYears?.length || 1}
+            >
+              বছর
+            </StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="right" rowSpan={2}>
+              মোট গ্রহণ
             </StyledTableCellWithBorder>
           </TableRow>
           <TableRow>
-            <StyledTableCellWithBorder align="center">
-              বছর
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="right">
-              পরিমাণ
-            </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder align="right">
-              মোট গ্রহণ
-            </StyledTableCellWithBorder>
+            {allYears?.map((el) => (
+              <StyledTableCellWithBorder align="right" key={el}>
+                {convertToBanglaNumber(el)}
+              </StyledTableCellWithBorder>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -254,6 +296,7 @@ const ZakatReport = () => {
                   key={el.id}
                   sn={page * rowsPerPage + index + 1}
                   data={el}
+                  allYears={allYears}
                 />
               ))
           ) : (
@@ -273,7 +316,7 @@ const ZakatReport = () => {
           {allRecipients?.length ? (
             <TableRow>
               <StyledTableCellWithBorder
-                colSpan={5}
+                colSpan={3 + allYears?.length}
                 sx={{
                   fontSize: '12px !important',
                   fontWeight: 700,

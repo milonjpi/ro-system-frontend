@@ -2,34 +2,32 @@ import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { Button, TableRow } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useDeleteRecipientMutation } from 'store/api/recipient/recipientApi';
 import { setToast } from 'store/toastSlice';
 import { IconEdit } from '@tabler/icons';
 import { IconTrashXFilled } from '@tabler/icons-react';
 import ConfirmDialog from 'ui-component/ConfirmDialog';
-import UpdateRecipient from './UpdateRecipient';
 import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
+import { useDeleteRecipientGroupMutation } from 'store/api/recipientGroup/recipientGroupApi';
+import UpdateRecipientGroup from './UpdateRecipientGroup';
 
-const RecipientRow = ({ sn, data }) => {
-  const zakatDetails = data?.zakats || [];
-
+const RecipientGroupRow = ({ sn, data }) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [deleteRecipient] = useDeleteRecipientMutation();
+  const [deleteRecipientGroup] = useDeleteRecipientGroupMutation();
 
   const handleDelete = async () => {
     setDialog(false);
     try {
-      const res = await deleteRecipient(data?.id).unwrap();
+      const res = await deleteRecipientGroup(data?.id).unwrap();
       if (res.success) {
         dispatch(
           setToast({
             open: true,
             variant: 'success',
-            message: 'Recipient Deleted Successfully',
+            message: 'Group Deleted Successfully',
           })
         );
       }
@@ -49,18 +47,9 @@ const RecipientRow = ({ sn, data }) => {
       <StyledTableCellWithBorder align="center" sx={{ width: 80 }}>
         {convertToBanglaNumber(sn)}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.fullName}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>{data?.fullNameEn}</StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.mobile ? convertToBanglaNumber(data?.mobile) : 'n/a'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.address || 'n/a'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder>
-        {data?.recipientGroup?.labelBn || 'n/a'}
-      </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
+      <StyledTableCellWithBorder>{data?.labelBn}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder>{data?.label}</StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="center" sx={{minWidth: 85}}>
         <Button
           color="primary"
           variant="contained"
@@ -71,7 +60,6 @@ const RecipientRow = ({ sn, data }) => {
           <IconEdit size={14} />
         </Button>
         <Button
-          disabled={zakatDetails.length > 0 ? true : false}
           color="error"
           variant="contained"
           size="small"
@@ -81,7 +69,7 @@ const RecipientRow = ({ sn, data }) => {
           <IconTrashXFilled size={14} />
         </Button>
         {/* popup item */}
-        <UpdateRecipient
+        <UpdateRecipientGroup
           preData={data}
           open={open}
           handleClose={() => setOpen(false)}
@@ -89,7 +77,7 @@ const RecipientRow = ({ sn, data }) => {
         <ConfirmDialog
           open={dialog}
           setOpen={setDialog}
-          content="Delete Recipient"
+          content="Delete Recipient Group"
           handleDelete={handleDelete}
         />
         {/* end popup item */}
@@ -98,4 +86,4 @@ const RecipientRow = ({ sn, data }) => {
   );
 };
 
-export default RecipientRow;
+export default RecipientGroupRow;

@@ -78,9 +78,9 @@ const ZakatPayRow = ({ sn, data }) => {
         {data?.recipient?.fullName}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder>
-        {data?.remarks || 'n/a'}
+        {data?.recipient?.recipientGroup?.labelBn || 'n/a'}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center" sx={{width: 90}}>
+      <StyledTableCellWithBorder align="center" sx={{ width: 90 }}>
         <FormControlLabel
           control={
             <Switch
@@ -94,7 +94,7 @@ const ZakatPayRow = ({ sn, data }) => {
       <StyledTableCellWithBorder align="right">
         {convertToBanglaNumber(data?.amount)}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center" sx={{minWidth: 85}}>
+      <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
         <Button
           color="primary"
           variant="contained"

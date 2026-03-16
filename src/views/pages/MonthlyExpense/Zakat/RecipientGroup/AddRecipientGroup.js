@@ -13,62 +13,42 @@ import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
-import { useUpdateRecipientMutation } from 'store/api/recipient/recipientApi';
-import { useGetRecipientGroupsQuery } from 'store/api/recipientGroup/recipientGroupApi';
-import { Autocomplete } from '@mui/material';
+import { useCreateRecipientGroupMutation } from 'store/api/recipientGroup/recipientGroupApi';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 400, sm: 500, md: 550 },
+  width: { xs: 400, sm: 450 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
   p: 2,
 };
 
-const UpdateRecipient = ({ open, handleClose, preData }) => {
+const AddRecipientGroup = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
-  const [recipientGroup, setRecipientGroup] = useState(
-    preData?.recipientGroup || null
-  );
 
-  // library
-  const { data: groupData, isLoading: groupLoading } =
-    useGetRecipientGroupsQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allRecipientGroups = groupData?.recipientGroups || [];
-  // end library
-
-  const { register, handleSubmit } = useForm({ defaultValues: preData });
+  const { register, handleSubmit, reset } = useForm();
 
   const dispatch = useDispatch();
 
-  const [updateRecipient] = useUpdateRecipientMutation();
+  const [createRecipientGroup] = useCreateRecipientGroupMutation();
 
   const onSubmit = async (data) => {
     const newData = {
-      fullName: data?.fullName,
-      fullNameEn: data?.fullNameEn,
-      recipientGroupId: recipientGroup?.id,
-      mobile: data?.mobile || '',
-      address: data?.address || '',
+      label: data?.label,
+      labelBn: data?.labelBn,
     };
 
     try {
       setLoading(true);
-      const res = await updateRecipient({
-        id: preData?.id,
-        body: newData,
-      }).unwrap();
+      const res = await createRecipientGroup({ ...newData }).unwrap();
       if (res.success) {
         handleClose();
         setLoading(false);
+        reset();
         dispatch(
           setToast({
             open: true,
@@ -101,7 +81,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, color: '#878781' }}>
-            এডিট করুন
+            গ্রুপ যোগ করুন
           </Typography>
           <IconButton color="error" size="small" onClick={handleClose}>
             <CloseIcon fontSize="small" />
@@ -114,54 +94,22 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 required
-                label="গ্রহীতার নাম"
+                label="গ্রহীতা গ্রুপ"
                 size="small"
-                {...register('fullName', { required: true })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="গ্রহীতার নাম (EN)"
-                size="small"
-                {...register('fullNameEn')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Autocomplete
-                loading={groupLoading}
-                value={recipientGroup}
-                size="small"
-                fullWidth
-                options={allRecipientGroups}
-                getOptionLabel={(option) =>
-                  option.labelBn + ' => ' + option.label
-                }
-                onChange={(e, newValue) => setRecipientGroup(newValue)}
-                isOptionEqualToValue={(item, value) => item.id === value.id}
-                renderInput={(params) => (
-                  <TextField {...params} label="গ্রহীতা গ্রুপ" />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="মোবাইল নং"
-                size="small"
-                {...register('mobile')}
+                {...register('labelBn', { required: true })}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="ঠিকানা"
+                label="গ্রহীতা গ্রুপ (EN)"
                 size="small"
-                {...register('address')}
+                required
+                {...register('label', { required: true })}
               />
             </Grid>
             <Grid item xs={12}>
@@ -175,7 +123,7 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
                 variant="contained"
                 type="submit"
               >
-                আপডেট
+                সাবমিট
               </LoadingButton>
             </Grid>
           </Grid>
@@ -185,4 +133,4 @@ const UpdateRecipient = ({ open, handleClose, preData }) => {
   );
 };
 
-export default UpdateRecipient;
+export default AddRecipientGroup;

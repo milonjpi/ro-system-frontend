@@ -11,35 +11,21 @@ import MainCard from 'ui-component/cards/MainCard';
 import { IconPlus } from '@tabler/icons-react';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import {
-  Autocomplete,
   Button,
   InputAdornment,
   InputBase,
   LinearProgress,
   TablePagination,
-  TextField,
 } from '@mui/material';
 import { useDebounced } from 'hooks';
-import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
-import RecipientRow from './RecipientRow';
-import AddRecipient from './AddRecipient';
 import { useGetRecipientGroupsQuery } from 'store/api/recipientGroup/recipientGroupApi';
+import AddRecipientGroup from './AddRecipientGroup';
+import RecipientGroupRow from './RecipientGroupRow';
 
-const Recipient = () => {
+const RecipientGroup = () => {
   const [searchText, setSearchText] = useState('');
-  const [recipientGroup, setRecipientGroup] = useState(null);
 
   const [open, setOpen] = useState(false);
-
-  // library
-  const { data: groupData, isLoading: groupLoading } =
-    useGetRecipientGroupsQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
-    );
-
-  const allRecipientGroups = groupData?.recipientGroups || [];
-  // end library
 
   // table
   // pagination
@@ -62,12 +48,8 @@ const Recipient = () => {
 
   query['limit'] = 2000;
   query['page'] = 0;
-  query['sortBy'] = 'fullName';
+  query['sortBy'] = 'label';
   query['sortOrder'] = 'asc';
-
-  if (recipientGroup) {
-    query['recipientGroupId'] = recipientGroup?.id;
-  }
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -79,16 +61,16 @@ const Recipient = () => {
     query['searchTerm'] = debouncedSearchTerm;
   }
 
-  const { data, isLoading } = useGetRecipientsQuery(
+  const { data, isLoading } = useGetRecipientGroupsQuery(
     { ...query },
     { refetchOnMountOrArgChange: true }
   );
 
-  const allRecipients = data?.recipients || [];
+  const allRecipientGroups = data?.recipientGroups || [];
 
   return (
     <MainCard
-      title="গ্রহীতার তালিকা"
+      title="গ্রহীতা গ্রুপ"
       secondary={
         <Button
           size="small"
@@ -103,7 +85,7 @@ const Recipient = () => {
       }
     >
       {/* pop up items */}
-      <AddRecipient open={open} handleClose={() => setOpen(false)} />
+      <AddRecipientGroup open={open} handleClose={() => setOpen(false)} />
       {/* pop up items */}
       {/* filter area */}
       <Box sx={{ mb: 2 }}>
@@ -127,23 +109,6 @@ const Recipient = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Autocomplete
-              loading={groupLoading}
-              value={recipientGroup}
-              size="small"
-              fullWidth
-              options={allRecipientGroups}
-              getOptionLabel={(option) =>
-                option.labelBn + ' => ' + option.label
-              }
-              onChange={(e, newValue) => setRecipientGroup(newValue)}
-              isOptionEqualToValue={(item, value) => item.id === value.id}
-              renderInput={(params) => (
-                <TextField {...params} label="গ্রহীতা গ্রুপ" />
-              )}
-            />
-          </Grid>
         </Grid>
       </Box>
       {/* end filter area */}
@@ -155,22 +120,21 @@ const Recipient = () => {
             <StyledTableCellWithBorder align="center">
               ক্রোমিক নং
             </StyledTableCellWithBorder>
-            <StyledTableCellWithBorder>গ্রহীতার নাম</StyledTableCellWithBorder>
-            <StyledTableCellWithBorder>গ্রহীতার নাম &#40;EN&#41;</StyledTableCellWithBorder>
-            <StyledTableCellWithBorder>মোবাইল নং</StyledTableCellWithBorder>
-            <StyledTableCellWithBorder>ঠিকানা</StyledTableCellWithBorder>
             <StyledTableCellWithBorder>গ্রহীতা গ্রুপ</StyledTableCellWithBorder>
+            <StyledTableCellWithBorder>
+              গ্রহীতা গ্রুপ &#40;EN&#41;
+            </StyledTableCellWithBorder>
             <StyledTableCellWithBorder align="center">
               অ্যাকশন
             </StyledTableCellWithBorder>
           </TableRow>
         </TableHead>
         <TableBody>
-          {allRecipients?.length ? (
-            allRecipients
+          {allRecipientGroups?.length ? (
+            allRecipientGroups
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.map((el, index) => (
-                <RecipientRow
+                <RecipientGroupRow
                   key={el.id}
                   sn={page * rowsPerPage + index + 1}
                   data={el}
@@ -195,7 +159,7 @@ const Recipient = () => {
       <TablePagination
         rowsPerPageOptions={[10, 20, 40, 100]}
         component="div"
-        count={allRecipients?.length || 0}
+        count={allRecipientGroups?.length || 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -206,4 +170,4 @@ const Recipient = () => {
   );
 };
 
-export default Recipient;
+export default RecipientGroup;

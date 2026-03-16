@@ -294,11 +294,17 @@ const Zakat = Loadable(lazy(() => import('views/pages/MonthlyExpense/Zakat')));
 const ZakatPay = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatPay'))
 );
+const RecipientGroup = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Zakat/RecipientGroup'))
+);
 const Recipient = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/Recipient'))
 );
 const ZakatReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatReport'))
+);
+const YearWiseReport = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Zakat/YearWiseReport'))
 );
 
 // jewellery
@@ -1214,8 +1220,16 @@ const MainRoutes = {
                       element: <Recipient />,
                     },
                     {
+                      path: 'recipient-group',
+                      element: <RecipientGroup />,
+                    },
+                    {
                       path: 'report',
                       element: <ZakatReport />,
+                    },
+                    {
+                      path: 'year-report',
+                      element: <YearWiseReport />,
                     },
                   ],
                 },

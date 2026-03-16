@@ -21,6 +21,16 @@ const zakatApi = api.injectEndpoints({
       providesTags: ['zakat'],
     }),
 
+    // get year wise report
+    getYearWiseZakats: build.query({
+      query: (params) => ({
+        url: `${ZAKAT_URL}/year`,
+        method: 'GET',
+        params: params,
+      }),
+      providesTags: ['zakat'],
+    }),
+
     // get single zakat
     getSingleZakat: build.query({
       query: (id) => ({
@@ -63,6 +73,7 @@ const zakatApi = api.injectEndpoints({
 
 export const {
   useGetZakatsQuery,
+  useGetYearWiseZakatsQuery,
   useGetSingleZakatQuery,
   useCreateZakatMutation,
   useUpdateZakatMutation,

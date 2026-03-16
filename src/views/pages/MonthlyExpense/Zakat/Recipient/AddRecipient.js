@@ -14,13 +14,15 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setToast } from 'store/toastSlice';
 import { useCreateRecipientMutation } from 'store/api/recipient/recipientApi';
+import { useGetRecipientGroupsQuery } from 'store/api/recipientGroup/recipientGroupApi';
+import { Autocomplete } from '@mui/material';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: 400, sm: 500, md: 550 },
+  width: { xs: 400, sm: 500, md: 600 },
   maxHeight: '100vh',
   overflow: 'auto',
   boxShadow: 24,
@@ -29,6 +31,17 @@ const style = {
 
 const AddRecipient = ({ open, handleClose }) => {
   const [loading, setLoading] = useState(false);
+  const [recipientGroup, setRecipientGroup] = useState(null);
+
+  // library
+  const { data: groupData, isLoading: groupLoading } =
+    useGetRecipientGroupsQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allRecipientGroups = groupData?.recipientGroups || [];
+  // end library
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -38,9 +51,11 @@ const AddRecipient = ({ open, handleClose }) => {
 
   const onSubmit = async (data) => {
     const newData = {
-        fullName: data?.fullName,
-        mobile: data?.mobile || "",
-        address: data?.address || "",
+      fullName: data?.fullName,
+      fullNameEn: data?.fullNameEn,
+      recipientGroupId: recipientGroup?.id,
+      mobile: data?.mobile || '',
+      address: data?.address || '',
     };
 
     try {
@@ -49,6 +64,7 @@ const AddRecipient = ({ open, handleClose }) => {
       if (res.success) {
         handleClose();
         setLoading(false);
+        setRecipientGroup(null);
         reset();
         dispatch(
           setToast({
@@ -95,7 +111,7 @@ const AddRecipient = ({ open, handleClose }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 required
@@ -104,7 +120,32 @@ const AddRecipient = ({ open, handleClose }) => {
                 {...register('fullName', { required: true })}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="গ্রহীতার নাম (EN)"
+                size="small"
+                {...register('fullNameEn')}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Autocomplete
+                loading={groupLoading}
+                value={recipientGroup}
+                size="small"
+                fullWidth
+                options={allRecipientGroups}
+                getOptionLabel={(option) =>
+                  option.labelBn + ' => ' + option.label
+                }
+                onChange={(e, newValue) => setRecipientGroup(newValue)}
+                isOptionEqualToValue={(item, value) => item.id === value.id}
+                renderInput={(params) => (
+                  <TextField {...params} label="গ্রহীতা গ্রুপ" />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 label="মোবাইল নং"

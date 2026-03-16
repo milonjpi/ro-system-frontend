@@ -1,14 +1,10 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
-import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
 import { IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 import SubCard from 'ui-component/cards/SubCard';
 import DataTable from 'ui-component/table';
-import { useDebounced } from 'hooks';
 import moment from 'moment';
 import { useGetRecipientsQuery } from 'store/api/recipient/recipientApi';
 import { useGetZakatsQuery } from 'store/api/zakat/zakatApi';
@@ -18,18 +14,35 @@ import ZakatPayRow from './ZakatPayRow';
 import AddZakatPay from './AddZakatPay';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
 import { convertToBanglaNumber } from 'views/utilities/NeedyFunction';
+import { useGetRecipientGroupsQuery } from 'store/api/recipientGroup/recipientGroupApi';
 
 const ZakatPay = () => {
-  const [searchText, setSearchText] = useState('');
   const [year, setYear] = useState(moment().format('YYYY'));
+  const [recipientGroup, setRecipientGroup] = useState(null);
   const [recipient, setRecipient] = useState(null);
   const [status, setStatus] = useState(null);
   const [open, setOpen] = useState(false);
 
   // library
+  const { data: groupData, isLoading: groupLoading } =
+    useGetRecipientGroupsQuery(
+      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { refetchOnMountOrArgChange: true }
+    );
+
+  const allRecipientGroups = groupData?.recipientGroups || [];
+
+  const recipientQuery = {};
+  recipientQuery['limit'] = 1000;
+  recipientQuery['sortBy'] = 'fullName';
+  recipientQuery['sortOrder'] = 'asc';
+  if (recipientGroup) {
+    recipientQuery['recipientGroupId'] = recipientGroup?.id;
+  }
+
   const { data: recipientData, isLoading: recipientLoading } =
     useGetRecipientsQuery(
-      { limit: 1000, sortBy: 'fullName', sortOrder: 'asc' },
+      { ...recipientQuery },
       { refetchOnMountOrArgChange: true }
     );
 
@@ -63,7 +76,7 @@ const ZakatPay = () => {
       title: 'যাকাত গ্রহীতা',
     },
     {
-      title: 'মন্তব্য',
+      title: 'গ্রহীতা গ্রুপ',
     },
     {
       title: 'স্ট্যাটাস',
@@ -94,18 +107,12 @@ const ZakatPay = () => {
     query['status'] = status;
   }
 
-  if (recipient) {
-    query['recipientId'] = recipient?.id;
+  if (recipientGroup) {
+    query['recipientGroupId'] = recipientGroup?.id;
   }
 
-  // search term
-  const debouncedSearchTerm = useDebounced({
-    searchQuery: searchText,
-    delay: 600,
-  });
-
-  if (!!debouncedSearchTerm) {
-    query['searchTerm'] = debouncedSearchTerm;
+  if (recipient) {
+    query['recipientId'] = recipient?.id;
   }
 
   const { data, isLoading } = useGetZakatsQuery(
@@ -145,27 +152,36 @@ const ZakatPay = () => {
           sx={{ alignItems: 'end' }}
         >
           <Grid item xs={12} md={3}>
-            <InputBase
+            <Autocomplete
+              loading={groupLoading}
+              value={recipientGroup}
+              size="small"
               fullWidth
-              placeholder="অনুসন্ধান..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              sx={{ borderBottom: '1px solid #ccc' }}
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
+              options={allRecipientGroups}
+              getOptionLabel={(option) =>
+                option.labelBn + ' => ' + option.label
               }
+              onChange={(e, newValue) => {
+                setRecipientGroup(newValue);
+                setRecipient(null);
+              }}
+              isOptionEqualToValue={(item, value) => item.id === value.id}
+              renderInput={(params) => (
+                <TextField {...params} label="গ্রহীতা গ্রুপ" />
+              )}
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             <Autocomplete
               loading={recipientLoading}
               value={recipient}
               size="small"
               fullWidth
               options={allRecipients}
-              getOptionLabel={(option) => option.fullName}
+              getOptionLabel={(option) =>
+                option.fullName +
+                (option.fullNameEn ? ' => ' + option.fullNameEn : '')
+              }
               isOptionEqualToValue={(item, value) => item.id === value.id}
               onChange={(e, newValue) => setRecipient(newValue)}
               renderInput={(params) => (
@@ -173,7 +189,7 @@ const ZakatPay = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={2.5}>
             <Autocomplete
               value={year}
               size="small"
@@ -184,7 +200,7 @@ const ZakatPay = () => {
               renderInput={(params) => <TextField {...params} label="বছর" />}
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={2.5}>
             <Autocomplete
               value={status}
               size="small"
@@ -203,7 +219,7 @@ const ZakatPay = () => {
       {/* data table */}
       <DataTable
         bordered
-        sx={{minWidth: allZakats?.length && 600}}
+        sx={{ minWidth: allZakats?.length && 600 }}
         tableHeads={tableHeads}
         data={allZakats}
         options={(el, index) => (

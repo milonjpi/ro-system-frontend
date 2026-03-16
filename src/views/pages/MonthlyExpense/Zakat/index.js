@@ -17,8 +17,18 @@ const menuList = [
   },
   {
     id: 3,
+    label: 'গ্রহীতা গ্রুপ',
+    path: 'recipient-group',
+  },
+  {
+    id: 4,
     label: 'যাকাত রিপোর্ট',
     path: 'report',
+  },
+  {
+    id: 5,
+    label: 'যাকাত রিপোর্ট (বছর)',
+    path: 'year-report',
   },
 ];
 
