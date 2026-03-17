@@ -24,6 +24,7 @@ import {
   convertToBanglaNumber,
   convertToEnglishNumber,
 } from 'views/utilities/NeedyFunction';
+import { useGetSingleZakatValueQuery } from 'store/api/zakatValue/zakatValueApi';
 
 const style = {
   position: 'absolute',
@@ -47,10 +48,17 @@ const AddZakatPay = ({ open, handleClose }) => {
   const [recipientOpen, setRecipientOpen] = useState(false);
 
   // library
+  const { data: zakatValueData } = useGetSingleZakatValueQuery(year || '123', {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const zakatValue = zakatValueData?.data;
+
+
   const { data: recipientData, isLoading: recipientLoading } =
     useGetRecipientsQuery(
       { limit: 1000, sortBy: 'fullName', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
+      { refetchOnMountOrArgChange: true },
     );
 
   const allRecipients = recipientData?.recipients || [];
@@ -60,6 +68,11 @@ const AddZakatPay = ({ open, handleClose }) => {
 
   // watch amount
   const watchAmount = watch('amount', ''); // Watch the amount field
+
+  // calculation
+  const zakatAmount = zakatValue?.amount || 0;
+  const paidAmount = (zakatValue?.paid || 0) + (Number(convertToEnglishNumber(watchAmount)) || 0);
+  const remainingAmount = zakatAmount - paidAmount;
 
   const dispatch = useDispatch();
 
@@ -71,7 +84,7 @@ const AddZakatPay = ({ open, handleClose }) => {
           open: true,
           variant: 'success',
           message: 'Please correct the amount',
-        })
+        }),
       );
     }
 
@@ -98,7 +111,7 @@ const AddZakatPay = ({ open, handleClose }) => {
             open: true,
             variant: 'success',
             message: res?.message,
-          })
+          }),
         );
       }
     } catch (err) {
@@ -109,7 +122,7 @@ const AddZakatPay = ({ open, handleClose }) => {
           variant: 'error',
           message: err?.data?.message || 'Something Went Wrong',
           errorMessages: err?.data?.errorMessages,
-        })
+        }),
       );
     }
   };
@@ -145,7 +158,12 @@ const AddZakatPay = ({ open, handleClose }) => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Grid container columnSpacing={2} rowSpacing={3} sx={{alignItems: "center"}}>
+          <Grid
+            container
+            columnSpacing={2}
+            rowSpacing={3}
+            sx={{ alignItems: 'center' }}
+          >
             <Grid item xs={12} md={6}>
               <Autocomplete
                 value={year}
@@ -160,17 +178,58 @@ const AddZakatPay = ({ open, handleClose }) => {
               />
             </Grid>
             <Grid item xs={6} md={3}>
-              <Typography sx={{ fontSize: 9, fontWeight: 500 }}>
-                <span style={{ fontWeight: 400 }}>মোট:</span> 0
-              </Typography>
-              <Typography sx={{ fontSize: 9, fontWeight: 500 }}>
-                <span style={{ fontWeight: 400 }}>পরিশোধিত:</span> 0
-              </Typography>
+              {year ? (
+                <>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      mb: 0.2,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
+                      মোট:
+                    </Typography>
+                    <Typography sx={{ fontSize: 10, fontWeight: 500 }}>
+                      {zakatAmount}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
+                      পরিশোধিত:
+                    </Typography>
+                    <Typography sx={{ fontSize: 10, fontWeight: 500 }}>
+                      {paidAmount}
+                    </Typography>
+                  </Box>
+                </>
+              ) : null}
             </Grid>
             <Grid item xs={6} md={3}>
-              <Typography sx={{ fontSize: 9, fontWeight: 500 }}>
-                <span style={{ fontWeight: 400 }}>অবশিষ্ট:</span> 0
-              </Typography>
+              {year ? (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
+                    অবশিষ্ট:
+                  </Typography>
+                  <Typography sx={{ fontSize: 10, fontWeight: 500 }}>
+                    {remainingAmount}
+                  </Typography>
+                </Box>
+              ) : null}
             </Grid>
             <Grid item xs={12} md={8}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>

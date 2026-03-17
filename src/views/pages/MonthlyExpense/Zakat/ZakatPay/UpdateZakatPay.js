@@ -23,6 +23,7 @@ import {
   convertToBanglaNumber,
   convertToEnglishNumber,
 } from 'views/utilities/NeedyFunction';
+import { useGetSingleZakatValueQuery } from 'store/api/zakatValue/zakatValueApi';
 
 const style = {
   position: 'absolute',
@@ -46,10 +47,16 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
   const [recipientOpen, setRecipientOpen] = useState(false);
 
   // library
+  const { data: zakatValueData } = useGetSingleZakatValueQuery(year || '123', {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const zakatValue = zakatValueData?.data;
+
   const { data: recipientData, isLoading: recipientLoading } =
     useGetRecipientsQuery(
       { limit: 1000, sortBy: 'fullName', sortOrder: 'asc' },
-      { refetchOnMountOrArgChange: true }
+      { refetchOnMountOrArgChange: true },
     );
 
   const allRecipients = recipientData?.recipients || [];
@@ -65,6 +72,14 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
   // watch amount
   const watchAmount = watch('amount', ''); // Watch the amount field
 
+  // calculation
+  const zakatAmount = zakatValue?.amount || 0;
+  const paidAmount =
+    (zakatValue?.paid || 0) -
+    preData?.amount +
+    (Number(convertToEnglishNumber(watchAmount)) || 0);
+  const remainingAmount = zakatAmount - paidAmount;
+
   const dispatch = useDispatch();
 
   const [updateZakat] = useUpdateZakatMutation();
@@ -76,7 +91,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
           open: true,
           variant: 'success',
           message: 'Please correct the amount',
-        })
+        }),
       );
     }
 
@@ -102,7 +117,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
             open: true,
             variant: 'success',
             message: res?.message,
-          })
+          }),
         );
       }
     } catch (err) {
@@ -113,7 +128,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
           variant: 'error',
           message: err?.data?.message || 'Something Went Wrong',
           errorMessages: err?.data?.errorMessages,
-        })
+        }),
       );
     }
   };
@@ -148,7 +163,7 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container columnSpacing={2} rowSpacing={3}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
               <Autocomplete
                 value={year}
                 size="small"
@@ -160,6 +175,60 @@ const UpdateZakatPay = ({ open, handleClose, preData }) => {
                   <TextField {...params} label="বছর নির্বাচন করুন" required />
                 )}
               />
+            </Grid>
+            <Grid item xs={6} md={3}>
+              {year ? (
+                <>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      mb: 0.2,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
+                      মোট:
+                    </Typography>
+                    <Typography sx={{ fontSize: 10, fontWeight: 500 }}>
+                      {zakatAmount}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
+                      পরিশোধিত:
+                    </Typography>
+                    <Typography sx={{ fontSize: 10, fontWeight: 500 }}>
+                      {paidAmount}
+                    </Typography>
+                  </Box>
+                </>
+              ) : null}
+            </Grid>
+            <Grid item xs={6} md={3}>
+              {year ? (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
+                    অবশিষ্ট:
+                  </Typography>
+                  <Typography sx={{ fontSize: 10, fontWeight: 500 }}>
+                    {remainingAmount}
+                  </Typography>
+                </Box>
+              ) : null}
             </Grid>
             <Grid item xs={12} md={8}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
