@@ -22,11 +22,16 @@ const menuList = [
   },
   {
     id: 4,
+    label: 'যাকাত এমাউন্ট',
+    path: 'zakat-amount',
+  },
+  {
+    id: 5,
     label: 'যাকাত রিপোর্ট',
     path: 'report',
   },
   {
-    id: 5,
+    id: 6,
     label: 'যাকাত রিপোর্ট (বছর)',
     path: 'year-report',
   },

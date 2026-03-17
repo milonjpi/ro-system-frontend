@@ -300,6 +300,9 @@ const RecipientGroup = Loadable(
 const Recipient = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/Recipient'))
 );
+const ZakatAmount = Loadable(
+  lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatAmount'))
+);
 const ZakatReport = Loadable(
   lazy(() => import('views/pages/MonthlyExpense/Zakat/ZakatReport'))
 );
@@ -1222,6 +1225,10 @@ const MainRoutes = {
                     {
                       path: 'recipient-group',
                       element: <RecipientGroup />,
+                    },
+                    {
+                      path: 'zakat-amount',
+                      element: <ZakatAmount />,
                     },
                     {
                       path: 'report',
