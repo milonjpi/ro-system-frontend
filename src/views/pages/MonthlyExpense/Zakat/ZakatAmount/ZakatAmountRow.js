@@ -41,6 +41,11 @@ const ZakatAmountRow = ({ sn, data }) => {
       );
     }
   };
+
+  // calculation
+  const totalZakat = data?.amount || 0;
+  const paidAmount = data?.paidAmount || 0;
+  const remaining = totalZakat - paidAmount;
   return (
     <TableRow>
       <StyledTableCellWithBorder align="center">
@@ -51,6 +56,12 @@ const ZakatAmountRow = ({ sn, data }) => {
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="right">
         {convertToBanglaNumber(data?.amount)}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {convertToBanglaNumber(paidAmount)}
+      </StyledTableCellWithBorder>
+      <StyledTableCellWithBorder align="right">
+        {convertToBanglaNumber(remaining)}
       </StyledTableCellWithBorder>
       <StyledTableCellWithBorder align="center" sx={{ minWidth: 85 }}>
         <Button

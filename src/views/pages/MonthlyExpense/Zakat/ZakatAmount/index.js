@@ -36,7 +36,15 @@ const ZakatAmount = () => {
       title: 'বছর',
     },
     {
-      title: 'পরিমাণ',
+      title: 'যাকাতের পরিমাণ',
+      align: 'right',
+    },
+    {
+      title: 'পরিশোধিত',
+      align: 'right',
+    },
+    {
+      title: 'অবশিষ্ট',
       align: 'right',
     },
     {
@@ -119,6 +127,7 @@ const ZakatAmount = () => {
                   fontSize: '12px !important',
                   fontWeight: 700,
                 }}
+                colSpan={3}
               ></StyledTableCellWithBorder>
             </TableRow>
           ) : null
