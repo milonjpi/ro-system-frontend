@@ -25,9 +25,11 @@ import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { utils, writeFile } from 'xlsx';
 import PrintCustomer from './PrintCustomer';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const AllCustomers = () => {
   const [searchText, setSearchText] = useState('');
+  const [status, setStatus] = useState(true);
 
   const [open, setOpen] = useState(false);
 
@@ -52,7 +54,7 @@ const AllCustomers = () => {
   query['page'] = page;
   query['sortBy'] = 'customerId';
   query['sortOrder'] = 'asc';
-  query['isActive'] = true;
+  query['isActive'] = status;
   // search term
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchText,
@@ -74,6 +76,12 @@ const AllCustomers = () => {
   let sn = page * rowsPerPage + 1;
 
   // print and export
+  const { data: printData, isLoading: printLoading } = useGetCustomersQuery(
+    { ...query, page: 0, limit: 5000 },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const allPrintCustomers = printData?.customers || [];
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -94,13 +102,13 @@ const AllCustomers = () => {
 
     ws['!cols'] = [
       { wch: 5 },
-      { wch: 9 },
+      { wch: 8 },
       { wch: 18 },
       { wch: 19 },
+      { wch: 11 },
       { wch: 12 },
-      { wch: 19 },
-      { wch: 8 },
-      { wch: 15 },
+      { wch: 9 },
+      { wch: 7 },
     ];
     writeFile(wb, `AllClientList.xlsx`);
   };
@@ -143,7 +151,7 @@ const AllCustomers = () => {
     >
       <Box sx={{ mb: 2 }}>
         <Grid container spacing={2} sx={{ alignItems: 'end' }}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3.5}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -157,13 +165,35 @@ const AllCustomers = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel id="select-status-id">Status</InputLabel>
+              <Select
+                labelId="select-status-id"
+                value={status}
+                label="Status"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <MenuItem value={true}>
+                  <em>Active</em>
+                </MenuItem>
+                <MenuItem value={false}>
+                  <em>Inactive</em>
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
       </Box>
       {/* popup items */}
       <AddCustomer open={open} handleClose={() => setOpen(false)} />
 
       <Box component="div" sx={{ overflow: 'hidden', height: 0 }}>
-        <PrintCustomer ref={componentRef} />
+        <PrintCustomer
+          ref={componentRef}
+          allCustomers={allPrintCustomers}
+          isLoading={printLoading}
+        />
       </Box>
       {/* end popup items */}
       <Box sx={{ overflow: 'auto' }}>
@@ -174,9 +204,9 @@ const AllCustomers = () => {
               <StyledTableCell>Client ID</StyledTableCell>
               <StyledTableCell>Client Name</StyledTableCell>
               <StyledTableCell>Client Name &#40;BN&#41;</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
               <StyledTableCell>Address</StyledTableCell>
               <StyledTableCell>Created At</StyledTableCell>
+              <StyledTableCell align="center">Status</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>

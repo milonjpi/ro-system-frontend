@@ -32,6 +32,7 @@ const DistSummaryReport = () => {
         limit: 1000,
         sortBy: 'customerName',
         sortOrder: 'asc',
+        isActive: true,
       },
       { refetchOnMountOrArgChange: true }
     );

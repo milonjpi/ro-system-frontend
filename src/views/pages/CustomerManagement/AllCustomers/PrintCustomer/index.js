@@ -7,15 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import LinearProgress from '@mui/material/LinearProgress';
 import { StyledTableCellWithBorder } from 'ui-component/table-component';
-import { useCustomerDetailsQuery } from 'store/api/customer/customerApi';
 import PrintCustomerRow from './PrintCustomerRow';
 
-const PrintCustomer = forwardRef(({ data }, ref) => {
-  const { data: customerData, isLoading } = useCustomerDetailsQuery('', {
-    refetchOnMountOrArgChange: true,
-  });
-
-  const allCustomers = customerData?.customers || [];
+const PrintCustomer = forwardRef(({ allCustomers, isLoading }, ref) => {
   let sn = 1;
   return (
     <Box component="div" ref={ref} sx={{ p: 3 }}>
@@ -50,6 +44,8 @@ const PrintCustomer = forwardRef(({ data }, ref) => {
             </StyledTableCellWithBorder>
             <StyledTableCellWithBorder>Mobile</StyledTableCellWithBorder>
             <StyledTableCellWithBorder>Address</StyledTableCellWithBorder>
+            <StyledTableCellWithBorder>Created At</StyledTableCellWithBorder>
+            <StyledTableCellWithBorder align="center">Status</StyledTableCellWithBorder>
           </TableRow>
         </TableHead>
         <TableBody>

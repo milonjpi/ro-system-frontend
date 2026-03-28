@@ -37,6 +37,7 @@ const CustomInvoices = () => {
   customerQuery['limit'] = 1000;
   customerQuery['sortBy'] = 'customerName';
   customerQuery['sortOrder'] = 'asc';
+  customerQuery['isActive'] = true;
 
   if (group) {
     customerQuery['groupId'] = group.id;

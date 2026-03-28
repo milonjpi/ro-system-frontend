@@ -63,6 +63,7 @@ const AddSalesOrder = ({ open, handleClose }) => {
   customerQuery['limit'] = 1000;
   customerQuery['sortBy'] = 'customerName';
   customerQuery['sortOrder'] = 'asc';
+  customerQuery['isActive'] = true;
 
   if (group) {
     customerQuery['groupId'] = group.id;

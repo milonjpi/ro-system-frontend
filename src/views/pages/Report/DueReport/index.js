@@ -36,7 +36,7 @@ const DueReport = () => {
 
   // library
   const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc', isActive: true },
     { refetchOnMountOrArgChange: true }
   );
 

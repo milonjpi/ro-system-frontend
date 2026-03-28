@@ -28,6 +28,7 @@ import ReportSummaryRow from './ReportSummaryRow';
 import moment from 'moment';
 import { useGetProductsQuery } from 'store/api/product/productApi';
 import PrintReportSummary from './PrintReportSummary';
+import { dueYears } from 'assets/data';
 
 const ReportSummary = () => {
   const [customer, setCustomer] = useState(null);
@@ -35,7 +36,7 @@ const ReportSummary = () => {
 
   // library
   const { data: customerData } = useGetCustomersQuery(
-    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc' },
+    { limit: 1000, sortBy: 'customerName', sortOrder: 'asc', isActive: true },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -202,9 +203,9 @@ const ReportSummary = () => {
                 label="Year"
                 onChange={(e) => setYear(e.target.value)}
               >
-                {[1, 2, 3, 4, 5, 6].map((el) => (
-                  <MenuItem key={el} value={`${2023 + el}`}>
-                    {2023 + el}
+                {dueYears.map((el) => (
+                  <MenuItem key={el} value={el}>
+                    {el}
                   </MenuItem>
                 ))}
               </Select>
