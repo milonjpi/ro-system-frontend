@@ -85,7 +85,7 @@ const UpdateExpense = ({ open, handleClose, preData }) => {
 
   const { data: expenseHeadData, isLoading: expenseHeadLoading } =
     useGetAllMonthlyExpenseHeadsQuery(
-      { limit: 1000, sortBy: 'label', sortOrder: 'asc' },
+      { limit: 1000, isActive: true, sortBy: 'label', sortOrder: 'asc' },
       { refetchOnMountOrArgChange: true }
     );
 

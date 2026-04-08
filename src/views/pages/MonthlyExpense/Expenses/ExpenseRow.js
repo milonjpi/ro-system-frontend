@@ -83,7 +83,7 @@ const ExpenseRow = ({ sn, data }) => {
       <StyledTableCellWithBorder align="right">
         {data?.amount}
       </StyledTableCellWithBorder>
-      <StyledTableCellWithBorder align="center">
+      <StyledTableCellWithBorder align="center" sx={{minWidth: 85}}>
         <Button
           color="primary"
           variant="contained"
