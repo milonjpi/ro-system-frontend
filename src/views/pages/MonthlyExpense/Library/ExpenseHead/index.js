@@ -12,9 +12,12 @@ import { useDebounced } from 'hooks';
 import AddExpenseHead from './AddExpenseHead';
 import ExpenseHeadRow from './ExpenseHeadRow';
 import { useGetAllMonthlyExpenseHeadsQuery } from 'store/api/monthlyExpenseHead/monthlyExpenseHeadApi';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const ExpenseHead = () => {
   const [searchText, setSearchText] = useState('');
+  const [status, setStatus] = useState(true);
+
   const [open, setOpen] = useState(false);
 
   // table
@@ -54,6 +57,7 @@ const ExpenseHead = () => {
   query['page'] = page;
   query['sortBy'] = 'label';
   query['sortOrder'] = 'asc';
+  query['isActive'] = status;
 
   // search term
   const debouncedSearchTerm = useDebounced({
@@ -100,7 +104,7 @@ const ExpenseHead = () => {
           columnSpacing={1}
           sx={{ alignItems: 'end' }}
         >
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3.5}>
             <InputBase
               fullWidth
               placeholder="Search..."
@@ -113,6 +117,24 @@ const ExpenseHead = () => {
                 </InputAdornment>
               }
             />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel id="select-status-id">Status</InputLabel>
+              <Select
+                labelId="select-status-id"
+                value={status}
+                label="Status"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <MenuItem value={true}>
+                  <em>Active</em>
+                </MenuItem>
+                <MenuItem value={false}>
+                  <em>Inactive</em>
+                </MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
       </Box>
