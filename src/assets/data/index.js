@@ -195,6 +195,10 @@ export const electricYears = [
   '2024',
   '2025',
   '2026',
+  '2027',
+  '2028',
+  '2029',
+  '2030',
 ];
 export const electricYearIndex = {
   1: '2015',
@@ -209,6 +213,10 @@ export const electricYearIndex = {
   10: '2024',
   11: '2025',
   12: '2026',
+  13: '2027',
+  14: '2028',
+  15: '2029',
+  16: '2030',
 };
 
 export const paymentMethods = ['CASH', 'BKASH', 'NAGAD', 'ROCKET', 'BANK'];

@@ -23,12 +23,13 @@ import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import PrintElectricBills from './PrintElectricBills';
 import { TableRow } from '@mui/material';
+import moment from 'moment';
 
 const ElectricBills = () => {
   const [smsAccount, setSmsAccount] = useState(null);
   const [meter, setMeter] = useState(null);
   const [month, setMonth] = useState(null);
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useState(moment().format('YYYY'));
 
   const [open, setOpen] = useState(false);
 
@@ -43,7 +44,7 @@ const ElectricBills = () => {
 
   // pagination
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(12);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -282,7 +283,7 @@ const ElectricBills = () => {
         </Table>
       </Box>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 20, 40]}
+        rowsPerPageOptions={[5, 10, 12, 20, 40]}
         component="div"
         count={meta?.total || 0}
         rowsPerPage={rowsPerPage}
