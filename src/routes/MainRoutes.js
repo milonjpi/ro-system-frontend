@@ -397,11 +397,14 @@ const BalanceSheet = Loadable(
 const ReportSummary = Loadable(
   lazy(() => import('views/pages/Report/ReportSummary'))
 );
-const DailyReport = Loadable(
-  lazy(() => import('views/pages/Report/DailyReport'))
-);
+// const DailyReport = Loadable(
+//   lazy(() => import('views/pages/Report/DailyReport'))
+// );
 const ExpenseHeadSummary = Loadable(
   lazy(() => import('views/pages/RoManagement/RoReport/ExpenseHeadSummary'))
+);
+const RoDailyReport = Loadable(
+  lazy(() => import('views/pages/RoManagement/RoReport/RoDailyReport'))
 );
 
 // payment report
@@ -635,7 +638,7 @@ const MainRoutes = {
                     },
                     {
                       path: 'daily-report',
-                      element: <DailyReport />,
+                      element: <RoDailyReport />,
                     },
                     {
                       path: 'balance-sheet',
