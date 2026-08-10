@@ -14,31 +14,31 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
 // pages routing
 
 // ro management
-const RoLibrary = Loadable(
-  lazy(() => import('views/pages/RoManagement/RoLibrary'))
-);
-const RoReport = Loadable(
-  lazy(() => import('views/pages/RoManagement/RoReport'))
-);
+// const RoLibrary = Loadable(
+//   lazy(() => import('views/pages/RoManagement/RoLibrary'))
+// );
+// const RoReport = Loadable(
+//   lazy(() => import('views/pages/RoManagement/RoReport'))
+// );
 
 // customer management
-const CustomerGroups = Loadable(
-  lazy(() => import('views/pages/CustomerManagement/CustomerGroups'))
-);
-const AllCustomers = Loadable(
-  lazy(() => import('views/pages/CustomerManagement/AllCustomers'))
-);
+// const CustomerGroups = Loadable(
+//   lazy(() => import('views/pages/CustomerManagement/CustomerGroups'))
+// );
+// const AllCustomers = Loadable(
+//   lazy(() => import('views/pages/CustomerManagement/AllCustomers'))
+// );
 
 // sales management
-const Products = Loadable(
-  lazy(() => import('views/pages/SalesManagement/Products'))
-);
+// const Products = Loadable(
+//   lazy(() => import('views/pages/SalesManagement/Products'))
+// );
 // const SalesOrder = Loadable(
 //   lazy(() => import('views/pages/SalesManagement/SalesOrder'))
 // );
-const Invoices = Loadable(
-  lazy(() => import('views/pages/SalesManagement/Invoices'))
-);
+// const Invoices = Loadable(
+//   lazy(() => import('views/pages/SalesManagement/Invoices'))
+// );
 // const CustomInvoices = Loadable(
 //   lazy(() => import('views/pages/SalesManagement/CustomInvoices'))
 // );
@@ -58,33 +58,33 @@ const Invoices = Loadable(
 // );
 
 // financial
-const AccountTypes = Loadable(
-  lazy(() => import('views/pages/Financial/AccountTypes'))
-);
-const AccountHeads = Loadable(
-  lazy(() => import('views/pages/Financial/AccountHeads'))
-);
-const PaymentMethods = Loadable(
-  lazy(() => import('views/pages/Financial/PaymentMethods'))
-);
+// const AccountTypes = Loadable(
+//   lazy(() => import('views/pages/Financial/AccountTypes'))
+// );
+// const AccountHeads = Loadable(
+//   lazy(() => import('views/pages/Financial/AccountHeads'))
+// );
+// const PaymentMethods = Loadable(
+//   lazy(() => import('views/pages/Financial/PaymentMethods'))
+// );
 
-const ReceivePayment = Loadable(
-  lazy(() => import('views/pages/Financial/ReceivePayment'))
-);
+// const ReceivePayment = Loadable(
+//   lazy(() => import('views/pages/Financial/ReceivePayment'))
+// );
 
 // const MakePayment = Loadable(
 //   lazy(() => import('views/pages/Financial/MakePayment'))
 // );
 
-const FixedAsset = Loadable(
-  lazy(() => import('views/pages/Financial/FixedAsset'))
-);
+// const FixedAsset = Loadable(
+//   lazy(() => import('views/pages/Financial/FixedAsset'))
+// );
 
-const Investment = Loadable(
-  lazy(() => import('views/pages/Financial/Investment'))
-);
+// const Investment = Loadable(
+//   lazy(() => import('views/pages/Financial/Investment'))
+// );
 
-const Withdraw = Loadable(lazy(() => import('views/pages/Financial/Withdraw')));
+// const Withdraw = Loadable(lazy(() => import('views/pages/Financial/Withdraw')));
 
 // store management
 // const UnitOfMeasurement = Loadable(
@@ -93,9 +93,9 @@ const Withdraw = Loadable(lazy(() => import('views/pages/Financial/Withdraw')));
 // const ItemsName = Loadable(
 //   lazy(() => import('views/pages/StoreManagement/ItemsName'))
 // );
-const Vendors = Loadable(
-  lazy(() => import('views/pages/StoreManagement/Vendors'))
-);
+// const Vendors = Loadable(
+//   lazy(() => import('views/pages/StoreManagement/Vendors'))
+// );
 // const PurchaseBill = Loadable(
 //   lazy(() => import('views/pages/StoreManagement/PurchaseBill'))
 // );
@@ -110,16 +110,16 @@ const Vendors = Loadable(
 // );
 
 // expense management
-const ExpenseHeads = Loadable(
-  lazy(() => import('views/pages/ExpenseManagement/ExpenseHeads'))
-);
-const ExpenseSubHeads = Loadable(
-  lazy(() => import('views/pages/ExpenseManagement/ExpenseSubHeads'))
-);
+// const ExpenseHeads = Loadable(
+//   lazy(() => import('views/pages/ExpenseManagement/ExpenseHeads'))
+// );
+// const ExpenseSubHeads = Loadable(
+//   lazy(() => import('views/pages/ExpenseManagement/ExpenseSubHeads'))
+// );
 
-const AllExpenses = Loadable(
-  lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
-);
+// const AllExpenses = Loadable(
+//   lazy(() => import('views/pages/ExpenseManagement/AllExpenses'))
+// );
 
 // Manage distributor
 // const Distributors = Loadable(
@@ -387,25 +387,25 @@ const JewelleryVendor = Loadable(
 );
 
 // report
-const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
-const AdvanceReport = Loadable(
-  lazy(() => import('views/pages/Report/AdvanceReport'))
-);
-const BalanceSheet = Loadable(
-  lazy(() => import('views/pages/Report/BalanceSheet'))
-);
-const ReportSummary = Loadable(
-  lazy(() => import('views/pages/Report/ReportSummary'))
-);
+// const DueReport = Loadable(lazy(() => import('views/pages/Report/DueReport')));
+// const AdvanceReport = Loadable(
+//   lazy(() => import('views/pages/Report/AdvanceReport'))
+// );
+// const BalanceSheet = Loadable(
+//   lazy(() => import('views/pages/Report/BalanceSheet'))
+// );
+// const ReportSummary = Loadable(
+//   lazy(() => import('views/pages/Report/ReportSummary'))
+// );
 // const DailyReport = Loadable(
 //   lazy(() => import('views/pages/Report/DailyReport'))
 // );
-const ExpenseHeadSummary = Loadable(
-  lazy(() => import('views/pages/RoManagement/RoReport/ExpenseHeadSummary'))
-);
-const RoDailyReport = Loadable(
-  lazy(() => import('views/pages/RoManagement/RoReport/RoDailyReport'))
-);
+// const ExpenseHeadSummary = Loadable(
+//   lazy(() => import('views/pages/RoManagement/RoReport/ExpenseHeadSummary'))
+// );
+// const RoDailyReport = Loadable(
+//   lazy(() => import('views/pages/RoManagement/RoReport/RoDailyReport'))
+// );
 
 // payment report
 // const PaymentReport = Loadable(
@@ -510,156 +510,156 @@ const MainRoutes = {
         {
           path: 'pages',
           children: [
-            {
-              path: 'ro-management',
-              children: [
-                {
-                  path: 'invoices',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['invoices']}
-                    >
-                      <Invoices />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'ro-expenses',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['ro-expenses']}
-                    >
-                      <AllExpenses />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'receive-payment',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['receive-payment']}
-                    >
-                      <ReceivePayment />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'fixed-asset',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['fixed-asset']}
-                    >
-                      <FixedAsset />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'investment',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['investment']}
-                    >
-                      <Investment />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'withdraw',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['withdraw']}
-                    >
-                      <Withdraw />
-                    </AuthenticationRoutes>
-                  ),
-                },
-                {
-                  path: 'library',
-                  element: (
-                    <AuthenticationRoutes
-                      allowedRoles={['super_admin', 'admin']}
-                      allowedCodes={['library']}
-                    >
-                      <RoLibrary />
-                    </AuthenticationRoutes>
-                  ),
-                  children: [
-                    {
-                      path: '',
-                      element: <AllCustomers />,
-                    },
-                    {
-                      path: 'vendors',
-                      element: <Vendors />,
-                    },
-                    {
-                      path: 'client-groups',
-                      element: <CustomerGroups />,
-                    },
-                    {
-                      path: 'ro-products',
-                      element: <Products />,
-                    },
-                    {
-                      path: 'expense-heads',
-                      element: <ExpenseHeads />,
-                    },
-                    {
-                      path: 'expense-details',
-                      element: <ExpenseSubHeads />,
-                    },
-                    {
-                      path: 'account-types',
-                      element: <AccountTypes />,
-                    },
-                    {
-                      path: 'account-heads',
-                      element: <AccountHeads />,
-                    },
-                    {
-                      path: 'payment-methods',
-                      element: <PaymentMethods />,
-                    },
-                  ],
-                },
-                {
-                  path: 'ro-report',
-                  element: <RoReport />,
-                  children: [
-                    {
-                      path: '',
-                      element: <ReportSummary />,
-                    },
-                    {
-                      path: 'daily-report',
-                      element: <RoDailyReport />,
-                    },
-                    {
-                      path: 'balance-sheet',
-                      element: <BalanceSheet />,
-                    },
-                    {
-                      path: 'due-report',
-                      element: <DueReport />,
-                    },
-                    {
-                      path: 'advance-report',
-                      element: <AdvanceReport />,
-                    },
-                    {
-                      path: 'expense-summary',
-                      element: <ExpenseHeadSummary />,
-                    },
-                  ],
-                },
-              ],
-            },
+            // {
+            //   path: 'ro-management',
+            //   children: [
+            //     {
+            //       path: 'invoices',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['invoices']}
+            //         >
+            //           <Invoices />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'ro-expenses',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['ro-expenses']}
+            //         >
+            //           <AllExpenses />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'receive-payment',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['receive-payment']}
+            //         >
+            //           <ReceivePayment />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'fixed-asset',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['fixed-asset']}
+            //         >
+            //           <FixedAsset />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'investment',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['investment']}
+            //         >
+            //           <Investment />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'withdraw',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['withdraw']}
+            //         >
+            //           <Withdraw />
+            //         </AuthenticationRoutes>
+            //       ),
+            //     },
+            //     {
+            //       path: 'library',
+            //       element: (
+            //         <AuthenticationRoutes
+            //           allowedRoles={['super_admin', 'admin']}
+            //           allowedCodes={['library']}
+            //         >
+            //           <RoLibrary />
+            //         </AuthenticationRoutes>
+            //       ),
+            //       children: [
+            //         {
+            //           path: '',
+            //           element: <AllCustomers />,
+            //         },
+            //         {
+            //           path: 'vendors',
+            //           element: <Vendors />,
+            //         },
+            //         {
+            //           path: 'client-groups',
+            //           element: <CustomerGroups />,
+            //         },
+            //         {
+            //           path: 'ro-products',
+            //           element: <Products />,
+            //         },
+            //         {
+            //           path: 'expense-heads',
+            //           element: <ExpenseHeads />,
+            //         },
+            //         {
+            //           path: 'expense-details',
+            //           element: <ExpenseSubHeads />,
+            //         },
+            //         {
+            //           path: 'account-types',
+            //           element: <AccountTypes />,
+            //         },
+            //         {
+            //           path: 'account-heads',
+            //           element: <AccountHeads />,
+            //         },
+            //         {
+            //           path: 'payment-methods',
+            //           element: <PaymentMethods />,
+            //         },
+            //       ],
+            //     },
+            //     {
+            //       path: 'ro-report',
+            //       element: <RoReport />,
+            //       children: [
+            //         {
+            //           path: '',
+            //           element: <ReportSummary />,
+            //         },
+            //         {
+            //           path: 'daily-report',
+            //           element: <RoDailyReport />,
+            //         },
+            //         {
+            //           path: 'balance-sheet',
+            //           element: <BalanceSheet />,
+            //         },
+            //         {
+            //           path: 'due-report',
+            //           element: <DueReport />,
+            //         },
+            //         {
+            //           path: 'advance-report',
+            //           element: <AdvanceReport />,
+            //         },
+            //         {
+            //           path: 'expense-summary',
+            //           element: <ExpenseHeadSummary />,
+            //         },
+            //       ],
+            //     },
+            //   ],
+            // },
             // {
             //   path: 'client-management',
             //   children: [
